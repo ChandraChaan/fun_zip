@@ -23,6 +23,7 @@ class SplashController extends GetxController {
         }
 
         if (userModel.token != null && userModel.token != '') {
+          // offAllNamed means complete close all back screen
           Get.offAllNamed(Routes.HOME);
         } else {
           Get.offAllNamed(Routes.SIGN_IN);

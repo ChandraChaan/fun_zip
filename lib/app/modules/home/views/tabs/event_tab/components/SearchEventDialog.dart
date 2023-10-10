@@ -76,14 +76,7 @@ class SearchEventDialog extends GetView<HomeController> {
                       ),
                     ),
                     10.height,
-                    CommonDropdownWidget(
-                      keyName: 'Location',
-                      hintText: 'Location',
-                      itemList: listOfCities,
-                      onPressed: (value) {
-                        controller.selectedCity = value;
-                      },
-                    ),
+                    SizedBox(height:200,child: CountrySearchWidget())
                   ],
                 ),
                 Column(
@@ -209,6 +202,83 @@ class SearchEventDialog extends GetView<HomeController> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+
+class CountrySearchWidget extends StatefulWidget {
+  @override
+  _CountrySearchWidgetState createState() => _CountrySearchWidgetState();
+}
+
+class _CountrySearchWidgetState extends State<CountrySearchWidget> {
+  TextEditingController _searchController = TextEditingController();
+  List<String> _suggestions = [];
+
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(_onSearchTextChanged);
+  }
+
+  void _onSearchTextChanged() {
+    setState(() {
+      _suggestions = listOfCities.where((country) =>
+          country.toLowerCase().contains(_searchController.text.toLowerCase())).toList();
+    });
+  }
+  void _handleSelection(String selectedCountry) {
+    // Handle the selected country here.
+    print('Selected: $selectedCountry');
+    _searchController.text = selectedCountry;
+
+    // You can perform any desired action with the selected country.
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          TextField(
+            controller: _searchController,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              filled: true,
+              hintStyle: TextStyle(color: Colors.grey[800]),
+              hintText: "Location",
+              fillColor: Colors.white70,
+            ),
+          ),
+          SizedBox(height: 16.0),
+          Expanded(
+            child: ListView.builder(
+              itemCount: _suggestions.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(_suggestions[index]),
+                  onTap: () {
+                    // Handle selection here.
+                    print('Selected: ${_suggestions[index]}');
+                    _handleSelection(_suggestions[index]);
+
+                  },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
