@@ -30,6 +30,8 @@ dependencies:
   linear_step_indicator: ^1.0.0+3
   pin_code_fields: ^8.0.1
   uuid: any
+  carousel_slider: ^4.2.1
+
 
 dependency_overrides:
   intl: ^0.18.1

@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
@@ -85,6 +86,37 @@ class EventTab extends GetView<HomeController> {
                       ),
                     ),
                   ),
+                  // CarouselSlider(
+                  //     items: [
+                  //       Image.asset(
+                  //         'assets/svg/Rectangle_33.png',
+                  //         fit: BoxFit.fill,
+                  //       ),
+                  //       Image.asset(
+                  //         'assets/svg/Rectangle_33.png',
+                  //         fit: BoxFit.fill,
+                  //       ),
+                  //       Image.asset(
+                  //         'assets/svg/Rectangle_33.png',
+                  //         fit: BoxFit.fill,
+                  //       ),
+                  //     ],
+                  //     options: CarouselOptions(
+                  //       height: 130,
+                  //       // aspectRatio: 16 / 6,
+                  //       viewportFraction: 0.8,
+                  //       initialPage: 0,
+                  //       enableInfiniteScroll: true,
+                  //       reverse: false,
+                  //       autoPlay: true,
+                  //       autoPlayInterval: Duration(seconds: 3),
+                  //       autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  //       autoPlayCurve: Curves.fastOutSlowIn,
+                  //       enlargeCenterPage: false,
+                  //       enlargeFactor: 0.7,
+                  //       onPageChanged: (num, str) {},
+                  //       scrollDirection: Axis.horizontal,
+                  //     )),
                   Expanded(
                     child: ListView.builder(
                       physics: AlwaysScrollableScrollPhysics(),
@@ -109,7 +141,7 @@ class EventTab extends GetView<HomeController> {
                         );
                       },
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -118,7 +150,7 @@ class EventTab extends GetView<HomeController> {
       },
       body: Builder(
         builder: (context) {
-          // final innerScrollController = PrimaryScrollController.of(context);
+          final innerScrollController = PrimaryScrollController.of(context);
 
           return GetX(
             init: HomeController(),

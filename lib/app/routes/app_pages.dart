@@ -1,3 +1,5 @@
+import 'package:fun_zippy/app/extra/for_me.dart';
+import 'package:fun_zippy/new_codes/details_13.dart';
 import 'package:get/get.dart';
 
 import '../modules/create_event/bindings/create_event_binding.dart';
@@ -24,7 +26,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH;
+  static const INITIAL = Routes.LocationSearchScreensat;
 
   static final routes = [
     GetPage(
@@ -70,6 +72,16 @@ class AppPages {
     GetPage(
       name: _Paths.EVENT_DETAILS,
       page: () => const EventDetailsView(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.LocationSearchScreensat,
+      page: () => LocationSearchScreensat(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.BookTickets,
+      page: () => BookTickets(),
       binding: EventDetailsBinding(),
     ),
   ];
