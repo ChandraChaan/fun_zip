@@ -13,11 +13,14 @@ class HomeController extends GetxController {
   Rx<HomeApiResponseModel> apiResponseModel = HomeApiResponseModel().obs;
   Rx<Placemark> userAddress = Placemark().obs;
   RxBool loading = false.obs;
+  int currentSlide = 0;
   TextEditingController? searchEventTextEditingController =
       TextEditingController();
   String? selectedCity;
   String? selectedCategory;
   bool? selectedModeOnline = false;
+  List<String> items = ['Party', 'Music', for (int a = 1; a < 9; a++) 'Comedy $a'];
+//foreach, each,
   @override
   void onInit() {
     super.onInit();
@@ -27,6 +30,7 @@ class HomeController extends GetxController {
   }
 
   late Position? userPosition;
+
   getUserLocation() async {
     userPosition = await getCurrentPosition();
 
@@ -37,6 +41,7 @@ class HomeController extends GetxController {
   }
 
   RxInt selectedIndex = 0.obs;
+
   getAllEvents() async {
     loading.value = true;
     Map data = {
