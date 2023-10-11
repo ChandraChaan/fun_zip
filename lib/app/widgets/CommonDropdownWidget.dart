@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart'; // Import the package
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import '../theme/text_theme.dart';
 
-class CommonDropdownWidget extends StatelessWidget {
+class CommonDropdownWidget extends StatefulWidget {
   const CommonDropdownWidget({
     super.key,
     required this.keyName,
@@ -21,9 +21,23 @@ class CommonDropdownWidget extends StatelessWidget {
   final Function(String?) onPressed;
 
   @override
+  _CommonDropdownWidgetState createState() => _CommonDropdownWidgetState();
+}
+
+class _CommonDropdownWidgetState extends State<CommonDropdownWidget> {
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.text = ''; // Initialize with an empty string
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TypeAheadField<String>(
       textFieldConfiguration: TextFieldConfiguration(
+        controller: _controller, // Set the controller
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30.0),
@@ -31,15 +45,13 @@ class CommonDropdownWidget extends StatelessWidget {
           ),
           filled: true,
           hintStyle: normalText,
-          hintText: hintText,
+          hintText: widget.hintText,
           fillColor: Colors.white,
         ),
-        // Other text field properties can be configured here.
       ),
       suggestionsCallback: (pattern) {
-        // Implement a filtering logic for your items based on the search pattern.
-        return itemList.where(
-            (item) => item.toLowerCase().contains(pattern.toLowerCase()));
+        return widget.itemList.where(
+                (item) => item.toLowerCase().contains(pattern.toLowerCase()));
       },
       itemBuilder: (context, suggestion) {
         return ListTile(
@@ -47,7 +59,10 @@ class CommonDropdownWidget extends StatelessWidget {
         );
       },
       onSuggestionSelected: (String? suggestion) {
-        onPressed(suggestion);
+        setState(() {
+          _controller.text = suggestion ?? ''; // Update the text field
+        });
+        widget.onPressed(suggestion);
       },
     );
   }
