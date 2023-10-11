@@ -127,7 +127,7 @@ class EventTab extends GetView<HomeController> {
                 return Center(child: Text('Loading ...'));
               } else {
                 if (controller.apiResponseModel.value.results == null) {
-                  return Center(child: Text('Loading ...'));
+                  return Center(child: Text('No Data'));
                 } else {
                   return ListView.builder(
                     padding: EdgeInsets.only(
