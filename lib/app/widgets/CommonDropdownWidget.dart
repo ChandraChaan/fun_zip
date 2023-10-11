@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-
+import 'package:flutter_typeahead/flutter_typeahead.dart'; // Import the package
 import '../theme/text_theme.dart';
 
 class CommonDropdownWidget extends StatelessWidget {
@@ -13,42 +13,42 @@ class CommonDropdownWidget extends StatelessWidget {
     this.required,
     required this.onPressed,
   });
+
   final String keyName;
   final String hintText;
   final List<String> itemList;
   final bool? required;
-  final Function(String?)? onPressed;
+  final Function(String?) onPressed;
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderDropdown<String>(
-      name: keyName,
-      onChanged: onPressed,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(
+    return TypeAheadField<String>(
+      textFieldConfiguration: TextFieldConfiguration(
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30.0),
-            borderSide: BorderSide.none),
-        filled: true,
-        hintStyle: normalText,
-        hintText: "Choose Group",
-        fillColor: Colors.white,
-        // prefixIcon: IconButton(
-        //   onPressed: null,
-        //   icon: SvgPicture.asset(userIconImage),
-        // ),
-        prefixIconConstraints: BoxConstraints(minWidth: 14, minHeight: 10),
+            borderSide: BorderSide.none,
+          ),
+          filled: true,
+          hintStyle: normalText,
+          hintText: hintText,
+          fillColor: Colors.white,
+        ),
+        // Other text field properties can be configured here.
       ),
-      items: List.generate(itemList.length, (index) {
-        final singleItem = itemList[index];
-        return DropdownMenuItem(
-          alignment: AlignmentDirectional.center,
-          value: singleItem,
-          child: Text('$singleItem'),
+      suggestionsCallback: (pattern) {
+        // Implement a filtering logic for your items based on the search pattern.
+        return itemList.where(
+            (item) => item.toLowerCase().contains(pattern.toLowerCase()));
+      },
+      itemBuilder: (context, suggestion) {
+        return ListTile(
+          title: Text(suggestion),
         );
-      }),
-      validator: FormBuilderValidators.compose(
-        [if (required == true) FormBuilderValidators.required()],
-      ),
+      },
+      onSuggestionSelected: (String? suggestion) {
+        onPressed(suggestion);
+      },
     );
   }
 }

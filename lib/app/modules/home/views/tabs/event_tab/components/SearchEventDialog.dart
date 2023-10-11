@@ -76,7 +76,14 @@ class SearchEventDialog extends GetView<HomeController> {
                       ),
                     ),
                     10.height,
-                    SizedBox(height:200,child: CountrySearchWidget())
+                    CommonDropdownWidget(
+                      keyName: 'Location',
+                      hintText: 'Location',
+                      itemList: listOfCities,
+                      onPressed: (value) {
+                        controller.selectedCity = value;
+                      },
+                    ),
                   ],
                 ),
                 Column(
@@ -207,7 +214,6 @@ class SearchEventDialog extends GetView<HomeController> {
   }
 }
 
-
 class CountrySearchWidget extends StatefulWidget {
   @override
   _CountrySearchWidgetState createState() => _CountrySearchWidgetState();
@@ -217,7 +223,6 @@ class _CountrySearchWidgetState extends State<CountrySearchWidget> {
   TextEditingController _searchController = TextEditingController();
   List<String> _suggestions = [];
 
-
   @override
   void initState() {
     super.initState();
@@ -226,10 +231,14 @@ class _CountrySearchWidgetState extends State<CountrySearchWidget> {
 
   void _onSearchTextChanged() {
     setState(() {
-      _suggestions = listOfCities.where((country) =>
-          country.toLowerCase().contains(_searchController.text.toLowerCase())).toList();
+      _suggestions = listOfCities
+          .where((country) => country
+              .toLowerCase()
+              .contains(_searchController.text.toLowerCase()))
+          .toList();
     });
   }
+
   void _handleSelection(String selectedCountry) {
     // Handle the selected country here.
     print('Selected: $selectedCountry');
@@ -272,7 +281,6 @@ class _CountrySearchWidgetState extends State<CountrySearchWidget> {
                     // Handle selection here.
                     print('Selected: ${_suggestions[index]}');
                     _handleSelection(_suggestions[index]);
-
                   },
                 );
               },
