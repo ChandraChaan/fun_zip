@@ -12,6 +12,8 @@ abstract class Routes {
   static const RESET_PASSWORD = _Paths.RESET_PASSWORD;
   static const CREATE_EVENT = _Paths.CREATE_EVENT;
   static const EVENT_DETAILS = _Paths.EVENT_DETAILS;
+  static const LocationSearchScreensat = _Paths.LocationSearchScreensat;
+  static const BookTickets = _Paths.BookTickets;
 }
 
 abstract class _Paths {
@@ -25,4 +27,6 @@ abstract class _Paths {
   static const RESET_PASSWORD = '/reset-password';
   static const CREATE_EVENT = '/create-event';
   static const EVENT_DETAILS = '/event-details';
+  static const LocationSearchScreensat = '/LocationSearchScreensat';
+  static const BookTickets = '/BookTickets';
 }

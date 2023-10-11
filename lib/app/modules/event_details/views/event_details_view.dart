@@ -126,7 +126,6 @@ class EventDetailsView extends GetView<EventDetailsController> {
 
                           // Boots
                           BoothsWidget(),
-
                           RelatedEventsWidget(),
                         ],
                       ),
