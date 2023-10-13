@@ -1,7 +1,10 @@
 import 'package:fun_zippy/app/extra/for_me.dart';
-import 'package:fun_zippy/new_codes/details_13.dart';
 import 'package:get/get.dart';
 
+import '../../sathya/booking_tickets/booking_tickets.dart';
+import '../../sathya/editing_event/editing_event.dart';
+import '../../sathya/schedule_screen/schedule_screen.dart';
+import '../../sathya/sponsorship/sponsorship_screen.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
 import '../modules/event_details/bindings/event_details_binding.dart';
@@ -26,7 +29,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH;
+  static const INITIAL = Routes.EditingEvent;
 
   static final routes = [
     GetPage(
@@ -74,14 +77,29 @@ class AppPages {
       page: () => const EventDetailsView(),
       binding: EventDetailsBinding(),
     ),
-    GetPage(
-      name: _Paths.LocationSearchScreensat,
-      page: () => LocationSearchScreensat(),
-      binding: EventDetailsBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.LocationSearchScreensat,
+    //   page: () => LocationSearchScreensat(),
+    //   binding: EventDetailsBinding(),
+    // ),
     GetPage(
       name: _Paths.BookTickets,
       page: () => BookTickets(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.SponsorshipScreen,
+      page: () => SponsorshipScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.ScheduleScreen,
+      page: () => ScheduleScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.EditingEvent,
+      page: () => EditingEvent(),
       binding: EventDetailsBinding(),
     ),
   ];

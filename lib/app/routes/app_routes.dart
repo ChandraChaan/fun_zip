@@ -14,6 +14,9 @@ abstract class Routes {
   static const EVENT_DETAILS = _Paths.EVENT_DETAILS;
   static const LocationSearchScreensat = _Paths.LocationSearchScreensat;
   static const BookTickets = _Paths.BookTickets;
+  static const SponsorshipScreen = _Paths.SponsorshipScreen;
+  static const ScheduleScreen = _Paths.ScheduleScreen;
+  static const EditingEvent = _Paths.EditingEvent;
 }
 
 abstract class _Paths {
@@ -29,4 +32,7 @@ abstract class _Paths {
   static const EVENT_DETAILS = '/event-details';
   static const LocationSearchScreensat = '/LocationSearchScreensat';
   static const BookTickets = '/BookTickets';
+  static const SponsorshipScreen = '/SponsorshipScreen';
+  static const ScheduleScreen = '/ScheduleScreen';
+  static const EditingEvent = '/EditingEvent';
 }

@@ -203,7 +203,8 @@ class SearchEventDialog extends GetView<HomeController> {
                     //   controller.verifyPhoneOTP();
                     // }
                     Get.back();
-                    controller.getAllEvents();
+                    //controller.getAllEvents();
+                    controller.fetchData();
                     formKey.currentState!.reset();
                   }),
             ),

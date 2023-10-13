@@ -37,7 +37,7 @@ class CustomInterceptors extends InterceptorsWrapper {
     printGreen('request data');
     printWhite('${options.data}');
 
-    // // get [token] from shared or localStorage or Redis Or Sqflite
+    //  get [token] from shared or localStorage or Redis Or Sqflite
     // String accessToken = await getToken();
 
     // if (accessToken == null) {

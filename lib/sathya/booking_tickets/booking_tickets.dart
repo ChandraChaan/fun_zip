@@ -172,38 +172,34 @@ class BookTickets extends StatefulWidget {
 }
 
 class _BookTicketsState extends State<BookTickets> {
+  int _vaue = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 5,
+        backgroundColor: Colors.white,
+        leading: Icon(
+          Icons.arrow_back,
+          color: Colors.black,
+        ),
+        actions: [
+          CircleAvatar(
+            radius: 15,
+            child: Image.asset('assets/svg/ellipse_1.png'),
+          )
+        ],
+        title: Center(
+            child: Text(
+          'Book Tickets',
+          style: TextStyle(color: Colors.black, fontSize: 20),
+        )),
+      ),
       body: Column(
         children: [
-          Container(
-            height: 95,
-            color: Colors.white,
-            child: SafeArea(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(
-                    Icons.arrow_back,
-                    size: 16,
-                  ),
-                  Text(
-                    'Book Tickets',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  CircleAvatar(
-                    radius: 15,
-                    child: Image.asset('assets/svg/ellipse_1.png'),
-                  ),
-                ],
-              ),
-            ),
-          ),
           SizedBox(
-            height: 7,
+            height: 5,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -231,9 +227,13 @@ class _BookTicketsState extends State<BookTickets> {
                     ),
                   ],
                 ),
+                SizedBox(height: 15),
                 Row(
                   children: [
                     Text('Gem Show Pass'),
+                    SizedBox(
+                      width: 220,
+                    ),
                     Container(
                       height: 22,
                       width: 22,
@@ -242,7 +242,9 @@ class _BookTicketsState extends State<BookTickets> {
                           borderRadius: BorderRadius.circular(25)),
                       child: Icon(Icons.remove, size: 14),
                     ),
+                    SizedBox(width: 2),
                     Text('0'),
+                    SizedBox(width: 2),
                     Container(
                       height: 22,
                       width: 22,
@@ -253,17 +255,34 @@ class _BookTicketsState extends State<BookTickets> {
                     )
                   ],
                 ),
+                SizedBox(height: 7),
                 Text(
                   'General',
                   style: TextStyle(fontSize: 12),
                 ),
-                Icon(Icons.attach_money),
+                SizedBox(height: 7),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.attach_money,
+                      size: 17,
+                    ),
+                    Text('5.00')
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
                 Row(
                   children: [
                     Text(
                       'Senior Citienn Pass',
                       style: TextStyle(fontSize: 14),
                     ),
+                    SizedBox(
+                      height: 7,
+                      width: 202,
+                    ),
                     Container(
                       height: 22,
                       width: 22,
@@ -272,7 +291,13 @@ class _BookTicketsState extends State<BookTickets> {
                           borderRadius: BorderRadius.circular(25)),
                       child: Icon(Icons.remove, size: 14),
                     ),
+                    SizedBox(
+                      width: 2,
+                    ),
                     Text('0'),
+                    SizedBox(
+                      width: 2,
+                    ),
                     Container(
                       height: 22,
                       width: 22,
@@ -283,9 +308,205 @@ class _BookTicketsState extends State<BookTickets> {
                     )
                   ],
                 ),
+                SizedBox(height: 7),
+                Row(
+                  children: [
+                    Text(
+                      'Kids',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    SizedBox(
+                      height: 7,
+                      width: 202,
+                    ),
+                    SizedBox(
+                      width: 93,
+                    ),
+                    Container(
+                      height: 22,
+                      width: 22,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(25)),
+                      child: Icon(Icons.remove, size: 14),
+                    ),
+                    SizedBox(
+                      width: 2,
+                    ),
+                    Text('0'),
+                    SizedBox(
+                      width: 2,
+                    ),
+                    Container(
+                      height: 22,
+                      width: 22,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(25)),
+                      child: Icon(Icons.add, size: 14),
+                    )
+                  ],
+                ),
+                SizedBox(height: 7),
+                Row(
+                  children: [
+                    Text(
+                      'Adaltus',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    SizedBox(
+                      height: 7,
+                      width: 202,
+                    ),
+                    SizedBox(
+                      width: 72,
+                    ),
+                    Container(
+                      height: 22,
+                      width: 22,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(25)),
+                      child: Icon(Icons.remove, size: 14),
+                    ),
+                    SizedBox(
+                      width: 2,
+                    ),
+                    Text('0'),
+                    SizedBox(
+                      width: 2,
+                    ),
+                    Container(
+                      height: 22,
+                      width: 22,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(25)),
+                      child: Icon(Icons.add, size: 14),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 7,
+                ),
                 Text(
                   'Citizen',
                   style: TextStyle(fontSize: 12),
+                ),
+                SizedBox(height: 7),
+                Icon(
+                  Icons.attach_money,
+                  size: 17,
+                ),
+                Text('3.00'),
+                SizedBox(
+                  height: 7,
+                ),
+                Container(
+                  height: 40,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Name',
+                      hintStyle: TextStyle(fontSize: 12),
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                Container(
+                  height: 40,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Emain',
+                      hintStyle: TextStyle(fontSize: 12),
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 18,
+                ),
+                Container(
+                  height: 40,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: '+ 91 Phone Number',
+                      hintStyle: TextStyle(fontSize: 12),
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.check_box_outline_blank),
+                        Text('Accept'),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.check_box_outline_blank),
+                        Text('Decline'),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.check_box_outline_blank),
+                        Text('Maybe'),
+                      ],
+                    ),
+                  ],
+                ),
+                Container(
+                  height: 115,
+                  width: double.infinity,
+                  child: TextField(
+                    decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.grey,
+                        hintText: 'Comment',
+                        hintStyle: TextStyle(fontSize: 12),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10))),
+                  ),
+                ),
+                Container(
+                  height: 40,
+                  width: double.infinity,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Checkout',
+                      hintStyle: TextStyle(
+                        fontSize: 12,
+                        color: Colors.white,
+                      ),
+                      filled: true,
+                      fillColor: Colors.pink,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ],
             ),
