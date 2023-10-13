@@ -11,11 +11,11 @@ import '../utilities/date_time_format.dart';
 class SingleEventItemWidget extends StatelessWidget {
   const SingleEventItemWidget({
     super.key,
-    required this.result,
+    this.result,
     required this.onPressed,
   });
 
-  final Results result;
+  final Results? result;
   final VoidCallback onPressed;
 
   @override
@@ -37,13 +37,14 @@ class SingleEventItemWidget extends StatelessWidget {
                 padding: EdgeInsets.all(10),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Image.network(result.summaryPicture),
+                  child: Image.network('https://s3.us-west-2.amazonaws.com/funzippy.events/blMHkqJ2cMW/pics/IMG-20231001-WA0013.jpg'),
+                  // child: Image.network(result.summaryPicture),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  '${result.name}',
+                  '${'One Gram Gold- Festival Season Sale'}',
                   style: boldText.copyWith(fontSize: 16),
                 ),
               ),
@@ -55,7 +56,7 @@ class SingleEventItemWidget extends StatelessWidget {
                     5.width,
                     Expanded(
                       child: Text(
-                        formatDateForHome(date: result.startDateTime),
+                        formatDateForHome(date: '2023-10-02T00:00:00.000+00:00'),
                         style: normalText.copyWith(fontSize: 10),
                       ),
                     ),
@@ -65,7 +66,7 @@ class SingleEventItemWidget extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {},
                         child: Text(
-                          calculateDayLeft(startDate: result.startDateTime),
+                          calculateDayLeft(startDate: '2023-10-02T00:00:00.000+00:00'),
                           style: normalText.copyWith(
                             color: Color(0xFFFF5C00),
                             fontSize: 8,
@@ -93,7 +94,7 @@ class SingleEventItemWidget extends StatelessWidget {
                     ),
                     5.width,
                     Text(
-                      '${result.locationName}',
+                      '${'Prosper'}',
                       style: normalText.copyWith(fontSize: 10),
                     ),
                   ],
