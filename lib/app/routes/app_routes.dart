@@ -17,6 +17,7 @@ abstract class Routes {
   static const SponsorshipScreen = _Paths.SponsorshipScreen;
   static const ScheduleScreen = _Paths.ScheduleScreen;
   static const EditingEvent = _Paths.EditingEvent;
+  static const EventScreen = _Paths.EventScreen;
 }
 
 abstract class _Paths {
@@ -35,4 +36,5 @@ abstract class _Paths {
   static const SponsorshipScreen = '/SponsorshipScreen';
   static const ScheduleScreen = '/ScheduleScreen';
   static const EditingEvent = '/EditingEvent';
+  static const EventScreen = '/EventScreen';
 }
