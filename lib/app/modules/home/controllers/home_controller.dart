@@ -12,7 +12,7 @@ import '../../../widgets/error_snackbar.dart';
 import 'package:http/http.dart' as http;
 
 class HomeController extends GetxController {
-  List<dynamic> tempo = [];
+  RxList<dynamic> tempo = [].obs;
 
   static HomeController get to => Get.find();
   Rx<HomeApiResponseModel> apiResponseModel = HomeApiResponseModel().obs;
@@ -42,40 +42,40 @@ class HomeController extends GetxController {
     userAddress.value = await getUserAddress(
         latitude: userPosition!.latitude, longitude: userPosition!.longitude);
 
-   // getAllEvents();
-  fetchData();
+   getAllEvents();
+  // fetchData();
   print('sathya ');
   }
 
   RxInt selectedIndex = 0.obs;
 
-  // getAllEvents() async {
-  //   loading.value = true;
-  //   Map data = {
-  //     "pageNo": "1",
-  //     "resultsPerPage": 18,
-  //     "latitude": "${userPosition!.latitude}",
-  //     "longitude": "${userPosition!.longitude}",
-  //     "radius": 50,
-  //     "dateRange": "",
-  //     "name": "${searchEventTextEditingController?.text ?? ''}",
-  //     "city": "${selectedCity ?? userAddress.value.locality ?? ''}",
-  //     //"category1": "${selectedCategory ?? ''}",
-  //     "category1": "",
-  //     "attendanceMode": "${selectedModeOnline ?? false}",
-  //   };
-  //   try {
-  //     var response = await EventRepository().getAllEvents(data);
-  //     print('sathya first');
-  //     apiResponseModel.value = HomeApiResponseModel.fromJson(response.obs);
-  //     print('sathya debug');
-  //     print(apiResponseModel.value.totalResultCount);
-  //     print('painavi list checking');
-  //     loading.value = false;
-  //   } catch (e) {
-  //     loading.value = false;
-  //   }
-  // }
+  getAllEvents() async {
+    loading.value = true;
+    Map data = {
+      "pageNo": "1",
+      "resultsPerPage": 18,
+      "latitude": "${userPosition!.latitude}",
+      "longitude": "${userPosition!.longitude}",
+      "radius": 50,
+      "dateRange": "",
+      "name": "${searchEventTextEditingController?.text ?? ''}",
+      "city": "${selectedCity ?? userAddress.value.locality ?? ''}",
+      //"category1": "${selectedCategory ?? ''}",
+      "category1": "",
+      "attendanceMode": "${selectedModeOnline ?? false}",
+    };
+    try {
+      var response = await EventRepository().getAllEvents(data);
+      print('sathya first');
+      apiResponseModel.value = HomeApiResponseModel.fromJson(response.obs);
+      print('sathya debug');
+      print(apiResponseModel.value.totalResultCount);
+      print('painavi list checking');
+      loading.value = false;
+    } catch (e) {
+      loading.value = false;
+    }
+  }
 
   // API call new
 
@@ -105,11 +105,11 @@ class HomeController extends GetxController {
       // If the server returns a 200 OK response, parse the JSON data
       final responseData = json.decode(response.body);
       // Initialize templist if not already done
-      List<dynamic> tempo = [];
+      // List<dynamic> tempo = [];
       if (responseData['results'] is List) {
         tempo.addAll(responseData['results']);
         print('tempo.length'); // Use .length to get the length
-        print(tempo.length);
+        print(responseData.toString());
         print('sathya templist');
       } else {
         print('Response data is not a list');
