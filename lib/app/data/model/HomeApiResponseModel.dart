@@ -19,8 +19,9 @@ class HomeApiResponseModel {
   late final dynamic firstResult;
 
   HomeApiResponseModel.fromJson(Map<String, dynamic> json) {
-    results =
-        List.from(json['results']).map((e) => Results.fromJson(e)).toList();
+    if (json['results'] != null) {
+      results = List<Results>.from(json['results'].map((e) => Results.fromJson(e)));
+    }
     status = Status.fromJson(json['status']);
     data = Data.fromJson(json['data']);
     totalResultCount = json['totalResultCount'];
@@ -31,69 +32,43 @@ class HomeApiResponseModel {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    if (_data['results'] != null) {
-      results = <dynamic>[];
-      _data['results'].forEach((v) {
-        results!.add(v);
-      });
+    final Map<String, dynamic> _data = <String, dynamic>{};
+    if (results != null) {
+      _data['results'] = results!.map((e) => e.toJson()).toList();
     }
-    _data['status'] = status.toJson();
-    _data['data'] = data.toJson();
+    _data['status'] = status?.toJson();
+    _data['data'] = data?.toJson();
     _data['totalResultCount'] = totalResultCount;
     _data['currentPage'] = currentPage;
     _data['startIndex'] = startIndex;
     _data['endIndex'] = endIndex;
-    _data['firstResult'] = firstResult.toJson();
+    _data['firstResult'] = firstResult?.toJson();
     return _data;
   }
 }
 
 class Results {
-  Results({
-    required this.id,
-    required this.uid,
-    required this.name,
-    required this.summaryPicture,
-    required this.startDateTime,
-    required this.endDateTime,
-    required this.description,
-    required this.status,
-    required this.detailUrl,
-    required this.canonicalUrl,
-    required this.visibility,
-    required this.attendanceMode,
-    required this.locationName,
-    required this.address1,
-    required this.city,
-    required this.category1,
-    required this.category2,
-    required this.price,
-    required this.likes,
-    required this.shares,
-    required this.createdDate,
-  });
-  late final dynamic id;
-  late final dynamic uid;
-  late final dynamic name;
-  late final dynamic summaryPicture;
-  late final dynamic startDateTime;
-  late final dynamic endDateTime;
-  late final dynamic description;
-  late final dynamic status;
-  late final dynamic detailUrl;
-  late final dynamic canonicalUrl;
-  late final dynamic visibility;
-  late final dynamic attendanceMode;
-  late final dynamic locationName;
-  late final dynamic address1;
-  late final dynamic city;
-  late final dynamic category1;
-  late final dynamic category2;
-  late final dynamic price;
-  late final dynamic likes;
-  late final dynamic shares;
-  late final dynamic createdDate;
+  dynamic id;
+  dynamic uid;
+  dynamic name;
+  dynamic summaryPicture;
+  dynamic startDateTime;
+  dynamic endDateTime;
+  dynamic description;
+  dynamic status;
+  dynamic detailUrl;
+  dynamic canonicalUrl;
+  dynamic visibility;
+  dynamic attendanceMode;
+  dynamic locationName;
+  dynamic address1;
+  dynamic city;
+  dynamic category1;
+  dynamic category2;
+  dynamic price;
+  dynamic likes;
+  dynamic shares;
+  dynamic createdDate;
 
   Results.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -120,7 +95,7 @@ class Results {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic> _data = <String, dynamic>{};
     _data['id'] = id;
     _data['uid'] = uid;
     _data['name'] = name;
@@ -147,36 +122,28 @@ class Results {
 }
 
 class Status {
-  Status({
-    required this.statusCode,
-    required this.statusLookupKey,
-    required this.statusDescription,
-    required this.data,
-    required this.messages,
-    required this.success,
-  });
-  late final dynamic statusCode;
-  late final dynamic statusLookupKey;
-  late final dynamic statusDescription;
-  late final Data data;
-  late final List<dynamic> messages;
-  late final dynamic success;
+  dynamic statusCode;
+  dynamic statusLookupKey;
+  dynamic statusDescription;
+  Data? data;
+  late List<dynamic> messages;
+  dynamic success;
 
   Status.fromJson(Map<String, dynamic> json) {
     statusCode = json['statusCode'];
     statusLookupKey = json['statusLookupKey'];
     statusDescription = json['statusDescription'];
     data = Data.fromJson(json['data']);
-    messages = List.castFrom<dynamic, dynamic>(json['messages']);
+    messages = List<dynamic>.from(json['messages']);
     success = json['success'];
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic> _data = <String, dynamic>{};
     _data['statusCode'] = statusCode;
     _data['statusLookupKey'] = statusLookupKey;
     _data['statusDescription'] = statusDescription;
-    _data['data'] = data.toJson();
+    _data['data'] = data?.toJson();
     _data['messages'] = messages;
     _data['success'] = success;
     return _data;
@@ -186,59 +153,36 @@ class Status {
 class Data {
   Data();
 
-  Data.fromJson(Map json);
+  Data.fromJson(Map<String, dynamic> json) {}
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic> _data = <String, dynamic>{};
     return _data;
   }
 }
 
 class FirstResult {
-  FirstResult({
-    required this.id,
-    required this.uid,
-    required this.name,
-    required this.summaryPicture,
-    required this.startDateTime,
-    required this.endDateTime,
-    required this.description,
-    required this.status,
-    required this.detailUrl,
-    required this.canonicalUrl,
-    required this.visibility,
-    required this.attendanceMode,
-    required this.locationName,
-    required this.address1,
-    required this.city,
-    required this.category1,
-    required this.category2,
-    required this.price,
-    required this.likes,
-    required this.shares,
-    required this.createdDate,
-  });
-  late final dynamic id;
-  late final dynamic uid;
-  late final dynamic name;
-  late final dynamic summaryPicture;
-  late final dynamic startDateTime;
-  late final dynamic endDateTime;
-  late final dynamic description;
-  late final dynamic status;
-  late final dynamic detailUrl;
-  late final dynamic canonicalUrl;
-  late final dynamic visibility;
-  late final dynamic attendanceMode;
-  late final dynamic locationName;
-  late final dynamic address1;
-  late final dynamic city;
-  late final dynamic category1;
-  late final dynamic category2;
-  late final dynamic price;
-  late final dynamic likes;
-  late final dynamic shares;
-  late final dynamic createdDate;
+  dynamic id;
+  dynamic uid;
+  dynamic name;
+  dynamic summaryPicture;
+  dynamic startDateTime;
+  dynamic endDateTime;
+  dynamic description;
+  dynamic status;
+  dynamic detailUrl;
+  dynamic canonicalUrl;
+  dynamic visibility;
+  dynamic attendanceMode;
+  dynamic locationName;
+  dynamic address1;
+  dynamic city;
+  dynamic category1;
+  dynamic category2;
+  dynamic price;
+  dynamic likes;
+  dynamic shares;
+  dynamic createdDate;
 
   FirstResult.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -265,7 +209,7 @@ class FirstResult {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
+    final Map<String, dynamic> _data = <String, dynamic>{};
     _data['id'] = id;
     _data['uid'] = uid;
     _data['name'] = name;

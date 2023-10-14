@@ -12,8 +12,6 @@ import '../../../widgets/error_snackbar.dart';
 import 'package:http/http.dart' as http;
 
 class HomeController extends GetxController {
-  RxList<dynamic> tempo = [].obs;
-
   static HomeController get to => Get.find();
   Rx<HomeApiResponseModel> apiResponseModel = HomeApiResponseModel().obs;
   Rx<Placemark> userAddress = Placemark().obs;
@@ -43,8 +41,6 @@ class HomeController extends GetxController {
         latitude: userPosition!.latitude, longitude: userPosition!.longitude);
 
    getAllEvents();
-  // fetchData();
-  print('sathya ');
   }
 
   RxInt selectedIndex = 0.obs;
@@ -66,60 +62,12 @@ class HomeController extends GetxController {
     };
     try {
       var response = await EventRepository().getAllEvents(data);
-      print('sathya first');
-      apiResponseModel.value = HomeApiResponseModel.fromJson(response.obs);
-      print('sathya debug');
-      print(apiResponseModel.value.totalResultCount);
-      print('painavi list checking');
+      apiResponseModel.value = HomeApiResponseModel.fromJson(response);
       loading.value = false;
     } catch (e) {
       loading.value = false;
     }
   }
-
-  // API call new
-
-
-  Future<void> fetchData() async {
-    print('sathya entering fetchData');
-
-    final url = Uri.parse('https://funzippy.com/event/search');
-    Map<String, dynamic> data = {
-      "pageNo": "1",
-      "resultsPerPage": 18,
-      "latitude": "${userPosition!.latitude}",
-      "longitude": "${userPosition!.longitude}",
-      "radius": 50,
-      "dateRange": "",
-      "name": "${searchEventTextEditingController?.text ?? ''}",
-      "city": "${selectedCity ?? userAddress.value.locality ?? ''}",
-      "category1": "", // You have two "category1" lines, remove the duplicate
-      "attendanceMode": "${selectedModeOnline ?? false}",
-    };
-
-    final response = await http.post(url, body: json.encode(data), headers: {
-      'Content-Type': 'application/json', // Set the content type to JSON
-    });
-
-    if (response.statusCode == 200) {
-      // If the server returns a 200 OK response, parse the JSON data
-      final responseData = json.decode(response.body);
-      // Initialize templist if not already done
-      // List<dynamic> tempo = [];
-      if (responseData['results'] is List) {
-        tempo.addAll(responseData['results']);
-        print('tempo.length'); // Use .length to get the length
-        print(responseData.toString());
-        print('sathya templist');
-      } else {
-        print('Response data is not a list');
-      }
-    } else {
-      // If the server did not return a 200 OK response, throw an exception
-      throw Exception('Failed to load data');
-    }
-  }
-
 
 // new api above one
 
