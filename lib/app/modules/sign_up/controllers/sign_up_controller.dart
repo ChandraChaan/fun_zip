@@ -1,19 +1,14 @@
-import 'dart:io';
 
-import 'package:country_codes/country_codes.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/modules/otp_verification/controllers/otp_verification_controller.dart';
 import 'package:fun_zippy/app/routes/app_pages.dart';
 import 'package:get/get.dart';
-// import 'package:image_picker/image_picker.dart';
 
 import '../../../data/model/ApiResponseModel.dart';
 import '../../../data/repository/user_repository.dart';
 import '../../../widgets/error_snackbar.dart';
 import '../../../widgets/progress.dart';
 
-// import 'package:http/http.dart' as http;
 
 class SignUpController extends GetxController {
   static OtpVerificationController get to => Get.find();

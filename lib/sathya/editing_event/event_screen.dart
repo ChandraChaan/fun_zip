@@ -54,13 +54,81 @@ class _EventScreenState extends State<EventScreen> {
           children: [
             Container(
               height: 392,
-              width: 374,
+              width: double.infinity,
               color: Colors.white,
-              child: Text(
-                'Basic Details',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Basic Details',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 18,),
+                    Row(
+                      children: [
+                        Text(
+                          'Event Name',
+                          style: TextStyle(
+                              fontSize: 12),
+                        ),
+                      ],
+                    ),SizedBox(height: 10),
+                    Text(
+                      'Start date & time',
+                      style: TextStyle(
+                          fontSize: 12),
+                    ),
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //       child: Container(
+                    //         height: 40,
+                    //         decoration: BoxDecoration(
+                    //           color: Colors.grey,
+                    //           border:
+                    //               Border.all(color: Colors.deepPurpleAccent),
+                    //           borderRadius: BorderRadius.circular(20),
+                    //         ),
+                    //         child: Center(
+                    //           child: Text('In Person'),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     SizedBox(width: 5),
+                    //     Expanded(
+                    //       child: Container(
+                    //         height: 40,
+                    //         decoration: BoxDecoration(
+                    //           color: Colors.grey,
+                    //           border:
+                    //               Border.all(color: Colors.deepPurpleAccent),
+                    //           borderRadius: BorderRadius.circular(20),
+                    //         ),
+                    //         child: Center(child: Text('Online')),
+                    //       ),
+                    //     ),
+                    //     SizedBox(width: 5),
+                    //     Expanded(
+                    //       child: Container(
+                    //         height: 40,
+                    //         decoration: BoxDecoration(
+                    //           color: Colors.grey,
+                    //           border:
+                    //               Border.all(color: Colors.deepPurpleAccent),
+                    //           borderRadius: BorderRadius.circular(20),
+                    //         ),
+                    //         child: Center(child: Text('Mixed')),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                  ],
                 ),
               ),
             ),

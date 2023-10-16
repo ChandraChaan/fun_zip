@@ -18,6 +18,7 @@ abstract class Routes {
   static const ScheduleScreen = _Paths.ScheduleScreen;
   static const EditingEvent = _Paths.EditingEvent;
   static const EventScreen = _Paths.EventScreen;
+  static const SignUpItemWidget = _Paths.SignUpItemWidget;
 }
 
 abstract class _Paths {
@@ -37,4 +38,5 @@ abstract class _Paths {
   static const ScheduleScreen = '/ScheduleScreen';
   static const EditingEvent = '/EditingEvent';
   static const EventScreen = '/EventScreen';
+  static const SignUpItemWidget = '/SignUpItemWidget';
 }

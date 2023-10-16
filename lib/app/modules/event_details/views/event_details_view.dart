@@ -78,7 +78,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                           left: 15.0,
                           right: 15.0,
                           bottom: 20,
-                          top: 20.percentHeight),
+                          top: 29.percentHeight),
                       child: ListView(
                         padding: EdgeInsets.only(top: 20.0, bottom: 5.0),
                         children: [

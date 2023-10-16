@@ -3,11 +3,13 @@ import 'package:get/get.dart';
 
 import '../../sathya/booking_tickets/booking_tickets.dart';
 import '../../sathya/editing_event/editing_event.dart';
+import '../../sathya/editing_event/event_screen.dart';
 import '../../sathya/schedule_screen/schedule_screen.dart';
 import '../../sathya/sponsorship/sponsorship_screen.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
 import '../modules/event_details/bindings/event_details_binding.dart';
+import '../modules/event_details/views/components/SignUpItemWidget.dart';
 import '../modules/event_details/views/event_details_view.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
@@ -29,7 +31,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH;
+  static const INITIAL = Routes.HOME;
 
   static final routes = [
     GetPage(
@@ -100,6 +102,16 @@ class AppPages {
     GetPage(
       name: _Paths.EditingEvent,
       page: () => EditingEvent(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.EventScreen,
+      page: () => EventScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.SignUpItemWidget,
+      page: () => SignUpItemWidget(),
       binding: EventDetailsBinding(),
     ),
   ];

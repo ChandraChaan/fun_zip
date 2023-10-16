@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class EditingEvent extends StatefulWidget {
-  const EditingEvent({super.key});
+import '../../app/modules/home/controllers/home_controller.dart';
 
-  @override
-  State<EditingEvent> createState() => _EditingEventState();
-}
-
-class _EditingEventState extends State<EditingEvent> {
+class EditingEvent extends GetView<HomeController> {
+//   const EditingEvent({super.key});
+//
+//   @override
+//   State<EditingEvent> createState() => _EditingEventState();
+// }
+//
+// class _EditingEventState extends State<EditingEvent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
