@@ -167,17 +167,15 @@ import 'package:flutter/material.dart';
 import '../../app/extra/for_me.dart';
 
 class BookTickets extends StatefulWidget {
-  final Price price; // You need to define a Price class to hold the price and quantity
-
-  const BookTickets({Key?key,required this.price}):
-      super (key: key);
-
+  const BookTickets({super.key});
 
   @override
   State<BookTickets> createState() => _BookTicketsState();
 }
 
 class _BookTicketsState extends State<BookTickets> {
+  //final Price price; // You need to define a Price class to hold the price and quantity
+
   bool accept = false;
   bool decline = false;
   bool maybe = false;
@@ -186,20 +184,20 @@ class _BookTicketsState extends State<BookTickets> {
 
   void increaseQuantity(){
     setState(() {
-      widget.price.quantity++;
+      //widget.price.quantity++;
     });
   }
   void decreaseQuantity(){
     setState(() {
-      if(widget.price.quantity > 1){
-        widget.price?.quantity--;
-      }
+      // if(widget.price.quantity > 1){
+      //   widget.price?.quantity--;
+      // }
     });
   }
-  double calculateTotalPrice() {
-    return widget.price.price * widget.price.quantity;
-
-  }
+  // double calculateTotalPrice() {
+  //   return widget.price.price * widget.price.quantity;
+  //
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -248,7 +246,7 @@ class _BookTicketsState extends State<BookTickets> {
                                   child: Icon(Icons.remove, size: 14),
                                 ),
                                 SizedBox(width: 4),
-                                Text('${widget.price.quantity}'),
+                                //Text('${widget.price.quantity}'),
                                 SizedBox(width: 4),
                                 Container(
                                   height: 22,
@@ -305,7 +303,7 @@ class _BookTicketsState extends State<BookTickets> {
                                 SizedBox(
                                   width: 4,
                                 ),
-                                Text('${widget.price?.quantity}'),
+                                //Text('${widget.price?.quantity}'),
                                 SizedBox(
                                   width: 4,
                                 ),
@@ -685,6 +683,7 @@ class _BookTicketsState extends State<BookTickets> {
     );
   }
 }
+
 class Price {
   final double price;
   int quantity;
