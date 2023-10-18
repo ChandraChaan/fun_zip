@@ -31,7 +31,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.BookTickets;
 
   static final routes = [
     GetPage(
@@ -80,11 +80,11 @@ class AppPages {
       binding: EventDetailsBinding(),
     ),
 
-    GetPage(
-      name: _Paths.BookTickets,
-      page: () => BookTickets(),
-      binding: EventDetailsBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.BookTickets,
+    //   page: () => BookTickets(),
+    //   binding: EventDetailsBinding(),
+    // ),
     GetPage(
       name: _Paths.SponsorshipScreen,
       page: () => SponsorshipScreen(),

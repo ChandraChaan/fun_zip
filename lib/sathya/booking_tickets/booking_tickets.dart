@@ -164,355 +164,530 @@
 
 import 'package:flutter/material.dart';
 
+import '../../app/extra/for_me.dart';
+
 class BookTickets extends StatefulWidget {
-  const BookTickets({super.key});
+  final Price price; // You need to define a Price class to hold the price and quantity
+
+  const BookTickets({Key?key,required this.price}):
+      super (key: key);
+
 
   @override
   State<BookTickets> createState() => _BookTicketsState();
 }
 
 class _BookTicketsState extends State<BookTickets> {
-  int _vaue = 1;
+  bool accept = false;
+  bool decline = false;
+  bool maybe = false;
+
+  int quantity = 1;
+
+  void increaseQuantity(){
+    setState(() {
+      widget.price.quantity++;
+    });
+  }
+  void decreaseQuantity(){
+    setState(() {
+      if(widget.price.quantity > 1){
+        widget.price?.quantity--;
+      }
+    });
+  }
+  double calculateTotalPrice() {
+    return widget.price.price * widget.price.quantity;
+
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 5,
-        backgroundColor: Colors.white,
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
-        ),
-        actions: [
-          CircleAvatar(
-            radius: 15,
-            child: Image.asset('assets/svg/ellipse_1.png'),
-          )
-        ],
-        title: Center(
-            child: Text(
-          'Book Tickets',
-          style: TextStyle(color: Colors.black, fontSize: 20),
-        )),
-      ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      height: 42,
-                      width: 182,
-                      decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(21)),
-                      child: Center(child: Text('Tickets')),
-                    ),
-                    Container(
-                      height: 42,
-                      width: 182,
-                      decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(21)),
-                      child: Center(child: Text('RSVP')),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 15),
-                Row(
-                  children: [
-                    Text('Gem Show Pass'),
-                    SizedBox(
-                      width: 220,
-                    ),
-                    Container(
-                      height: 22,
-                      width: 22,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Icon(Icons.remove, size: 14),
-                    ),
-                    SizedBox(width: 2),
-                    Text('0'),
-                    SizedBox(width: 2),
-                    Container(
-                      height: 22,
-                      width: 22,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Icon(Icons.add, size: 14),
-                    )
-                  ],
-                ),
-                SizedBox(height: 7),
-                Text(
-                  'General',
-                  style: TextStyle(fontSize: 12),
-                ),
-                SizedBox(height: 7),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.attach_money,
-                      size: 17,
-                    ),
-                    Text('5.00')
-                  ],
+                Container(
+                  height: 540,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 15),
+                            Text(
+                              'Tickets',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Row(
+                              children: [
+                                Text('Gem Show Pass'),
+                                SizedBox(
+                                  width: 213,
+                                ),
+                                Container(
+                                  height: 22,
+                                  width: 22,
+                                  decoration: BoxDecoration(
+                                      color: Color(0XFFE8E7F0),
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: Icon(Icons.remove, size: 14),
+                                ),
+                                SizedBox(width: 4),
+                                Text('${widget.price.quantity}'),
+                                SizedBox(width: 4),
+                                Container(
+                                  height: 22,
+                                  width: 22,
+                                  decoration: BoxDecoration(
+                                      color: Color(0XFFE8E7F0),
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: Icon(Icons.add, size: 14),
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 7),
+                            Text(
+                              'General',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                            SizedBox(height: 7),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.attach_money,
+                                  color: Color(0XFF5B46F4),
+                                  size: 17,
+                                ),
+                                Text('5.00',
+                                    style: TextStyle(color: Color(0XFF5B46F4)))
+                              ],
+                            ),
+                            SizedBox(
+                              height: 7,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  'Senior Citienn Pass',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                                SizedBox(
+                                  height: 7,
+                                  width: 143,
+                                ),
+                                Container(
+                                  height: 22,
+                                  width: 22,
+                                  decoration: BoxDecoration(
+                                      color: Color(0XFFE8E7F0),
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: InkWell(
+                                      onTap: (){
+                                        decreaseQuantity();
+                                      },
+                                      child: Icon(Icons.remove, size: 14)),
+                                ),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Text('${widget.price?.quantity}'),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Container(
+                                  height: 22,
+                                  width: 22,
+                                  decoration: BoxDecoration(
+                                      color: Color(0XFFE8E7F0),
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: InkWell(
+                                      onTap: (){
+                                        increaseQuantity();
+                                      },
+                                      child: Icon(Icons.add, size: 14),
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 7),
+                            Text(
+                              'Citizen',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                            SizedBox(height: 7),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.attach_money,
+                                  color: Color(0XFF5B46F4),
+                                  size: 17,
+                                ),
+                                Text(
+                                  '3.00',
+                                  style: TextStyle(color: Color(0XFF5B46F4)),
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(
+                              height: 14,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Name',
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  height: 40,
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      hintText: 'Name',
+                                      hintStyle: TextStyle(fontSize: 12),
+                                      filled: true,
+                                      fillColor: Color(0XFFE8E7F0),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 14,
+                                ),
+                                Text(
+                                  'Email',
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                                SizedBox(
+                                  height: 7,
+                                ),
+                                Container(
+                                  height: 40,
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      hintText: 'Emain',
+                                      hintStyle: TextStyle(fontSize: 12),
+                                      filled: true,
+                                      fillColor: Color(0XFFE8E7F0),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 14,
+                                ),
+                                Text(
+                                  'Phone Number',
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                                SizedBox(
+                                  height: 7,
+                                ),
+                                Container(
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      hintText: '+91 Phone Number',
+                                      hintStyle: TextStyle(fontSize: 12),
+                                      filled: true,
+                                      fillColor: Color(0XFFE8E7F0),
+                                      border: InputBorder.none,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(
+                              height: 10,
+                            ),
+                            SizedBox(
+                              height: 25,
+                            ),
+                            Container(
+                              height: 40,
+                              width: double.infinity,
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: 'Checkout',
+                                  hintStyle: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.white,
+                                  ),
+                                  filled: true,
+                                  fillColor: Color(0XFFC61236),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: 15,
                 ),
-                Row(
-                  children: [
-                    Text(
-                      'Senior Citienn Pass',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    SizedBox(
-                      height: 7,
-                      width: 202,
-                    ),
-                    Container(
-                      height: 22,
-                      width: 22,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Icon(Icons.remove, size: 14),
-                    ),
-                    SizedBox(
-                      width: 2,
-                    ),
-                    Text('0'),
-                    SizedBox(
-                      width: 2,
-                    ),
-                    Container(
-                      height: 22,
-                      width: 22,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Icon(Icons.add, size: 14),
-                    )
-                  ],
-                ),
-                SizedBox(height: 7),
-                Row(
-                  children: [
-                    Text(
-                      'Kids',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    SizedBox(
-                      height: 7,
-                      width: 202,
-                    ),
-                    SizedBox(
-                      width: 93,
-                    ),
-                    Container(
-                      height: 22,
-                      width: 22,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Icon(Icons.remove, size: 14),
-                    ),
-                    SizedBox(
-                      width: 2,
-                    ),
-                    Text('0'),
-                    SizedBox(
-                      width: 2,
-                    ),
-                    Container(
-                      height: 22,
-                      width: 22,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Icon(Icons.add, size: 14),
-                    )
-                  ],
-                ),
-                SizedBox(height: 7),
-                Row(
-                  children: [
-                    Text(
-                      'Adaltus',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    SizedBox(
-                      height: 7,
-                      width: 202,
-                    ),
-                    SizedBox(
-                      width: 72,
-                    ),
-                    Container(
-                      height: 22,
-                      width: 22,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Icon(Icons.remove, size: 14),
-                    ),
-                    SizedBox(
-                      width: 2,
-                    ),
-                    Text('0'),
-                    SizedBox(
-                      width: 2,
-                    ),
-                    Container(
-                      height: 22,
-                      width: 22,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Icon(Icons.add, size: 14),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 7,
-                ),
-                Text(
-                  'Citizen',
-                  style: TextStyle(fontSize: 12),
-                ),
-                SizedBox(height: 7),
-                Icon(
-                  Icons.attach_money,
-                  size: 17,
-                ),
-                Text('3.00'),
-                SizedBox(
-                  height: 7,
-                ),
                 Container(
-                  height: 40,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Name',
-                      hintStyle: TextStyle(fontSize: 12),
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 18,
-                ),
-                Container(
-                  height: 40,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Emain',
-                      hintStyle: TextStyle(fontSize: 12),
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 18,
-                ),
-                Container(
-                  height: 40,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: '+ 91 Phone Number',
-                      hintStyle: TextStyle(fontSize: 12),
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
+                  height: 560,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(Icons.check_box_outline_blank),
-                        Text('Accept'),
+                        SizedBox(height: 15),
+                        Text(
+                          'RSVP',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        Row(
+                          children: [
+                            Text('Adults'),
+                            SizedBox(
+                              width: 267,
+                            ),
+                            Container(
+                              height: 22,
+                              width: 22,
+                              decoration: BoxDecoration(
+                                  color: Color(0XFFE8E7F0),
+                                  borderRadius: BorderRadius.circular(25)),
+                              child: Icon(Icons.remove, size: 14),
+                            ),
+                            SizedBox(width: 4),
+                            Text('0'),
+                            SizedBox(width: 4),
+                            Container(
+                              height: 22,
+                              width: 22,
+                              decoration: BoxDecoration(
+                                  color: Color(0XFFE8E7F0),
+                                  borderRadius: BorderRadius.circular(25)),
+                              child: Icon(Icons.add, size: 14),
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 14),
+                        Row(
+                          children: [
+                            Text('Kids'),
+                            SizedBox(
+                              width: 280,
+                            ),
+                            Container(
+                              height: 22,
+                              width: 22,
+                              decoration: BoxDecoration(
+                                  color: Color(0XFFE8E7F0),
+                                  borderRadius: BorderRadius.circular(25)),
+                              child: Icon(Icons.remove, size: 14),
+                            ),
+                            SizedBox(width: 4),
+                            Text('0'),
+                            SizedBox(width: 4),
+                            Container(
+                              height: 22,
+                              width: 22,
+                              decoration: BoxDecoration(
+                                  color: Color(0XFFE8E7F0),
+                                  borderRadius: BorderRadius.circular(25)),
+                              child: Icon(Icons.add, size: 14),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 18),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Name',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Container(
+                              height: 40,
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: 'Name',
+                                  hintStyle: TextStyle(fontSize: 12),
+                                  filled: true,
+                                  fillColor: Color(0XFFE8E7F0),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 14,
+                            ),
+                            Text(
+                              'Email',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                            SizedBox(
+                              height: 7,
+                            ),
+                            Container(
+                              height: 40,
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: 'Emain',
+                                  hintStyle: TextStyle(fontSize: 12),
+                                  filled: true,
+                                  fillColor: Color(0XFFE8E7F0),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 14,
+                            ),
+                            Text(
+                              'Phone Number',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                            SizedBox(
+                              height: 7,
+                            ),
+                            Container(
+                              height: 40,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  hintText: '+91 Phone Number',
+                                  hintStyle: TextStyle(fontSize: 12),
+                                  filled: true,
+                                  fillColor: Color(0XFFE8E7F0),
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 14,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      accept = !accept;
+                                    });
+                                    // Handle the click action for 'Accept' checkbox here
+                                  },
+                                  child: Icon(accept ? Icons.check_box : Icons.check_box_outline_blank,
+                                    ),
+                                ),
+                                Text('Accept'),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      decline = !decline;
+                                    });
+                                    // Handle the click action for 'Decline' checkbox here
+                                  },
+                                  child: Icon(decline ? Icons.check_box : Icons.check_box_outline_blank),
+                                ),
+                                Text('Decline'),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      maybe = !maybe;
+                                    });
+                                    // Handle the click action for 'Maybe' checkbox here
+                                  },
+                                  child: Icon(maybe ? Icons.check_box : Icons.check_box_outline_blank),
+                                ),
+                                Text('Maybe'),
+                              ],
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 14,
+                        ),
+                        Container(
+                          height: 115,
+                          width: double.infinity,
+                          child: TextField(
+                            decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Color(0XFFE8E7F0),
+                                hintText: 'Comment',
+                                hintStyle: TextStyle(fontSize: 12),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10))),
+                          ),
+                        ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        Icon(Icons.check_box_outline_blank),
-                        Text('Decline'),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Icon(Icons.check_box_outline_blank),
-                        Text('Maybe'),
-                      ],
-                    ),
-                  ],
-                ),
-                Container(
-                  height: 115,
-                  width: double.infinity,
-                  child: TextField(
-                    decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.grey,
-                        hintText: 'Comment',
-                        hintStyle: TextStyle(fontSize: 12),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10))),
                   ),
-                ),
-                Container(
-                  height: 40,
-                  width: double.infinity,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Checkout',
-                      hintStyle: TextStyle(
-                        fontSize: 12,
-                        color: Colors.white,
-                      ),
-                      filled: true,
-                      fillColor: Colors.pink,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
+                )
               ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
+}
+class Price {
+  final double price;
+  int quantity;
+
+  Price(this.price, this.quantity);
 }

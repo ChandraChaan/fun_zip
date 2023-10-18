@@ -133,7 +133,7 @@ class NameAndDetailsCardWidget extends StatelessWidget {
                     SvgPicture.asset(video_cameraIconImage),
                     4.width,
                     Text(
-                      'Watch Live',
+                      'Watch Livesss',
                       style: normalText.copyWith(
                         color: Colors.white,
                         fontSize: 8,
