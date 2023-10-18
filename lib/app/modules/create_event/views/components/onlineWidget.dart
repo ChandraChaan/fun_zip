@@ -64,16 +64,17 @@ class OnlineWidget extends GetView<CreateEventController> {
           ),
           5.height,
           Row(
-              children: List.generate(eventLocalityTitleList.length, (index) {
-            String title = eventLocalityTitleList[index];
-            return LiveStreamProviderButtonWidget(
-                onPressed: () {
-                  controller.selectedLiveStreamProvider.value = index;
-                },
-                index: index,
-                selectedIndex: controller.selectedLiveStreamProvider.value,
-                title: title);
-          })),
+            children: List.generate(eventLocalityTitleList.length, (index) {
+              String title = eventLocalityTitleList[index];
+              return LiveStreamProviderButtonWidget(
+                  onPressed: () {
+                    controller.selectedLiveStreamProvider.value = index;
+                  },
+                  index: index,
+                  selectedIndex: controller.selectedLiveStreamProvider.value,
+                  title: title);
+            }),
+          ),
           if (controller.selectedLiveStreamProvider.value == 1)
             Column(
               mainAxisAlignment: MainAxisAlignment.start,

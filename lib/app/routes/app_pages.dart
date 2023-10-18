@@ -79,11 +79,7 @@ class AppPages {
       page: () => const EventDetailsView(),
       binding: EventDetailsBinding(),
     ),
-    // GetPage(
-    //   name: _Paths.LocationSearchScreensat,
-    //   page: () => LocationSearchScreensat(),
-    //   binding: EventDetailsBinding(),
-    // ),
+
     GetPage(
       name: _Paths.BookTickets,
       page: () => BookTickets(),

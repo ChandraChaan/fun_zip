@@ -30,6 +30,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: backgroundColor,
@@ -78,7 +79,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                           left: 15.0,
                           right: 15.0,
                           bottom: 20,
-                          top: 29.percentHeight),
+                          top: 30.percentHeight),
                       child: ListView(
                         padding: EdgeInsets.only(top: 20.0, bottom: 5.0),
                         children: [

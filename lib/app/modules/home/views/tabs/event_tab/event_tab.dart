@@ -30,13 +30,15 @@ class EventTab extends GetView<HomeController> {
           return responsiveWidget(
             isScroll: false,
             child: bodyWidget(),
-          );;
+          );
+          ;
         } else {
           if (controller.apiResponseModel.value.results == null) {
             return responsiveWidget(
               isScroll: false,
               child: bodyWidget(),
-            );;
+            );
+            ;
           } else {
             return responsiveWidget(
               isScroll: true,
@@ -48,7 +50,7 @@ class EventTab extends GetView<HomeController> {
     );
   }
 
-  Widget bodyWidget(){
+  Widget bodyWidget() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -78,9 +80,9 @@ class EventTab extends GetView<HomeController> {
                 ),
                 filled: true,
                 hintStyle: normalText.copyWith(height: 1.2
-                  //You can set your custom height here
+                    //You can set your custom height here
 
-                ),
+                    ),
                 hintText: "Search All events...\nWhere | When | Category",
                 fillColor: Colors.white,
                 prefixIcon: IconButton(
@@ -90,7 +92,7 @@ class EventTab extends GetView<HomeController> {
                     onPressed: null,
                     icon: SvgPicture.asset(filterTextFieldIconImage)),
                 prefixIconConstraints:
-                BoxConstraints(minWidth: 14, minHeight: 10),
+                    BoxConstraints(minWidth: 14, minHeight: 10),
               ),
               validator: FormBuilderValidators.compose(
                 [
@@ -125,7 +127,9 @@ class EventTab extends GetView<HomeController> {
             scrollDirection: Axis.horizontal,
           ),
         ),
-        SizedBox(height: 15,),
+        SizedBox(
+          height: 15,
+        ),
         _buildDotsIndicator(controller.currentSlide, 3),
         SizedBox(
           height: 100,
@@ -164,20 +168,19 @@ class EventTab extends GetView<HomeController> {
               } else {
                 return ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: BouncingScrollPhysics(),
                   padding: EdgeInsets.only(
                     left: 20,
                     right: 20,
                   ),
-                  itemCount:3,
+                  itemCount: 3,
                   itemBuilder: (context, index) {
                     Results result =
-                    controller.apiResponseModel.value.results![index];
+                        controller.apiResponseModel.value.results![index];
                     return SingleEventItemWidget(
                       result: result,
                       onPressed: () {
-                        HomeController.to
-                            .goToEventDetailsPage(uid: result.uid);
+                        HomeController.to.goToEventDetailsPage(uid: result.uid);
                       },
                     );
                   },
@@ -192,31 +195,45 @@ class EventTab extends GetView<HomeController> {
 
 // Create a function to build the dots indicator
   Widget _buildDotsIndicator(int activeIndex, int itemCount) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(itemCount, (index) {
-        return Container(
-          width: 8,
-          // Adjust the width of the dots as needed
-          height: 8,
-          // Adjust the height of the dots as needed
-          margin: EdgeInsets.symmetric(horizontal: 5),
-          // Adjust the spacing between the dots as needed
+    return Column(
+      children: [
+        Container(
+          height: 10,
+          width: 50,
           decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: index == activeIndex
-                ? Colors.blue
-                : Colors.grey, // Adjust the active and inactive dot colors
+              color: Color(0XFFE2DEFF),
+              borderRadius: BorderRadius.circular(20)
           ),
-        );
-      }),
+          child:         Row(
+            mainAxisSize: MainAxisSize.max,
+            children: List.generate(itemCount, (index) {
+              return Container(
+                width: 6,
+                // Adjust the width of the dots as needed
+                height: 6,
+                // Adjust the height of the dots as needed
+                margin: EdgeInsets.symmetric(horizontal: 5),
+                // Adjust the spacing between the dots as needed
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: index == activeIndex.bitLength
+                      ? Color(0XFF5B46F4)
+                      : Color(0XFF85829B), // Adjust the active and inactive dot colors
+                ),
+              );
+            },),
+          ),
+        ),
+      ],
     );
   }
 
   //responsive widget will do separate the UI based the api response
-  Widget responsiveWidget({required bool isScroll, required Widget child}){
-      return isScroll ? SingleChildScrollView(
-        child: child,
-      ) :  child;
+  Widget responsiveWidget({required bool isScroll, required Widget child}) {
+    return isScroll
+        ? SingleChildScrollView(
+            child: child,
+          )
+        : child;
   }
 }

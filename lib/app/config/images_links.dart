@@ -6,6 +6,7 @@ const String lockIconImage = 'assets/svg/lock.svg';
 const String eyeIconImage = 'assets/svg/eye.svg';
 const String emailIconImage = 'assets/svg/email.svg';
 const String phoneIconImage = 'assets/svg/phone.svg';
+//const String phoneIconImage = 'assets/svg/phone.svg.png';
 const String takePhotoIconImage = 'assets/svg/take_photo_icon.svg';
 const String otpLockIconImage = 'assets/svg/otp_lock_icon.svg';
 const String forgePasswordImage = 'assets/svg/forgePasswordImage.svg';

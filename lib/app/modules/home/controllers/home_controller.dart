@@ -22,7 +22,7 @@ class HomeController extends GetxController {
   String? selectedCity;
   String? selectedCategory;
   bool? selectedModeOnline = false;
-  List<String> items = ['Party', 'Music', for (int a = 1; a < 9; a++) 'Comedy $a'];
+  List<String> items = ['All', 'Party', 'Music', for (int a = 1; a < 9; a++) 'Comedy $a'];
 //foreach, each,
   @override
   void onInit() {

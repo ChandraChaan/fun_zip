@@ -19,6 +19,7 @@ abstract class Routes {
   static const EditingEvent = _Paths.EditingEvent;
   static const EventScreen = _Paths.EventScreen;
   static const SignUpItemWidget = _Paths.SignUpItemWidget;
+  static const SliverAppBarExample = _Paths.SliverAppBarExample;
 }
 
 abstract class _Paths {
@@ -39,4 +40,5 @@ abstract class _Paths {
   static const EditingEvent = '/EditingEvent';
   static const EventScreen = '/EventScreen';
   static const SignUpItemWidget = '/SignUpItemWidget';
+  static const SliverAppBarExample = '/SliverAppBarExample';
 }
