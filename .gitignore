@@ -11,6 +11,8 @@ pubspec.lock
 build/
 .dart_tool/
 .dart_tool/pub/bin/
+.flutter-plugins
+.flutter-plugins-dependencies
 generated/
 
 # Android
