@@ -40,23 +40,11 @@ class EventDetailsView extends GetView<EventDetailsController> {
           if (controller.loading.value == true) {
             return Center(child: Text('loading'));
           } else {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Stack(children: <Widget>[
-                    // Background with gradient
-                    if (controller.eventDetailsModel.detailPicture != null)
-                      Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                  controller.eventDetailsModel.detailPicture),
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          height: 30.percentHeight),
-                    //add filter
+            return SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  if (controller.eventDetailsModel.detailPicture != null)
                     Container(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
@@ -68,73 +56,91 @@ class EventDetailsView extends GetView<EventDetailsController> {
                               ],
                               stops: [0.0, 1.0],
                               tileMode: TileMode.clamp),
-                        ),
-                        height: 30.percentHeight),
-
-                    // * AppBar
-                    AppBarWidgetEventDetails(),
-                    //* Above card
-                    Container(
-                      margin: EdgeInsets.only(
-                          left: 15.0,
-                          right: 15.0,
-                          bottom: 20,
-                          top: 30.percentHeight),
-                      child: ListView(
-                        padding: EdgeInsets.only(top: 20.0, bottom: 5.0),
-                        children: [
-                          NameAndDetailsCardWidget(
-                            controller: controller,
+                          image: DecorationImage(
+                            image: NetworkImage(
+                                controller.eventDetailsModel.detailPicture),
+                            fit: BoxFit.fill,
                           ),
+                        ),
+                        height: 30.percentHeight,
+                    child:  AppBarWidgetEventDetails(),
+                    ),
+                  //add filter
+                  // Container(
+                  //     decoration: BoxDecoration(
+                  //       gradient: LinearGradient(
+                  //           begin: Alignment.topCenter,
+                  //           end: Alignment.bottomCenter,
+                  //           colors: <Color>[
+                  //             blueColor,
+                  //             Colors.orange.withOpacity(.1)
+                  //           ],
+                  //           stops: [0.0, 1.0],
+                  //           tileMode: TileMode.clamp),
+                  //     ),
+                  //     height: 30.percentHeight),
 
-                          5.height,
-                          //* Rating and tags
-                          RatingCardWidget(controller: controller),
-                          5.height,
+                  //* Above card
+                  Container(
+                    margin: EdgeInsets.only(
+                        left: 15.0,
+                        right: 15.0,
+                        bottom: 20),
+                    child: ListView(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      padding: EdgeInsets.only(top: 20.0, bottom: 5.0),
+                      children: [
+                        NameAndDetailsCardWidget(
+                          controller: controller,
+                        ),
 
-                          AboutThisPageWidget(controller: controller),
-                          5.height,
+                        5.height,
+                        //* Rating and tags
+                        RatingCardWidget(controller: controller),
+                        5.height,
 
-                          ShareWidget(),
-                          5.height,
+                        AboutThisPageWidget(controller: controller),
+                        5.height,
 
-                          CommentWidget(),
-                          5.height,
-                          //* Map
-                          MapWidget(controller: controller),
-                          5.height,
+                        ShareWidget(),
+                        5.height,
 
-                          OrganizersWidget(),
-                          5.height,
+                        CommentWidget(),
+                        5.height,
+                        //* Map
+                        MapWidget(controller: controller),
+                        5.height,
 
-                          //* Sign up Items
-                          SignUpItemWidget(),
-                          //* Potluck items
-                          PotluckItemsWidget(),
-                          // Gift Registry
-                          GiftRegistryWidget(),
-                          // Whether
-                          WhetherWidget(),
-                          // Widget
-                          WidgetWidget(),
-                          //what is Place Offer
-                          WhatIsPlaceOfferWidget(),
+                        OrganizersWidget(),
+                        5.height,
 
-                          // Speakers
-                          SpeakersWidget(),
-                          // Sponsors
-                          SponsorsWidget(),
+                        // //* Sign up Items
+                        // SignUpItemWidget(),
+                        //* Potluck items
+                        PotluckItemsWidget(),
+                        // Gift Registry
+                        GiftRegistryWidget(),
+                        // Whether
+                        WhetherWidget(),
+                        // Widget
+                        WidgetWidget(),
+                        //what is Place Offer
+                        WhatIsPlaceOfferWidget(),
 
-                          // Boots
-                          BoothsWidget(),
-                          RelatedEventsWidget(),
-                        ],
-                      ),
-                    )
-                    // NameAndDetailsCardWidget(controller: controller),
-                  ]),
-                ),
-              ],
+                        // Speakers
+                        SpeakersWidget(),
+                        // Sponsors
+                        SponsorsWidget(),
+
+                        // Boots
+                        BoothsWidget(),
+                        RelatedEventsWidget(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             );
           }
         },

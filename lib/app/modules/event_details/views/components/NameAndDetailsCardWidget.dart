@@ -84,14 +84,19 @@ class NameAndDetailsCardWidget extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        SvgPicture.asset(eventIconIconImage, height: 14,),
-                        5.width,
-                        Text(
-                          formatDateForHome(
-                              date:
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(eventIconIconImage, height: 14,),
+                            5.width,
+                            Text(
+                              formatDateForHome(
+                                  date:
                                   controller.eventDetailsModel.startDateTime ??
                                       ''),
-                          style: normalText.copyWith(fontSize: 10,color: Colors.white),
+                              style: normalText.copyWith(fontSize: 10,color: Colors.white),
+                            ),
+                          ],
                         ),
                         5.width,
                         SizedBox(
