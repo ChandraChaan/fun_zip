@@ -142,9 +142,9 @@ class EventTab extends GetView<HomeController> {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Chip(
-                  avatar: Icon(Icons.star, color: textColor),
+                  avatar: Icon(controller.items[index]["icon"],color: textColor),
                   label: Text(
-                    '${controller.items[index]}',
+                    '${controller.items[index]["name"]}',
                     style: normalText,
                   ),
                   backgroundColor: Colors.white,
