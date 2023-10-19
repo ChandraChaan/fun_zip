@@ -22,7 +22,12 @@ class HomeController extends GetxController {
   String? selectedCity;
   String? selectedCategory;
   bool? selectedModeOnline = false;
-  List<String> items = ['All', 'Party', 'Music', for (int a = 1; a < 9; a++) 'Comedy $a'];
+  List<Map<String, dynamic>> items = [
+    {"name": "All", "icon": Icons.star},
+    {"name": "Party", "icon": Icons.party_mode},
+    //{"name": "All", "icon": Icon(Icons.star)},
+  ];
+
 //foreach, each,
   @override
   void onInit() {
@@ -40,7 +45,7 @@ class HomeController extends GetxController {
     userAddress.value = await getUserAddress(
         latitude: userPosition!.latitude, longitude: userPosition!.longitude);
 
-   getAllEvents();
+    getAllEvents();
   }
 
   RxInt selectedIndex = 0.obs;
