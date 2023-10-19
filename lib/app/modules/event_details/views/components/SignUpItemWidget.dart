@@ -5,8 +5,9 @@ import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
 
 import '../../../../widgets/rounded_border.dart';
+import '../../../sign_up/controllers/sign_up_controller.dart';
 
-class SignUpItemWidget extends StatelessWidget {
+class SignUpItemWidget extends GetView<SignUpController> {
   const SignUpItemWidget({
     super.key,
   });
@@ -16,138 +17,136 @@ class SignUpItemWidget extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: 560,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: Colors.white)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
+        child: Column(
+          children: [
+            Container(
+              height: 560,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(color: Colors.white)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Sign up Items', style: titleBoldText),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Sign up to a slot below',
+                        style: normalText.copyWith()),
+                  ),
+                  for (int a = 1; a <= 5; a++)
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('Sign up Items', style: titleBoldText),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('Sign up to a slot below',
-                          style: normalText.copyWith()),
-                    ),
-                    for (int a = 1; a <= 5; a++)
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Flexible(
-                          child: Container(
-                            height: 84,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: Color(0XFFC9C6E1))),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Color(0XFFE1FFCF),
-                                        borderRadius: BorderRadius.circular(2)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      size: 16,
-                                    ),
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Flexible(
+                        child: Container(
+                          height: 84,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Color(0XFFC9C6E1))),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                      color: Color(0XFFE1FFCF),
+                                      borderRadius: BorderRadius.circular(2)),
+                                  child: Icon(
+                                    Icons.calendar_today,
+                                    size: 16,
                                   ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 5),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text('17th August',
-                                            style: TextStyle(fontSize: 14)),
-                                        SizedBox(height: 8),
-                                        Text(
-                                          '09:00 AM - 10:00 PM',
-                                          style: TextStyle(fontSize: 14),
-                                        ),
-                                        SizedBox(height: 8),
-                                        Text(
-                                          'Arrange Furniture',
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              color: Color(0XFF86839B)),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(width: 108),
-                                  Column(
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      InkWell(
-                                        onTap: () {
-                                          Get.dialog(BottomSignup());
-                                        },
-                                        child: Container(
-                                          height: 20,
-                                          width: 59,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
-                                              border: Border.all(
-                                                  color: Color(0XFFC61236))),
-                                          child: Center(
-                                            child: Text(
-                                              'Sing Up',
-                                              style: TextStyle(
-                                                  fontSize: 8,
-                                                  color: Color(0XFFC61236),
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 3,
-                                      ),
+                                      Text('17th August',
+                                          style: TextStyle(fontSize: 14)),
+                                      SizedBox(height: 8),
                                       Text(
-                                        '3 Slots Left',
+                                        '09:00 AM - 10:00 PM',
+                                        style: TextStyle(fontSize: 14),
+                                      ),
+                                      SizedBox(height: 8),
+                                      Text(
+                                        'Arrange Furniture',
                                         style: TextStyle(
-                                          fontSize: 9,
-                                          color: Color(0XFFC61236),
-                                        ),
+                                            fontSize: 12,
+                                            color: Color(0XFF86839B)),
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
+                                ),
+                                SizedBox(width: 90),
+                                Column(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        Get.dialog(BottomSignup());
+                                      },
+                                      child: Container(
+                                        height: 20,
+                                        width: 59,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                            border: Border.all(
+                                                color: Color(0XFFC61236))),
+                                        child: Center(
+                                          child: Text(
+                                            'Sing Up',
+                                            style: TextStyle(
+                                                fontSize: 8,
+                                                color: Color(0XFFC61236),
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Text(
+                                      '3 Slots Left',
+                                      style: TextStyle(
+                                        fontSize: 9,
+                                        color: Color(0XFFC61236),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ),
-                    SizedBox(
-                      height: 15,
                     ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                  ],
-                ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 50,
-              ),
-              PotluckItems()
-            ],
-          ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            PotluckItems()
+          ],
         ),
       ),
     );
@@ -269,167 +268,169 @@ class _PotluckItemsState extends State<PotluckItems> {
   }
 
   void _showBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Container(
-                height: 420,
-                width: 374,
-                decoration: BoxDecoration(
-                    color: Color(0XFFF5F4F9),
-                    borderRadius: BorderRadius.circular(20)),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 25.0, left: 8, right: 8),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 310),
-                        child: InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Container(
-                            height: 20,
-                            width: 20,
-                            child: Image.asset('assets/svg/group_54.png'),
-                          ),
-                        ),
-                      ),
-                      Text(
-                        'Sign Up',
-                        style:
-                            TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(height: 25),
-                      Container(
-                        height: 40,
-                        width: 336,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Name',
-                            hintStyle: TextStyle(fontSize: 12),
-                            prefixIcon: Icon(
-                              Icons.person_2_outlined,
-                              size: 14,
-                              color: Color(0XFF5B46F4),
-                            ),
-                            border: InputBorder.none,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 15),
-                      Container(
-                        height: 40,
-                        width: 336,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Email',
-                            hintStyle: TextStyle(fontSize: 12),
-                            prefixIcon: Icon(
-                              Icons.mail_outlined,
-                              size: 14,
-                              color: Color(0XFF5B46F4),
-                            ),
-                            border: InputBorder.none,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 15),
-                      Container(
-                        height: 40,
-                        width: 336,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 40,
-                              width: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(20),
-                                    topLeft: Radius.circular(20)),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '+91',
-                                    style: TextStyle(
-                                        color: Color(0XFF5B46F4), fontSize: 12),
-                                  ),
-                                  Icon(
-                                    Icons.expand_more,
-                                    color: Color(0XFF86839B),
-                                    size: 16,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            VerticalDivider(
-                              thickness: 2,
-                            ),
-                            Row(
-                              children: [
-                                Container(
-                                  height: 40,
-                                  width: 269,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(20),
-                                          bottomRight: Radius.circular(20))),
-                                  child: TextField(
-                                    decoration: InputDecoration(
-                                      hintText: 'Phone Number',
-                                      hintStyle: TextStyle(fontSize: 12),
-                                      border: InputBorder.none,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 46,
-                      ),
-                      Container(
-                        height: 40,
-                        width: 336,
-                        decoration: BoxDecoration(
-                          color: Color(0XFFC61236),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Sign Up',
-                            style: TextStyle(fontSize: 12, color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-
-    );}
+    Get.dialog(BottomSignup());
+    // showModalBottomSheet(
+    //   context: context,
+    //   builder: (BuildContext context) {
+    //     return Padding(
+    //       padding: const EdgeInsets.all(16.0),
+    //       child: Column(
+    //         children: [
+    //           Container(
+    //             height: 420,
+    //             width: 374,
+    //             decoration: BoxDecoration(
+    //                 color: Color(0XFFF5F4F9),
+    //                 borderRadius: BorderRadius.circular(20)),
+    //             child: Padding(
+    //               padding: const EdgeInsets.only(top: 25.0, left: 8, right: 8),
+    //               child: Column(
+    //                 children: [
+    //                   Padding(
+    //                     padding: const EdgeInsets.only(left: 310),
+    //                     child: InkWell(
+    //                       onTap: () {
+    //                         Get.back();
+    //                       },
+    //                       child: Container(
+    //                         height: 20,
+    //                         width: 20,
+    //                         child: Image.asset('assets/svg/group_54.png'),
+    //                       ),
+    //                     ),
+    //                   ),
+    //                   Text(
+    //                     'Sign Up',
+    //                     style:
+    //                         TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+    //                   ),
+    //                   SizedBox(height: 25),
+    //                   Container(
+    //                     height: 40,
+    //                     width: 336,
+    //                     decoration: BoxDecoration(
+    //                         color: Colors.white,
+    //                         borderRadius: BorderRadius.circular(20)),
+    //                     child: TextField(
+    //                       decoration: InputDecoration(
+    //                         hintText: 'Name',
+    //                         hintStyle: TextStyle(fontSize: 12),
+    //                         prefixIcon: Icon(
+    //                           Icons.person_2_outlined,
+    //                           size: 14,
+    //                           color: Color(0XFF5B46F4),
+    //                         ),
+    //                         border: InputBorder.none,
+    //                       ),
+    //                     ),
+    //                   ),
+    //                   SizedBox(height: 15),
+    //                   Container(
+    //                     height: 40,
+    //                     width: 336,
+    //                     decoration: BoxDecoration(
+    //                         color: Colors.white,
+    //                         borderRadius: BorderRadius.circular(20)),
+    //                     child: TextField(
+    //                       decoration: InputDecoration(
+    //                         hintText: 'Email',
+    //                         hintStyle: TextStyle(fontSize: 12),
+    //                         prefixIcon: Icon(
+    //                           Icons.mail_outlined,
+    //                           size: 14,
+    //                           color: Color(0XFF5B46F4),
+    //                         ),
+    //                         border: InputBorder.none,
+    //                       ),
+    //                     ),
+    //                   ),
+    //                   SizedBox(height: 15),
+    //                   Container(
+    //                     height: 40,
+    //                     width: 336,
+    //                     decoration: BoxDecoration(
+    //                         color: Colors.white,
+    //                         borderRadius: BorderRadius.circular(20)),
+    //                     child: Row(
+    //                       children: [
+    //                         Container(
+    //                           height: 40,
+    //                           width: 50,
+    //                           decoration: BoxDecoration(
+    //                             borderRadius: BorderRadius.only(
+    //                                 bottomLeft: Radius.circular(20),
+    //                                 topLeft: Radius.circular(20)),
+    //                           ),
+    //                           child: Row(
+    //                             mainAxisAlignment: MainAxisAlignment.center,
+    //                             children: [
+    //                               Text(
+    //                                 '+91',
+    //                                 style: TextStyle(
+    //                                     color: Color(0XFF5B46F4), fontSize: 12),
+    //                               ),
+    //                               Icon(
+    //                                 Icons.expand_more,
+    //                                 color: Color(0XFF86839B),
+    //                                 size: 16,
+    //                               ),
+    //                             ],
+    //                           ),
+    //                         ),
+    //                         VerticalDivider(
+    //                           thickness: 2,
+    //                         ),
+    //                         Row(
+    //                           children: [
+    //                             Container(
+    //                               height: 40,
+    //                               width: 269,
+    //                               decoration: BoxDecoration(
+    //                                   borderRadius: BorderRadius.only(
+    //                                       topRight: Radius.circular(20),
+    //                                       bottomRight: Radius.circular(20))),
+    //                               child: TextField(
+    //                                 decoration: InputDecoration(
+    //                                   hintText: 'Phone Number',
+    //                                   hintStyle: TextStyle(fontSize: 12),
+    //                                   border: InputBorder.none,
+    //                                 ),
+    //                               ),
+    //                             )
+    //                           ],
+    //                         )
+    //                       ],
+    //                     ),
+    //                   ),
+    //                   SizedBox(
+    //                     height: 46,
+    //                   ),
+    //                   Container(
+    //                     height: 40,
+    //                     width: 336,
+    //                     decoration: BoxDecoration(
+    //                       color: Color(0XFFC61236),
+    //                       borderRadius: BorderRadius.circular(20),
+    //                     ),
+    //                     child: TextButton(
+    //                       onPressed: () {},
+    //                       child: Text(
+    //                         'Sign Up',
+    //                         style: TextStyle(fontSize: 12, color: Colors.white),
+    //                       ),
+    //                     ),
+    //                   ),
+    //                 ],
+    //               ),
+    //             ),
+    //           ),
+    //         ],
+    //       ),
+    //     );
+    //   },
+    //
+    // );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -518,14 +519,7 @@ class _PotluckItemsState extends State<PotluckItems> {
   }
 }
 
-class BottomSignup extends StatefulWidget {
-  const BottomSignup({super.key});
-
-  @override
-  State<BottomSignup> createState() => _BottomSignupState();
-}
-
-class _BottomSignupState extends State<BottomSignup> {
+class BottomSignup extends GetView<SignUpController>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -667,7 +661,9 @@ class _BottomSignupState extends State<BottomSignup> {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      controller.signUp();
+                    },
                     child: Text(
                       'Sign Up',
                       style: TextStyle(fontSize: 12, color: Colors.white),
