@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -100,8 +101,7 @@ class OtpVerificationView extends GetView<OtpVerificationController> {
                           keyboardType: TextInputType.number,
                           // errorAnimationController: errorController,
                           // controller: textEditingController,
-                          // keyboardType: TextInputType.number,
-                          // inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                           boxShadows: const [
                             BoxShadow(
                               offset: Offset(0, 1),

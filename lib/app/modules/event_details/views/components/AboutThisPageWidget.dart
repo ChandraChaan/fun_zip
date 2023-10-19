@@ -32,6 +32,32 @@ class AboutThisPageWidget extends StatelessWidget {
             Html(
               data: '${controller.eventDetailsModel.description}',
             ),
+            // Container(
+            //   height: 1,
+            //   decoration: BoxDecoration(
+            //     image: DecorationImage(
+            //       image: AssetImage('assets/svg/details_2.png'),
+            //     ),
+            //   ),
+            // ),
+            // Expanded(
+            //   child: Container(
+            //     height: 1,
+            //     decoration: BoxDecoration(
+            //       image: DecorationImage(
+            //         image: AssetImage('assets/svg/rectangle_333.png')
+            //       )
+            //     ),
+            //   ),
+            // ),
+            // Container(
+            //   height: 1,
+            //   decoration: BoxDecoration(
+            //     image: DecorationImage(
+            //       image: AssetImage('assets/svg/rectangle_34.png')
+            //     )
+            //   ),
+            // )
           ],
         ),
       ),
