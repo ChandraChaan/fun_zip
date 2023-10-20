@@ -31,7 +31,7 @@ class RatingCardWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Expanded(
-                flex: 2,
+                flex: 5,
                 child: RatingBarIndicator(
                   rating: 2.5,
                   itemCount: 5,

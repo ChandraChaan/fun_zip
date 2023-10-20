@@ -32,30 +32,52 @@ class AboutThisPageWidget extends StatelessWidget {
             Html(
               data: '${controller.eventDetailsModel.description}',
             ),
-            Container(
-              height: 1,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/svg/details_2.png'),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 100,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  image: DecorationImage(
+                    image: AssetImage('assets/svg/details_2.png'), fit: BoxFit.fitWidth
+                  ),
                 ),
               ),
             ),
-            Container(
-              height: 1,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/svg/rectangle_333.png')
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        image: DecorationImage(
+                          image: AssetImage('assets/svg/rectangle_333.png'), fit: BoxFit.fitWidth
+                        )
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 100,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          image: DecorationImage(
+                              image: AssetImage('assets/svg/rectangle_34.png',), fit: BoxFit.fitWidth
+                          )
+                      ),
+                    ),
+                  ),
                 )
-              ),
+              ],
             ),
-            Container(
-              height: 1,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/svg/rectangle_34.png')
-                )
-              ),
-            )
           ],
         ),
       ),
