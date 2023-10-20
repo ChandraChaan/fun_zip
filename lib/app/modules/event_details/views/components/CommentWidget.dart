@@ -11,12 +11,20 @@ class Comment {
   final String avatar;
   final String userName;
   final String content;
+  int likes; // Number of likes
+  bool isLiked; // Indicates if the comment is liked by the current user
+  List<Comment> replies;
 
   Comment({
     required this.avatar,
     required this.userName,
     required this.content,
-  });
+    int likes = 0, // Initialize with 0 likes
+    bool isLiked = false, // Initialize as not liked
+    List<Comment>? replies, // Provide an optional list of replies
+  })  : likes = likes,
+        isLiked = isLiked,
+        replies = replies ?? [];
 }
 
 class CommentWidget extends StatefulWidget {
@@ -29,29 +37,82 @@ class CommentWidget extends StatefulWidget {
 }
 
 class _CommentWidgetState extends State<CommentWidget> {
-  // Define a list to store comments
   final List<Comment> comments = [];
-
-  // Controller for the comment input field
   final TextEditingController commentController = TextEditingController();
 
   // Function to post a comment
   void postComment() {
     final newCommentText = commentController.text;
     if (newCommentText.isNotEmpty) {
-      // Create a new comment and add it to the list
       final newComment = Comment(
         avatar: 'null',
-        userName: 'Your Username', // Replace with the actual username
+        userName: 'Your Username',
         content: newCommentText,
       );
       setState(() {
         comments.add(newComment);
       });
-
-      // Clear the comment input field
       commentController.clear();
     }
+  }
+
+  // Function to like a comment
+  void likeComment(Comment comment) {
+    setState(() {
+      // Implement your logic to handle likes here
+      comment.isLiked = !comment.isLiked;
+      if (comment.isLiked) {
+        comment.likes++;
+      } else {
+        comment.likes--;
+      }
+    });
+  }
+
+  // Function to reply to a comment
+  void replyToComment(Comment parentComment) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return StatefulBuilder(builder: (context, setState) {
+          return AlertDialog(
+            title: Text('Reply to ${parentComment.userName}'),
+            content: TextField(
+              controller: commentController,
+              decoration: InputDecoration(
+                hintText: 'Add a reply...',
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: Text('Cancel'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: Text('Post Reply'),
+                onPressed: () {
+                  final replyText = commentController.text;
+                  if (replyText.isNotEmpty) {
+                    final reply = Comment(
+                      avatar: 'null',
+                      userName: 'Your Username',
+                      content: replyText,
+                    );
+                    setState(() {
+                      parentComment.replies.add(reply);
+                    });
+                    commentController.clear();
+                    Navigator.of(context).pop();
+                  }
+                },
+              ),
+            ],
+          );
+        });
+      },
+    );
   }
 
   @override
@@ -85,7 +146,6 @@ class _CommentWidgetState extends State<CommentWidget> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        // Call the postComment function to add a new comment
                         postComment();
                       },
                       child: Text('Post Comment'),
@@ -94,7 +154,8 @@ class _CommentWidgetState extends State<CommentWidget> {
                 ),
                 SizedBox(height: 12),
                 CommentTreeWidget<List<Comment>, Comment>(
-                 comments,comments,
+                  comments,
+                  comments,
                   treeThemeData: TreeThemeData(
                     lineColor: Colors.white,
                     lineWidth: 3,
@@ -103,7 +164,6 @@ class _CommentWidgetState extends State<CommentWidget> {
                     child: CircleAvatar(
                       radius: 18,
                       backgroundColor: Colors.grey,
-                      // backgroundImage: AssetImage('assets/avatar_2.png'),
                     ),
                     preferredSize: Size.fromRadius(18),
                   ),
@@ -111,7 +171,6 @@ class _CommentWidgetState extends State<CommentWidget> {
                     child: CircleAvatar(
                       radius: 12,
                       backgroundColor: Colors.grey,
-                      // backgroundImage: AssetImage('assets/avatar_1.png'),
                     ),
                     preferredSize: Size.fromRadius(12),
                   ),
@@ -163,9 +222,23 @@ class _CommentWidgetState extends State<CommentWidget> {
                             child: Row(
                               children: [
                                 SizedBox(width: 8),
-                                Text('Like'),
+                                TextButton(
+                                    onPressed: () {
+                                      likeComment(data);
+                                    },
+                                    child: Text(
+                                      'Like',
+                                      style: TextStyle(
+                                          color: data.isLiked
+                                              ? Colors.blue
+                                              : Colors.black),
+                                    )),
                                 SizedBox(width: 24),
-                                Text('Reply'),
+                                TextButton(
+                                    onPressed: () {
+                                      replyToComment(data);
+                                    },
+                                    child: Text('Reply')),
                               ],
                             ),
                           ),
@@ -209,23 +282,6 @@ class _CommentWidgetState extends State<CommentWidget> {
                                     ),
                               ),
                             ],
-                          ),
-                        ),
-                        DefaultTextStyle(
-                          style: Theme.of(context).textTheme.caption!.copyWith(
-                                color: Colors.grey[700],
-                                fontWeight: FontWeight.bold,
-                              ),
-                          child: Padding(
-                            padding: EdgeInsets.only(top: 4),
-                            child: Row(
-                              children: [
-                                SizedBox(width: 8),
-                                Text('Like'),
-                                SizedBox(width: 24),
-                                Text('Reply'),
-                              ],
-                            ),
                           ),
                         ),
                       ],

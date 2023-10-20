@@ -117,7 +117,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         5.height,
 
                         // //* Sign up Items
-                        SizedBox(height: 1150, child: SignUpItemWidget()),
+                        SizedBox(height: 1150, child: SignUpItemWidget(controller: controller,)),
                         //* Potluck items
                         PotluckItemsWidget(),
                         // Gift Registry

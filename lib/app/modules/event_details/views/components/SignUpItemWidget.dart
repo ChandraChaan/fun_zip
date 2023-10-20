@@ -5,15 +5,21 @@ import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
 
 import '../../../../widgets/rounded_border.dart';
+import '../../../create_event/controllers/create_event_controller.dart';
 import '../../../sign_up/controllers/sign_up_controller.dart';
+import '../../controllers/event_details_controller.dart';
 
-class SignUpItemWidget extends GetView<SignUpController> {
+class SignUpItemWidget extends StatelessWidget {
   const SignUpItemWidget({
     super.key,
+    this.controller,
   });
+
+  final EventDetailsController? controller;
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -94,7 +100,7 @@ class SignUpItemWidget extends GetView<SignUpController> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        Get.dialog(BottomSignup());
+                                        Get.dialog(BottomSignup(controller: controller!,));
                                       },
                                       child: Container(
                                         height: 20,
@@ -145,7 +151,7 @@ class SignUpItemWidget extends GetView<SignUpController> {
             SizedBox(
               height: 50,
             ),
-            PotluckItems()
+            PotluckItems(controller: controller!,)
           ],
         ),
       ),
@@ -247,8 +253,12 @@ class SignUpItemWidget extends GetView<SignUpController> {
 // }
 
 class PotluckItems extends StatefulWidget {
-  const PotluckItems({Key? key}) : super(key: key);
+  const PotluckItems({
+    super.key,
+    required this.controller,
+  });
 
+  final EventDetailsController controller;
   @override
   _PotluckItemsState createState() => _PotluckItemsState();
 }
@@ -268,7 +278,7 @@ class _PotluckItemsState extends State<PotluckItems> {
   }
 
   void _showBottomSheet(BuildContext context) {
-    Get.dialog(BottomSignup());
+    Get.dialog(BottomSignup(controller: widget.controller,));
     // showModalBottomSheet(
     //   context: context,
     //   builder: (BuildContext context) {
@@ -519,7 +529,15 @@ class _PotluckItemsState extends State<PotluckItems> {
   }
 }
 
-class BottomSignup extends GetView<SignUpController>{
+class BottomSignup extends StatelessWidget{
+  const BottomSignup({
+    super.key,
+    required this.controller,
+  });
+
+  final EventDetailsController controller;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -560,6 +578,7 @@ class BottomSignup extends GetView<SignUpController>{
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
                   child: TextField(
+                    controller: controller.nameController,
                     decoration: InputDecoration(
                       hintText: 'Name',
                       hintStyle: TextStyle(fontSize: 12),
@@ -580,6 +599,7 @@ class BottomSignup extends GetView<SignUpController>{
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
                   child: TextField(
+                    controller: controller.emailController,
                     decoration: InputDecoration(
                       hintText: 'Email',
                       hintStyle: TextStyle(fontSize: 12),
@@ -638,6 +658,7 @@ class BottomSignup extends GetView<SignUpController>{
                                     topRight: Radius.circular(20),
                                     bottomRight: Radius.circular(20))),
                             child: TextField(
+                              controller: controller.phoneController,
                               decoration: InputDecoration(
                                 hintText: 'Phone Number',
                                 hintStyle: TextStyle(fontSize: 12),

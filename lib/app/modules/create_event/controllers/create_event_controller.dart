@@ -8,6 +8,7 @@ import '../../../data/model/AddEventBodyModel.dart';
 import '../../../data/model/ApiResponseModel.dart';
 import '../../../data/model/Suggestion.dart';
 import '../../../data/repository/event_repository.dart';
+
 import '../../../widgets/error_snackbar.dart';
 import '../../../widgets/progress.dart';
 import '../../home/controllers/home_controller.dart';
