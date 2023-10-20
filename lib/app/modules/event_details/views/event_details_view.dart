@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
+import 'package:fun_zippy/sathya/booking_tickets/booking_tickets.dart';
 import 'package:get/get.dart';
 
 import '../../../widgets/custom_buttons.dart';
@@ -30,7 +31,6 @@ class EventDetailsView extends GetView<EventDetailsController> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: backgroundColor,
@@ -46,24 +46,24 @@ class EventDetailsView extends GetView<EventDetailsController> {
                 children: [
                   if (controller.eventDetailsModel.detailPicture != null)
                     Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: <Color>[
-                                blueColor,
-                                Colors.orange.withOpacity(.1)
-                              ],
-                              stops: [0.0, 1.0],
-                              tileMode: TileMode.clamp),
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                controller.eventDetailsModel.detailPicture),
-                            fit: BoxFit.fill,
-                          ),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: <Color>[
+                              blueColor,
+                              Colors.orange.withOpacity(.1)
+                            ],
+                            stops: [0.0, 1.0],
+                            tileMode: TileMode.clamp),
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              controller.eventDetailsModel.detailPicture),
+                          fit: BoxFit.fill,
                         ),
-                        height: 30.percentHeight,
-                    child:  AppBarWidgetEventDetails(),
+                      ),
+                      height: 30.percentHeight,
+                      child: AppBarWidgetEventDetails(),
                     ),
                   //add filter
                   // Container(
@@ -82,10 +82,8 @@ class EventDetailsView extends GetView<EventDetailsController> {
 
                   //* Above card
                   Container(
-                    margin: EdgeInsets.only(
-                        left: 15.0,
-                        right: 15.0,
-                        bottom: 20),
+                    margin:
+                        EdgeInsets.only(left: 15.0, right: 15.0, bottom: 20),
                     child: ListView(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
@@ -106,6 +104,9 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         ShareWidget(),
                         5.height,
 
+                        SizedBox(height: 1400, child: BookTickets()),
+                        5.height,
+
                         CommentWidget(),
                         5.height,
                         //* Map
@@ -116,7 +117,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         5.height,
 
                         // //* Sign up Items
-                        SizedBox(height:1150,child: SignUpItemWidget()),
+                        SizedBox(height: 1150, child: SignUpItemWidget()),
                         //* Potluck items
                         PotluckItemsWidget(),
                         // Gift Registry

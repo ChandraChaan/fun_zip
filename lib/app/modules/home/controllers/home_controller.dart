@@ -24,7 +24,7 @@ class HomeController extends GetxController {
   bool? selectedModeOnline = false;
   List<Map<String, dynamic>> items = [
     {"name": "All", "icon": Icons.star},
-    {"name": "Party", "icon": Icons.party_mode},
+    {"name": "Party", "icon": Icons.music_note},
     //{"name": "All", "icon": Icon(Icons.star)},
   ];
 
