@@ -1,171 +1,169 @@
-// import 'package:flutter/material.dart';
-//
-// class DetailsScreen extends StatefulWidget {
-//   const DetailsScreen({super.key});
-//
-//   @override
-//   State<DetailsScreen> createState() => _DetailsScreenState();
-// }
-//
-// class _DetailsScreenState extends State<DetailsScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Column(
-//         children: [
-//           Column(
-//             children: [
-//               Container(
-//                 height: 180,
-//                 width: double.infinity,
-//                 decoration: BoxDecoration(
-//                     image: DecorationImage(
-//                         image: AssetImage('assets/svg/group_78.png'),
-//                         fit: BoxFit.fill)),
-//                 child: Padding(
-//                   padding: const EdgeInsets.only(top: 30, left: 21),
-//                   child: Row(
-//                     children: [
-//                       Icon(
-//                         Icons.arrow_back,
-//                         color: Colors.white,
-//                       ),
-//                       SizedBox(
-//                         width: 120,
-//                       ),
-//                       Text(
-//                         'Details',
-//                         style: TextStyle(color: Colors.white, fontSize: 20),
-//                       )
-//                     ],
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//           Padding(
-//             padding: const EdgeInsets.all(8.0),
-//             child: Column(
-//               children: [
-//                 Container(
-//                   height: 54,
-//                   width: 374,
-//                   decoration: BoxDecoration(
-//                       color: Colors.white,
-//                       borderRadius: BorderRadius.circular(10)),
-//                   child: Row(
-//                     children: [
-//                       Container(
-//                         height: 30,
-//                         width: 131,
-//                         decoration: BoxDecoration(
-//                           borderRadius: BorderRadius.circular(30),
-//                           border: Border.all(
-//                             color: Color(0xFF4287F5), // Border color
-//                             width: 2.0, // Border width
-//                           ),
-//                         ),
-//                         child: Center(
-//                           child: Text(
-//                             'Add to Calendar',
-//                             style: TextStyle(
-//                                 color: Color(0xFF4287F5), fontSize: 10),
-//                           ),
-//                         ),
-//                       ),
-//                       SizedBox(width: 15),
-//                       Container(
-//                         height: 30,
-//                         width: 30,
-//                         decoration: BoxDecoration(
-//                             borderRadius: BorderRadius.circular(50),
-//                             border: Border.all(color: Color(0xFF4287F5))),
-//                         child: Icon(
-//                           Icons.favorite,
-//                           color: Colors.grey,
-//                         ),
-//                       ),
-//                       SizedBox(width: 15),
-//                       Container(
-//                         height: 30,
-//                         width: 30,
-//                         decoration: BoxDecoration(
-//                             borderRadius: BorderRadius.circular(50),
-//                             border: Border.all(color: Color(0xFF4287F5))),
-//                         child: Icon(
-//                           Icons.share,
-//                           color: Color(0xFF4287F5),
-//                         ),
-//                       ),
-//                       SizedBox(width: 45),
-//                       Container(
-//                         height: 26,
-//                         width: 91,
-//                         decoration: BoxDecoration(
-//                           color: Color(0XFFA442F5),
-//                           borderRadius: BorderRadius.circular(30),
-//                           border: Border.all(
-//                             color: Color(0xFF4287F5), // Border color
-//                             width: 2.0, // Border width
-//                           ),
-//                         ),
-//                         child: Row(
-//                           mainAxisAlignment: MainAxisAlignment.center,
-//                           children: [
-//                             Icon(
-//                               Icons.videocam,
-//                               size: 15,
-//                               color: Colors.white,
-//                             ),
-//                             Text(
-//                               'Watch Live',
-//                               style: TextStyle(
-//                                 color: Colors.white,
-//                                 fontSize: 8,
-//                               ),
-//                             ),
-//                           ],
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//           Container(
-//             height: 158,
-//             width: 374,
-//             decoration: BoxDecoration(
-//               color: Color(0XFF4287F5),
-//               borderRadius: BorderRadius.circular(15),
-//             ),
-//             child: Padding(
-//               padding: const EdgeInsets.only(top: 26),
-//               child: Column(
-//                 children: [
-//                   Text(
-//                     'The Great Gatsby Party : Hyderabad',
-//                     style: TextStyle(
-//                         fontSize: 18,
-//                         color: Colors.white,
-//                         fontWeight: FontWeight.bold),
-//                   ),
-//                   Icon(Icons.location_on)
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 
-import '../../app/extra/for_me.dart';
+class DetailsScreen extends StatefulWidget {
+  const DetailsScreen({super.key});
 
+  @override
+  State<DetailsScreen> createState() => _DetailsScreenState();
+}
+
+class _DetailsScreenState extends State<DetailsScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          Column(
+            children: [
+              Container(
+                height: 180,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/svg/group_78.png'),
+                        fit: BoxFit.fill)),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 30, left: 21),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_back,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 120,
+                      ),
+                      Text(
+                        'Details',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Container(
+                  height: 54,
+                  width: 374,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 30,
+                        width: 131,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(
+                            color: Color(0xFF4287F5), // Border color
+                            width: 2.0, // Border width
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Add to Calendar',
+                            style: TextStyle(
+                                color: Color(0xFF4287F5), fontSize: 10),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 15),
+                      Container(
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            border: Border.all(color: Color(0xFF4287F5))),
+                        child: Icon(
+                          Icons.favorite,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      SizedBox(width: 15),
+                      Container(
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            border: Border.all(color: Color(0xFF4287F5))),
+                        child: Icon(
+                          Icons.share,
+                          color: Color(0xFF4287F5),
+                        ),
+                      ),
+                      SizedBox(width: 45),
+                      Container(
+                        height: 26,
+                        width: 91,
+                        decoration: BoxDecoration(
+                          color: Color(0XFFA442F5),
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(
+                            color: Color(0xFF4287F5), // Border color
+                            width: 2.0, // Border width
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.videocam,
+                              size: 15,
+                              color: Colors.white,
+                            ),
+                            Text(
+                              'Watch Live',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            height: 158,
+            width: 374,
+            decoration: BoxDecoration(
+              color: Color(0XFF4287F5),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 26),
+              child: Column(
+                children: [
+                  Text(
+                    'The Great Gatsby Party : Hyderabad',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Icon(Icons.location_on)
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+// class for bookings
 class BookTickets extends StatefulWidget {
   const BookTickets({super.key});
 
@@ -183,43 +181,78 @@ class _BookTicketsState extends State<BookTickets> {
   bool decline = false;
   bool maybe = false;
 
-double productPrice = 1.0; //quantity
-  double productPriceOne = 3.0;
-
+  double productPrice = 1; //quantity
+  double productQuantityOne = 1;
 
   void increasePrice() {
     setState(() {
-      productPrice += 1.0;
+      productPrice += 1;
     });
   }
 
   void decreasePrice() {
     setState(() {
-      if(productPrice > 1.0){
-        productPrice -= 1.0;
+      if (productPrice > 1) {
+        productPrice -= 1;
       }
     });
   }
 
-void increasePriceOne(){
+  void increasePriceOne() {
     setState(() {
-      productPriceOne += 3.0;
+      productQuantityOne += 1;
     });
-}
+  }
 
-void decreasePriceOne(){
+  void decreasePriceOne() {
     setState(() {
-
+      if (productQuantityOne > 1) {
+        productQuantityOne -= 1;
+      }
     });
-}
+  }
+
+// 3rd
+  double productQuantityTwo = 1;
+
+  void increasePriceTwo() {
+    setState(() {
+      productQuantityTwo += 1;
+    });
+  }
+
+  void decreasePriceTwo() {
+    setState(() {
+      if (productQuantityTwo > 1) {
+        productQuantityTwo -= 1;
+      }
+    });
+  }
+
+  //4th
+  double productQuantityThree = 1;
+
+  void increasePriceThree() {
+    setState(() {
+      productQuantityThree += 1;
+    });
+  }
+
+  void decreasePriceTwoThree() {
+    setState(() {
+      if (productQuantityThree > 1) {
+        productQuantityThree -= 1;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
+//      backgroundColor: Colors.grey.shade300,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8),
           child: Column(
             children: [
               Container(
@@ -233,7 +266,7 @@ void decreasePriceOne(){
                       height: 5,
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(15),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -250,7 +283,7 @@ void decreasePriceOne(){
                             children: [
                               Text('Gem Show Pass'),
                               SizedBox(
-                                width: 160,
+                                width: 140,
                               ),
                               Container(
                                 height: 22,
@@ -301,7 +334,7 @@ void decreasePriceOne(){
                             children: [
                               Text('Senior Citizen Pass'),
                               SizedBox(
-                                width: 130,
+                                width: 120,
                               ),
                               Container(
                                 height: 22,
@@ -310,11 +343,11 @@ void decreasePriceOne(){
                                     color: Color(0XFFE8E7F0),
                                     borderRadius: BorderRadius.circular(25)),
                                 child: InkWell(
-                                    onTap: (){},
+                                    onTap: decreasePriceOne,
                                     child: Icon(Icons.remove, size: 14)),
                               ),
                               SizedBox(width: 4),
-                              Text('0'),
+                              Text('${productQuantityOne.toStringAsFixed(2)}'),
                               SizedBox(width: 4),
                               Container(
                                 height: 22,
@@ -323,7 +356,7 @@ void decreasePriceOne(){
                                     color: Color(0XFFE8E7F0),
                                     borderRadius: BorderRadius.circular(25)),
                                 child: InkWell(
-                                    onTap: (){},
+                                    onTap: increasePriceOne,
                                     child: Icon(Icons.add, size: 14)),
                               )
                             ],
@@ -424,9 +457,9 @@ void decreasePriceOne(){
                                     height: 40,
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0XFFF5F4F9),
-                                        borderRadius: BorderRadius.circular(20)
-                                      ),
+                                          color: Color(0XFFF5F4F9),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 12),
                                       child: DropdownButton<String>(
@@ -439,7 +472,10 @@ void decreasePriceOne(){
                                         items: countryCodes.map((code) {
                                           return DropdownMenuItem<String>(
                                             value: code,
-                                            child: Text(code,style: TextStyle(fontSize: 12),),
+                                            child: Text(
+                                              code,
+                                              style: TextStyle(fontSize: 12),
+                                            ),
                                           );
                                         }).toList(),
                                         underline: Container(
@@ -455,21 +491,18 @@ void decreasePriceOne(){
                                       child: TextField(
                                         decoration: InputDecoration(
                                             hintText: 'Phone Number',
-                                            hintStyle:
-                                                TextStyle(fontSize: 12),
+                                            hintStyle: TextStyle(fontSize: 12),
                                             filled: true,
                                             fillColor: Color(0XFFE8E7F0),
                                             border: InputBorder.none,
                                             focusedBorder: OutlineInputBorder(
                                                 borderSide: BorderSide.none,
                                                 borderRadius:
-                                                    BorderRadius.circular(
-                                                        20)),
+                                                    BorderRadius.circular(20)),
                                             enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide.none,
                                                 borderRadius:
-                                                    BorderRadius.circular(
-                                                        20))),
+                                                    BorderRadius.circular(20))),
                                       ),
                                     ),
                                   ),
@@ -483,27 +516,40 @@ void decreasePriceOne(){
                           SizedBox(
                             height: 25,
                           ),
-                          Container(
-                            height: 40,
-                            child: TextField(
-                              decoration: InputDecoration(
-                                  hintText: 'Checkout',
-                                  hintStyle: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.white,
-                                  ),
-                                  filled: true,
-                                  fillColor: Color(0XFFC61236),
-                                  border: InputBorder.none,
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                      borderRadius:
-                                          BorderRadius.circular(20))),
-                              textAlign: TextAlign.center,
+                          InkWell(
+                            onTap: (){},
+                            child: Container(
+                              height: 40,
+                              width: double.infinity,
+                              child: Center(
+                                  child: Text(
+                                'Checkout',
+                                style:
+                                    TextStyle(color: Colors.white, fontSize: 12),
+                              )),
+                              decoration: BoxDecoration(
+                                  color: Color(0XFFC61236),
+                                  borderRadius: BorderRadius.circular(20)),
+                              // child: TextField(
+                              //   decoration: InputDecoration(
+                              //       hintText: 'Checkout',
+                              //       hintStyle: TextStyle(
+                              //         fontSize: 12,
+                              //         color: Colors.white,
+                              //       ),
+                              //       filled: true,
+                              //       fillColor: Color(0XFFC61236),
+                              //       border: InputBorder.none,
+                              //       focusedBorder: OutlineInputBorder(
+                              //         borderRadius: BorderRadius.circular(20),
+                              //         borderSide: BorderSide.none,
+                              //       ),
+                              //       enabledBorder: OutlineInputBorder(
+                              //           borderSide: BorderSide.none,
+                              //           borderRadius:
+                              //               BorderRadius.circular(20))),
+                              //   textAlign: TextAlign.center,
+                              // ),
                             ),
                           ),
                         ],
@@ -516,12 +562,12 @@ void decreasePriceOne(){
                 height: 15,
               ),
               Container(
-                height: 560,
+                height: 580,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10)),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -538,7 +584,7 @@ void decreasePriceOne(){
                         children: [
                           Text('Adults'),
                           SizedBox(
-                            width: 237,
+                            width: 190,
                           ),
                           Container(
                             height: 22,
@@ -547,11 +593,11 @@ void decreasePriceOne(){
                                 color: Color(0XFFE8E7F0),
                                 borderRadius: BorderRadius.circular(25)),
                             child: InkWell(
-                                onTap: (){},
+                                onTap: decreasePriceTwo,
                                 child: Icon(Icons.remove, size: 14)),
                           ),
                           SizedBox(width: 4),
-                          Text('0'),
+                          Text('${productQuantityTwo.toStringAsFixed(2)}'),
                           SizedBox(width: 4),
                           Container(
                             height: 22,
@@ -560,7 +606,7 @@ void decreasePriceOne(){
                                 color: Color(0XFFE8E7F0),
                                 borderRadius: BorderRadius.circular(25)),
                             child: InkWell(
-                                onTap: (){},
+                                onTap: increasePriceTwo,
                                 child: Icon(Icons.add, size: 14)),
                           )
                         ],
@@ -584,7 +630,7 @@ void decreasePriceOne(){
                         children: [
                           Text('Kids'),
                           SizedBox(
-                            width: 240,
+                            width: 203,
                           ),
                           Container(
                             height: 22,
@@ -593,11 +639,11 @@ void decreasePriceOne(){
                                 color: Color(0XFFE8E7F0),
                                 borderRadius: BorderRadius.circular(25)),
                             child: InkWell(
-                                onTap: (){},
+                                onTap: decreasePriceTwoThree,
                                 child: Icon(Icons.remove, size: 14)),
                           ),
                           SizedBox(width: 4),
-                          Text('0'),
+                          Text('${productQuantityThree.toStringAsFixed(2)}'),
                           SizedBox(width: 4),
                           Container(
                             height: 22,
@@ -606,7 +652,7 @@ void decreasePriceOne(){
                                 color: Color(0XFFE8E7F0),
                                 borderRadius: BorderRadius.circular(25)),
                             child: InkWell(
-                                onTap: (){},
+                                onTap: increasePriceThree,
                                 child: Icon(Icons.add, size: 14)),
                           ),
                         ],
@@ -647,12 +693,10 @@ void decreasePriceOne(){
                                   border: InputBorder.none,
                                   focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide.none,
-                                      borderRadius:
-                                          BorderRadius.circular(20)),
+                                      borderRadius: BorderRadius.circular(20)),
                                   enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide.none,
-                                      borderRadius:
-                                          BorderRadius.circular(20))),
+                                      borderRadius: BorderRadius.circular(20))),
                             ),
                           ),
                           SizedBox(
@@ -680,8 +724,7 @@ void decreasePriceOne(){
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide.none,
-                                      borderRadius:
-                                          BorderRadius.circular(20))),
+                                      borderRadius: BorderRadius.circular(20))),
                             ),
                           ),
                           SizedBox(
@@ -709,8 +752,7 @@ void decreasePriceOne(){
                                   ),
                                   enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide.none,
-                                      borderRadius:
-                                          BorderRadius.circular(20))),
+                                      borderRadius: BorderRadius.circular(20))),
                             ),
                           ),
                         ],
@@ -731,11 +773,10 @@ void decreasePriceOne(){
                                   // Handle the click action for 'Accept' checkbox here
                                 },
                                 child: Icon(
-                                  accept
-                                      ? Icons.check_box
-                                      : Icons.check_box_outline_blank,
-                                  color: Color(0XFF5B46F4)
-                                ),
+                                    accept
+                                        ? Icons.check_box
+                                        : Icons.check_box_outline_blank,
+                                    color: Color(0XFF5B46F4)),
                               ),
                               Text('Accept'),
                             ],
@@ -810,10 +851,10 @@ void decreasePriceOne(){
     );
   }
 }
-
-class Price {
-  final double price;
-  int quantity;
-
-  Price(this.price, this.quantity);
-}
+//
+// class Price {
+//   final double price;
+//   int quantity;
+//
+//   Price(this.price, this.quantity);
+// }

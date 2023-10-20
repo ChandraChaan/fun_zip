@@ -6,6 +6,7 @@ import '../../sathya/editing_event/event_screen.dart';
 import '../../sathya/my_profile_screen.dart';
 import '../../sathya/my_profile_screen.dart';
 import '../../sathya/my_profile_screen.dart';
+import '../../sathya/my_tickets.dart';
 import '../../sathya/schedule_screen/schedule_screen.dart';
 import '../../sathya/sponsorship/sponsorship_screen.dart';
 import '../extra/for_me.dart';
@@ -34,7 +35,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH;
+  static const INITIAL = Routes.MyTicketsScreen;
 
   static final routes = [
     GetPage(
@@ -115,6 +116,11 @@ class AppPages {
     GetPage(
       name: _Paths.BookTickets,
       page: () => BookTickets(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.MyTicketsScreen,
+      page: () => MyTicketsScreen(),
       binding: EventDetailsBinding(),
     ),
   ];

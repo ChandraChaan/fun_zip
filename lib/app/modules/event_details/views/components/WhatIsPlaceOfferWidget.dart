@@ -31,6 +31,7 @@ class WhatIsPlaceOfferWidget extends StatelessWidget {
               Icon: SvgPicture.asset(map_2IconImage),
               title: 'Directions',
               subtitle: 'By Car or Cab...'),
+
           ListTileWidget(
               Icon: SvgPicture.asset(parkingIconImage),
               title: 'Parking',

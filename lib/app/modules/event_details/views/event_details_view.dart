@@ -104,7 +104,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         ShareWidget(),
                         5.height,
 
-                        SizedBox(height: 1400, child: BookTickets()),
+                        SizedBox(height: 1220, child: BookTickets()),
                         5.height,
 
                         CommentWidget(),
@@ -146,20 +146,20 @@ class EventDetailsView extends GetView<EventDetailsController> {
           }
         },
       ),
-      bottomNavigationBar: Container(
-        // height: 40,
-        width: Get.width,
-        color: Colors.white,
-        padding: EdgeInsets.all(20),
-        child: PrimaryButtonWidget(
-          text: 'Book Tickets',
-          onPressed: () {
-            // if (formKey.currentState!.saveAndValidate()) {
-            //   controller.signUp();
-            // }
-          },
-        ),
-      ),
+      // bottomNavigationBar: Container(
+      //   // height: 40,
+      //   width: Get.width,
+      //   color: Colors.white,
+      //   padding: EdgeInsets.all(20),
+      //   child: PrimaryButtonWidget(
+      //     text: 'Book Tickets',
+      //     onPressed: () {
+      //       // if (formKey.currentState!.saveAndValidate()) {
+      //       //   controller.signUp();
+      //       // }
+      //     },
+      //   ),
+      // ),
     );
   }
 }

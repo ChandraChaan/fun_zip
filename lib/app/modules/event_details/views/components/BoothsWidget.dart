@@ -92,7 +92,8 @@ class GridItemWidget extends StatelessWidget {
             child: ClipRRect(
               // borderRadius: BorderRadius.circular(15),
               // child: Image.network(result.summaryPicture),
-              child: SvgPicture.asset(parkingIconImage),
+              child: Image.asset('assets/svg/ellipse_23.png'),
+              // child: SvgPicture.asset(parkingIconImage),
             ),
           ),
           20.height,

@@ -23,6 +23,7 @@ abstract class Routes {
   //static const MyProfile = _Paths.MyProfile;
   static const PhoneWidget = _Paths.PhoneWidget;
   static const NameAndDetailsCardWidget = _Paths.NameAndDetailsCardWidget;
+  static const MyTicketsScreen = _Paths.MyTicketsScreen;
 }
 
 abstract class _Paths {
@@ -46,4 +47,5 @@ abstract class _Paths {
   static const SliverAppBarExample = '/SliverAppBarExample';
   static const PhoneWidget = '/PhoneWidget';
   static const NameAndDetailsCardWidget = '/NameAndDetailsCardWidget';
+  static const MyTicketsScreen = '/MyTicketsScreen';
 }
