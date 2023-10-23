@@ -4,7 +4,6 @@ import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:fun_zippy/sathya/booking_tickets/booking_tickets.dart';
 import 'package:get/get.dart';
 
-import '../../../widgets/custom_buttons.dart';
 import '../../create_event/controllers/create_event_controller.dart';
 import '../controllers/event_details_controller.dart';
 import 'components/AboutThisPageWidget.dart';
@@ -23,7 +22,6 @@ import 'components/SignUpItemWidget.dart';
 import 'components/SpeakersWidget.dart';
 import 'components/SponsorsWidget.dart';
 import 'components/WhatIsPlaceOfferWidget.dart';
-import 'components/WhetherWidget.dart';
 import 'components/WidgetWidget.dart';
 
 class EventDetailsView extends GetView<EventDetailsController> {
@@ -104,15 +102,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         ShareWidget(),
                         5.height,
 
-                        Visibility(
-                            visible: controller
-                                        .eventDetailsModel.rsvpRequired
-                                        .toString() ==
-                                    'true'
-                                ? true
-                                : false,
-                            child:
-                                SizedBox(height: 1220, child: BookTickets())),
+                        SizedBox(height: 1220, child: BookTickets()),
                         5.height,
 
                         CommentWidget(),
@@ -121,75 +111,34 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         MapWidget(controller: controller),
                         5.height,
 
-                      Visibility(
-                          visible: controller
-                              .eventDetailsModel.fundRaisingEvent
-                              .toString() ==
-                              'true'
-                              ? true
-                              : false,
-                          child: OrganizersWidget()),
+                        OrganizersWidget(),
                         5.height,
 
                         // //* Sign up Items
-                    Visibility(
-                        visible: controller
-                            .eventDetailsModel.govtBodyEvent
-                            .toString() ==
-                            'true'
-                            ? true
-                            : false,
-                          child: SizedBox(
-                              height: 1150,
-                              child: SignUpItemWidget(
-                                controller: controller,
-                              )),
-                        ),
+                        SizedBox(
+                            height: 1150,
+                            child: SignUpItemWidget(
+                              controller: controller,
+                            )),
                         //* Potluck items
-                        Visibility(
-                            visible: controller
-                                .eventDetailsModel.featured
-                                .toString() ==
-                                'true'
-                                ? true
-                                : false,child: PotluckItemsWidget()),
+                        PotluckItemsWidget(
+                          controller: controller,
+                        ),
                         // Gift Registry
-                        Visibility(
-                            visible: controller
-                                .eventDetailsModel.govtBodyEvent
-                                .toString() ==
-                                'true'
-                                ? true
-                                : false,child: GiftRegistryWidget()),
+                        GiftRegistryWidget(
+
+                        ),
                         // Whether
                         // WhetherWidget(),
                         // Widget
                         WidgetWidget(),
                         //what is Place Offer
-                        Visibility(
-                            visible: controller
-                                .eventDetailsModel.featured
-                                .toString() ==
-                                'true'
-                                ? true
-                                : false,child: WhatIsPlaceOfferWidget()),
+                        WhatIsPlaceOfferWidget(),
 
                         // Speakers
-                        Visibility(
-                            visible: controller
-                                .eventDetailsModel.featured
-                                .toString() ==
-                                'true'
-                                ? true
-                                : false,child: SpeakersWidget()),
+                        SpeakersWidget(),
                         // Sponsors
-                        Visibility(
-                            visible: controller
-                                .eventDetailsModel.featured
-                                .toString() ==
-                                'true'
-                                ? true
-                                : false,child: SponsorsWidget()),
+                        SponsorsWidget(),
 
                         // Boots
                         BoothsWidget(),

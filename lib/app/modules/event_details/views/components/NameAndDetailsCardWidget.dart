@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/theme/text_theme.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 

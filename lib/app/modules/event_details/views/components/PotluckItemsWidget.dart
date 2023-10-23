@@ -5,12 +5,15 @@ import 'package:fun_zippy/app/utilities/extention.dart';
 import '../../../../theme/text_theme.dart';
 import '../../../../widgets/custom_buttons.dart';
 import '../../../../widgets/rounded_border.dart';
+import '../../controllers/event_details_controller.dart';
 
 class PotluckItemsWidget extends StatelessWidget {
   const PotluckItemsWidget({
     super.key,
+    required this.controller,
   });
 
+  final EventDetailsController controller;
   @override
   Widget build(BuildContext context) {
     return Card(

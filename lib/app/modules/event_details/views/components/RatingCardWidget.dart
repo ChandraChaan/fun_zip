@@ -93,45 +93,48 @@ class RatingCardWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              Positioned(
-                right: 10,
-                bottom: 10,
-                child: SizedBox(
-                  height: 20,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.topRight,
-                          colors: <Color>[
-                            Color(0xFF560B7E),
-                            Color(0xFF58070A),
-                          ],
-                          stops: [0.0, 1.0],
-                          tileMode: TileMode.clamp),
-                      borderRadius: BorderRadius.circular(50.0),
-                    ),
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.all(5),
-                        backgroundColor: Colors.transparent,
-                        shadowColor: Colors.transparent,
-                        // shape: RoundedRectangleBorder(
-                        //     borderRadius: borderRadius),
+              Visibility(
+                visible: controller.eventDetailsModel.liveStream.toString() == 'true' ? true: false,
+                child: Positioned(
+                  right: 10,
+                  bottom: 10,
+                  child: SizedBox(
+                    height: 20,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.topRight,
+                            colors: <Color>[
+                              Color(0xFF560B7E),
+                              Color(0xFF58070A),
+                            ],
+                            stops: [0.0, 1.0],
+                            tileMode: TileMode.clamp),
+                        borderRadius: BorderRadius.circular(50.0),
                       ),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(video_cameraIconImage),
-                          4.width,
-                          Text(
-                            'Watch Lives',
-                            style: normalText.copyWith(
-                              color: Colors.white,
-                              fontSize: 8,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.all(5),
+                          backgroundColor: Colors.transparent,
+                          shadowColor: Colors.transparent,
+                          // shape: RoundedRectangleBorder(
+                          //     borderRadius: borderRadius),
+                        ),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(video_cameraIconImage),
+                            4.width,
+                            Text(
+                              'Watch Lives',
+                              style: normalText.copyWith(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
