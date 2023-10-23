@@ -35,7 +35,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.abcd;
+  static const INITIAL = Routes.SPLASH;
 
   static final routes = [
     GetPage(
@@ -121,11 +121,6 @@ class AppPages {
     GetPage(
       name: _Paths.MyTicketsScreen,
       page: () => MyTicketsScreen(),
-      binding: EventDetailsBinding(),
-    ),
-    GetPage(
-      name: _Paths.abcd,
-      page: () => abcd(),
       binding: EventDetailsBinding(),
     ),
   ];

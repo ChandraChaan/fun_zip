@@ -104,7 +104,15 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         ShareWidget(),
                         5.height,
 
-                        SizedBox(height: 1220, child: BookTickets()),
+                        Visibility(
+                            visible: controller
+                                        .eventDetailsModel.rsvpRequired
+                                        .toString() ==
+                                    'true'
+                                ? true
+                                : false,
+                            child:
+                                SizedBox(height: 1220, child: BookTickets())),
                         5.height,
 
                         CommentWidget(),
@@ -113,26 +121,75 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         MapWidget(controller: controller),
                         5.height,
 
-                        OrganizersWidget(),
+                      Visibility(
+                          visible: controller
+                              .eventDetailsModel.fundRaisingEvent
+                              .toString() ==
+                              'true'
+                              ? true
+                              : false,
+                          child: OrganizersWidget()),
                         5.height,
 
                         // //* Sign up Items
-                        SizedBox(height: 1150, child: SignUpItemWidget(controller: controller,)),
+                    Visibility(
+                        visible: controller
+                            .eventDetailsModel.govtBodyEvent
+                            .toString() ==
+                            'true'
+                            ? true
+                            : false,
+                          child: SizedBox(
+                              height: 1150,
+                              child: SignUpItemWidget(
+                                controller: controller,
+                              )),
+                        ),
                         //* Potluck items
-                        PotluckItemsWidget(),
+                        Visibility(
+                            visible: controller
+                                .eventDetailsModel.featured
+                                .toString() ==
+                                'true'
+                                ? true
+                                : false,child: PotluckItemsWidget()),
                         // Gift Registry
-                        GiftRegistryWidget(),
+                        Visibility(
+                            visible: controller
+                                .eventDetailsModel.govtBodyEvent
+                                .toString() ==
+                                'true'
+                                ? true
+                                : false,child: GiftRegistryWidget()),
                         // Whether
                         // WhetherWidget(),
                         // Widget
                         WidgetWidget(),
                         //what is Place Offer
-                        WhatIsPlaceOfferWidget(),
+                        Visibility(
+                            visible: controller
+                                .eventDetailsModel.featured
+                                .toString() ==
+                                'true'
+                                ? true
+                                : false,child: WhatIsPlaceOfferWidget()),
 
                         // Speakers
-                        SpeakersWidget(),
+                        Visibility(
+                            visible: controller
+                                .eventDetailsModel.featured
+                                .toString() ==
+                                'true'
+                                ? true
+                                : false,child: SpeakersWidget()),
                         // Sponsors
-                        SponsorsWidget(),
+                        Visibility(
+                            visible: controller
+                                .eventDetailsModel.featured
+                                .toString() ==
+                                'true'
+                                ? true
+                                : false,child: SponsorsWidget()),
 
                         // Boots
                         BoothsWidget(),

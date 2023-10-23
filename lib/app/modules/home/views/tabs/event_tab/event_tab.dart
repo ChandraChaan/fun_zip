@@ -173,7 +173,7 @@ class EventTab extends GetView<HomeController> {
                     left: 20,
                     right: 20,
                   ),
-                  itemCount: 3,
+                  itemCount: controller.apiResponseModel.value.results!.length,
                   itemBuilder: (context, index) {
                     Results result =
                         controller.apiResponseModel.value.results![index];

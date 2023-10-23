@@ -280,34 +280,37 @@ class _BookTicketsState extends State<BookTickets> {
                             height: 18,
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Gem Show Pass'),
-                              SizedBox(
-                                width: 140,
+
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 22,
+                                    width: 22,
+                                    decoration: BoxDecoration(
+                                        color: Color(0XFFE8E7F0),
+                                        borderRadius: BorderRadius.circular(25)),
+                                    child: InkWell(
+                                        onTap: decreasePrice,
+                                        child: Icon(Icons.remove, size: 14)),
+                                  ),
+                                  SizedBox(width: 4),
+                                  Text('${productPrice.toStringAsFixed(2)}'),
+                                  SizedBox(width: 4),
+                                  Container(
+                                    height: 22,
+                                    width: 22,
+                                    decoration: BoxDecoration(
+                                        color: Color(0XFFE8E7F0),
+                                        borderRadius: BorderRadius.circular(25)),
+                                    child: InkWell(
+                                        onTap: increasePrice,
+                                        child: Icon(Icons.add, size: 14)),
+                                  )
+                                ],
                               ),
-                              Container(
-                                height: 22,
-                                width: 22,
-                                decoration: BoxDecoration(
-                                    color: Color(0XFFE8E7F0),
-                                    borderRadius: BorderRadius.circular(25)),
-                                child: InkWell(
-                                    onTap: decreasePrice,
-                                    child: Icon(Icons.remove, size: 14)),
-                              ),
-                              SizedBox(width: 4),
-                              Text('${productPrice.toStringAsFixed(2)}'),
-                              SizedBox(width: 4),
-                              Container(
-                                height: 22,
-                                width: 22,
-                                decoration: BoxDecoration(
-                                    color: Color(0XFFE8E7F0),
-                                    borderRadius: BorderRadius.circular(25)),
-                                child: InkWell(
-                                    onTap: increasePrice,
-                                    child: Icon(Icons.add, size: 14)),
-                              )
                             ],
                           ),
                           SizedBox(height: 7),
@@ -331,34 +334,38 @@ class _BookTicketsState extends State<BookTickets> {
                             height: 7,
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Senior Citizen Pass'),
-                              SizedBox(
-                                width: 120,
+                              Row(
+                                children: [
+
+                                  Container(
+                                    height: 22,
+                                    width: 22,
+                                    decoration: BoxDecoration(
+                                        color: Color(0XFFE8E7F0),
+                                        borderRadius: BorderRadius.circular(25)),
+                                    child: InkWell(
+                                        onTap: decreasePriceOne,
+                                        child: Icon(Icons.remove, size: 14)),
+                                  ),
+                                  SizedBox(width: 4),
+                                  Text('${productQuantityOne.toStringAsFixed(2)}'),
+                                  SizedBox(width: 4),
+                                  Container(
+                                    height: 22,
+                                    width: 22,
+                                    decoration: BoxDecoration(
+                                        color: Color(0XFFE8E7F0),
+                                        borderRadius: BorderRadius.circular(25)),
+                                    child: InkWell(
+                                        onTap: increasePriceOne,
+                                        child: Icon(Icons.add, size: 14)),
+                                  )
+                                ],
                               ),
-                              Container(
-                                height: 22,
-                                width: 22,
-                                decoration: BoxDecoration(
-                                    color: Color(0XFFE8E7F0),
-                                    borderRadius: BorderRadius.circular(25)),
-                                child: InkWell(
-                                    onTap: decreasePriceOne,
-                                    child: Icon(Icons.remove, size: 14)),
-                              ),
-                              SizedBox(width: 4),
-                              Text('${productQuantityOne.toStringAsFixed(2)}'),
-                              SizedBox(width: 4),
-                              Container(
-                                height: 22,
-                                width: 22,
-                                decoration: BoxDecoration(
-                                    color: Color(0XFFE8E7F0),
-                                    borderRadius: BorderRadius.circular(25)),
-                                child: InkWell(
-                                    onTap: increasePriceOne,
-                                    child: Icon(Icons.add, size: 14)),
-                              )
+
                             ],
                           ),
                           SizedBox(height: 7),

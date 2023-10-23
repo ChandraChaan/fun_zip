@@ -34,10 +34,12 @@ class SingleEventItemWidget extends StatelessWidget {
             children: [
               10.height,
               Container(
+                height: 200,
+                width: double.infinity,
                 padding: EdgeInsets.all(10),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Image.network(result.summaryPicture),
+                  child: Image.network(result.summaryPicture, fit: BoxFit.fill,),
                 ),
               ),
               Padding(
