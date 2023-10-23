@@ -24,6 +24,7 @@ abstract class Routes {
   static const PhoneWidget = _Paths.PhoneWidget;
   static const NameAndDetailsCardWidget = _Paths.NameAndDetailsCardWidget;
   static const MyTicketsScreen = _Paths.MyTicketsScreen;
+  static const abcd = _Paths.abcd;
 }
 
 abstract class _Paths {
@@ -48,4 +49,5 @@ abstract class _Paths {
   static const PhoneWidget = '/PhoneWidget';
   static const NameAndDetailsCardWidget = '/NameAndDetailsCardWidget';
   static const MyTicketsScreen = '/MyTicketsScreen';
+  static const abcd = '/abcd';
 }

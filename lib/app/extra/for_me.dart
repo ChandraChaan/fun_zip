@@ -1,57 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:fun_zippy/app/extra/forsecond.dart';
 
-class PriceChangeApp extends StatefulWidget {
+class abcd extends StatefulWidget {
+  const abcd({super.key});
+
   @override
-  _PriceChangeAppState createState() => _PriceChangeAppState();
+  State<abcd> createState() => _abcdState();
 }
 
-class _PriceChangeAppState extends State<PriceChangeApp> {
-  double productPrice = 10.0;
-
-  void increasePrice() {
-    setState(() {
-      productPrice += 1.0;
-    });
-  }
-
-  void decreasePrice() {
-    setState(() {
-      if (productPrice > 1.0) {
-        productPrice -= 1.0;
-      }
-    });
-  }
-
+class _abcdState extends State<abcd> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Price Change App'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Product Price: \$${productPrice.toStringAsFixed(2)}',
-              style: TextStyle(fontSize: 20.0),
-            ),
-            SizedBox(height: 20.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ElevatedButton(
-                  onPressed: increasePrice,
-                  child: Text('Increase Price'),
-                ),
-                SizedBox(width: 20.0), // Add some spacing between the buttons
-                ElevatedButton(
-                  onPressed: decreasePrice,
-                  child: Text('Decrease Price'),
-                ),
-              ],
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          height: 100,
+          width: 100,
+          color: Colors.red,
+          child: InkWell(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => second()));
+              },
+              child: Text('click')),
         ),
       ),
     );

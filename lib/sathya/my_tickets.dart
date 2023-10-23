@@ -109,8 +109,6 @@ class _MyTicketsScreenState extends State<MyTicketsScreen> {
                             ),
                           ],
                         ),
-
-
                       ],
                     ),
                   ],
