@@ -81,7 +81,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SponsorshipScreen,
-      page: () => SponsorshipScreen(),
+      page: () => SponsorshipScreen(boots: false,),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.BootsScreen,
+      page: () => SponsorshipScreen(boots: true,),
       binding: EventDetailsBinding(),
     ),
     GetPage(
@@ -117,16 +122,6 @@ class AppPages {
     GetPage(
       name: _Paths.MyTicketsScreen,
       page: () => MyTicketsScreen(),
-      binding: EventDetailsBinding(),
-    ),
-    GetPage(
-      name: _Paths.SponsorshipScreen,
-      page: () => SponsorshipScreen(),
-      binding: EventDetailsBinding(),
-    ),
-    GetPage(
-      name: _Paths.SponsorshipScreen,
-      page: () => SponsorshipScreen(),
       binding: EventDetailsBinding(),
     ),
   ];

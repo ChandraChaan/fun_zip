@@ -7,11 +7,15 @@ import 'package:fun_zippy/app/utilities/extention.dart';
 import '../../../../config/images_links.dart';
 import '../../../../theme/text_theme.dart';
 import '../../../../widgets/rounded_border.dart';
+import '../../controllers/event_details_controller.dart';
 
 class WhatIsPlaceOfferWidget extends StatelessWidget {
   const WhatIsPlaceOfferWidget({
     super.key,
+    required this.controller,
   });
+
+  final EventDetailsController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +34,15 @@ class WhatIsPlaceOfferWidget extends StatelessWidget {
           ListTileWidget(
               Icon: SvgPicture.asset(map_2IconImage),
               title: 'Directions',
-              subtitle: 'By Car or Cab...'),
-
+              subtitle: ' '),
           ListTileWidget(
               Icon: SvgPicture.asset(parkingIconImage),
               title: 'Parking',
-              subtitle: 'South side parking...'),
+              subtitle: ' '),
           ListTileWidget(
               Icon: SvgPicture.asset(home_2IconImage),
               title: 'Places to stay',
-              subtitle: 'South side parking...'),
+              subtitle: controller.eventDetailsModel.placesToStay.toString()),
         ],
       ),
     );

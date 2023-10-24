@@ -194,7 +194,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         // Widget
                         // WidgetWidget(),
                         //what is Place Offer
-                        // WhatIsPlaceOfferWidget(),
+                        WhatIsPlaceOfferWidget(controller: controller,),
 
                         // Speakers
                         Visibility(

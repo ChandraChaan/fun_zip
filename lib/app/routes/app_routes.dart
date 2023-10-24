@@ -15,6 +15,7 @@ abstract class Routes {
   static const LocationSearchScreensat = _Paths.LocationSearchScreensat;
   static const BookTickets = _Paths.BookTickets;
   static const SponsorshipScreen = _Paths.SponsorshipScreen;
+  static const BootsScreen = _Paths.BootsScreen;
   static const ScheduleScreen = _Paths.ScheduleScreen;
   static const EditingEvent = _Paths.EditingEvent;
   static const EventScreen = _Paths.EventScreen;
@@ -41,6 +42,7 @@ abstract class _Paths {
   static const LocationSearchScreensat = '/LocationSearchScreensat';
   static const BookTickets = '/BookTickets';
   static const SponsorshipScreen = '/SponsorshipScreen';
+  static const BootsScreen = '/BootsScreen';
   static const ScheduleScreen = '/ScheduleScreen';
   static const EditingEvent = '/EditingEvent';
   static const EventScreen = '/EventScreen';

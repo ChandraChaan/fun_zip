@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
+import 'package:get/get.dart';
 
 import '../../../../config/images_links.dart';
+import '../../../../routes/app_pages.dart';
 import '../../../../theme/text_theme.dart';
 import '../../../../widgets/rounded_border.dart';
 import '../../controllers/event_details_controller.dart';
@@ -27,7 +29,43 @@ class SponsorsWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('Sponsors', style: titleBoldText),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Sponsors', style: titleBoldText),
+                SizedBox(
+                  width:109,
+                  height: 20,
+                  child: ElevatedButton(
+                    onPressed: (){
+                      Get.toNamed(Routes.SponsorshipScreen);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.all(0),
+                      backgroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                        side: BorderSide(color: Color(0XFFC61236)),
+                      ),
+                    ),
+                    child: Container(
+                      height: 20,
+                      width: 109,
+                      child: Center(
+                        child: Text(
+                          'See Sponsorship Packages',
+                          style: TextStyle(
+                            fontSize: 8,
+                            color: Color(0XFFC61236),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),

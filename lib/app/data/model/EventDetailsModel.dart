@@ -10,6 +10,7 @@ class EventDetailsModel {
   dynamic updatedBy;
   dynamic name;
   dynamic description;
+  dynamic placesToStay;
   dynamic locationName;
   dynamic address1;
   dynamic city;
@@ -73,6 +74,7 @@ class EventDetailsModel {
       this.updatedBy,
       this.name,
       this.description,
+      this.placesToStay,
       this.locationName,
       this.potluckItems,
       this.timeSlots,
@@ -135,6 +137,7 @@ class EventDetailsModel {
     updatedDate = json['updatedDate'];
     updatedBy = json['updatedBy'];
     name = json['name'];
+    placesToStay = json['placesToStay'];
     description = json['description'];
     potluckItems = json['potluckItems'];
     timeSlots = json['timeSlots'];
@@ -218,6 +221,7 @@ class EventDetailsModel {
     data['status'] = this.status;
     data['companyId'] = this.companyId;
     data['createdDate'] = this.createdDate;
+    data['placesToStay'] = this.placesToStay;
     data['createdBy'] = this.createdBy;
     data['updatedDate'] = this.updatedDate;
     data['boothCategories'] = this.boothCategories;

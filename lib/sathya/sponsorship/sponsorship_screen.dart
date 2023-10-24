@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class SponsorshipScreen extends StatefulWidget {
-  const SponsorshipScreen({super.key});
+import '../../app/modules/event_details/controllers/event_details_controller.dart';
 
-  @override
-  State<SponsorshipScreen> createState() => _SponsorshipScreenState();
-}
+class SponsorshipScreen extends GetView<EventDetailsController> {
+  final bool boots;
 
-class _SponsorshipScreenState extends State<SponsorshipScreen> {
+  SponsorshipScreen({super.key, this.boots = false});
+
   @override
   Widget build(BuildContext context) {
+    int usedListLength = boots == false
+        ? controller.eventDetailsModel.sponsorCategories!.length
+        : controller.eventDetailsModel.boothCategories!.length;
     return Scaffold(
       appBar: AppBar(
         elevation: 5,
@@ -26,7 +29,7 @@ class _SponsorshipScreenState extends State<SponsorshipScreen> {
         ],
         title: Center(
             child: Text(
-          'Sponsorship',
+          boots == false? 'Sponsorship' : 'Available Booth Spaces',
           style: TextStyle(color: Colors.black, fontSize: 20),
         )),
       ),
@@ -34,229 +37,58 @@ class _SponsorshipScreenState extends State<SponsorshipScreen> {
         padding: const EdgeInsets.only(top: 15, left: 8, right: 8),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Diamond'),
-                Row(
-                  children: [
-                    Container(
-                      height: 22,
-                      width: 22,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Icon(Icons.remove, size: 14),
-                    ),
-                    SizedBox(width: 2),
-                    Text('0'),
-                    SizedBox(width: 2),
-                    Container(
-                      height: 22,
-                      width: 22,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Icon(Icons.add, size: 14),
-                    )
-                  ],
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Icon(
-                  Icons.attach_money,
-                  size: 12,
-                ),
-                SizedBox(height: 25),
-                Text(
-                  '100.00',
-                  style: TextStyle(
-                      fontSize: 10,
-                      color: Colors.deepPurpleAccent,
-                      fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-            SizedBox(height: 7),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Platinum'),
-                Row(
-                  children: [
-                    Container(
-                      height: 22,
-                      width: 22,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Icon(Icons.remove, size: 14),
-                    ),
-                    SizedBox(width: 2),
-                    Text('0'),
-                    SizedBox(width: 2),
-                    Container(
-                      height: 22,
-                      width: 22,
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Icon(Icons.add, size: 14),
-                    )
-                  ],
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Icon(
-                  Icons.attach_money,
-                  size: 12,
-                ),
-                SizedBox(height: 25),
-                Text(
-                  '100.00',
-                  style: TextStyle(
-                      fontSize: 10,
-                      color: Colors.deepPurpleAccent,
-                      fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-            // Row(
-            //   children: [
-            //     Text('Jewellery'),
-            //     SizedBox(
-            //       width: 272,
-            //     ),
-            //     Container(
-            //       height: 22,
-            //       width: 22,
-            //       decoration: BoxDecoration(
-            //           color: Colors.grey,
-            //           borderRadius: BorderRadius.circular(25)),
-            //       child: Icon(Icons.remove, size: 14),
-            //     ),
-            //     SizedBox(width: 2),
-            //     Text('0'),
-            //     SizedBox(width: 2),
-            //     Container(
-            //       height: 22,
-            //       width: 22,
-            //       decoration: BoxDecoration(
-            //           color: Colors.grey,
-            //           borderRadius: BorderRadius.circular(25)),
-            //       child: Icon(Icons.add, size: 14),
-            //     )
-            //   ],
-            // ),
-            // Row(
-            //   children: [
-            //     Icon(
-            //       Icons.attach_money,
-            //       size: 12,
-            //     ),
-            //     SizedBox(height: 25),
-            //     Text(
-            //       '100.00',
-            //       style: TextStyle(
-            //           fontSize: 10,
-            //           color: Colors.deepPurpleAccent,
-            //           fontWeight: FontWeight.bold),
-            //     )
-            //   ],
-            // ),
-            // SizedBox(
-            //   height: 7,
-            // ),
-            // Row(
-            //   children: [
-            //     Text('Watches'),
-            //     SizedBox(
-            //       width: 277,
-            //     ),
-            //     Container(
-            //       height: 22,
-            //       width: 22,
-            //       decoration: BoxDecoration(
-            //           color: Colors.grey,
-            //           borderRadius: BorderRadius.circular(25)),
-            //       child: Icon(Icons.remove, size: 14),
-            //     ),
-            //     SizedBox(width: 2),
-            //     Text('0'),
-            //     SizedBox(width: 2),
-            //     Container(
-            //       height: 22,
-            //       width: 22,
-            //       decoration: BoxDecoration(
-            //           color: Colors.grey,
-            //           borderRadius: BorderRadius.circular(25)),
-            //       child: Icon(Icons.add, size: 14),
-            //     )
-            //   ],
-            // ),
-            // Row(
-            //   children: [
-            //     Icon(
-            //       Icons.attach_money,
-            //       size: 12,
-            //     ),
-            //     SizedBox(height: 25),
-            //     Text(
-            //       '200.00',
-            //       style: TextStyle(
-            //           fontSize: 10,
-            //           color: Colors.deepPurpleAccent,
-            //           fontWeight: FontWeight.bold),
-            //     )
-            //   ],
-            // ),
-            // Row(
-            //   children: [
-            //     Text('Clothing'),
-            //     SizedBox(
-            //       width: 280,
-            //     ),
-            //     Container(
-            //       height: 22,
-            //       width: 22,
-            //       decoration: BoxDecoration(
-            //           color: Colors.grey,
-            //           borderRadius: BorderRadius.circular(25)),
-            //       child: Icon(Icons.remove, size: 14),
-            //     ),
-            //     SizedBox(width: 2),
-            //     Text('0'),
-            //     SizedBox(width: 2),
-            //     Container(
-            //       height: 22,
-            //       width: 22,
-            //       decoration: BoxDecoration(
-            //           color: Colors.grey,
-            //           borderRadius: BorderRadius.circular(25)),
-            //       child: Icon(Icons.add, size: 14),
-            //     )
-            //   ],
-            // ),
-            // Row(
-            //   children: [
-            //     Icon(
-            //       Icons.attach_money,
-            //       size: 12,
-            //     ),
-            //     SizedBox(height: 25),
-            //     Text(
-            //       '500.00',
-            //       style: TextStyle(
-            //           fontSize: 10,
-            //           color: Colors.deepPurpleAccent,
-            //           fontWeight: FontWeight.bold),
-            //     )
-            //   ],
-            // ),
+            for (int a = 0; a < usedListLength; a++) ...[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(boots == false
+                      ? controller.eventDetailsModel.sponsorCategories![a].name.toString()
+                      : controller.eventDetailsModel.boothCategories![a]['name'].toString()),
+                  Row(
+                    children: [
+                      Container(
+                        height: 22,
+                        width: 22,
+                        decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(25)),
+                        child: Icon(Icons.remove, size: 14),
+                      ),
+                      SizedBox(width: 2),
+                      Text('0'),
+                      SizedBox(width: 2),
+                      Container(
+                        height: 22,
+                        width: 22,
+                        decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(25)),
+                        child: Icon(Icons.add, size: 14),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(
+                    Icons.attach_money,
+                    size: 12,
+                  ),
+                  SizedBox(height: 25),
+                  Text(
+                    boots == false
+                        ? controller.eventDetailsModel.sponsorCategories![a].actualPrice.toString()
+                        : controller.eventDetailsModel.boothCategories![a]['actualPrice'].toString(),
+                    style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.deepPurpleAccent,
+                        fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+              SizedBox(height: 7),
+            ],
             Container(
               height: 40,
               child: TextField(
@@ -377,18 +209,23 @@ class _SponsorshipScreenState extends State<SponsorshipScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
+                Column(
                   children: [
-                    Icon(
-                      Icons.attach_money,
-                      size: 15,
-                    ),
-                    Text(
-                      '250.15',
-                      style: TextStyle(
-                          color: Colors.deepPurpleAccent,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold),
+                    Text('Total price'),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.attach_money,
+                          size: 15,
+                        ),
+                        Text(
+                          '250.15',
+                          style: TextStyle(
+                              color: Colors.deepPurpleAccent,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
                   ],
                 ),
