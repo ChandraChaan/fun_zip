@@ -90,10 +90,8 @@ class NameAndDetailsCardWidget extends StatelessWidget {
                             SvgPicture.asset(eventIconIconImage, height: 14,color: Colors.white,),
                             5.width,
                             Text(
-                              formatDateForHome(
-                                  date:
-                                  controller.eventDetailsModel.startDateTime ??
-                                      ''),
+                              controller.eventDetailsModel.startDateTime.toString() != 'null' ? formatDateForHome(
+                                  date: controller.eventDetailsModel.startDateTime) ?? ' ' : ' ',
                               style: normalText.copyWith(fontSize: 10,color: Colors.white),
                             ),
                           ],
@@ -104,9 +102,10 @@ class NameAndDetailsCardWidget extends StatelessWidget {
                           child: ElevatedButton(
                             onPressed: () {},
                             child: Text(
-                              calculateDayLeft(
+                              controller
+                                  .eventDetailsModel.startDateTime.toString() != 'null' ? calculateDayLeft(
                                   startDate: controller
-                                      .eventDetailsModel.startDateTime),
+                                      .eventDetailsModel.startDateTime) ?? ' ' : ' ',
                               style: normalText.copyWith(
                                 color: Color(0xFFFF5C00),
                                 fontSize: 8,

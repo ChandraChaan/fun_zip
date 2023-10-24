@@ -150,23 +150,45 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         MapWidget(controller: controller),
                         5.height,
 
-                        OrganizersWidget(),
-                        5.height,
+                        // OrganizersWidget(),
+                        // 5.height,
 
                         // //* Sign up Items
-                        SizedBox(
-                          height: 600,
-                          child: SignUpItemWidget(
-                            controller: controller,
+                        Visibility(
+                          visible: controller.eventDetailsModel.timeSlots
+                                      .toString() !=
+                                  'null'
+                              ? true
+                              : false,
+                          child: SizedBox(
+                            height: 600,
+                            child: SignUpItemWidget(
+                              controller: controller,
+                            ),
                           ),
                         ),
                         //* Potluck items
-                        SizedBox(height:600,child: PotluckItems(controller: controller,)),
+                        Visibility(
+                            visible: controller.eventDetailsModel.potluckItems
+                                        .toString() !=
+                                    'null'
+                                ? true
+                                : false,
+                            child: SizedBox(
+                                height: 600,
+                                child: PotluckItems(
+                                  controller: controller,
+                                ))),
                         // PotluckItemsWidget(
                         //   controller: controller,
                         // ),
                         // Gift Registry
-                        GiftRegistryWidget(controller: controller,),
+                        Visibility(
+                          visible: controller.eventDetailsModel.giftItems.toString() != 'null' ? true : false,
+                          child: GiftRegistryWidget(
+                            controller: controller,
+                          ),
+                        ),
                         // Whether
                         // WhetherWidget(),
                         // Widget
@@ -175,12 +197,21 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         // WhatIsPlaceOfferWidget(),
 
                         // Speakers
-                        SpeakersWidget(controller: controller,),
+                        Visibility(
+                          visible: controller.eventDetailsModel.honoraryGuests.toString() != 'null' ? true : false,
+                          child: SpeakersWidget(
+                            controller: controller,
+                          ),
+                        ),
                         // Sponsors
-                        SponsorsWidget(controller: controller),
+                        Visibility(
+                            visible: controller.eventDetailsModel.sponsors.toString() != 'null' ? true : false,
+                            child:SponsorsWidget(controller: controller)),
 
                         // Boots
-                        BoothsWidget(controller: controller),
+                        Visibility(
+                            visible: controller.eventDetailsModel.boothCategories.toString() != 'null' ? true : false,
+                            child: BoothsWidget(controller: controller)),
                         RelatedEventsWidget(),
                       ],
                     ),
