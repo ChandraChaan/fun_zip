@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/data/model/EventDetailsModel.dart';
 import 'package:fun_zippy/app/widgets/error_snackbar.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import '../../../data/model/ApiResponseModel.dart';
 import '../../../data/repository/user_repository.dart';
 import '../../../routes/app_pages.dart';
@@ -54,10 +55,26 @@ class EventDetailsController extends GetxController {
     getEventDetails(uid: uid);
   }
 
+  String formatTimeRange(String startDateTime, String endDateTime) {
+    final startDateTimeParsed = DateTime.parse(startDateTime).toLocal();
+    final endDateTimeParsed = DateTime.parse(endDateTime).toLocal();
+
+    final startFormatted = DateFormat('hh:mm a').format(startDateTimeParsed);
+    final endFormatted = DateFormat('hh:mm a').format(endDateTimeParsed);
+
+    return '$startFormatted - $endFormatted';
+  }
+
+  String formatDate(String timeString) {
+    final dateTime = DateTime.parse(timeString).toLocal();
+    final formattedDate = DateFormat('d MMMM').format(dateTime);
+    return formattedDate;
+  }
+
   getEventDetails({required String uid}) async {
     try {
       loading.value = true;
-      var response = await EventRepository().getEventDetails(uid: uid);
+      var response = await EventRepository().getEventDetails(uid: '905ZCsIyYM5');
       eventDetailsModel = EventDetailsModel.fromJson(response);
 
       print(eventDetailsModel);

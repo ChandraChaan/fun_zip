@@ -6,11 +6,15 @@ import '../../../../config/images_links.dart';
 import '../../../../theme/text_theme.dart';
 import '../../../../widgets/custom_buttons.dart';
 import '../../../../widgets/rounded_border.dart';
+import '../../controllers/event_details_controller.dart';
 
 class GiftRegistryWidget extends StatelessWidget {
   const GiftRegistryWidget({
     super.key,
+    required this.controller,
   });
+
+  final EventDetailsController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,7 @@ class GiftRegistryWidget extends StatelessWidget {
             ListView.separated(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              itemCount: 2,
+              itemCount: controller.eventDetailsModel.giftItems!.length,
               separatorBuilder: (BuildContext context, int index) {
                 return Divider(
                   color: Color(0xFFEDEBFB),
@@ -44,7 +48,10 @@ class GiftRegistryWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Expanded(flex: 2, child: Image.asset(assetSplash)),
+                        Expanded(
+                            flex: 2,
+                            child: Image.network(controller.eventDetailsModel
+                                .giftItems![index]['imageUrl'])),
                         5.width,
                         Expanded(
                           flex: 6,
@@ -53,11 +60,15 @@ class GiftRegistryWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Baby cycle',
+                                controller.eventDetailsModel.giftItems![index]
+                                        ['itemName'] ??
+                                    ' ',
                                 style: boldText.copyWith(fontSize: 14),
                               ),
                               Text(
-                                'Baby cycle',
+                                controller.eventDetailsModel.giftItems![index]
+                                        ['description'] ??
+                                    ' ',
                                 style: normalText.copyWith(fontSize: 14),
                               ),
                             ],
@@ -87,7 +98,8 @@ class GiftRegistryWidget extends StatelessWidget {
                             child: Column(
                               children: [
                                 Text(
-                                  '02',
+                                  controller.eventDetailsModel.giftItems![index]
+                                          ['count'].toString(),
                                   style: normalText.copyWith(
                                       fontSize: 14, color: blueColor),
                                 ),
@@ -105,7 +117,7 @@ class GiftRegistryWidget extends StatelessWidget {
                             child: Column(
                               children: [
                                 Text(
-                                  '02',
+                                  '${int.parse(controller.eventDetailsModel.giftItems![index]['count'].toString()) - int.parse(controller.eventDetailsModel.giftItems![index]['claimedCount'].toString())}'.toString(),
                                   style: normalText.copyWith(
                                       fontSize: 14, color: greenColor),
                                 ),
@@ -123,7 +135,8 @@ class GiftRegistryWidget extends StatelessWidget {
                             child: Column(
                               children: [
                                 Text(
-                                  '02',
+                                  controller.eventDetailsModel.giftItems![index]
+                                          ['claimedCount'].toString(),
                                   style: normalText.copyWith(
                                       fontSize: 14, color: orangeColor),
                                 ),

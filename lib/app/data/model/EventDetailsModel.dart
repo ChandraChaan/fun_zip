@@ -45,6 +45,10 @@ class EventDetailsModel {
   List<Contacts>? contacts;
   List<SponsorCategories>? sponsorCategories;
   List<TicketCategories>? ticketCategories;
+  List<dynamic>? potluckItems;
+  List<dynamic>? timeSlots;
+  List<dynamic>? giftItems;
+  List<dynamic>? honoraryGuests;
   dynamic fundRaisingEvent;
   dynamic likes;
   dynamic shares;
@@ -68,6 +72,10 @@ class EventDetailsModel {
       this.name,
       this.description,
       this.locationName,
+      this.potluckItems,
+      this.timeSlots,
+      this.honoraryGuests,
+      this.giftItems,
       this.address1,
       this.city,
       this.stateProvince,
@@ -124,6 +132,10 @@ class EventDetailsModel {
     updatedBy = json['updatedBy'];
     name = json['name'];
     description = json['description'];
+    potluckItems = json['potluckItems'];
+    timeSlots = json['timeSlots'];
+    honoraryGuests = json['honoraryGuests'];
+    giftItems = json['giftItems'];
     locationName = json['locationName'];
     address1 = json['address1'];
     city = json['city'];
@@ -209,6 +221,10 @@ class EventDetailsModel {
     data['address1'] = this.address1;
     data['city'] = this.city;
     data['stateProvince'] = this.stateProvince;
+    data['potluckItems'] = this.potluckItems;
+    data['timeSlots'] = this.timeSlots;
+    data['honoraryGuests'] = this.honoraryGuests;
+    data['giftItems'] = this.giftItems;
     data['country'] = this.country;
     data['postalCode'] = this.postalCode;
     data['latitude'] = this.latitude;

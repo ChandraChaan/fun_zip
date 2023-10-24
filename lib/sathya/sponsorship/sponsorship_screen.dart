@@ -35,30 +35,32 @@ class _SponsorshipScreenState extends State<SponsorshipScreen> {
         child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Diamond'),
-                SizedBox(
-                  width: 275,
+                Row(
+                  children: [
+                    Container(
+                      height: 22,
+                      width: 22,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(25)),
+                      child: Icon(Icons.remove, size: 14),
+                    ),
+                    SizedBox(width: 2),
+                    Text('0'),
+                    SizedBox(width: 2),
+                    Container(
+                      height: 22,
+                      width: 22,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(25)),
+                      child: Icon(Icons.add, size: 14),
+                    )
+                  ],
                 ),
-                Container(
-                  height: 22,
-                  width: 22,
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Icon(Icons.remove, size: 14),
-                ),
-                SizedBox(width: 2),
-                Text('0'),
-                SizedBox(width: 2),
-                Container(
-                  height: 22,
-                  width: 22,
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Icon(Icons.add, size: 14),
-                )
               ],
             ),
             Row(
@@ -79,30 +81,32 @@ class _SponsorshipScreenState extends State<SponsorshipScreen> {
             ),
             SizedBox(height: 7),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Platinum'),
-                SizedBox(
-                  width: 275,
+                Row(
+                  children: [
+                    Container(
+                      height: 22,
+                      width: 22,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(25)),
+                      child: Icon(Icons.remove, size: 14),
+                    ),
+                    SizedBox(width: 2),
+                    Text('0'),
+                    SizedBox(width: 2),
+                    Container(
+                      height: 22,
+                      width: 22,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(25)),
+                      child: Icon(Icons.add, size: 14),
+                    )
+                  ],
                 ),
-                Container(
-                  height: 22,
-                  width: 22,
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Icon(Icons.remove, size: 14),
-                ),
-                SizedBox(width: 2),
-                Text('0'),
-                SizedBox(width: 2),
-                Container(
-                  height: 22,
-                  width: 22,
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Icon(Icons.add, size: 14),
-                )
               ],
             ),
             Row(
@@ -121,138 +125,138 @@ class _SponsorshipScreenState extends State<SponsorshipScreen> {
                 )
               ],
             ),
-            Row(
-              children: [
-                Text('Jewellery'),
-                SizedBox(
-                  width: 272,
-                ),
-                Container(
-                  height: 22,
-                  width: 22,
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Icon(Icons.remove, size: 14),
-                ),
-                SizedBox(width: 2),
-                Text('0'),
-                SizedBox(width: 2),
-                Container(
-                  height: 22,
-                  width: 22,
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Icon(Icons.add, size: 14),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Icon(
-                  Icons.attach_money,
-                  size: 12,
-                ),
-                SizedBox(height: 25),
-                Text(
-                  '100.00',
-                  style: TextStyle(
-                      fontSize: 10,
-                      color: Colors.deepPurpleAccent,
-                      fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 7,
-            ),
-            Row(
-              children: [
-                Text('Watches'),
-                SizedBox(
-                  width: 277,
-                ),
-                Container(
-                  height: 22,
-                  width: 22,
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Icon(Icons.remove, size: 14),
-                ),
-                SizedBox(width: 2),
-                Text('0'),
-                SizedBox(width: 2),
-                Container(
-                  height: 22,
-                  width: 22,
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Icon(Icons.add, size: 14),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Icon(
-                  Icons.attach_money,
-                  size: 12,
-                ),
-                SizedBox(height: 25),
-                Text(
-                  '200.00',
-                  style: TextStyle(
-                      fontSize: 10,
-                      color: Colors.deepPurpleAccent,
-                      fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Text('Clothing'),
-                SizedBox(
-                  width: 280,
-                ),
-                Container(
-                  height: 22,
-                  width: 22,
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Icon(Icons.remove, size: 14),
-                ),
-                SizedBox(width: 2),
-                Text('0'),
-                SizedBox(width: 2),
-                Container(
-                  height: 22,
-                  width: 22,
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Icon(Icons.add, size: 14),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Icon(
-                  Icons.attach_money,
-                  size: 12,
-                ),
-                SizedBox(height: 25),
-                Text(
-                  '500.00',
-                  style: TextStyle(
-                      fontSize: 10,
-                      color: Colors.deepPurpleAccent,
-                      fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
+            // Row(
+            //   children: [
+            //     Text('Jewellery'),
+            //     SizedBox(
+            //       width: 272,
+            //     ),
+            //     Container(
+            //       height: 22,
+            //       width: 22,
+            //       decoration: BoxDecoration(
+            //           color: Colors.grey,
+            //           borderRadius: BorderRadius.circular(25)),
+            //       child: Icon(Icons.remove, size: 14),
+            //     ),
+            //     SizedBox(width: 2),
+            //     Text('0'),
+            //     SizedBox(width: 2),
+            //     Container(
+            //       height: 22,
+            //       width: 22,
+            //       decoration: BoxDecoration(
+            //           color: Colors.grey,
+            //           borderRadius: BorderRadius.circular(25)),
+            //       child: Icon(Icons.add, size: 14),
+            //     )
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     Icon(
+            //       Icons.attach_money,
+            //       size: 12,
+            //     ),
+            //     SizedBox(height: 25),
+            //     Text(
+            //       '100.00',
+            //       style: TextStyle(
+            //           fontSize: 10,
+            //           color: Colors.deepPurpleAccent,
+            //           fontWeight: FontWeight.bold),
+            //     )
+            //   ],
+            // ),
+            // SizedBox(
+            //   height: 7,
+            // ),
+            // Row(
+            //   children: [
+            //     Text('Watches'),
+            //     SizedBox(
+            //       width: 277,
+            //     ),
+            //     Container(
+            //       height: 22,
+            //       width: 22,
+            //       decoration: BoxDecoration(
+            //           color: Colors.grey,
+            //           borderRadius: BorderRadius.circular(25)),
+            //       child: Icon(Icons.remove, size: 14),
+            //     ),
+            //     SizedBox(width: 2),
+            //     Text('0'),
+            //     SizedBox(width: 2),
+            //     Container(
+            //       height: 22,
+            //       width: 22,
+            //       decoration: BoxDecoration(
+            //           color: Colors.grey,
+            //           borderRadius: BorderRadius.circular(25)),
+            //       child: Icon(Icons.add, size: 14),
+            //     )
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     Icon(
+            //       Icons.attach_money,
+            //       size: 12,
+            //     ),
+            //     SizedBox(height: 25),
+            //     Text(
+            //       '200.00',
+            //       style: TextStyle(
+            //           fontSize: 10,
+            //           color: Colors.deepPurpleAccent,
+            //           fontWeight: FontWeight.bold),
+            //     )
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     Text('Clothing'),
+            //     SizedBox(
+            //       width: 280,
+            //     ),
+            //     Container(
+            //       height: 22,
+            //       width: 22,
+            //       decoration: BoxDecoration(
+            //           color: Colors.grey,
+            //           borderRadius: BorderRadius.circular(25)),
+            //       child: Icon(Icons.remove, size: 14),
+            //     ),
+            //     SizedBox(width: 2),
+            //     Text('0'),
+            //     SizedBox(width: 2),
+            //     Container(
+            //       height: 22,
+            //       width: 22,
+            //       decoration: BoxDecoration(
+            //           color: Colors.grey,
+            //           borderRadius: BorderRadius.circular(25)),
+            //       child: Icon(Icons.add, size: 14),
+            //     )
+            //   ],
+            // ),
+            // Row(
+            //   children: [
+            //     Icon(
+            //       Icons.attach_money,
+            //       size: 12,
+            //     ),
+            //     SizedBox(height: 25),
+            //     Text(
+            //       '500.00',
+            //       style: TextStyle(
+            //           fontSize: 10,
+            //           color: Colors.deepPurpleAccent,
+            //           fontWeight: FontWeight.bold),
+            //     )
+            //   ],
+            // ),
             Container(
               height: 40,
               child: TextField(
@@ -371,20 +375,22 @@ class _SponsorshipScreenState extends State<SponsorshipScreen> {
               height: 14,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  Icons.attach_money,
-                  size: 15,
-                ),
-                Text(
-                  '250.15',
-                  style: TextStyle(
-                      color: Colors.deepPurpleAccent,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  width: 131,
+                Row(
+                  children: [
+                    Icon(
+                      Icons.attach_money,
+                      size: 15,
+                    ),
+                    Text(
+                      '250.15',
+                      style: TextStyle(
+                          color: Colors.deepPurpleAccent,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
                 Container(
                   height: 35,

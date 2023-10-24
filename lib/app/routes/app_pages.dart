@@ -31,7 +31,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SponsorshipScreen;
+  static const INITIAL = Routes.SPLASH;
 
   static final routes = [
     GetPage(
@@ -111,7 +111,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.BookTickets,
-      page: () => BookTickets(),
+      page: () => BookTickets(controller: null,),
       binding: EventDetailsBinding(),
     ),
     GetPage(

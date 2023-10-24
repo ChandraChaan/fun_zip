@@ -23,136 +23,131 @@ class SignUpItemWidget extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Container(
-              height: 560,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(color: Colors.white)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('Sign up Items', style: titleBoldText),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text('Sign up to a slot below',
-                        style: normalText.copyWith()),
-                  ),
-                  for (int a = 1; a <= 5; a++)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Flexible(
-                        child: Container(
-                          height: 84,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Color(0XFFC9C6E1))),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+        child: Container(
+          height: 560,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: Colors.white)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Sign up Items', style: titleBoldText),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Sign up to a slot below',
+                    style: normalText.copyWith()),
+              ),
+              for (int a = 0; a < controller!.eventDetailsModel.timeSlots!.length; a++)
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Container(
+                    height: 84,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Color(0XFFC9C6E1))),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 30,
+                            width: 30,
+                            decoration: BoxDecoration(
+                                color: Color(0XFFE1FFCF),
+                                borderRadius: BorderRadius.circular(2)),
+                            child: Icon(
+                              Icons.calendar_today,
+                              size: 16,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5),
+                            child: Column(
+                              crossAxisAlignment:
+                                  CrossAxisAlignment.start,
                               children: [
-                                Container(
-                                  height: 30,
-                                  width: 30,
-                                  decoration: BoxDecoration(
-                                      color: Color(0XFFE1FFCF),
-                                      borderRadius: BorderRadius.circular(2)),
-                                  child: Icon(
-                                    Icons.calendar_today,
-                                    size: 16,
-                                  ),
+                                Text(controller!.formatDate(controller!.eventDetailsModel.timeSlots![a]['startDateTime']),
+                                    style: TextStyle(fontSize: 14)),
+                                SizedBox(height: 8),
+                                Text(
+                                  controller!.formatTimeRange(controller!.eventDetailsModel.timeSlots![a]['startDateTime'], controller!.eventDetailsModel.timeSlots![a]['endDateTime']),
+                                  style: TextStyle(fontSize: 14),
                                 ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 5),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text('17th August',
-                                          style: TextStyle(fontSize: 14)),
-                                      SizedBox(height: 8),
-                                      Text(
-                                        '09:00 AM - 10:00 PM',
-                                        style: TextStyle(fontSize: 14),
-                                      ),
-                                      SizedBox(height: 8),
-                                      Text(
-                                        'Arrange Furniture',
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color: Color(0XFF86839B)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(width: 90),
-                                Column(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        Get.dialog(BottomSignup(controller: controller!,));
-                                      },
-                                      child: Container(
-                                        height: 20,
-                                        width: 59,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                            border: Border.all(
-                                                color: Color(0XFFC61236))),
-                                        child: Center(
-                                          child: Text(
-                                            'Sing Up',
-                                            style: TextStyle(
-                                                fontSize: 8,
-                                                color: Color(0XFFC61236),
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 3,
-                                    ),
-                                    Text(
-                                      '3 Slots Left',
-                                      style: TextStyle(
-                                        fontSize: 9,
-                                        color: Color(0XFFC61236),
-                                      ),
-                                    ),
-                                  ],
+                                SizedBox(height: 8),
+                                Text(
+                                  controller!.eventDetailsModel.timeSlots![a]['purpose'] ?? ' ',
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: Color(0XFF86839B)),
                                 ),
                               ],
                             ),
                           ),
-                        ),
+                          SizedBox(width: 90),
+                          Column(
+                            children: [
+                              SizedBox(
+                                width:59,
+                                height: 20,
+                                child: ElevatedButton(
+                                  onPressed: controller!.eventDetailsModel.timeSlots![a]['status'].toString () == 'A' ? () {
+                                    Get.dialog(BottomSignup(controller: controller!));
+                                  } : null,
+                                  style: ElevatedButton.styleFrom(
+                                    padding: const EdgeInsets.all(0),
+                                    backgroundColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      side: BorderSide(color: Color(0XFFC61236)),
+                                    ),
+                                  ),
+                                  child: Container(
+                                    height: 20,
+                                    width: 59,
+                                    child: Center(
+                                      child: Text(
+                                        'Sign Up',
+                                        style: TextStyle(
+                                          fontSize: 8,
+                                          color: Color(0XFFC61236),
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 3,
+                              ),
+                              Text(
+                                '${int.parse(controller!.eventDetailsModel.timeSlots![a]['totalCount'].toString()) - int.parse(controller!.eventDetailsModel.timeSlots![a]['reservedCount'].toString())} Slots Left',
+                                style: TextStyle(
+                                  fontSize: 9,
+                                  color: Color(0XFFC61236),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                  SizedBox(
-                    height: 15,
                   ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                ],
+                ),
+              SizedBox(
+                height: 23,
               ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            PotluckItems(controller: controller!,)
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -444,87 +439,88 @@ class _PotluckItemsState extends State<PotluckItems> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 510,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.white),
+    return Container(
+      height: 510,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.white),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Potluck Items',
+              style: TextStyle(fontWeight: FontWeight.bold)),
+          SizedBox(
+            height: 8,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Potluck Items',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(
-                height: 8,
-              ),
-              Text('Sign Up for an item Below', style: TextStyle(fontSize: 16)),
-              SizedBox(
-                height: 5,
-              ),
-              for (int a = 0; a < 3; a++)
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: InkWell(
-                    onTap: () {
-                      selectItem(a);
-                      // Open the bottom sheet when an item is tapped
-                      _showBottomSheet(context);
-                    },
-                    child: Container(
-                      height: 132,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            color: a == selectedIndex
-                                ? Colors.blue
-                                : Color(0XFFC9C6E1)),
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: Container(
-                              height: 98,
-                              width: 98,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/svg/rectangle_223.png'),
+          Text('Sign Up for an item Below', style: TextStyle(fontSize: 16)),
+          SizedBox(
+            height: 5,
+          ),
+          for (int a = 0; a < widget.controller.eventDetailsModel.potluckItems!.length; a++)
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: InkWell(
+                onTap: () {
+                  selectItem(a);
+                  // Open the bottom sheet when an item is tapped
+                  _showBottomSheet(context);
+                },
+                child: Container(
+                  height: 132,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        color: a == selectedIndex
+                            ? Colors.blue
+                            : Color(0XFFC9C6E1)),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16.0),
+                              child: Container(
+                                height: 98,
+                                width: 98,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(widget.controller.eventDetailsModel.potluckItems![a]['imageUrl'].toString()),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          SizedBox(width: 8),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text('Biryani'),
-                              Text('10 Left'),
-                            ],
-                          ),
-                          SizedBox(width: 145),
-                          Icon(
-                            a == selectedIndex
-                                ? Icons.check_circle
-                                : Icons.radio_button_unchecked,
-                            size: 20,
-                            color:
-                                a == selectedIndex ? Colors.blue : Colors.black,
-                          ),
-                        ],
-                      ),
+                            SizedBox(width: 8),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(widget.controller.eventDetailsModel.potluckItems![a]['itemName'].toString()),
+                                Text((int.parse(widget.controller.eventDetailsModel.potluckItems![a]['count'].toString()) - int.parse(widget.controller.eventDetailsModel.potluckItems![a]['claimedCount'].toString())).toString()),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Icon(
+                          a == selectedIndex
+                              ? Icons.check_circle
+                              : Icons.radio_button_unchecked,
+                          size: 20,
+                          color:
+                              a == selectedIndex ? Colors.blue : Colors.black,
+                        ),
+                      ],
                     ),
                   ),
                 ),
-            ],
-          ),
-        ),
-      ],
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

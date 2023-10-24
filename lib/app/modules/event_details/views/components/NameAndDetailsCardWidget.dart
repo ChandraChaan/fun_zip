@@ -82,11 +82,12 @@ class NameAndDetailsCardWidget extends StatelessWidget {
                     padding: const EdgeInsets.all(12.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SvgPicture.asset(eventIconIconImage, height: 14,),
+                            SvgPicture.asset(eventIconIconImage, height: 14,color: Colors.white,),
                             5.width,
                             Text(
                               formatDateForHome(

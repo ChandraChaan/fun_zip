@@ -39,7 +39,7 @@ class SingleEventItemWidget extends StatelessWidget {
                 padding: EdgeInsets.all(10),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Image.network(result.summaryPicture, fit: BoxFit.fill,),
+                  child: Image.network(result.summaryPicture, fit: BoxFit.cover,),
                 ),
               ),
               Padding(

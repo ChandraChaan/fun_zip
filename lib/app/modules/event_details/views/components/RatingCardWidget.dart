@@ -94,7 +94,9 @@ class RatingCardWidget extends StatelessWidget {
                 ),
               ),
               Visibility(
-                visible: controller.eventDetailsModel.liveStream.toString() == 'true' ? true: false,
+                visible: controller.eventDetailsModel.liveStream.toString() == 'true'
+                        ? true
+                        : false,
                 child: Positioned(
                   right: 10,
                   bottom: 10,
@@ -114,7 +116,9 @@ class RatingCardWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(50.0),
                       ),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          //
+                        },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.all(5),
                           backgroundColor: Colors.transparent,

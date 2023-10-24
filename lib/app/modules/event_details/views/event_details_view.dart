@@ -29,6 +29,9 @@ class EventDetailsView extends GetView<EventDetailsController> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double imageHeight = screenHeight * 0.5; // Adjust this fraction as needed
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: backgroundColor,
@@ -43,26 +46,53 @@ class EventDetailsView extends GetView<EventDetailsController> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   if (controller.eventDetailsModel.detailPicture != null)
+                    // Container(
+                    //   decoration: BoxDecoration(
+                    //     gradient: LinearGradient(
+                    //         begin: Alignment.topCenter,
+                    //         end: Alignment.bottomCenter,
+                    //         colors: <Color>[
+                    //           blueColor,
+                    //           Colors.orange.withOpacity(.1)
+                    //         ],
+                    //         stops: [0.0, 1.0],
+                    //         tileMode: TileMode.clamp),
+                    //     image: DecorationImage(
+                    //       image: NetworkImage(
+                    //           controller.eventDetailsModel.detailPicture),
+                    //       fit: BoxFit.fill,
+                    //     ),
+                    //   ),
+                    //   height: 30,
+                    //   child: AppBarWidgetEventDetails(),
+                    // ),
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: <Color>[
-                              blueColor,
-                              Colors.orange.withOpacity(.1)
-                            ],
-                            stops: [0.0, 1.0],
-                            tileMode: TileMode.clamp),
-                        image: DecorationImage(
-                          image: NetworkImage(
-                              controller.eventDetailsModel.detailPicture),
-                          fit: BoxFit.fill,
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: <Color>[
+                            Colors.blue,
+                            Colors.orange.withOpacity(0.1)
+                          ],
+                          stops: [0.0, 1.0],
+                          tileMode: TileMode.clamp,
                         ),
                       ),
-                      height: 30.percentHeight,
-                      child: AppBarWidgetEventDetails(),
+                      child: Container(
+                        height: imageHeight,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(
+                                controller.eventDetailsModel.detailPicture),
+                            fit: BoxFit
+                                .cover, // Maintain aspect ratio without stretching
+                          ),
+                        ),
+                        child: AppBarWidgetEventDetails(),
+                      ),
                     ),
+
                   //add filter
                   // Container(
                   //     decoration: BoxDecoration(
@@ -102,11 +132,20 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         ShareWidget(),
                         5.height,
 
-                        SizedBox(height: 1220, child: BookTickets()),
+                        Visibility(
+                            visible: controller
+                                        .eventDetailsModel.ticketCategories
+                                        .toString() !=
+                                    'null'
+                                ? true
+                                : false,
+                            child: SizedBox(
+                                height: 1220,
+                                child: BookTickets(controller: controller))),
                         5.height,
 
-                        CommentWidget(),
-                        5.height,
+                        // CommentWidget(),
+                        // 5.height,
                         //* Map
                         MapWidget(controller: controller),
                         5.height,
@@ -116,27 +155,27 @@ class EventDetailsView extends GetView<EventDetailsController> {
 
                         // //* Sign up Items
                         SizedBox(
-                            height: 1150,
-                            child: SignUpItemWidget(
-                              controller: controller,
-                            )),
+                          height: 600,
+                          child: SignUpItemWidget(
+                            controller: controller,
+                          ),
+                        ),
                         //* Potluck items
-                        PotluckItemsWidget(
-                          controller: controller,
-                        ),
+                        SizedBox(height:600,child: PotluckItems(controller: controller,)),
+                        // PotluckItemsWidget(
+                        //   controller: controller,
+                        // ),
                         // Gift Registry
-                        GiftRegistryWidget(
-
-                        ),
+                        GiftRegistryWidget(controller: controller,),
                         // Whether
                         // WhetherWidget(),
                         // Widget
-                        WidgetWidget(),
+                        // WidgetWidget(),
                         //what is Place Offer
-                        WhatIsPlaceOfferWidget(),
+                        // WhatIsPlaceOfferWidget(),
 
                         // Speakers
-                        SpeakersWidget(),
+                        SpeakersWidget(controller: controller,),
                         // Sponsors
                         SponsorsWidget(),
 
