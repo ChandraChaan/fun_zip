@@ -6,11 +6,15 @@ import 'package:fun_zippy/app/utilities/extention.dart';
 import '../../../../config/images_links.dart';
 import '../../../../theme/text_theme.dart';
 import '../../../../widgets/rounded_border.dart';
+import '../../controllers/event_details_controller.dart';
 
 class SponsorsWidget extends StatelessWidget {
   const SponsorsWidget({
     super.key,
+    required this.controller,
   });
+
+  final EventDetailsController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +50,66 @@ class SponsorsWidget extends StatelessWidget {
                     crossAxisSpacing: 10,
                     childAspectRatio: 40 / 45,
                   ),
-                  itemCount: 2,
+                  itemCount: controller.eventDetailsModel.sponsors!.length,
                   itemBuilder: (context, index) {
-                    return GridItemWidget();
+                    return Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(width: .2)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          10.height,
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                width: 1,
+                                color: blueColor,
+                                style: BorderStyle.solid,
+                              ),
+                            ),
+                            child: ClipRRect(
+                              // borderRadius: BorderRadius.circular(15),
+                              // child: Image.network(result.summaryPicture),
+                              child: SvgPicture.asset(parkingIconImage),
+                            ),
+                          ),
+                          20.height,
+                          Text(
+                            controller.eventDetailsModel.sponsors![index]['name'].toString(),
+                            style: boldText.copyWith(fontSize: 12),
+                          ),
+                          10.height,
+                          Text(
+                            controller.eventDetailsModel.sponsors![index]['phoneNumber'].toString(),
+                            style: boldText.copyWith(fontSize: 12),
+                          ),
+                          10.height,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Divider(
+                              color: Color(0xFFC9C6E1),
+                              thickness: 1,
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(messageIconImage),
+                              10.width,
+                              SvgPicture.asset(callIconImage),
+                              10.width,
+                              SvgPicture.asset(browserIconImage),
+                            ],
+                          ),
+                          10.height,
+                        ],
+                      ),
+                    );
                   },
                 ),
               ),
@@ -62,65 +123,3 @@ class SponsorsWidget extends StatelessWidget {
   }
 }
 
-class GridItemWidget extends StatelessWidget {
-  const GridItemWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(width: .2)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          10.height,
-          Container(
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                width: 1,
-                color: blueColor,
-                style: BorderStyle.solid,
-              ),
-            ),
-            child: ClipRRect(
-              // borderRadius: BorderRadius.circular(15),
-              // child: Image.network(result.summaryPicture),
-              child: SvgPicture.asset(parkingIconImage),
-            ),
-          ),
-          20.height,
-          Text(
-            'Dribbble',
-            style: boldText.copyWith(fontSize: 12),
-          ),
-          10.height,
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Divider(
-              color: Color(0xFFC9C6E1),
-              thickness: 1,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SvgPicture.asset(messageIconImage),
-              10.width,
-              SvgPicture.asset(callIconImage),
-              10.width,
-              SvgPicture.asset(browserIconImage),
-            ],
-          ),
-          10.height,
-        ],
-      ),
-    );
-  }
-}

@@ -47,8 +47,10 @@ class EventDetailsModel {
   List<TicketCategories>? ticketCategories;
   List<dynamic>? potluckItems;
   List<dynamic>? timeSlots;
+  List<dynamic>? sponsors;
   List<dynamic>? giftItems;
   List<dynamic>? honoraryGuests;
+  List<dynamic>? boothCategories;
   dynamic fundRaisingEvent;
   dynamic likes;
   dynamic shares;
@@ -80,6 +82,7 @@ class EventDetailsModel {
       this.city,
       this.stateProvince,
       this.country,
+      this.sponsors,
       this.postalCode,
       this.latitude,
       this.longitude,
@@ -106,6 +109,7 @@ class EventDetailsModel {
       this.liveVideoUploadUrl,
       this.liveStreamId,
       this.liveStreamServerAddress,
+      this.boothCategories,
       this.rsvpRequired,
       this.contacts,
       this.sponsorCategories,
@@ -135,6 +139,7 @@ class EventDetailsModel {
     potluckItems = json['potluckItems'];
     timeSlots = json['timeSlots'];
     honoraryGuests = json['honoraryGuests'];
+    sponsors = json['sponsors'];
     giftItems = json['giftItems'];
     locationName = json['locationName'];
     address1 = json['address1'];
@@ -153,6 +158,7 @@ class EventDetailsModel {
     timezone = json['timezone'];
     canonicalUrl = json['canonicalUrl'];
     attendanceModes = json['attendanceModes'];
+    boothCategories = json['boothCategories'];
     eventType = json['eventType'];
     category1 = json['category1'];
     category2 = json['category2'];
@@ -214,6 +220,8 @@ class EventDetailsModel {
     data['createdDate'] = this.createdDate;
     data['createdBy'] = this.createdBy;
     data['updatedDate'] = this.updatedDate;
+    data['boothCategories'] = this.boothCategories;
+    data['sponsors'] = this.sponsors;
     data['updatedBy'] = this.updatedBy;
     data['name'] = this.name;
     data['description'] = this.description;

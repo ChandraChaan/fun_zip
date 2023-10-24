@@ -74,7 +74,7 @@ class SpeakersWidget extends StatelessWidget {
                           ),
                           10.height,
                           Text(
-                            'John Methew',
+                            controller.eventDetailsModel.honoraryGuests![index]['name'] ?? ' ',
                             style: boldText.copyWith(fontSize: 14),
                           ),
                           10.height,
@@ -86,7 +86,7 @@ class SpeakersWidget extends StatelessWidget {
                               5.width,
                               Expanded(
                                 child: Text(
-                                  'johnmethew@gmail.com',
+                                  controller.eventDetailsModel.honoraryGuests![index]['emailAddress'] ?? ' ',
                                   style: normalText.copyWith(fontSize: 10),
                                 ),
                               ),
@@ -100,7 +100,7 @@ class SpeakersWidget extends StatelessWidget {
                               Icon(Icons.call, color: textColor, size: 10),
                               5.width,
                               Text(
-                                '+91 9876543210',
+                                controller.eventDetailsModel.honoraryGuests![index]['website'] ?? ' ',
                                 style: normalText.copyWith(fontSize: 10),
                               ),
                             ],

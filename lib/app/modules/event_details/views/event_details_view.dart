@@ -177,10 +177,10 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         // Speakers
                         SpeakersWidget(controller: controller,),
                         // Sponsors
-                        SponsorsWidget(),
+                        SponsorsWidget(controller: controller),
 
                         // Boots
-                        BoothsWidget(),
+                        BoothsWidget(controller: controller),
                         RelatedEventsWidget(),
                       ],
                     ),

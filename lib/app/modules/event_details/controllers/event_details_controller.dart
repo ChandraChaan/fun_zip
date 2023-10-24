@@ -74,7 +74,7 @@ class EventDetailsController extends GetxController {
   getEventDetails({required String uid}) async {
     try {
       loading.value = true;
-      var response = await EventRepository().getEventDetails(uid: '905ZCsIyYM5');
+      var response = await EventRepository().getEventDetails(uid: uid);
       eventDetailsModel = EventDetailsModel.fromJson(response);
 
       print(eventDetailsModel);
