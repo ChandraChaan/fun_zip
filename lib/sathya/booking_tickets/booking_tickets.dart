@@ -204,7 +204,6 @@ class _BookTicketsState extends State<BookTickets> {
     }
   }
 
-
   double productPrices = 1; //quantity
   double productQuantityten = 1;
 
@@ -275,11 +274,14 @@ class _BookTicketsState extends State<BookTickets> {
                                           borderRadius:
                                               BorderRadius.circular(25)),
                                       child: InkWell(
-                                          onTap: a.isEven ? decreasePrice: decreasePrices,
+                                          onTap: a.isEven
+                                              ? decreasePrice
+                                              : decreasePrices,
                                           child: Icon(Icons.remove, size: 14)),
                                     ),
                                     SizedBox(width: 4),
-                                    Text('${a.isEven ? productPrice: productPrices}'),
+                                    Text(
+                                        '${a.isEven ? productPrice : productPrices}'),
                                     SizedBox(width: 4),
                                     Container(
                                       height: 22,
@@ -289,7 +291,9 @@ class _BookTicketsState extends State<BookTickets> {
                                           borderRadius:
                                               BorderRadius.circular(25)),
                                       child: InkWell(
-                                          onTap: a.isEven ? increasePrice: increasePrices,
+                                          onTap: a.isEven
+                                              ? increasePrice
+                                              : increasePrices,
                                           child: Icon(Icons.add, size: 14)),
                                     )
                                   ],
@@ -391,14 +395,24 @@ class _BookTicketsState extends State<BookTickets> {
                               ),
                               Row(
                                 children: [
-                                  SizedBox(
+                                  Container(
                                     height: 40,
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(20),
+                                          bottomLeft: Radius.circular(20),
+                                        )),
                                     child: Container(
                                       height: 40,
+                                      // reduce the line
+                                      margin: const EdgeInsets.only(right: 2.0),
                                       decoration: BoxDecoration(
-                                          color: Color(0XFFF5F4F9),
-                                          borderRadius:
-                                              BorderRadius.circular(20)),
+                                          color: Color(0XFFE8E7F0),
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20),
+                                            bottomLeft: Radius.circular(20),
+                                          )),
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 12),
                                       child: DropdownButton<String>(
@@ -423,10 +437,15 @@ class _BookTicketsState extends State<BookTickets> {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(width: 10),
                                   Expanded(
                                     child: Container(
                                       height: 40,
+                                      decoration: BoxDecoration(
+                                          color: Color(0XFFE8E7F0),
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(20),
+                                            bottomRight: Radius.circular(20),
+                                          )),
                                       child: TextField(
                                         decoration: InputDecoration(
                                             hintText: 'Phone Number',
@@ -436,12 +455,18 @@ class _BookTicketsState extends State<BookTickets> {
                                             border: InputBorder.none,
                                             focusedBorder: OutlineInputBorder(
                                                 borderSide: BorderSide.none,
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
+                                                borderRadius: BorderRadius.only(
+                                                  topRight: Radius.circular(20),
+                                                  bottomRight:
+                                                      Radius.circular(20),
+                                                )),
                                             enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide.none,
-                                                borderRadius:
-                                                    BorderRadius.circular(20))),
+                                                borderRadius: BorderRadius.only(
+                                                  topRight: Radius.circular(20),
+                                                  bottomRight:
+                                                      Radius.circular(20),
+                                                ))),
                                       ),
                                     ),
                                   ),

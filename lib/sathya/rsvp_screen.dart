@@ -23,14 +23,14 @@ class _RsvpScreenState extends State<RsvpScreen> {
 
   void increasePriceOne() {
     setState(() {
-      productPriceOne += 1;
+      productQuantityOne += 1;
     });
   }
 
   void decreasePriceOne() {
-    if (productPriceOne > 1) {
+    if (productQuantityOne > 1) {
       setState(() {
-        productPriceOne -= 1;
+        productQuantityOne -= 1;
       });
     }
   }
@@ -40,14 +40,14 @@ class _RsvpScreenState extends State<RsvpScreen> {
 
   void increasePriceThree() {
     setState(() {
-      productPricesThree += 1;
+      productQuantityThree += 1;
     });
   }
 
   void decreasePriceThree() {
-    if (productPricesThree > 1) {
+    if (productQuantityThree > 1) {
       setState(() {
-        productPricesThree -= 1;
+        productQuantityThree -= 1;
       });
     }
   }
@@ -56,7 +56,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      height: 580,
+      height: 680,
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(10)),
       child: Padding(
@@ -92,7 +92,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                           child: Icon(Icons.remove, size: 14)),
                     ),
                     SizedBox(width: 4),
-                    Text('${productPriceOne}'),
+                    Text('${productQuantityOne}'),
                     SizedBox(width: 4),
                     Container(
                       height: 22,
@@ -118,7 +118,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                   size: 17,
                 ),
                 Text(
-                  '${productPriceOne}',
+                  '${productQuantityThree}',
                   style: TextStyle(color: Color(0XFF5B46F4)),
                 ),
               ],
@@ -335,7 +335,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
-                  maxLines: 3,
+                  maxLines: 9,
                   decoration: InputDecoration(
                     hintText: 'Comment',
                     hintStyle: TextStyle(fontSize: 12),
