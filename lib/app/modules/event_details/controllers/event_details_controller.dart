@@ -66,7 +66,8 @@ class EventDetailsController extends GetxController {
   }
 
   String formatDate(String timeString) {
-    final dateTime = DateTime.parse(timeString).toLocal();
+    // we need to convert our local time then do add ".toLocal()".
+    final dateTime = DateTime.parse(timeString);
     final formattedDate = DateFormat('d MMMM').format(dateTime);
     return formattedDate;
   }

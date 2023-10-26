@@ -4,6 +4,7 @@ import 'package:fun_zippy/app/modules/home/views/tabs/event_tab/event_tab.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../../sathya/common_logo_widget.dart';
 import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../create_event/views/create_event_view.dart';
@@ -25,24 +26,26 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: backgroundColor,
-        drawer: Drawer(
-          elevation: 0,
-          child: ElevatedButton(
-              onPressed: () {
-                GetStorage().remove('user');
-                Get.offAllNamed(Routes.SIGN_IN);
-              },
-              child: Text('logout')),
+    return LogoCommon(
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: backgroundColor,
+          drawer: Drawer(
+            elevation: 0,
+            child: ElevatedButton(
+                onPressed: () {
+                  GetStorage().remove('user');
+                  Get.offAllNamed(Routes.SIGN_IN);
+                },
+                child: Text('logout')),
+          ),
+          body: Obx(() {
+            return Center(
+              child: _widgetOptions.elementAt(controller.selectedIndex.value),
+            );
+          }),
+          bottomNavigationBar: BottomNavigationBarWidget(controller: controller),
         ),
-        body: Obx(() {
-          return Center(
-            child: _widgetOptions.elementAt(controller.selectedIndex.value),
-          );
-        }),
-        bottomNavigationBar: BottomNavigationBarWidget(controller: controller),
       ),
     );
   }

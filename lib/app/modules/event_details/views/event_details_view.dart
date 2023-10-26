@@ -6,6 +6,7 @@ import 'package:fun_zippy/sathya/booking_tickets/booking_tickets.dart';
 import 'package:get/get.dart';
 
 import '../../../../sathya/rsvp_screen.dart';
+import '../../../data/model/AddEventBodyModel.dart';
 import '../../create_event/controllers/create_event_controller.dart';
 import '../controllers/event_details_controller.dart';
 import 'components/AboutThisPageWidget.dart';
@@ -21,6 +22,7 @@ import 'components/SignUpItemWidget.dart';
 import 'components/SpeakersWidget.dart';
 import 'components/SponsorsWidget.dart';
 import 'components/WhatIsPlaceOfferWidget.dart';
+import 'components/contacts.dart';
 
 class EventDetailsView extends GetView<EventDetailsController> {
   const EventDetailsView({Key? key}) : super(key: key);
@@ -118,7 +120,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                           controller: controller,
                         ),
                         5.height,
-                        //AddToCalendar(controller: controller),
+                        SizedBox(height:300,child: AddToCalendar(controller: controller)),
                         5.height,
                         //* Rating and tags
                         RatingCardWidget(controller: controller),
@@ -242,6 +244,16 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 ? true
                                 : false,
                             child: BoothsWidget(controller: controller)),
+
+                        Visibility(
+                            visible: controller
+                                        .eventDetailsModel.contacts
+                                        .toString() !=
+                                    'null'
+                                ? true
+                                : false,
+                            child: SizedBox(height:200,child: ContactsView(controller: controller))),
+
                         RelatedEventsWidget(),
                       ],
                     ),
