@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
+import 'package:fun_zippy/sathya/add_calendar/add_calendar.dart';
 import 'package:fun_zippy/sathya/booking_tickets/booking_tickets.dart';
 import 'package:get/get.dart';
 
+import '../../../../sathya/rsvp_screen.dart';
 import '../../create_event/controllers/create_event_controller.dart';
 import '../controllers/event_details_controller.dart';
 import 'components/AboutThisPageWidget.dart';
 import 'components/AppBarWidgetEventDetails.dart';
 import 'components/BoothsWidget.dart';
-import 'components/CommentWidget.dart';
 import 'components/GiftRegistryWidget.dart';
 import 'components/MapWidget.dart';
 import 'components/NameAndDetailsCardWidget.dart';
-import 'components/OrganizersWidget.dart';
-import 'components/PotluckItemsWidget.dart';
 import 'components/RatingCardWidget.dart';
 import 'components/RelatedEventsWidget.dart';
 import 'components/ShareWidget.dart';
@@ -22,7 +21,6 @@ import 'components/SignUpItemWidget.dart';
 import 'components/SpeakersWidget.dart';
 import 'components/SponsorsWidget.dart';
 import 'components/WhatIsPlaceOfferWidget.dart';
-import 'components/WidgetWidget.dart';
 
 class EventDetailsView extends GetView<EventDetailsController> {
   const EventDetailsView({Key? key}) : super(key: key);
@@ -92,7 +90,6 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         child: AppBarWidgetEventDetails(),
                       ),
                     ),
-
                   //add filter
                   // Container(
                   //     decoration: BoxDecoration(
@@ -120,7 +117,8 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         NameAndDetailsCardWidget(
                           controller: controller,
                         ),
-
+                        5.height,
+                        //AddToCalendar(controller: controller),
                         5.height,
                         //* Rating and tags
                         RatingCardWidget(controller: controller),
@@ -140,8 +138,19 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 ? true
                                 : false,
                             child: SizedBox(
-                                height: 1220,
+                                height: 620,
                                 child: BookTickets(controller: controller))),
+                        5.height,
+
+                        Visibility(
+                            visible: controller.eventDetailsModel.rsvpRequired
+                                        .toString() ==
+                                    'true'
+                                ? true
+                                : false,
+                            child: SizedBox(
+                                height: 700,
+                                child: RsvpScreen(controller: controller))),
                         5.height,
 
                         // CommentWidget(),
@@ -184,7 +193,11 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         // ),
                         // Gift Registry
                         Visibility(
-                          visible: controller.eventDetailsModel.giftItems.toString() != 'null' ? true : false,
+                          visible: controller.eventDetailsModel.giftItems
+                                      .toString() !=
+                                  'null'
+                              ? true
+                              : false,
                           child: GiftRegistryWidget(
                             controller: controller,
                           ),
@@ -194,23 +207,40 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         // Widget
                         // WidgetWidget(),
                         //what is Place Offer
-                        WhatIsPlaceOfferWidget(controller: controller,),
+                        WhatIsPlaceOfferWidget(
+                          controller: controller,
+                        ),
 
                         // Speakers
                         Visibility(
-                          visible: controller.eventDetailsModel.honoraryGuests.toString() != 'null' ? true : false,
+                          visible: controller.eventDetailsModel.honoraryGuests
+                                      .toString() !=
+                                  'null'
+                              ? true
+                              : false,
                           child: SpeakersWidget(
                             controller: controller,
                           ),
                         ),
                         // Sponsors
                         Visibility(
-                            visible: controller.eventDetailsModel.sponsors.toString() != 'null' ? true : false,
-                            child:SponsorsWidget(controller: controller)),
+                            visible: controller.eventDetailsModel.sponsors
+                                        .toString() !=
+                                    'null'
+                                ? true
+                                : false,
+                            child: SizedBox(
+                                height: 350,
+                                child: SponsorsWidget(controller: controller))),
 
                         // Boots
                         Visibility(
-                            visible: controller.eventDetailsModel.boothCategories.toString() != 'null' ? true : false,
+                            visible: controller
+                                        .eventDetailsModel.boothCategories
+                                        .toString() !=
+                                    'null'
+                                ? true
+                                : false,
                             child: BoothsWidget(controller: controller)),
                         RelatedEventsWidget(),
                       ],

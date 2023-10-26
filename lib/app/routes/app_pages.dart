@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 
+import '../../sathya/add_calendar/add_calendar.dart';
 import '../../sathya/booking_tickets/booking_tickets.dart';
 import '../../sathya/editing_event/editing_event.dart';
 import '../../sathya/editing_event/event_screen.dart';
 import '../../sathya/my_tickets/my_tickets.dart';
+import '../../sathya/rsvp_screen.dart';
 import '../../sathya/schedule_screen/schedule_screen.dart';
 import '../../sathya/sponsorship/sponsorship_screen.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
@@ -122,6 +124,11 @@ class AppPages {
     GetPage(
       name: _Paths.MyTicketsScreen,
       page: () => MyTicketsScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.RsvpScreen,
+      page: () => RsvpScreen(),
       binding: EventDetailsBinding(),
     ),
   ];

@@ -17,9 +17,12 @@ class SponsorshipScreen extends GetView<EventDetailsController> {
       appBar: AppBar(
         elevation: 5,
         backgroundColor: Colors.white,
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios,
+          ),
+          onPressed: (){
+            Get.back();
+          },
         ),
         actions: [
           CircleAvatar(

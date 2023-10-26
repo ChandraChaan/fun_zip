@@ -76,7 +76,7 @@ class EventDetailsModel {
       this.description,
       this.placesToStay,
       this.locationName,
-      this.potluckItems,
+      this. potluckItems,
       this.timeSlots,
       this.honoraryGuests,
       this.giftItems,

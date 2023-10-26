@@ -51,7 +51,7 @@ class RatingCardWidget extends StatelessWidget {
               ),
               5.width,
               Text(
-                'Tegs',
+                'Tags',
                 style: normalText.copyWith(
                   fontSize: 12,
                 ),

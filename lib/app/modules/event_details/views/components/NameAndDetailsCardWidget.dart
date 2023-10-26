@@ -19,6 +19,7 @@ class NameAndDetailsCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+
         Card(
           color: Color(0XFF823887),
           // LinearGradient(
@@ -89,10 +90,13 @@ class NameAndDetailsCardWidget extends StatelessWidget {
                           children: [
                             SvgPicture.asset(eventIconIconImage, height: 14,color: Colors.white,),
                             5.width,
-                            Text(
-                              controller.eventDetailsModel.startDateTime.toString() != 'null' ? formatDateForHome(
-                                  date: controller.eventDetailsModel.startDateTime) ?? ' ' : ' ',
-                              style: normalText.copyWith(fontSize: 10,color: Colors.white),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 6),
+                              child: Text(
+                                controller.eventDetailsModel.startDateTime.toString() != 'null' ? formatDateForHome(
+                                    date: controller.eventDetailsModel.startDateTime) ?? ' ' : ' ',
+                                style: normalText.copyWith(fontSize: 10,color: Colors.white),
+                              ),
                             ),
                           ],
                         ),

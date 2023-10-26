@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ScheduleScreen extends StatefulWidget {
   const ScheduleScreen({super.key});
@@ -14,9 +15,12 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       appBar: AppBar(
         elevation: 5,
         backgroundColor: Colors.white,
-        leading: Icon(
-          Icons.arrow_back,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
           color: Colors.black,
+          onPressed: (){
+            Get.back();
+          },
         ),
         actions: [
           CircleAvatar(
@@ -41,12 +45,14 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                     height: 46,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: Colors.deepPurpleAccent,
+                      color: Color(0XFFEFEDFF),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
-                      child: Text('Day 1'),
+                      child: Text('Day 1',style: TextStyle(
+                        color: Color(0XFF5B46F4)
+                      ),),
                     ),
                   )),
               Container(

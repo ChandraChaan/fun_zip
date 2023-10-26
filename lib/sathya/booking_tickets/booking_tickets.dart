@@ -55,82 +55,82 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 30,
-                        width: 131,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          border: Border.all(
-                            color: Color(0xFF4287F5), // Border color
-                            width: 2.0, // Border width
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Add to Calendar',
-                            style: TextStyle(
-                                color: Color(0xFF4287F5), fontSize: 10),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 15),
-                      Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            border: Border.all(color: Color(0xFF4287F5))),
-                        child: Icon(
-                          Icons.favorite,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      SizedBox(width: 15),
-                      Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            border: Border.all(color: Color(0xFF4287F5))),
-                        child: Icon(
-                          Icons.share,
-                          color: Color(0xFF4287F5),
-                        ),
-                      ),
-                      SizedBox(width: 45),
-                      Container(
-                        height: 26,
-                        width: 91,
-                        decoration: BoxDecoration(
-                          color: Color(0XFFA442F5),
-                          borderRadius: BorderRadius.circular(30),
-                          border: Border.all(
-                            color: Color(0xFF4287F5), // Border color
-                            width: 2.0, // Border width
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.videocam,
-                              size: 15,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              'Watch Live',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 8,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                  // child: Row(
+                  //   children: [
+                  //     Container(
+                  //       height: 30,
+                  //       width: 131,
+                  //       decoration: BoxDecoration(
+                  //         borderRadius: BorderRadius.circular(30),
+                  //         border: Border.all(
+                  //           color: Color(0xFF4287F5), // Border color
+                  //           width: 2.0, // Border width
+                  //         ),
+                  //       ),
+                  //       child: Center(
+                  //         child: Text(
+                  //           'Add to Calendar',
+                  //           style: TextStyle(
+                  //               color: Color(0xFF4287F5), fontSize: 10),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //     SizedBox(width: 15),
+                  //     Container(
+                  //       height: 30,
+                  //       width: 30,
+                  //       decoration: BoxDecoration(
+                  //           borderRadius: BorderRadius.circular(50),
+                  //           border: Border.all(color: Color(0xFF4287F5))),
+                  //       child: Icon(
+                  //         Icons.favorite,
+                  //         color: Colors.grey,
+                  //       ),
+                  //     ),
+                  //     SizedBox(width: 15),
+                  //     Container(
+                  //       height: 30,
+                  //       width: 30,
+                  //       decoration: BoxDecoration(
+                  //           borderRadius: BorderRadius.circular(50),
+                  //           border: Border.all(color: Color(0xFF4287F5))),
+                  //       child: Icon(
+                  //         Icons.share,
+                  //         color: Color(0xFF4287F5),
+                  //       ),
+                  //     ),
+                  //     SizedBox(width: 45),
+                  //     Container(
+                  //       height: 26,
+                  //       width: 91,
+                  //       decoration: BoxDecoration(
+                  //         color: Color(0XFFA442F5),
+                  //         borderRadius: BorderRadius.circular(30),
+                  //         border: Border.all(
+                  //           color: Color(0xFF4287F5), // Border color
+                  //           width: 2.0, // Border width
+                  //         ),
+                  //       ),
+                  //       child: Row(
+                  //         mainAxisAlignment: MainAxisAlignment.center,
+                  //         children: [
+                  //           Icon(
+                  //             Icons.videocam,
+                  //             size: 15,
+                  //             color: Colors.white,
+                  //           ),
+                  //           Text(
+                  //             'Watch Live',
+                  //             style: TextStyle(
+                  //               color: Colors.white,
+                  //               fontSize: 8,
+                  //             ),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ),
               ],
             ),
@@ -188,20 +188,38 @@ class _BookTicketsState extends State<BookTickets> {
   bool maybe = false;
 
   double productPrice = 1; //quantity
-  double productQuantityOne = 1;
+  double productQuantityTwo = 1;
 
-  void increasePrice(int a) {
+  void increasePrice() {
     setState(() {
       productPrice += 1;
     });
   }
 
-  void decreasePrice(int a) {
-    setState(() {
-      if (productPrice > 1) {
+  void decreasePrice() {
+    if (productPrice > 1) {
+      setState(() {
         productPrice -= 1;
-      }
+      });
+    }
+  }
+
+
+  double productPrices = 1; //quantity
+  double productQuantityten = 1;
+
+  void increasePrices() {
+    setState(() {
+      productPrices += 1;
     });
+  }
+
+  void decreasePrices() {
+    if (productPrices > 1) {
+      setState(() {
+        productPrices -= 1;
+      });
+    }
   }
 
   @override
@@ -245,7 +263,8 @@ class _BookTicketsState extends State<BookTickets> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(widget.controller!.eventDetailsModel.ticketCategories![a].name),
+                                Text(widget.controller!.eventDetailsModel
+                                    .ticketCategories![a].name),
                                 Row(
                                   children: [
                                     Container(
@@ -256,11 +275,11 @@ class _BookTicketsState extends State<BookTickets> {
                                           borderRadius:
                                               BorderRadius.circular(25)),
                                       child: InkWell(
-                                          // onTap: decreasePrice(a),
+                                          onTap: a.isEven ? decreasePrice: decreasePrices,
                                           child: Icon(Icons.remove, size: 14)),
                                     ),
                                     SizedBox(width: 4),
-                                    Text('${productPrice.toStringAsFixed(2)}'),
+                                    Text('${a.isEven ? productPrice: productPrices}'),
                                     SizedBox(width: 4),
                                     Container(
                                       height: 22,
@@ -270,7 +289,7 @@ class _BookTicketsState extends State<BookTickets> {
                                           borderRadius:
                                               BorderRadius.circular(25)),
                                       child: InkWell(
-                                          // onTap: increasePrice(a),
+                                          onTap: a.isEven ? increasePrice: increasePrices,
                                           child: Icon(Icons.add, size: 14)),
                                     )
                                   ],
@@ -279,7 +298,8 @@ class _BookTicketsState extends State<BookTickets> {
                             ),
                             SizedBox(height: 7),
                             Text(
-                              widget.controller!.eventDetailsModel.ticketCategories![a].inviteMessage,
+                              widget.controller!.eventDetailsModel
+                                  .ticketCategories![a].inviteMessage,
                               style: TextStyle(fontSize: 12),
                             ),
                             SizedBox(height: 7),
@@ -290,7 +310,10 @@ class _BookTicketsState extends State<BookTickets> {
                                   color: Color(0XFF5B46F4),
                                   size: 17,
                                 ),
-                                Text(widget.controller!.eventDetailsModel.ticketCategories![a].actualPrice.toString(),
+                                Text(
+                                    widget.controller!.eventDetailsModel
+                                        .ticketCategories![a].actualPrice
+                                        .toString(),
                                     style: TextStyle(color: Color(0XFF5B46F4)))
                               ],
                             ),
@@ -371,6 +394,7 @@ class _BookTicketsState extends State<BookTickets> {
                                   SizedBox(
                                     height: 40,
                                     child: Container(
+                                      height: 40,
                                       decoration: BoxDecoration(
                                           color: Color(0XFFF5F4F9),
                                           borderRadius:
@@ -426,10 +450,7 @@ class _BookTicketsState extends State<BookTickets> {
                             ],
                           ),
                           SizedBox(
-                            height: 10,
-                          ),
-                          SizedBox(
-                            height: 25,
+                            height: 30,
                           ),
                           InkWell(
                             onTap: () {},
@@ -445,26 +466,6 @@ class _BookTicketsState extends State<BookTickets> {
                               decoration: BoxDecoration(
                                   color: Color(0XFFC61236),
                                   borderRadius: BorderRadius.circular(20)),
-                              // child: TextField(
-                              //   decoration: InputDecoration(
-                              //       hintText: 'Checkout',
-                              //       hintStyle: TextStyle(
-                              //         fontSize: 12,
-                              //         color: Colors.white,
-                              //       ),
-                              //       filled: true,
-                              //       fillColor: Color(0XFFC61236),
-                              //       border: InputBorder.none,
-                              //       focusedBorder: OutlineInputBorder(
-                              //         borderRadius: BorderRadius.circular(20),
-                              //         borderSide: BorderSide.none,
-                              //       ),
-                              //       enabledBorder: OutlineInputBorder(
-                              //           borderSide: BorderSide.none,
-                              //           borderRadius:
-                              //               BorderRadius.circular(20))),
-                              //   textAlign: TextAlign.center,
-                              // ),
                             ),
                           ),
                         ],
@@ -473,295 +474,6 @@ class _BookTicketsState extends State<BookTickets> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 15,
-              ),
-              Visibility(
-                visible: widget.controller!.eventDetailsModel.rsvpRequired.toString() == 'true' ? true : false,
-                child: Container(
-                  height: 580,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 15),
-                        Text(
-                          'RSVP',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Row(
-                          children: [
-                            Text('Adults'),
-                            SizedBox(
-                              width: 190,
-                            ),
-                            Container(
-                              height: 22,
-                              width: 22,
-                              decoration: BoxDecoration(
-                                  color: Color(0XFFE8E7F0),
-                                  borderRadius: BorderRadius.circular(25)),
-                              child: InkWell(
-                                  // onTap: decreasePriceTwo,
-                                  child: Icon(Icons.remove, size: 14)),
-                            ),
-                            SizedBox(width: 4),
-                            Text('${productQuantityOne.toStringAsFixed(2)}'),
-                            SizedBox(width: 4),
-                            Container(
-                              height: 22,
-                              width: 22,
-                              decoration: BoxDecoration(
-                                  color: Color(0XFFE8E7F0),
-                                  borderRadius: BorderRadius.circular(25)),
-                              child: InkWell(
-                                  // onTap: increasePriceTwo,
-                                  child: Icon(Icons.add, size: 14)),
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 4),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.attach_money,
-                              color: Color(0XFF5B46F4),
-                              size: 17,
-                            ),
-                            Text(
-                              '3.00',
-                              style: TextStyle(color: Color(0XFF5B46F4)),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 14),
-                        Row(
-                          children: [
-                            Text('Kids'),
-                            SizedBox(
-                              width: 203,
-                            ),
-                            Container(
-                              height: 22,
-                              width: 22,
-                              decoration: BoxDecoration(
-                                  color: Color(0XFFE8E7F0),
-                                  borderRadius: BorderRadius.circular(25)),
-                              child: InkWell(
-                                  // onTap: decreasePriceTwoThree,
-                                  child: Icon(Icons.remove, size: 14)),
-                            ),
-                            SizedBox(width: 4),
-                            Text('${productQuantityOne.toStringAsFixed(2)}'),
-                            SizedBox(width: 4),
-                            Container(
-                              height: 22,
-                              width: 22,
-                              decoration: BoxDecoration(
-                                  color: Color(0XFFE8E7F0),
-                                  borderRadius: BorderRadius.circular(25)),
-                              child: InkWell(
-                                  // onTap: increasePriceThree,
-                                  child: Icon(Icons.add, size: 14)),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 4),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.attach_money,
-                              color: Color(0XFF5B46F4),
-                              size: 17,
-                            ),
-                            Text(
-                              '3.00',
-                              style: TextStyle(color: Color(0XFF5B46F4)),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 18),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Name',
-                              style: TextStyle(fontSize: 12),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              height: 40,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                    hintText: 'Name',
-                                    hintStyle: TextStyle(fontSize: 12),
-                                    filled: true,
-                                    fillColor: Color(0XFFE8E7F0),
-                                    border: InputBorder.none,
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none,
-                                        borderRadius: BorderRadius.circular(20)),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none,
-                                        borderRadius: BorderRadius.circular(20))),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 14,
-                            ),
-                            Text(
-                              'Email',
-                              style: TextStyle(fontSize: 12),
-                            ),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            Container(
-                              height: 40,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                    hintText: 'Email',
-                                    hintStyle: TextStyle(fontSize: 12),
-                                    filled: true,
-                                    fillColor: Color(0XFFE8E7F0),
-                                    border: InputBorder.none,
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                      borderSide: BorderSide.none,
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none,
-                                        borderRadius: BorderRadius.circular(20))),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 14,
-                            ),
-                            Text(
-                              'Phone Number',
-                              style: TextStyle(fontSize: 12),
-                            ),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            Container(
-                              height: 40,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                    hintText: '+91 Phone Number',
-                                    hintStyle: TextStyle(fontSize: 12),
-                                    filled: true,
-                                    fillColor: Color(0XFFE8E7F0),
-                                    border: InputBorder.none,
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(20),
-                                      borderSide: BorderSide.none,
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none,
-                                        borderRadius: BorderRadius.circular(20))),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 14,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      accept = !accept;
-                                    });
-                                    // Handle the click action for 'Accept' checkbox here
-                                  },
-                                  child: Icon(
-                                      accept
-                                          ? Icons.check_box
-                                          : Icons.check_box_outline_blank,
-                                      color: Color(0XFF5B46F4)),
-                                ),
-                                Text('Accept'),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      decline = !decline;
-                                    });
-                                    // Handle the click action for 'Decline' checkbox here
-                                  },
-                                  child: Icon(decline
-                                      ? Icons.check_box
-                                      : Icons.check_box_outline_blank),
-                                ),
-                                Text('Decline'),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      maybe = !maybe;
-                                    });
-                                    // Handle the click action for 'Maybe' checkbox here
-                                  },
-                                  child: Icon(maybe
-                                      ? Icons.check_box
-                                      : Icons.check_box_outline_blank),
-                                ),
-                                Text('Maybe'),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 14,
-                        ),
-                        Container(
-                          height: 115,
-                          width: double.infinity,
-                          child: TextField(
-                            maxLines: 3,
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Color(0XFFE8E7F0),
-                              hintText: 'Comment',
-                              hintStyle: TextStyle(fontSize: 12),
-                              border: InputBorder.none,
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                                borderSide: BorderSide.none,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
         ),
@@ -769,10 +481,3 @@ class _BookTicketsState extends State<BookTickets> {
     );
   }
 }
-//
-// class Price {
-//   final double price;
-//   int quantity;
-//
-//   Price(this.price, this.quantity);
-// }

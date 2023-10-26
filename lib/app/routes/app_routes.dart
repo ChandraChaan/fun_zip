@@ -21,11 +21,11 @@ abstract class Routes {
   static const EventScreen = _Paths.EventScreen;
   static const SignUpItemWidget = _Paths.SignUpItemWidget;
   static const SliverAppBarExample = _Paths.SliverAppBarExample;
-  //static const MyProfile = _Paths.MyProfile;
   static const PhoneWidget = _Paths.PhoneWidget;
   static const NameAndDetailsCardWidget = _Paths.NameAndDetailsCardWidget;
   static const MyTicketsScreen = _Paths.MyTicketsScreen;
-  static const abcd = _Paths.abcd;
+  static const RsvpScreen = _Paths.RsvpScreen;
+//  static const AddToCalendar = _Paths.AddToCalendar;
 }
 
 abstract class _Paths {
@@ -51,5 +51,7 @@ abstract class _Paths {
   static const PhoneWidget = '/PhoneWidget';
   static const NameAndDetailsCardWidget = '/NameAndDetailsCardWidget';
   static const MyTicketsScreen = '/MyTicketsScreen';
-  static const abcd = '/abcd';
+  static const RsvpScreen = '/RsvpScreen';
+  //static const AddToCalendar = '/AddToCalendar';
+
 }

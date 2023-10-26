@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
+import 'package:get/get.dart';
 
 import '../../../../data/model/HomeApiResponseModel.dart';
+import '../../../../routes/app_pages.dart';
 import '../../../home/controllers/home_controller.dart';
 import '../../../../widgets/SingleEventItemWidget.dart';
 
@@ -29,8 +31,14 @@ class RelatedEventsWidget extends StatelessWidget {
             return SingleEventItemWidget(
               result: result,
               onPressed: () {
-                // HomeController.to
-                //     .goToEventDetailsPage(uid: result.uid);
+                // print('started');
+                // HomeController.to.goToEventDetailsPage(uid: result.uid);
+                // Get.defaultDialog.t();
+                Get.offAllNamed(Routes.EVENT_DETAILS, arguments: result.uid);
+
+                // print('completed');
+
+
               },
             );
           },

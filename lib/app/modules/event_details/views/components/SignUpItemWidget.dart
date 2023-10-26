@@ -19,7 +19,6 @@ class SignUpItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -41,7 +40,9 @@ class SignUpItemWidget extends StatelessWidget {
                 child: Text('Sign up to a slot below',
                     style: normalText.copyWith()),
               ),
-              for (int a = 0; a < controller!.eventDetailsModel.timeSlots!.length; a++)
+              for (int a = 0;
+                  a < controller!.eventDetailsModel.timeSlots!.length;
+                  a++)
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Container(
@@ -72,22 +73,29 @@ class SignUpItemWidget extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 5),
                             child: Column(
-                              crossAxisAlignment:
-                                  CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(controller!.formatDate(controller!.eventDetailsModel.timeSlots![a]['startDateTime']),
+                                Text(
+                                    controller!.formatDate(controller!
+                                        .eventDetailsModel
+                                        .timeSlots![a]['startDateTime']),
                                     style: TextStyle(fontSize: 14)),
                                 SizedBox(height: 8),
                                 Text(
-                                  controller!.formatTimeRange(controller!.eventDetailsModel.timeSlots![a]['startDateTime'], controller!.eventDetailsModel.timeSlots![a]['endDateTime']),
+                                  controller!.formatTimeRange(
+                                      controller!.eventDetailsModel
+                                          .timeSlots![a]['startDateTime'],
+                                      controller!.eventDetailsModel
+                                          .timeSlots![a]['endDateTime']),
                                   style: TextStyle(fontSize: 14),
                                 ),
                                 SizedBox(height: 8),
                                 Text(
-                                  controller!.eventDetailsModel.timeSlots![a]['purpose'] ?? ' ',
+                                  controller!.eventDetailsModel.timeSlots![a]
+                                          ['purpose'] ??
+                                      ' ',
                                   style: TextStyle(
-                                      fontSize: 12,
-                                      color: Color(0XFF86839B)),
+                                      fontSize: 12, color: Color(0XFF86839B)),
                                 ),
                               ],
                             ),
@@ -96,18 +104,25 @@ class SignUpItemWidget extends StatelessWidget {
                           Column(
                             children: [
                               SizedBox(
-                                width:59,
+                                width: 59,
                                 height: 20,
                                 child: ElevatedButton(
-                                  onPressed: controller!.eventDetailsModel.timeSlots![a]['status'].toString () == 'A' ? () {
-                                    Get.dialog(BottomSignup(controller: controller!));
-                                  } : null,
+                                  onPressed: controller!.eventDetailsModel
+                                              .timeSlots![a]['status']
+                                              .toString() ==
+                                          'A'
+                                      ? () {
+                                          Get.dialog(BottomSignup(
+                                              controller: controller!));
+                                        }
+                                      : null,
                                   style: ElevatedButton.styleFrom(
                                     padding: const EdgeInsets.all(0),
                                     backgroundColor: Colors.white,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(50),
-                                      side: BorderSide(color: Color(0XFFC61236)),
+                                      side:
+                                          BorderSide(color: Color(0XFFC61236)),
                                     ),
                                   ),
                                   child: Container(
@@ -154,7 +169,7 @@ class SignUpItemWidget extends StatelessWidget {
   }
 }
 
- // class PotluckItems extends StatefulWidget {
+// class PotluckItems extends StatefulWidget {
 //   @override
 //   _PotluckItemsState createState() => _PotluckItemsState();
 // }
@@ -254,6 +269,7 @@ class PotluckItems extends StatefulWidget {
   });
 
   final EventDetailsController controller;
+
   @override
   _PotluckItemsState createState() => _PotluckItemsState();
 }
@@ -273,7 +289,9 @@ class _PotluckItemsState extends State<PotluckItems> {
   }
 
   void _showBottomSheet(BuildContext context) {
-    Get.dialog(BottomSignup(controller: widget.controller,));
+    Get.dialog(BottomSignup(
+      controller: widget.controller,
+    ));
     // showModalBottomSheet(
     //   context: context,
     //   builder: (BuildContext context) {
@@ -448,8 +466,11 @@ class _PotluckItemsState extends State<PotluckItems> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Potluck Items',
-              style: TextStyle(fontWeight: FontWeight.bold)),
+          // SizedBox(
+          //   height: 60,
+          //   child: Image.asset('assets/svg/logo_512.png'),
+          // ),
+          Text('Potluck Items', style: TextStyle(fontWeight: FontWeight.bold)),
           SizedBox(
             height: 8,
           ),
@@ -457,7 +478,9 @@ class _PotluckItemsState extends State<PotluckItems> {
           SizedBox(
             height: 5,
           ),
-          for (int a = 0; a < widget.controller.eventDetailsModel.potluckItems!.length; a++)
+          for (int a = 0;
+              a < widget.controller.eventDetailsModel.potluckItems!.length;
+              a++)
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: InkWell(
@@ -490,17 +513,44 @@ class _PotluckItemsState extends State<PotluckItems> {
                                 width: 98,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: NetworkImage(widget.controller.eventDetailsModel.potluckItems![a]['imageUrl'].toString()),
+                                    image: NetworkImage(widget
+                                        .controller
+                                        .eventDetailsModel
+                                        .potluckItems![a]['imageUrl']
+                                        .toString()),
                                   ),
                                 ),
                               ),
                             ),
                             SizedBox(width: 8),
                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(widget.controller.eventDetailsModel.potluckItems![a]['itemName'].toString()),
-                                Text((int.parse(widget.controller.eventDetailsModel.potluckItems![a]['count'].toString()) - int.parse(widget.controller.eventDetailsModel.potluckItems![a]['claimedCount'].toString())).toString()),
+                                Text(widget.controller.eventDetailsModel
+                                    .potluckItems![a]['itemName']
+                                    .toString()),
+                                Row(
+                                  children: [
+                                    Text((int.parse(widget
+                                                .controller
+                                                .eventDetailsModel
+                                                .potluckItems![a]['count']
+                                                .toString()) -
+                                            int.parse(widget
+                                                .controller
+                                                .eventDetailsModel
+                                                .potluckItems![a]['claimedCount']
+                                                .toString()))
+                                        .toString()),
+                                    SizedBox(width: 5),
+                                    Text(
+                                      'left',
+                                      style: TextStyle(
+                                          fontSize: 14, color: Color(0XFF86839B)),
+                                    )
+                                  ],
+                                ),
                               ],
                             ),
                           ],
@@ -525,14 +575,13 @@ class _PotluckItemsState extends State<PotluckItems> {
   }
 }
 
-class BottomSignup extends StatelessWidget{
+class BottomSignup extends StatelessWidget {
   const BottomSignup({
     super.key,
     required this.controller,
   });
 
   final EventDetailsController controller;
-
 
   @override
   Widget build(BuildContext context) {

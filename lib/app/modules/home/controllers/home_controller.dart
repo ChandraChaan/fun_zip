@@ -79,7 +79,9 @@ class HomeController extends GetxController {
 // new api above one
 
   goToEventDetailsPage({required String uid}) {
+    print('navigatiion started');
     Get.toNamed(Routes.EVENT_DETAILS, arguments: uid);
+    print('Navigation ended');
   }
 
   void onItemTapped(int index) {

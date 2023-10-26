@@ -1,30 +1,46 @@
-// import 'package:flutter/material.dart';
-// import 'package:fun_zippy/app/extra/forsecond.dart';
-//
-// class abcd extends StatefulWidget {
-//   const abcd({super.key});
-//
-//   @override
-//   State<abcd> createState() => _abcdState();
-// }
-//
-// class _abcdState extends State<abcd> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         body: Container(
-//           height: 100,
-//           width: 100,
-//           color: Colors.red,
-//           child: InkWell(
-//               onTap: () {
-//                 Navigator.push(
-//                     context, MaterialPageRoute(builder: (context) => second()));
-//               },
-//               child: Text('click')),
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Phone Number Widget'),
+        ),
+        body: Center(
+          child: PhoneNumberWidget(),
+        ),
+      ),
+    );
+  }
+}
+
+class PhoneNumberWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      child: Row(
+        children: <Widget>[
+          Text(
+            '+1', // Replace with your phone code
+            style: TextStyle(fontSize: 18.0),
+          ),
+          VerticalDivider(
+            width: 16.0,
+            thickness: 2.0,
+          ),
+          Text(
+            '555-123-4567', // Replace with your phone number
+            style: TextStyle(fontSize: 18.0),
+          ),
+        ],
+      ),
+    );
+  }
+}
