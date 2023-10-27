@@ -58,52 +58,56 @@ class SignUpItemWidget extends StatelessWidget {
                         padding: const EdgeInsets.all(10.0),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              height: 30,
-                              width: 30,
-                              decoration: BoxDecoration(
-                                  color: Color(0XFFE1FFCF),
-                                  borderRadius: BorderRadius.circular(2)),
-                              child: Icon(
-                                Icons.calendar_today,
-                                size: 16,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 5),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                      controller!.formatDate(controller!
-                                          .eventDetailsModel
-                                          .timeSlots![a]['startDateTime']),
-                                      style: TextStyle(fontSize: 14)),
-                                  SizedBox(height: 8),
-                                  Text(
-                                    controller!.formatTimeRange(
-                                        controller!.eventDetailsModel
-                                            .timeSlots![a]['startDateTime'],
-                                        controller!.eventDetailsModel
-                                            .timeSlots![a]['endDateTime']),
-                                    style: TextStyle(fontSize: 14),
+                            Row(
+                              children: [
+                                Container(
+                                  height: 30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                      color: Color(0XFFE1FFCF),
+                                      borderRadius: BorderRadius.circular(2)),
+                                  child: Icon(
+                                    Icons.calendar_today,
+                                    size: 16,
                                   ),
-                                  SizedBox(height: 8),
-                                  Text(
-                                    controller!.eventDetailsModel.timeSlots![a]
-                                            ['purpose'] ??
-                                        ' ',
-                                    style: TextStyle(
-                                        fontSize: 12, color: Color(0XFF86839B)),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                          controller!.formatDate(controller!
+                                              .eventDetailsModel
+                                              .timeSlots![a]['startDateTime']),
+                                          style: TextStyle(fontSize: 14)),
+                                      SizedBox(height: 8),
+                                      Text(
+                                        controller!.formatTimeRange(
+                                            controller!.eventDetailsModel
+                                                .timeSlots![a]['startDateTime'],
+                                            controller!.eventDetailsModel
+                                                .timeSlots![a]['endDateTime']),
+                                        style: TextStyle(fontSize: 14),
+                                      ),
+                                      SizedBox(height: 8),
+                                      Text(
+                                        controller!.eventDetailsModel.timeSlots![a]
+                                        ['purpose'] ??
+                                            ' ',
+                                        style: TextStyle(
+                                            fontSize: 12, color: Color(0XFF86839B)),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                            SizedBox(width: 90),
                             Column(
                               children: [
                                 SizedBox(
@@ -113,6 +117,7 @@ class SignUpItemWidget extends StatelessWidget {
                                     onPressed: controller!.eventDetailsModel
                                                 .timeSlots![a]['status']
                                                 .toString() ==
+                                        // A means Active, if this is needed modification , do those.
                                             'A'
                                         ? () {
                                             Get.dialog(BottomSignup(

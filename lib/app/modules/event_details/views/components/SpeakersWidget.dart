@@ -77,7 +77,8 @@ class SpeakersWidget extends StatelessWidget {
                                         ),
                                         Row(
                                           children: [
-                                            Icon(
+                                           if(controller.eventDetailsModel
+                                               .honoraryGuests![index]['emailAddress'].toString() != 'null')...[ Icon(
                                               Icons.mail_lock_outlined,
                                               size: 9,
                                               color: Color(0XFF86839B),
@@ -92,7 +93,7 @@ class SpeakersWidget extends StatelessWidget {
                                               style: TextStyle(
                                                   fontSize: 10,
                                                   color: Color(0XFF86839B)),
-                                            ),
+                                            )],
                                             50.width,
                                             SvgPicture.asset(facebook_2IconImage
                                             ),

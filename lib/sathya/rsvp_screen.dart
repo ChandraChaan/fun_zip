@@ -108,7 +108,6 @@ class _RsvpScreenState extends State<RsvpScreen> {
                     )
                   ],
                 ),
-
               ],
             ),
             SizedBox(height: 4),
@@ -344,6 +343,8 @@ class _RsvpScreenState extends State<RsvpScreen> {
                       onTap: () {
                         setState(() {
                           accept = !accept;
+                          decline = false;
+                          maybe = false;
                         });
                         // Handle the click action for 'Accept' checkbox here
                       },
@@ -363,6 +364,8 @@ class _RsvpScreenState extends State<RsvpScreen> {
                       onTap: () {
                         setState(() {
                           decline = !decline;
+                          accept = false;
+                          maybe = false;
                         });
                         // Handle the click action for 'Decline' checkbox here
                       },
@@ -379,6 +382,8 @@ class _RsvpScreenState extends State<RsvpScreen> {
                       onTap: () {
                         setState(() {
                           maybe = !maybe;
+                          accept = false;
+                          decline = false;
                         });
                         // Handle the click action for 'Maybe' checkbox here
                       },
