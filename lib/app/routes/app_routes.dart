@@ -25,7 +25,7 @@ abstract class Routes {
   static const NameAndDetailsCardWidget = _Paths.NameAndDetailsCardWidget;
   static const MyTicketsScreen = _Paths.MyTicketsScreen;
   static const RsvpScreen = _Paths.RsvpScreen;
-//  static const AddToCalendar = _Paths.AddToCalendar;
+  static const MyEvents = _Paths.MyEvents;
 }
 
 abstract class _Paths {
@@ -52,6 +52,6 @@ abstract class _Paths {
   static const NameAndDetailsCardWidget = '/NameAndDetailsCardWidget';
   static const MyTicketsScreen = '/MyTicketsScreen';
   static const RsvpScreen = '/RsvpScreen';
-  //static const AddToCalendar = '/AddToCalendar';
+  static const MyEvents = '/MyEvents';
 
 }

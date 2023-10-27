@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:fun_zippy/app/config/images_links.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
+import '../../../../sathya/common_logo_widget.dart';
 import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../../widgets/custom_buttons.dart';
@@ -56,19 +57,6 @@ class SignInView extends GetView<SignInController> {
                                   '${phone.countryCode.replaceAll('+', '')}-${phone.number}';
                               print(controller.completePhoneNumber);
                             },
-
-                            // onPressed: (PhoneNumber phone) {
-                            //   print(phone);
-                            //   controller.completePhoneNumber =
-                            //       '${phone.count ryCode.replaceAll('+', '')}-${phone.number}';
-                            //   print(controller.completePhoneNumber);
-                            // },
-                            // onPressed: (PhoneNumber phone) {
-                            //   print(phone);
-                            //   controller.completePhoneNumber =
-                            //       '${phone.countryCode.replaceAll('+', '')}-${phone.number}';
-                            //   print(controller.completePhoneNumber);
-                            // },
                           )
                         else
                           EmailTextfieldWIdget(controller: controller),

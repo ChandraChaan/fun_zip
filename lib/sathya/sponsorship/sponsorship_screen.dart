@@ -18,7 +18,7 @@ class SponsorshipScreen extends GetView<EventDetailsController> {
         elevation: 5,
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios,
+          icon: Icon(Icons.arrow_back,color: Colors.black,
           ),
           onPressed: (){
             Get.back();

@@ -13,24 +13,27 @@ class AddToCalendar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Container(
-                height: 54,
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(10)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Container(
+    return Card(
+      elevation: 0.0,
+      shape: roundedBorder(radius: 15),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Container(
+              height: 54,
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Container(
                         height: 30,
-                        width: 131,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
                           border: Border.all(
@@ -46,20 +49,26 @@ class AddToCalendar extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(width: 15),
-                      Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            border: Border.all(color: Color(0XFF5B46F4))),
-                        child: Icon(
-                          Icons.favorite,
-                          color: Color(0XFFC9C6E1),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Container(
+                          height: 30,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(110),
+                              border: Border.all(color: Color(0XFF5B46F4))),
+                          child: Icon(
+                            Icons.favorite,size: 15,
+                            color: Color(0XFFC9C6E1),
+                          ),
                         ),
                       ),
-                      SizedBox(width: 15),
-                      Container(
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
                         height: 30,
                         width: 30,
                         decoration: BoxDecoration(
@@ -70,10 +79,13 @@ class AddToCalendar extends StatelessWidget {
                           color: Color(0XFF5B46F4),
                         ),
                       ),
-                      SizedBox(width: 55),
-                      Container(
+                    ),
+                    Expanded(flex: 1, child: Container()),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
                         height: 26,
-                        width: 91,
+                        width: double.infinity,
                         decoration: BoxDecoration(
                           color: Color(0XFF560B7E),
                           borderRadius: BorderRadius.circular(30),
@@ -83,29 +95,27 @@ class AddToCalendar extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.videocam,
-                              size: 15,
+                              size: 10,
                               color: Colors.white,
                             ),
                             Text(
                               'Watch Live',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 8,
+                                fontSize: 5,
                               ),
                             ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
-
-

@@ -82,9 +82,8 @@ class SponsorsWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
               ),
               10.height,
-              // sathya
               for (int index = 0;
-                  index < controller.eventDetailsModel.honoraryGuests!.length;
+                  index < controller.eventDetailsModel.sponsors!.length;
                   index++)
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -95,37 +94,51 @@ class SponsorsWidget extends StatelessWidget {
                         border: Border.all(width: .2)),
                     child: Padding(
                       padding: const EdgeInsets.all(15),
-                      child: Row(
+                      child: Column(
                         children: [
-                          Container(
-                            height: 45,
-                            width: 45,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(27),
-                                border: Border.all(color: Color(0XFF5B46F4))),
-                            child: Image.asset('assets/svg/ellipse_23.png'),
-                          ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                controller.eventDetailsModel
-                                        .honoraryGuests![index]['name'] ??
-                                    ' ',
-                                style: boldText.copyWith(fontSize: 14),
+                              Container(
+                                height: 45,
+                                width: 45,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(27),
+                                    border:
+                                        Border.all(color: Color(0XFF5B46F4))),
+                                child: Image.asset('assets/svg/ellipse_23.png'),
                               ),
-
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  SvgPicture.asset(messageIconImage),
-                                  10.width,
-                                  SvgPicture.asset(callIconImage),
-                                  10.width,
-                                  SvgPicture.asset(browserIconImage),
-                                ],
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          controller.eventDetailsModel
+                                                      .sponsors![index]
+                                                  ['name'] ??
+                                              ' ',
+                                          style:
+                                              boldText.copyWith(fontSize: 14),
+                                        ),
+                                        SizedBox(width: 60),
+                                        Row(
+                                          children: [
+                                            SvgPicture.asset(messageIconImage),
+                                            10.width,
+                                            SvgPicture.asset(callIconImage),
+                                            10.width,
+                                            SvgPicture.asset(browserIconImage)
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-
                             ],
                           ),
                         ],
@@ -135,7 +148,6 @@ class SponsorsWidget extends StatelessWidget {
                 ),
             ],
           ),
-          10.height,
         ],
       ),
     );

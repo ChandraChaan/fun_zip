@@ -4,6 +4,7 @@ import '../../sathya/add_calendar/add_calendar.dart';
 import '../../sathya/booking_tickets/booking_tickets.dart';
 import '../../sathya/editing_event/editing_event.dart';
 import '../../sathya/editing_event/event_screen.dart';
+import '../../sathya/my_events_screen/my_events.dart';
 import '../../sathya/my_tickets/my_tickets.dart';
 import '../../sathya/rsvp_screen.dart';
 import '../../sathya/schedule_screen/schedule_screen.dart';
@@ -33,7 +34,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH;
+  static const INITIAL = Routes.HOME;
 
   static final routes = [
     GetPage(
@@ -129,6 +130,11 @@ class AppPages {
     GetPage(
       name: _Paths.RsvpScreen,
       page: () => RsvpScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.MyEvents,
+      page: () => MyEvents(),
       binding: EventDetailsBinding(),
     ),
   ];

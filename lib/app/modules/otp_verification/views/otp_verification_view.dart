@@ -7,6 +7,7 @@ import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:fun_zippy/app/widgets/progress.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import '../../../../sathya/common_logo_widget.dart';
 import '../../../config/images_links.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/text_theme.dart';

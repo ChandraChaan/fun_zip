@@ -84,50 +84,6 @@ class _EventScreenState extends State<EventScreen> {
                       style: TextStyle(
                           fontSize: 12),
                     ),
-                    // Row(
-                    //   children: [
-                    //     Expanded(
-                    //       child: Container(
-                    //         height: 40,
-                    //         decoration: BoxDecoration(
-                    //           color: Colors.grey,
-                    //           border:
-                    //               Border.all(color: Colors.deepPurpleAccent),
-                    //           borderRadius: BorderRadius.circular(20),
-                    //         ),
-                    //         child: Center(
-                    //           child: Text('In Person'),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     SizedBox(width: 5),
-                    //     Expanded(
-                    //       child: Container(
-                    //         height: 40,
-                    //         decoration: BoxDecoration(
-                    //           color: Colors.grey,
-                    //           border:
-                    //               Border.all(color: Colors.deepPurpleAccent),
-                    //           borderRadius: BorderRadius.circular(20),
-                    //         ),
-                    //         child: Center(child: Text('Online')),
-                    //       ),
-                    //     ),
-                    //     SizedBox(width: 5),
-                    //     Expanded(
-                    //       child: Container(
-                    //         height: 40,
-                    //         decoration: BoxDecoration(
-                    //           color: Colors.grey,
-                    //           border:
-                    //               Border.all(color: Colors.deepPurpleAccent),
-                    //           borderRadius: BorderRadius.circular(20),
-                    //         ),
-                    //         child: Center(child: Text('Mixed')),
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
                   ],
                 ),
               ),

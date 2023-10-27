@@ -22,146 +22,150 @@ class SignUpItemWidget extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
-          height: 560,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              border: Border.all(color: Colors.white)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Sign up Items', style: titleBoldText),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Sign up to a slot below',
-                    style: normalText.copyWith()),
-              ),
-              for (int a = 0;
-                  a < controller!.eventDetailsModel.timeSlots!.length;
-                  a++)
+        child: Card(
+          elevation: 0.0,
+          shape: roundedBorder(radius: 15),
+          child: Container(
+            height: 560,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: Colors.white)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Container(
-                    height: 84,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Color(0XFFC9C6E1))),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 30,
-                            width: 30,
-                            decoration: BoxDecoration(
-                                color: Color(0XFFE1FFCF),
-                                borderRadius: BorderRadius.circular(2)),
-                            child: Icon(
-                              Icons.calendar_today,
-                              size: 16,
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Sign up Items', style: titleBoldText),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text('Sign up to a slot below',
+                      style: normalText.copyWith()),
+                ),
+                for (int a = 0;
+                    a < controller!.eventDetailsModel.timeSlots!.length;
+                    a++)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Container(
+                      height: 84,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: Color(0XFFC9C6E1))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                  color: Color(0XFFE1FFCF),
+                                  borderRadius: BorderRadius.circular(2)),
+                              child: Icon(
+                                Icons.calendar_today,
+                                size: 16,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                    controller!.formatDate(controller!
-                                        .eventDetailsModel
-                                        .timeSlots![a]['startDateTime']),
-                                    style: TextStyle(fontSize: 14)),
-                                SizedBox(height: 8),
-                                Text(
-                                  controller!.formatTimeRange(
-                                      controller!.eventDetailsModel
-                                          .timeSlots![a]['startDateTime'],
-                                      controller!.eventDetailsModel
-                                          .timeSlots![a]['endDateTime']),
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                                SizedBox(height: 8),
-                                Text(
-                                  controller!.eventDetailsModel.timeSlots![a]
-                                          ['purpose'] ??
-                                      ' ',
-                                  style: TextStyle(
-                                      fontSize: 12, color: Color(0XFF86839B)),
-                                ),
-                              ],
+                            SizedBox(
+                              height: 20,
                             ),
-                          ),
-                          SizedBox(width: 90),
-                          Column(
-                            children: [
-                              SizedBox(
-                                width: 59,
-                                height: 20,
-                                child: ElevatedButton(
-                                  onPressed: controller!.eventDetailsModel
-                                              .timeSlots![a]['status']
-                                              .toString() ==
-                                          'A'
-                                      ? () {
-                                          Get.dialog(BottomSignup(
-                                              controller: controller!));
-                                        }
-                                      : null,
-                                  style: ElevatedButton.styleFrom(
-                                    padding: const EdgeInsets.all(0),
-                                    backgroundColor: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(50),
-                                      side:
-                                          BorderSide(color: Color(0XFFC61236)),
-                                    ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 5),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      controller!.formatDate(controller!
+                                          .eventDetailsModel
+                                          .timeSlots![a]['startDateTime']),
+                                      style: TextStyle(fontSize: 14)),
+                                  SizedBox(height: 8),
+                                  Text(
+                                    controller!.formatTimeRange(
+                                        controller!.eventDetailsModel
+                                            .timeSlots![a]['startDateTime'],
+                                        controller!.eventDetailsModel
+                                            .timeSlots![a]['endDateTime']),
+                                    style: TextStyle(fontSize: 14),
                                   ),
-                                  child: Container(
-                                    height: 20,
-                                    width: 59,
-                                    child: Center(
-                                      child: Text(
-                                        'Sign Up',
-                                        style: TextStyle(
-                                          fontSize: 8,
-                                          color: Color(0XFFC61236),
-                                          fontWeight: FontWeight.bold,
+                                  SizedBox(height: 8),
+                                  Text(
+                                    controller!.eventDetailsModel.timeSlots![a]
+                                            ['purpose'] ??
+                                        ' ',
+                                    style: TextStyle(
+                                        fontSize: 12, color: Color(0XFF86839B)),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 90),
+                            Column(
+                              children: [
+                                SizedBox(
+                                  width: 59,
+                                  height: 20,
+                                  child: ElevatedButton(
+                                    onPressed: controller!.eventDetailsModel
+                                                .timeSlots![a]['status']
+                                                .toString() ==
+                                            'A'
+                                        ? () {
+                                            Get.dialog(BottomSignup(
+                                                controller: controller!));
+                                          }
+                                        : null,
+                                    style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.all(0),
+                                      backgroundColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        side:
+                                            BorderSide(color: Color(0XFFC61236)),
+                                      ),
+                                    ),
+                                    child: Container(
+                                      height: 20,
+                                      width: 59,
+                                      child: Center(
+                                        child: Text(
+                                          'Sign Up',
+                                          style: TextStyle(
+                                            fontSize: 8,
+                                            color: Color(0XFFC61236),
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 3,
-                              ),
-                              Text(
-                                '${int.parse(controller!.eventDetailsModel.timeSlots![a]['totalCount'].toString()) - int.parse(controller!.eventDetailsModel.timeSlots![a]['reservedCount'].toString())} Slots Left',
-                                style: TextStyle(
-                                  fontSize: 9,
-                                  color: Color(0XFFC61236),
+                                SizedBox(
+                                  height: 3,
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                                Text(
+                                  '${int.parse(controller!.eventDetailsModel.timeSlots![a]['totalCount'].toString()) - int.parse(controller!.eventDetailsModel.timeSlots![a]['reservedCount'].toString())} Slots Left',
+                                  style: TextStyle(
+                                    fontSize: 9,
+                                    color: Color(0XFFC61236),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
+                SizedBox(
+                  height: 23,
                 ),
-              SizedBox(
-                height: 23,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -457,119 +461,126 @@ class _PotluckItemsState extends State<PotluckItems> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 510,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.white),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // SizedBox(
-          //   height: 60,
-          //   child: Image.asset('assets/svg/logo_512.png'),
-          // ),
-          Text('Potluck Items', style: TextStyle(fontWeight: FontWeight.bold)),
-          SizedBox(
-            height: 8,
-          ),
-          Text('Sign Up for an item Below', style: TextStyle(fontSize: 16)),
-          SizedBox(
-            height: 5,
-          ),
-          for (int a = 0;
-              a < widget.controller.eventDetailsModel.potluckItems!.length;
-              a++)
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: InkWell(
-                onTap: () {
-                  selectItem(a);
-                  // Open the bottom sheet when an item is tapped
-                  _showBottomSheet(context);
-                },
-                child: Container(
-                  height: 132,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                        color: a == selectedIndex
-                            ? Colors.blue
-                            : Color(0XFFC9C6E1)),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
+    return Card(
+      elevation: 0.0,
+      shape: roundedBorder(radius: 15),
+      child: Container(
+        height: 510,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.white),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // SizedBox(
+              //   height: 60,
+              //   child: Image.asset('assets/svg/logo_512.png'),
+              // ),
+              Text('Potluck Items', style: TextStyle(fontWeight: FontWeight.bold)),
+              SizedBox(
+                height: 8,
+              ),
+              Text('Sign Up for an item Below', style: TextStyle(fontSize: 16)),
+              SizedBox(
+                height: 5,
+              ),
+              for (int a = 0;
+                  a < widget.controller.eventDetailsModel.potluckItems!.length;
+                  a++)
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: InkWell(
+                    onTap: () {
+                      selectItem(a);
+                      // Open the bottom sheet when an item is tapped
+                      _showBottomSheet(context);
+                    },
+                    child: Container(
+                      height: 132,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            color: a == selectedIndex
+                                ? Colors.blue
+                                : Color(0XFFC9C6E1)),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 16.0),
-                              child: Container(
-                                height: 98,
-                                width: 98,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(widget
-                                        .controller
-                                        .eventDetailsModel
-                                        .potluckItems![a]['imageUrl']
-                                        .toString()),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 16.0),
+                                  child: Container(
+                                    height: 98,
+                                    width: 98,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: NetworkImage(widget
+                                            .controller
+                                            .eventDetailsModel
+                                            .potluckItems![a]['imageUrl']
+                                            .toString()),
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
-                            SizedBox(width: 8),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(widget.controller.eventDetailsModel
-                                    .potluckItems![a]['itemName']
-                                    .toString()),
-                                Row(
+                                SizedBox(width: 8),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text((int.parse(widget
-                                                .controller
-                                                .eventDetailsModel
-                                                .potluckItems![a]['count']
-                                                .toString()) -
-                                            int.parse(widget
-                                                .controller
-                                                .eventDetailsModel
-                                                .potluckItems![a]['claimedCount']
-                                                .toString()))
+                                    Text(widget.controller.eventDetailsModel
+                                        .potluckItems![a]['itemName']
                                         .toString()),
-                                    SizedBox(width: 5),
-                                    Text(
-                                      'left',
-                                      style: TextStyle(
-                                          fontSize: 14, color: Color(0XFF86839B)),
-                                    )
+                                    Row(
+                                      children: [
+                                        Text((int.parse(widget
+                                                    .controller
+                                                    .eventDetailsModel
+                                                    .potluckItems![a]['count']
+                                                    .toString()) -
+                                                int.parse(widget
+                                                    .controller
+                                                    .eventDetailsModel
+                                                    .potluckItems![a]['claimedCount']
+                                                    .toString()))
+                                            .toString(),style: TextStyle(color: Color(0XFF86839B),fontSize: 14),),
+                                        SizedBox(width: 5),
+                                        Text(
+                                          'left',
+                                          style: TextStyle(
+                                              fontSize: 14, color: Color(0XFF86839B)),
+                                        )
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ],
                             ),
+                            Icon(
+                              a == selectedIndex
+                                  ? Icons.check_circle
+                                  : Icons.radio_button_unchecked,
+                              size: 20,
+                              color:
+                                  a == selectedIndex ? Colors.blue : Colors.black,
+                            ),
                           ],
                         ),
-                        Icon(
-                          a == selectedIndex
-                              ? Icons.check_circle
-                              : Icons.radio_button_unchecked,
-                          size: 20,
-                          color:
-                              a == selectedIndex ? Colors.blue : Colors.black,
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-        ],
+            ],
+          ),
+        ),
       ),
     );
   }

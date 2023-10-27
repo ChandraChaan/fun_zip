@@ -109,18 +109,21 @@ class EventDetailsView extends GetView<EventDetailsController> {
 
                   //* Above card
                   Container(
-                    margin:
-                        EdgeInsets.only(left: 15.0, right: 15.0, bottom: 20),
+                    margin: EdgeInsets.only(
+                      left: 15.0,
+                      right: 15.0,
+                    ),
                     child: ListView(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
-                      padding: EdgeInsets.only(top: 20.0, bottom: 5.0),
+                      padding: EdgeInsets.only(top: 10.0, bottom: 5.0),
                       children: [
                         NameAndDetailsCardWidget(
                           controller: controller,
                         ),
-                        5.height,
-                        SizedBox(height:300,child: AddToCalendar(controller: controller)),
+                        SizedBox(
+                            height: 80,
+                            child: AddToCalendar(controller: controller)),
                         5.height,
                         //* Rating and tags
                         RatingCardWidget(controller: controller),
@@ -140,7 +143,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 ? true
                                 : false,
                             child: SizedBox(
-                                height: 620,
+                                height: 580,
                                 child: BookTickets(controller: controller))),
                         5.height,
 
@@ -186,7 +189,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 ? true
                                 : false,
                             child: SizedBox(
-                                height: 600,
+                                height: 520,
                                 child: PotluckItems(
                                   controller: controller,
                                 ))),
@@ -204,11 +207,6 @@ class EventDetailsView extends GetView<EventDetailsController> {
                             controller: controller,
                           ),
                         ),
-                        // Whether
-                        // WhetherWidget(),
-                        // Widget
-                        // WidgetWidget(),
-                        //what is Place Offer
                         WhatIsPlaceOfferWidget(
                           controller: controller,
                         ),
@@ -245,14 +243,15 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 : false,
                             child: BoothsWidget(controller: controller)),
 
-                        Visibility(
-                            visible: controller
-                                        .eventDetailsModel.contacts
-                                        .toString() !=
-                                    'null'
-                                ? true
-                                : false,
-                            child: SizedBox(height:200,child: ContactsView(controller: controller))),
+                        // Visibility(
+                        //     visible: controller.eventDetailsModel.contacts
+                        //                 .toString() !=
+                        //             'null'
+                        //         ? true
+                        //         : false,
+                        //     child: SizedBox(
+                        //         height: 200,
+                        //         child: ContactsView(controller: controller))),
 
                         RelatedEventsWidget(),
                       ],

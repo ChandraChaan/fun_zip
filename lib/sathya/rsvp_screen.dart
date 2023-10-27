@@ -14,6 +14,10 @@ class RsvpScreen extends StatefulWidget {
 }
 
 class _RsvpScreenState extends State<RsvpScreen> {
+  String defaultCountryCode = '+91';
+  List<String> countryCodes = ['+91', '+92', '+93', '+94'];
+  TextEditingController phoneNumberController = TextEditingController();
+
   bool accept = false;
   bool decline = false;
   bool maybe = false;
@@ -76,10 +80,8 @@ class _RsvpScreenState extends State<RsvpScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Adults'),
-                SizedBox(
-                  width: 190,
-                ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       height: 22,
@@ -215,15 +217,20 @@ class _RsvpScreenState extends State<RsvpScreen> {
                 // first container sathya
                 Container(
                   height: 40,
-                  decoration: BoxDecoration(
-                      color: Color(0XFFE8E7F0),
-                      borderRadius: BorderRadius.circular(20)
-                  ),
                   child: TextField(
-                    decoration: InputDecoration(hintText: 'hello',
-                      border: InputBorder.none,
-                    ),
-                  )
+                    decoration: InputDecoration(
+                        hintText: 'Email',
+                        hintStyle: TextStyle(fontSize: 12),
+                        filled: true,
+                        fillColor: Color(0XFFE8E7F0),
+                        border: InputBorder.none,
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(20)),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(20))),
+                  ),
                 ),
                 SizedBox(
                   height: 14,
@@ -235,23 +242,84 @@ class _RsvpScreenState extends State<RsvpScreen> {
                 SizedBox(
                   height: 7,
                 ),
-                Container(
-                  height: 40,
-                  child: TextField(
-                    decoration: InputDecoration(
-                        hintText: '+91 Phone Number',
-                        hintStyle: TextStyle(fontSize: 12),
-                        filled: true,
-                        fillColor: Color(0XFFE8E7F0),
-                        border: InputBorder.none,
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide.none,
+                Row(
+                  children: [
+                    Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
+                          )),
+                      child: Container(
+                        height: 40,
+                        // reduce the line
+                        margin: const EdgeInsets.only(right: 2.0),
+                        decoration: BoxDecoration(
+                            color: Color(0XFFE8E7F0),
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              bottomLeft: Radius.circular(20),
+                            )),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12),
+                        child: DropdownButton<String>(
+                          value: defaultCountryCode,
+                          onChanged: (newValue) {
+                            setState(() {
+                              defaultCountryCode = newValue!;
+                            });
+                          },
+                          items: countryCodes.map((code) {
+                            return DropdownMenuItem<String>(
+                              value: code,
+                              child: Text(
+                                code,
+                                style: TextStyle(fontSize: 12),
+                              ),
+                            );
+                          }).toList(),
+                          underline: Container(
+                            height: 0,
+                          ),
                         ),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(20))),
-                  ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Color(0XFFE8E7F0),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              bottomRight: Radius.circular(20),
+                            )),
+                        child: TextField(
+                          decoration: InputDecoration(
+                              hintText: 'Phone Number',
+                              hintStyle: TextStyle(fontSize: 12),
+                              filled: true,
+                              fillColor: Color(0XFFE8E7F0),
+                              border: InputBorder.none,
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(20),
+                                    bottomRight:
+                                    Radius.circular(20),
+                                  )),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(20),
+                                    bottomRight:
+                                    Radius.circular(20),
+                                  ))),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -335,8 +403,9 @@ class _RsvpScreenState extends State<RsvpScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
-                  maxLines: 9,
+                  maxLines: 10,
                   decoration: InputDecoration(
+                    border: InputBorder.none,
                     hintText: 'Comment',
                     hintStyle: TextStyle(fontSize: 12),
                   ),

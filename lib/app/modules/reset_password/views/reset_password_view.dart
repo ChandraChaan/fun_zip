@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../sathya/common_logo_widget.dart';
 import '../controllers/reset_password_controller.dart';
 
 import 'package:flutter_form_builder/flutter_form_builder.dart';
