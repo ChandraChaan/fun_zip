@@ -99,10 +99,10 @@ class OtpVerificationView extends GetView<OtpVerificationController> {
                           cursorColor: Colors.black,
                           animationDuration: const Duration(milliseconds: 300),
                           enableActiveFill: true,
-                          keyboardType: TextInputType.number,
+                          // keyboardType: TextInputType.number,
                           // errorAnimationController: errorController,
                           // controller: textEditingController,
-                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                          //inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                           boxShadows: const [
                             BoxShadow(
                               offset: Offset(0, 1),
