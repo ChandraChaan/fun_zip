@@ -6,9 +6,13 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ResetPasswordController extends GetxController {
+  static ResetPasswordController get to => Get.find();
   TextEditingController passwordTextEditingController = TextEditingController();
   TextEditingController confirmPasswordTextEditingController =
       TextEditingController();
+  String phone = '';
+  String email = '';
+  String otp = '';
 
   RxBool showPassword = false.obs;
   RxBool showConformPassword = false.obs;
@@ -36,9 +40,10 @@ class ResetPasswordController extends GetxController {
   Future<void> resetPwApi() async {
     final url = Uri.parse('https://funzippy.com/user/resetPassword');
     Map<String, dynamic> bodyData = {
-      "emailAddress": "nmeda@openteqgroup.com",
-      "tempPasswordToken": "754a",
-      "password": "12345"
+      "emailAddress": "${email}",
+      "phoneNumber": "${phone}",
+      "tempPasswordToken": "${otp}",
+      "password": "${passwordTextEditingController.text}"
     };
 
     final response = await http.post(
@@ -50,9 +55,8 @@ class ResetPasswordController extends GetxController {
     );
 
     if (response.statusCode == 200) {
-      Get.defaultDialog(title: "Success and API done");
-      // Get.toNamed(Routes.SIGN_IN);
-      // If you have defined 'Routes.SIGN_IN'
+      // Get.defaultDialog(title: "Success and API done");
+      Get.toNamed(Routes.SIGN_IN);
     } else {
       Get.defaultDialog(title: "Failure");
       throw Exception('Failed to load data');
@@ -61,4 +65,3 @@ class ResetPasswordController extends GetxController {
 
   void increment() => count.value++;
 }
-

@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
 
+import '../../reset_password/controllers/reset_password_controller.dart';
+import '../controllers/otp_verification_controller.dart';
+
 // import '../controllers/otp_verification_controller.dart';
 
 class OtpVerificationBinding extends Bindings {
@@ -9,6 +12,7 @@ class OtpVerificationBinding extends Bindings {
     //   () => OtpVerificationController(),
     // );
 
-    // Get.put(OtpVerificationController(), permanent: true);
+    Get.put(OtpVerificationController(), permanent: true);
+    Get.put(ResetPasswordController(), permanent: true);
   }
 }
