@@ -4,16 +4,16 @@ import 'package:fun_zippy/app/utilities/extention.dart';
 
 import '../common_container.dart';
 
-class TicketSaleDetailsScreen extends StatefulWidget {
-  const TicketSaleDetailsScreen({super.key});
+class TicketSaleDetailsScreen extends StatelessWidget {
+  static const List listData = [
+    {"name": "Category", "sub": "General", "button": true},
+    {"name": "Date", "sub": "Mar 19 Sun", "button": false},
+    {"name": "Date", "sub": "Mar 19 Sun", "button": false},
+    {"name": "Date", "sub": "Mar 19 Sun", "button": false},
+    {"name": "Date", "sub": "Mar 19 Sun", "button": true},
+    {"name": "Date", "sub": "Mar 19 Sun", "button": false},
+  ];
 
-  @override
-  State<TicketSaleDetailsScreen> createState() =>
-      _TicketSaleDetailsScreenState();
-}
-
-class _TicketSaleDetailsScreenState extends State<TicketSaleDetailsScreen> {
-  // List<String, dynamic> dataList = [{"name"}];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,21 +54,26 @@ class _TicketSaleDetailsScreenState extends State<TicketSaleDetailsScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // TODO do add currect list name above used
-                          for (int a = 0; a < 5; a++) ...[
+                          for (int a = 0; a < listData.length; a++) ...[
                             Row(
                               children: [
                                 Expanded(
                                     flex: 17,
-                                    child: Text('Category',
+                                    child: Text('${listData[a]['name']}',
                                         style: TextStyle(fontSize: 12))),
                                 Expanded(
                                   flex: 15,
                                   child: Text(
-                                    ': General',
+                                    ': ${listData[a]['sub']}',
                                     style: TextStyle(fontSize: 12),
                                   ),
                                 ),
-                                Expanded(flex:7, child: CommonContainer()),
+                                Expanded(
+                                    flex: 7,
+                                    child: listData[a]['button'].toString() ==
+                                            'true'
+                                        ? CommonContainer()
+                                        : Container()),
                               ],
                             ),
                             SizedBox(height: 7),
@@ -81,7 +86,7 @@ class _TicketSaleDetailsScreenState extends State<TicketSaleDetailsScreen> {
                           //     ),
                           //     133.width,
                           //     Text(
-                          //       ': Mar 19 Sun',
+                          //       ': ',
                           //       style: TextStyle(fontSize: 12),
                           //     ),
                           //   ],
