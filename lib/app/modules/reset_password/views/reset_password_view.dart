@@ -155,22 +155,18 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
         child: PrimaryButtonWidget(
             text: 'Confirm',
             onPressed: () {
-              Get.toNamed(Routes.SIGN_IN);
 
               if (formKey.currentState!.saveAndValidate()) {
-               //controller.signUp();
+                //controller.signUp();
               }
               if (controller.passwordTextEditingController.text !=
-                  controller.confirmPasswordTextEditingController
-                      .text) {
-          controller.fetchDataFromApi();     // Get.arguments
-              } else if (formKey.currentState!
-                  .saveAndValidate()) {
-              //  controller.signUp();
+                  controller.confirmPasswordTextEditingController.text) {
+                controller.fetchDataFromApi(); // Get.arguments
+              } else if (formKey.currentState!.saveAndValidate()) {
+                //  controller.signUp();
               }
             }),
       ),
     );
   }
 }
-

@@ -42,33 +42,52 @@ class ResetPasswordController extends GetxController {
       "emailAddress": "nmeda@openteqgroup.com",
       "tempPasswordToken": "754a",
       "password": "12345",
-      "products": ["event"]
+      "products": ["event"],
     };
+    final response = await http.post(url, body: bodyData);
+    debugPrint('response ${response.body}');
 
-    try {
-      final response = await http.post(url, body: jsonEncode(bodyData),
-          headers: {'Content-Type': 'application/json'});
-
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-
-        if (data['products'] is List) {
-          // Check if 'products' is a List in the response
-          items.addAll(data['products'].cast<String>());
-          Get.defaultDialog(title: "Success and API done");
-        } else {
-          // Handle a case where 'products' is not a List
-          Get.defaultDialog(title: "API response format error");
-        }
-      } else {
-        // Handle non-200 status code (e.g., server errors)
-        Get.defaultDialog(title: "API request failed");
-      }
-    } catch (e) {
-      // Handle exceptions that occur during the API call
-      Get.defaultDialog(title: "Exception: $e");
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      items.add(apiCall.fromJson(data));
+      Get.defaultDialog(title: "Success and API done");
+      print(items.toString());
+      // Get.toNamed(Routes.SIGN_IN); // If you have defined 'Routes.SIGN_IN'
+    } else {
+      Get.defaultDialog(title: "Failure");
+      throw Exception('Failed to load data');
     }
   }
 
   void increment() => count.value++;
+}
+
+
+class apiCall {
+  String? emailAddress;
+  String? tempPasswordToken;
+  String? password;
+  List<String>? products;
+
+  apiCall(
+      {this.emailAddress,
+        this.tempPasswordToken,
+        this.password,
+        this.products});
+
+  apiCall.fromJson(Map<String, dynamic> json) {
+    emailAddress = json['emailAddress'];
+    tempPasswordToken = json['tempPasswordToken'];
+    password = json['password'];
+    products = json['products'].cast<String>();
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['emailAddress'] = this.emailAddress;
+    data['tempPasswordToken'] = this.tempPasswordToken;
+    data['password'] = this.password;
+    data['products'] = this.products;
+    return data;
+  }
 }

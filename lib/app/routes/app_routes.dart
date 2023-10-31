@@ -27,6 +27,7 @@ abstract class Routes {
   static const RsvpScreen = _Paths.RsvpScreen;
   static const MyEvents = _Paths.MyEvents;
   static const ChartPage = _Paths.ChartPage;
+  static const TicketSaleDetailsScreen = _Paths.TicketSaleDetailsScreen;
 }
 
 abstract class _Paths {
@@ -55,5 +56,6 @@ abstract class _Paths {
   static const RsvpScreen = '/RsvpScreen';
   static const MyEvents = '/MyEvents';
   static const ChartPage = '/ChartPage';
+  static const TicketSaleDetailsScreen = '/TicketSaleDetailsScreen';
 
 }
