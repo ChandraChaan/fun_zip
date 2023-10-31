@@ -32,27 +32,27 @@ class ResetPasswordController extends GetxController {
     super.onClose();
   }
 
-// Type name value
-  List<dynamic> items = [];
-
   // API call
-  Future<void> fetchDataFromApi() async {
+  Future<void> resetPwApi() async {
     final url = Uri.parse('https://funzippy.com/user/resetPassword');
     Map<String, dynamic> bodyData = {
       "emailAddress": "nmeda@openteqgroup.com",
       "tempPasswordToken": "754a",
-      "password": "12345",
-      "products": ["event"],
+      "password": "12345"
     };
-    final response = await http.post(url, body: bodyData);
-    debugPrint('response ${response.body}');
+
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(bodyData), // Convert the bodyData to a JSON string
+    );
 
     if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      items.add(apiCall.fromJson(data));
       Get.defaultDialog(title: "Success and API done");
-      print(items.toString());
-      // Get.toNamed(Routes.SIGN_IN); // If you have defined 'Routes.SIGN_IN'
+      // Get.toNamed(Routes.SIGN_IN);
+      // If you have defined 'Routes.SIGN_IN'
     } else {
       Get.defaultDialog(title: "Failure");
       throw Exception('Failed to load data');
@@ -62,32 +62,3 @@ class ResetPasswordController extends GetxController {
   void increment() => count.value++;
 }
 
-
-class apiCall {
-  String? emailAddress;
-  String? tempPasswordToken;
-  String? password;
-  List<String>? products;
-
-  apiCall(
-      {this.emailAddress,
-        this.tempPasswordToken,
-        this.password,
-        this.products});
-
-  apiCall.fromJson(Map<String, dynamic> json) {
-    emailAddress = json['emailAddress'];
-    tempPasswordToken = json['tempPasswordToken'];
-    password = json['password'];
-    products = json['products'].cast<String>();
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['emailAddress'] = this.emailAddress;
-    data['tempPasswordToken'] = this.tempPasswordToken;
-    data['password'] = this.password;
-    data['products'] = this.products;
-    return data;
-  }
-}

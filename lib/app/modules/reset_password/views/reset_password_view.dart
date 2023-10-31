@@ -155,14 +155,14 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
         child: PrimaryButtonWidget(
             text: 'Confirm',
             onPressed: () {
-              if (formKey.currentState!.saveAndValidate()) {
-                //controller.signUp();
-              }
               if (controller.passwordTextEditingController.text !=
                   controller.confirmPasswordTextEditingController.text) {
-                controller.fetchDataFromApi(); // Get.arguments
+                // text do modify
+                Get.defaultDialog(
+                    middleText: 'Password and Confirm password not same',
+                    title: 'try again');
               } else if (formKey.currentState!.saveAndValidate()) {
-                //  controller.signUp();
+                controller.resetPwApi();
               }
             }),
       ),
