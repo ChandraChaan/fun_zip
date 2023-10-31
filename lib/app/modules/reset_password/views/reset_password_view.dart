@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/response/response.dart';
 
 import '../../../../sathya/common_logo_widget.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/reset_password_controller.dart';
 
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -154,32 +155,22 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
         child: PrimaryButtonWidget(
             text: 'Confirm',
             onPressed: () {
-              // if (formKey.currentState!.saveAndValidate()) {
-              //   controller.signUp();
-              // }
-              // if (controller.passwordTextEditingController.text !=
-              //     controller.confirmPasswordTextEditingController
-              //         .text) {
-              //   // Get.arguments
-              // } else if (formKey.currentState!
-              //     .saveAndValidate()) {
-              //   controller.signUp();
-              // }
+              Get.toNamed(Routes.SIGN_IN);
+
+              if (formKey.currentState!.saveAndValidate()) {
+               // controller.signUp();
+              }
+              if (controller.passwordTextEditingController.text !=
+                  controller.confirmPasswordTextEditingController
+                      .text) {
+          controller.fetchDataFromApi();     // Get.arguments
+              } else if (formKey.currentState!
+                  .saveAndValidate()) {
+              //  controller.signUp();
+              }
             }),
       ),
     );
   }
 }
-//
-// Future<http.Response> resetPassword() async {
-//   // Replace with your API request logic
-//   final response = await http.post(
-//     Uri.parse(apiEndpoint),
-//     body: {
-//       'password': controller.passwordTextEditingController.text,
-//     },
-//   );
-//
-//   return response;
-// }
-// }
+
