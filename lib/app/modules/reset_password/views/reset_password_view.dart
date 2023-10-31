@@ -158,7 +158,7 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
               Get.toNamed(Routes.SIGN_IN);
 
               if (formKey.currentState!.saveAndValidate()) {
-               // controller.signUp();
+               //controller.signUp();
               }
               if (controller.passwordTextEditingController.text !=
                   controller.confirmPasswordTextEditingController
