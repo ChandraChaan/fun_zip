@@ -13,6 +13,7 @@ class TicketSaleDetailsScreen extends StatefulWidget {
 }
 
 class _TicketSaleDetailsScreenState extends State<TicketSaleDetailsScreen> {
+  // List<String, dynamic> dataList = [{"name"}];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,87 +53,95 @@ class _TicketSaleDetailsScreenState extends State<TicketSaleDetailsScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Category', style: TextStyle(fontSize: 12)),
-                              Text(
-                                ': General',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              CommonContainer(),
-                            ],
-                          ),
-                          SizedBox(height: 7),
-                          Row(
-                            children: [
-                              Text(
-                                'Date',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              133.width,
-                              Text(
-                                ': Mar 19 Sun',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 7),
-                          Row(
-                            children: [
-                              Text(
-                                'Name',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              126.width,
-                              Text(
-                                ': Vasantha',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 7),
-                          Row(
-                            children: [
-                              Text(
-                                'Count',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              126.width,
-                              Text(
-                                ': 1',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 7),
-                          Row(
-                            children: [
-                              Text(
-                                'Total',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              131.width,
-                              Text(
-                                ': 1',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 7),
-                          Row(
-                            children: [
-                              Text(
-                                'Checked in',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              99.width,
-                              Text(
-                                ': 0',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ],
-                          ),
+                          // TODO do add currect list name above used
+                          for (int a = 0; a < 5; a++) ...[
+                            Row(
+                              children: [
+                                Expanded(
+                                    flex: 17,
+                                    child: Text('Category',
+                                        style: TextStyle(fontSize: 12))),
+                                Expanded(
+                                  flex: 15,
+                                  child: Text(
+                                    ': General',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                ),
+                                Expanded(flex:7, child: CommonContainer()),
+                              ],
+                            ),
+                            SizedBox(height: 7),
+                          ],
+                          // Row(
+                          //   children: [
+                          //     Text(
+                          //       'Date',
+                          //       style: TextStyle(fontSize: 12),
+                          //     ),
+                          //     133.width,
+                          //     Text(
+                          //       ': Mar 19 Sun',
+                          //       style: TextStyle(fontSize: 12),
+                          //     ),
+                          //   ],
+                          // ),
+                          // SizedBox(height: 7),
+                          // Row(
+                          //   children: [
+                          //     Text(
+                          //       'Name',
+                          //       style: TextStyle(fontSize: 12),
+                          //     ),
+                          //     126.width,
+                          //     Text(
+                          //       ': Vasantha',
+                          //       style: TextStyle(fontSize: 12),
+                          //     ),
+                          //   ],
+                          // ),
+                          // SizedBox(height: 7),
+                          // Row(
+                          //   children: [
+                          //     Text(
+                          //       'Count',
+                          //       style: TextStyle(fontSize: 12),
+                          //     ),
+                          //     126.width,
+                          //     Text(
+                          //       ': 1',
+                          //       style: TextStyle(fontSize: 12),
+                          //     ),
+                          //   ],
+                          // ),
+                          // SizedBox(height: 7),
+                          // Row(
+                          //   children: [
+                          //     Text(
+                          //       'Total',
+                          //       style: TextStyle(fontSize: 12),
+                          //     ),
+                          //     131.width,
+                          //     Text(
+                          //       ': 1',
+                          //       style: TextStyle(fontSize: 12),
+                          //     ),
+                          //   ],
+                          // ),
+                          // SizedBox(height: 7),
+                          // Row(
+                          //   children: [
+                          //     Text(
+                          //       'Checked in',
+                          //       style: TextStyle(fontSize: 12),
+                          //     ),
+                          //     99.width,
+                          //     Text(
+                          //       ': 0',
+                          //       style: TextStyle(fontSize: 12),
+                          //     ),
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),
@@ -158,7 +167,7 @@ class _TicketSaleDetailsScreenState extends State<TicketSaleDetailsScreen> {
                   height: 35,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Color(0XFFC61236))),
+                      border: Border.all(color: Color(0XFFC61236))),
                   child: Center(
                     child: Text(
                       'Send Reminder',
