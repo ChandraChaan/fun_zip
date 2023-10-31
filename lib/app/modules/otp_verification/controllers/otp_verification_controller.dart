@@ -6,6 +6,7 @@ import '../../../data/repository/user_repository.dart';
 import '../../../routes/app_pages.dart';
 import '../../../widgets/error_snackbar.dart';
 import '../../../widgets/progress.dart';
+import '../../reset_password/controllers/reset_password_controller.dart';
 
 class OtpVerificationController extends GetxController {
   static OtpVerificationController get to => Get.find();
@@ -77,7 +78,9 @@ class OtpVerificationController extends GetxController {
 
       response = await UserRepository()
           .verifyPhoneEmail(email: email, otp: otpTextEditingController.text);
-
+      ResetPasswordController.to.phone = phone;
+      ResetPasswordController.to.email = email;
+      ResetPasswordController.to.otp = otpTextEditingController.text;
       apiResponseModel = ApiResponseModel.fromJson(response);
       otpTextEditingController.clear();
 
