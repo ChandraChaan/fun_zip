@@ -139,47 +139,74 @@ class _TicketSaleDetailsScreenState extends State<TicketSaleDetailsScreen> {
                   ),
                 ),
               Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                padding: const EdgeInsets.only(top: 10,bottom: 10),
                 child: Container(
                   height: 35,
-                  decoration: BoxDecoration(
-                      color: Color(0XFFC61236),
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Center(
-                      child: Text(
-                    'Export',
-                    style: TextStyle(color: Colors.white),
-                  )),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Container(
-                  height: 35,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Color(0XFFC61236))),
-                  child: Center(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {
+                      // Add your onPressed functionality here
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: Color(0XFFC61236), // Background color
+                      primary: Colors.black, // Text color
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        // side: BorderSide(
+                        //   color: Color(0XFFC61236),
+                        // ), // Border color
+                      ),
+                    ),
                     child: Text(
                       'Send Reminder',
-                      style: TextStyle(color: Color(0XFFC61236)),
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
               ),
-              TextButton(
-                onPressed: () {
-                  // Add your onPressed functionality here
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: Color(0XFFF5F4F9), // Background color
-                  primary: Color(0XFFC9C6E1), // Text color
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    side: BorderSide(color: Color(0XFFC9C6E1)), // Border color
+              Container(
+                height: 35,
+                width: double.infinity,
+                child: TextButton(
+                  onPressed: () {
+                    // Add your onPressed functionality here
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Color(0XFFF5F4F9), // Background color
+                    primary: Colors.black, // Text color
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side:
+                          BorderSide(color: Color(0XFFC61236)), // Border color
+                    ),
+                  ),
+                  child: Text(
+                    'Send Reminder',
+                    style: TextStyle(color: Color(0XFFC61236)),
                   ),
                 ),
-                child: Text('Close'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Container(
+                  height: 35,
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {
+                      // Add your onPressed functionality here
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: Color(0XFFF5F4F9), // Background color
+                      primary: Colors.black, // Text color
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        side:
+                            BorderSide(color: Color(0XFFC9C6E1)), // Border color
+                      ),
+                    ),
+                    child: Text('Close'),
+                  ),
+                ),
               )
             ],
           ),

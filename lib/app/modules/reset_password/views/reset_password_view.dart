@@ -155,7 +155,6 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
         child: PrimaryButtonWidget(
             text: 'Confirm',
             onPressed: () {
-
               if (formKey.currentState!.saveAndValidate()) {
                 //controller.signUp();
               }
