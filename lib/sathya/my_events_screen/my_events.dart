@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../scanner.dart';
 
 class MyEvents extends StatefulWidget {
   const MyEvents({super.key});
@@ -175,7 +178,9 @@ class _MyEventsState extends State<MyEvents> {
                                   borderRadius: BorderRadius.circular(25),
                                   border: Border.all(color: Color(0XFFFD3A84))),
                               child: InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Get.to(QRCodeScannerScreen());
+                                },
                                 child: Icon(
                                   Icons.photo_camera,
                                   size: 16,
