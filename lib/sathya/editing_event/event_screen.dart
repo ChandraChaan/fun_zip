@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class EventScreen extends StatefulWidget {
   const EventScreen({super.key});
@@ -15,9 +16,14 @@ class _EventScreenState extends State<EventScreen> {
       appBar: AppBar(
         elevation: 5,
         backgroundColor: Colors.white,
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
         ),
         actions: [
           Padding(

@@ -218,7 +218,9 @@ class _MyEventsState extends State<MyEvents> {
                                     border:
                                         Border.all(color: Color(0XFF5B46F4))),
                                 child: InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Get.toNamed(Routes.EventScreen);
+                                    },
                                     child: Icon(
                                       Icons.visibility_outlined,
                                       size: 15,

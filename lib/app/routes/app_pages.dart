@@ -39,7 +39,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.QrErrorScreen;
+  static const INITIAL = Routes.MyEvents;
 
   static final routes = [
     GetPage(
