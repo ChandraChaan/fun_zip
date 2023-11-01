@@ -53,7 +53,7 @@ class ResetPasswordController extends GetxController {
       },
       body: jsonEncode(bodyData), // Convert the bodyData to a JSON string
     );
-print(response.body);
+//print(response.body);
     if (response.statusCode == 200) {
       // Get.defaultDialog(title: "Success and API done");
       Get.toNamed(Routes.SIGN_IN);

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/response/response.dart';
 
-import '../../../../sathya/common_logo_widget.dart';
-import '../../../routes/app_pages.dart';
 import '../controllers/reset_password_controller.dart';
 
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -16,7 +13,6 @@ import '../../../theme/colors.dart';
 import '../../../theme/text_theme.dart';
 import '../../../widgets/custom_buttons.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:http/http.dart' as http;
 
 class ResetPasswordView extends GetView<ResetPasswordController> {
   ResetPasswordView({Key? key}) : super(key: key);
@@ -162,7 +158,9 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
                     middleText: 'Password and Confirm password not same',
                     title: 'try again');
               } else if (formKey.currentState!.saveAndValidate()) {
-                controller.resetPwApi();
+                // update password
+                // final newPassword = controller.passwordTextEditingController.text;
+                // controller.resetPwApi(newPassword);
               }
             }),
       ),

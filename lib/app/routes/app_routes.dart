@@ -28,6 +28,8 @@ abstract class Routes {
   static const MyEvents = _Paths.MyEvents;
   static const ChartPage = _Paths.ChartPage;
   static const TicketSaleDetailsScreen = _Paths.TicketSaleDetailsScreen;
+  static const QrSuccessfulScreen = _Paths.QrSuccessfulScreen;
+  static const QrErrorScreen = _Paths.QrErrorScreen;
 }
 
 abstract class _Paths {
@@ -57,5 +59,7 @@ abstract class _Paths {
   static const MyEvents = '/MyEvents';
   static const ChartPage = '/ChartPage';
   static const TicketSaleDetailsScreen = '/TicketSaleDetailsScreen';
+  static const QrSuccessfulScreen = '/QrSuccessfulScreen';
+  static const QrErrorScreen = '/QrErrorScreen';
 
 }

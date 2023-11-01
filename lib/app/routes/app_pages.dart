@@ -7,6 +7,8 @@ import '../../sathya/editing_event/event_screen.dart';
 import '../../sathya/event_dashboard/even_dashboard.dart';
 import '../../sathya/event_dashboard/even_dashboard.dart';
 import '../../sathya/my_events_screen/my_events.dart';
+import '../../sathya/qr_error.dart';
+import '../../sathya/qr_successful.dart';
 import '../../sathya/rsvp_screen.dart';
 import '../../sathya/schedule_screen/schedule_screen.dart';
 import '../../sathya/sponsorship/sponsorship_screen.dart';
@@ -37,7 +39,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SIGN_IN;
+  static const INITIAL = Routes.QrErrorScreen;
 
   static final routes = [
     GetPage(
@@ -148,6 +150,16 @@ class AppPages {
     GetPage(
       name: _Paths.TicketSaleDetailsScreen,
       page: () => TicketSaleDetailsScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.QrSuccessfulScreen,
+      page: () => QrSuccessfulScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.QrErrorScreen,
+      page: () => QrErrorScreen(),
       binding: EventDetailsBinding(),
     ),
   ];

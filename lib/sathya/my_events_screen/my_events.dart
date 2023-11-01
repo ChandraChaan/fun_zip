@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
+import 'package:fun_zippy/sathya/event_dashboard/even_dashboard.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../app/routes/app_pages.dart';
 import '../scanner.dart';
 
 class MyEvents extends StatefulWidget {
@@ -19,7 +21,9 @@ class _MyEventsState extends State<MyEvents> {
       appBar: AppBar(
         elevation: 5,
         backgroundColor: Colors.white,
-        leading: Image.asset('assets/svg/bars_2.png'),
+        leading: InkWell(
+            onTap: (){},
+            child: Image.asset('assets/svg/bars_2.png')),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -158,48 +162,89 @@ class _MyEventsState extends State<MyEvents> {
                             )
                           ],
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              'Attendance',
-                              style: TextStyle(fontSize: 10),
-                            ),
-                            10.width,
-                            Text(
-                              ': In Person',
-                              style: TextStyle(
-                                  fontSize: 10, color: Color(0XFFDC143C)),
-                            ),
-                            30.width,
-                            Container(
-                              height: 27,
-                              width: 27,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(color: Color(0XFFFD3A84))),
-                              child: InkWell(
-                                onTap: () {
-                                  Get.to(QRCodeScannerScreen());
-                                },
-                                child: Icon(
-                                  Icons.photo_camera,
-                                  size: 16,
-                                  color: Color(0XFFFD3A84),
+                        Expanded(
+                          flex: 5,
+                          child: Row(
+                            children: [
+                              Text(
+                                'Attendance',
+                                style: TextStyle(fontSize: 10),
+                              ),
+                              10.width,
+                              Text(
+                                ': In Person',
+                                style: TextStyle(
+                                    fontSize: 10, color: Color(0XFFDC143C)),
+                              ),
+                              30.width,
+                              Container(
+                                height: 27,
+                                width: 27,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25),
+                                    border:
+                                        Border.all(color: Color(0XFFFD3A84))),
+                                child: InkWell(
+                                  onTap: () {
+                                    Get.to(QRCodeScannerScreen());
+                                  },
+                                  child: Icon(
+                                    Icons.photo_camera,
+                                    size: 16,
+                                    color: Color(0XFFFD3A84),
+                                  ),
                                 ),
                               ),
-                            ),
-                            7.width,
-                            Container(
-                              height: 27,
-                              width: 27,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(color: Color(0XFF03A9F4))),
-                              child: InkWell(
-                                  onTap: () {},
-                                  child: Image.asset('assets/svg/day.png')),
-                            )
-                          ],
+                              7.width,
+                              Container(
+                                height: 27,
+                                width: 27,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25),
+                                    border:
+                                        Border.all(color: Color(0XFF03A9F4))),
+                                child: InkWell(
+                                    onTap: () {
+                                      Get.toNamed(Routes.EventDashboardScreen);
+                                    },
+                                    child: Image.asset('assets/svg/day.png')),
+                              ),
+                              7.width,
+                              Container(
+                                height: 27,
+                                width: 27,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25),
+                                    border:
+                                        Border.all(color: Color(0XFF5B46F4))),
+                                child: InkWell(
+                                    onTap: () {},
+                                    child: Icon(
+                                      Icons.visibility_outlined,
+                                      size: 15,
+                                      color: Color(0XFF5B46F4),
+                                    )),
+                              ),
+                              7.width,
+                              Container(
+                                height: 27,
+                                width: 27,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25),
+                                    border:
+                                    Border.all(color: Color(0XFFFD3A84))),
+                                child: InkWell(
+                                    onTap: () {
+                                      Get.toNamed(Routes.EditingEvent);
+                                    },
+                                    child: Icon(
+                                      Icons.edit,
+                                      size: 15,
+                                      color: Color(0XFFFD3A84),
+                                    )),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

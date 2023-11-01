@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
+import '../scanner.dart';
 
 class EventDashboardScreen extends StatefulWidget {
   const EventDashboardScreen({super.key});
@@ -47,10 +51,15 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                   child: CircleAvatar(
                     radius: 20,
                     backgroundColor: Colors.white,
-                    child: Icon(
-                      Icons.photo_camera,
-                      size: 14,
-                      color: Colors.deepPurple,
+                    child: InkWell(
+                      onTap: (){
+                        Get.to(QRCodeScannerScreen());
+                      },
+                      child: Icon(
+                        Icons.photo_camera,
+                        size: 14,
+                        color: Colors.deepPurple,
+                      ),
                     ),
                   ),
                 ),
@@ -280,41 +289,38 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                   fontSize: 10, color: Color(0XFF86839B)),
                             ),
                             SizedBox(
-                              height: 25,
-                              width: 25,
+                              height: 18,
+                              width: 18,
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(color: Color(0XFF86839B)),
                                   color: Color(0XFFF9F9F9),
                                 ),
-                                child: Icon(Icons.home),
+                                child: Icon(Icons.home,size: 10,color: Color(0XFF86839B),),
                               ),
                             )
                           ],
                         ),
                         //Initialize the chart widget
                         SfCartesianChart(
-                          primaryXAxis: CategoryAxis(),
-                          // Chart title
-                          //title: ChartTitle(text: 'Event Page Traffic'),
-                          // Enable legend
-                          legend: Legend(isVisible: true),
-                          // Enable tooltip
-                          tooltipBehavior: TooltipBehavior(enable: true),
-                          series: <ChartSeries<_SalesData, String>>[
-                            LineSeries<_SalesData, String>(
-                                dataSource: data,
-                                xValueMapper: (_SalesData sales, _) =>
-                                    sales.year,
-                                yValueMapper: (_SalesData sales, _) =>
-                                    sales.sales,
-                                name: 'Sales',
-                                // Enable data label
-                                dataLabelSettings:
-                                    DataLabelSettings(isVisible: true))
-                          ],
-                        ),
+                            primaryXAxis: CategoryAxis(),
+                            // Chart title
+                            title: ChartTitle(text: 'Half yearly sales analysis'),
+                            // Enable legend
+                            legend: Legend(isVisible: true),
+                            // Enable tooltip
+                            tooltipBehavior: TooltipBehavior(enable: true),
+                            series: <ChartSeries<_SalesData, String>>[
+                              LineSeries<_SalesData, String>(
+                                  dataSource: data,
+                                  xValueMapper: (_SalesData sales, _) => sales.year,
+                                  yValueMapper: (_SalesData sales, _) => sales.sales,
+                                  name: 'Sales',
+                                  // Enable data label
+                                  dataLabelSettings: DataLabelSettings(isVisible: true))
+                            ]),
+
                         //
                       ],
                     ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fun_zippy/app/theme/colors.dart';
+import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
 
 import '../../app/modules/home/controllers/home_controller.dart';
@@ -14,13 +16,18 @@ class EditingEvent extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white70,
+      backgroundColor: backgroundColor,
       appBar: AppBar(
         elevation: 5,
         backgroundColor: Colors.white,
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
         ),
         actions: [
           Padding(
@@ -56,7 +63,7 @@ class EditingEvent extends GetView<HomeController> {
           child: Column(
             children: [
               Container(
-                height: 1080,
+                height: 970,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10)),
@@ -72,13 +79,13 @@ class EditingEvent extends GetView<HomeController> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 12),
+                      SizedBox(height: 10),
                       Row(
                         children: [
                           Text(
                             'Event Name',
                             style: TextStyle(
-                                fontSize: 11, color: Colors.deepPurple),
+                                fontSize: 11, color: Color(0XFF5E5A80)),
                           ),
                           Text(
                             '*',
@@ -88,17 +95,19 @@ class EditingEvent extends GetView<HomeController> {
                       ),
                       SizedBox(height: 8),
                       Container(
-                        height: 40,
+                        height: 35,
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'The Great Gastby Party: Hyderabad',
-                            hintStyle: TextStyle(fontSize: 12),
-                            filled: true,
-                            fillColor: Colors.black12,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
+                              hintText: 'The Great Gastby Party: Hyderabad',
+                              hintStyle: TextStyle(fontSize: 10),
+                              filled: true,
+                              fillColor: Color(0XFFF5F4F9),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20))),
                         ),
                       ),
                       SizedBox(height: 8),
@@ -107,7 +116,7 @@ class EditingEvent extends GetView<HomeController> {
                           Text(
                             'Start Date',
                             style: TextStyle(
-                                fontSize: 11, color: Colors.deepPurple),
+                                fontSize: 11, color: Color(0XFF5E5A80)),
                           ),
                           Text(
                             '*',
@@ -117,23 +126,36 @@ class EditingEvent extends GetView<HomeController> {
                       ),
                       SizedBox(height: 8),
                       Container(
-                        height: 40,
+                        height: 35,
                         child: TextField(
                           decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.calendar_today_outlined,
-                              size: 18,
-                              color: Colors.deepPurpleAccent,
-                            ),
-                            hintText: 'December 9, 2023',
-                            hintStyle: TextStyle(
-                                fontSize: 12, color: Colors.deepPurpleAccent),
-                            filled: true,
-                            fillColor: Colors.black12,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.only(left: 5),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.calendar_today,
+                                      size: 16,
+                                      color: Color(0XFF5B46F4),
+                                    ),
+                                    5.width,
+                                    Text('06:00 PM',
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Color(0XFF5E5A80),
+                                        ))
+                                  ],
+                                ),
+                              ),
+
+                              filled: true,
+                              fillColor: Color(0XFFF5F4F9),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20))),
                         ),
                       ),
                       SizedBox(height: 8),
@@ -142,7 +164,7 @@ class EditingEvent extends GetView<HomeController> {
                           Text(
                             'Start Time',
                             style: TextStyle(
-                                fontSize: 11, color: Colors.deepPurple),
+                                fontSize: 10, color: Color(0XFF5E5A80)),
                           ),
                           Text(
                             '*',
@@ -152,94 +174,112 @@ class EditingEvent extends GetView<HomeController> {
                       ),
                       SizedBox(height: 8),
                       Container(
-                        height: 40,
+                        height: 35,
                         child: TextField(
                           decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.schedule,
-                              size: 18,
-                              color: Colors.deepPurpleAccent,
-                            ),
-                            hintText: '06:00 PM',
-                            hintStyle: TextStyle(
-                                fontSize: 12, color: Colors.deepPurpleAccent),
-                            filled: true,
-                            fillColor: Colors.black12,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.only(left: 5),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.schedule,
+                                      size: 16,
+                                      color: Color(0XFF5B46F4),
+                                    ),
+                                    5.width,
+                                    Text('06:00 PM',
+                                        style: TextStyle(
+                                          fontSize: 10,
+                                          color: Color(0XFF5E5A80),
+                                        ))
+                                  ],
+                                ),
+                              ),
+
+                              filled: true,
+                              fillColor: Color(0XFFF5F4F9),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20))),
                         ),
                       ),
                       SizedBox(height: 8),
+                      SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            'End Date',
+                            style: TextStyle(
+                                fontSize: 10, color: Color(0XFF5E5A80)),
+                          ),
+                          Text(
+                            '*',
+                            style: TextStyle(color: Colors.red, fontSize: 12),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 8),
+                      Container(
+                        height: 35,
+                        child: TextField(
+                          decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.calendar_today_outlined,
+                                size: 15,
+                                color: Colors.deepPurpleAccent,
+                              ),
+                              hintText: 'December 12,2023',
+                              hintStyle: TextStyle(
+                                  fontSize: 10, color: Color(0XFF5E5A80)),
+                              filled: true,
+                              fillColor: Color(0XFFF5F4F9),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20))),
+                        ),
+                      ),
                       SizedBox(height: 8),
                       Row(
                         children: [
                           Text(
                             'End Date',
                             style: TextStyle(
-                                fontSize: 11, color: Colors.deepPurple),
+                                fontSize: 10, color: Color(0XFF5E5A80)),
                           ),
                           Text(
                             '*',
-                            style: TextStyle(color: Colors.red, fontSize: 12),
+                            style: TextStyle(color: Colors.red, fontSize: 10),
                           )
                         ],
                       ),
                       SizedBox(height: 8),
                       Container(
-                        height: 40,
+                        height: 35,
                         child: TextField(
                           decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.calendar_today_outlined,
-                              size: 18,
-                              color: Colors.deepPurpleAccent,
-                            ),
-                            hintText: 'December 12,2023',
-                            hintStyle: TextStyle(
-                                fontSize: 12, color: Colors.deepPurpleAccent),
-                            filled: true,
-                            fillColor: Colors.black12,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Text(
-                            'End Date',
-                            style: TextStyle(
-                                fontSize: 11, color: Colors.deepPurple),
-                          ),
-                          Text(
-                            '*',
-                            style: TextStyle(color: Colors.red, fontSize: 12),
-                          )
-                        ],
-                      ),
-                      SizedBox(height: 8),
-                      Container(
-                        height: 40,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.schedule,
-                              size: 18,
-                              color: Colors.deepPurpleAccent,
-                            ),
-                            hintText: '11:00 PM',
-                            hintStyle: TextStyle(
-                                fontSize: 12, color: Colors.deepPurpleAccent),
-                            filled: true,
-                            fillColor: Colors.black12,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
+                              prefixIcon: Icon(
+                                Icons.schedule,
+                                size: 16,
+                                color: Colors.deepPurpleAccent,
+                              ),
+                              hintText:'11:00 PM',
+                              hintStyle: TextStyle(
+                                  fontSize: 10, color: Color(0XFF5E5A80)),
+                              filled: true,
+                              fillColor: Color(0XFFF5F4F9),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20))),
                         ),
                       ),
                       SizedBox(height: 8),
@@ -248,7 +288,7 @@ class EditingEvent extends GetView<HomeController> {
                           Text(
                             'Event Locality',
                             style: TextStyle(
-                                fontSize: 12, color: Colors.deepPurpleAccent),
+                                fontSize: 10, color: Color(0XFF5E5A80)),
                           ),
                           Text('*',
                               style:
@@ -260,42 +300,50 @@ class EditingEvent extends GetView<HomeController> {
                         children: [
                           Expanded(
                             child: Container(
-                              height: 40,
+                              height: 35,
                               decoration: BoxDecoration(
-                                color: Colors.grey,
-                                border:
-                                    Border.all(color: Colors.deepPurpleAccent),
+                                color: Color(0XFFE3DFFF),
+                                border: Border.all(color: Color(0XFF5B46F4)),
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Center(
-                                child: Text('In Person'),
+                                child: Text(
+                                  'In Person',
+                                  style: TextStyle(fontSize: 10),
+                                ),
                               ),
                             ),
                           ),
                           SizedBox(width: 5),
                           Expanded(
                             child: Container(
-                              height: 40,
+                              height: 35,
                               decoration: BoxDecoration(
-                                color: Colors.grey,
-                                border:
-                                    Border.all(color: Colors.deepPurpleAccent),
+                                color: Color(0XFFE3DFFF),
+                                border: Border.all(color: Color(0XFF5B46F4)),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: Center(child: Text('Online')),
+                              child: Center(
+                                  child: Text(
+                                'Online',
+                                style: TextStyle(fontSize: 10),
+                              )),
                             ),
                           ),
                           SizedBox(width: 5),
                           Expanded(
                             child: Container(
-                              height: 40,
+                              height: 35,
                               decoration: BoxDecoration(
-                                color: Colors.grey,
-                                border:
-                                    Border.all(color: Colors.deepPurpleAccent),
+                                color: Color(0XFFE3DFFF),
+                                border: Border.all(color: Color(0XFF5B46F4)),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: Center(child: Text('Mixed')),
+                              child: Center(
+                                  child: Text(
+                                'Mixed',
+                                style: TextStyle(fontSize: 10),
+                              )),
                             ),
                           ),
                         ],
@@ -306,27 +354,29 @@ class EditingEvent extends GetView<HomeController> {
                           Text(
                             'Event location',
                             style: TextStyle(
-                                fontSize: 12, color: Colors.deepPurpleAccent),
+                                fontSize: 10, color: Color(0XFF5E5A80)),
                           ),
                           Text(
                             '*',
-                            style: TextStyle(color: Colors.red, fontSize: 12),
+                            style: TextStyle(color: Colors.red, fontSize: 10),
                           ),
                         ],
                       ),
                       SizedBox(height: 8),
                       Container(
-                        height: 40,
+                        height: 35,
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'Taj Banjara,Hyderabad',
-                            hintStyle: TextStyle(fontSize: 12),
-                            filled: true,
-                            fillColor: Colors.black12,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
+                              hintText: 'Taj Banjara,Hyderabad',
+                              hintStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              filled: true,
+                              fillColor: Color(0XFFF5F4F9),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20))),
                         ),
                       ),
                       SizedBox(height: 8),
@@ -335,27 +385,30 @@ class EditingEvent extends GetView<HomeController> {
                           Text(
                             'Address',
                             style: TextStyle(
-                                fontSize: 12, color: Colors.deepPurpleAccent),
+                                fontSize: 10, color: Color(0XFF5E5A80)),
                           ),
                           Text(
                             '*',
-                            style: TextStyle(color: Colors.red, fontSize: 12),
+                            style: TextStyle(color: Colors.red, fontSize: 10),
                           ),
                         ],
                       ),
                       SizedBox(height: 8),
                       Container(
-                        height: 40,
+                        height: 35,
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'Rd Number1',
-                            hintStyle: TextStyle(fontSize: 12),
-                            filled: true,
-                            fillColor: Colors.black12,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
+                              hintText: 'Rd Number1',
+                              helperStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              hintStyle: TextStyle(fontSize: 10),
+                              filled: true,
+                              fillColor: Color(0XFFF5F4F9),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20))),
                         ),
                       ),
                       SizedBox(height: 8),
@@ -364,27 +417,29 @@ class EditingEvent extends GetView<HomeController> {
                           Text(
                             'City',
                             style: TextStyle(
-                                fontSize: 12, color: Colors.deepPurpleAccent),
+                                fontSize: 10, color: Color(0XFF5E5A80)),
                           ),
                           Text(
                             '*',
-                            style: TextStyle(color: Colors.red, fontSize: 12),
+                            style: TextStyle(color: Colors.red, fontSize: 10),
                           ),
                         ],
                       ),
                       SizedBox(height: 8),
                       Container(
-                        height: 40,
+                        height: 35,
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'Hyderabad',
-                            hintStyle: TextStyle(fontSize: 12),
-                            filled: true,
-                            fillColor: Colors.black12,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
+                              hintText: 'Hyderabad',
+                              hintStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              filled: true,
+                              fillColor: Color(0XFFF5F4F9),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20))),
                         ),
                       ),
                       SizedBox(height: 8),
@@ -393,27 +448,29 @@ class EditingEvent extends GetView<HomeController> {
                           Text(
                             'State',
                             style: TextStyle(
-                                fontSize: 12, color: Colors.deepPurpleAccent),
+                                fontSize: 10, color: Color(0XFF5E5A80)),
                           ),
                           Text(
                             '*',
-                            style: TextStyle(color: Colors.red, fontSize: 12),
+                            style: TextStyle(color: Colors.red, fontSize: 10),
                           ),
                         ],
                       ),
                       SizedBox(height: 8),
                       Container(
-                        height: 40,
+                        height: 35,
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'TS',
-                            hintStyle: TextStyle(fontSize: 12),
-                            filled: true,
-                            fillColor: Colors.black12,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
+                              hintText: 'TS',
+                              hintStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              filled: true,
+                              fillColor: Color(0XFFF5F4F9),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20))),
                         ),
                       ),
                       SizedBox(height: 8),
@@ -422,13 +479,13 @@ class EditingEvent extends GetView<HomeController> {
                           Text(
                             'Country',
                             style: TextStyle(
-                                fontSize: 12, color: Colors.deepPurpleAccent),
+                                fontSize: 10, color: Color(0XFF5E5A80)),
                           ),
                           SizedBox(width: 153),
                           Text(
                             'Zip/Postal Code',
                             style: TextStyle(
-                                fontSize: 12, color: Colors.deepPurpleAccent),
+                                fontSize: 10, color: Color(0XFF5E5A80)),
                           ),
                         ],
                       ),
@@ -437,27 +494,35 @@ class EditingEvent extends GetView<HomeController> {
                         children: [
                           Expanded(
                             child: Container(
-                              height: 40,
+                              height: 35,
                               decoration: BoxDecoration(
-                                color: Colors.grey,
+                                color: Color(0XFFF5F4F9),
                                 border:
                                     Border.all(color: Colors.deepPurpleAccent),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: Center(child: Text('INDIA')),
+                              child: Center(
+                                  child: Text(
+                                'INDIA',
+                                style: TextStyle(fontSize: 10),
+                              )),
                             ),
                           ),
                           SizedBox(width: 5),
                           Expanded(
                             child: Container(
-                              height: 40,
+                              height: 35,
                               decoration: BoxDecoration(
-                                color: Colors.grey,
+                                color: Color(0XFFF5F4F9),
                                 border:
                                     Border.all(color: Colors.deepPurpleAccent),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: Center(child: Text('500034')),
+                              child: Center(
+                                  child: Text(
+                                '500034',
+                                style: TextStyle(fontSize: 10),
+                              )),
                             ),
                           ),
                         ],
@@ -468,35 +533,37 @@ class EditingEvent extends GetView<HomeController> {
                           Text(
                             'Event Timezone',
                             style: TextStyle(
-                                fontSize: 12, color: Colors.deepPurpleAccent),
+                                fontSize: 10, color: Color(0XFF5E5A80)),
                           ),
                           Text(
                             '*',
-                            style: TextStyle(color: Colors.red, fontSize: 12),
+                            style: TextStyle(color: Colors.red, fontSize: 10),
                           ),
                         ],
                       ),
                       SizedBox(height: 8),
                       Container(
-                        height: 40,
+                        height: 35,
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'Choose',
-                            hintStyle: TextStyle(fontSize: 12),
-                            filled: true,
-                            fillColor: Colors.black12,
-                            suffixIcon: Icon(Icons.expand_more),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
+                              hintText: 'Choose',
+                              hintStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              filled: true,
+                              fillColor: Color(0XFFF5F4F9),
+                              suffixIcon: Icon(Icons.expand_more),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20))),
                         ),
                       ),
                       SizedBox(height: 8),
                       Text(
                         'Livestream Provide',
                         style: TextStyle(
-                            fontSize: 12, color: Colors.deepPurpleAccent),
+                            fontSize: 10, color: Color(0XFF5E5A80)),
                       ),
                       SizedBox(height: 8),
                       Row(
@@ -508,7 +575,7 @@ class EditingEvent extends GetView<HomeController> {
                           SizedBox(width: 4),
                           Text(
                             'FunZippy StreamingLivestream features by Funzippy!',
-                            style: TextStyle(fontSize: 14),
+                            style: TextStyle(fontSize: 12),
                           ),
                         ],
                       ),
@@ -525,7 +592,7 @@ class EditingEvent extends GetView<HomeController> {
                           SizedBox(width: 4),
                           Text(
                             'Custom linkYou own livestream link\n(Zoom, Skype, Twitch, etc.)',
-                            style: TextStyle(fontSize: 14),
+                            style: TextStyle(fontSize: 12),
                           ),
                         ],
                       ),
@@ -535,23 +602,25 @@ class EditingEvent extends GetView<HomeController> {
                           Text(
                             'Event Sub Category',
                             style: TextStyle(
-                                fontSize: 12, color: Colors.deepPurpleAccent),
+                                fontSize: 10, color: Color(0XFF5E5A80)),
                           ),
                         ],
                       ),
                       SizedBox(height: 8),
                       Container(
-                        height: 40,
+                        height: 35,
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'Your Livestream link',
-                            hintStyle: TextStyle(fontSize: 12),
-                            filled: true,
-                            fillColor: Colors.black12,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
+                              hintText: 'Your Livestream link',
+                              hintStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              filled: true,
+                              fillColor: Color(0XFFF5F4F9),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20))),
                         ),
                       ),
                     ],
@@ -561,8 +630,9 @@ class EditingEvent extends GetView<HomeController> {
               SizedBox(
                 height: 8,
               ),
+              // Category details
               Container(
-                height: 700,
+                height: 570,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -586,24 +656,26 @@ class EditingEvent extends GetView<HomeController> {
                           Text(
                             'Event Category',
                             style: TextStyle(
-                                fontSize: 12, color: Colors.deepPurpleAccent),
+                                fontSize: 10, color: Color(0XFF5E5A80)),
                           ),
                         ],
                       ),
                       SizedBox(height: 8),
                       Container(
-                        height: 40,
+                        height: 35,
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'Choose',
-                            hintStyle: TextStyle(fontSize: 12),
-                            filled: true,
-                            fillColor: Colors.black12,
-                            suffixIcon: Icon(Icons.expand_more),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
+                              hintText: 'Choose',
+                              hintStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              filled: true,
+                              fillColor: Color(0XFFF5F4F9),
+                              suffixIcon: Icon(Icons.expand_more),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20))),
                         ),
                       ),
                       SizedBox(height: 8),
@@ -612,55 +684,71 @@ class EditingEvent extends GetView<HomeController> {
                           Text(
                             'Event Sub Category',
                             style: TextStyle(
-                                fontSize: 12, color: Colors.deepPurpleAccent),
+                                fontSize: 10, color: Color(0XFF5E5A80)),
                           ),
                         ],
                       ),
                       SizedBox(height: 8),
                       Container(
-                        height: 40,
+                        height: 35,
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'Choose',
-                            hintStyle: TextStyle(fontSize: 12),
-                            filled: true,
-                            fillColor: Colors.black12,
-                            suffixIcon: Icon(Icons.expand_more),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
+                              hintText: 'Choose',
+                              hintStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              filled: true,
+                              fillColor: Color(0XFFF5F4F9),
+                              suffixIcon: Icon(Icons.expand_more),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20))),
                         ),
                       ),
                       SizedBox(height: 8),
                       Text(
                         'Thumbnail Images',
                         style: TextStyle(
-                            fontSize: 12, color: Colors.deepPurpleAccent),
+                            fontSize: 10, color: Color(0XFF5E5A80)),
                       ),
                       SizedBox(height: 20),
-                      Container(
-                        height: 107,
-                        width: 115,
-                        decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(20),
-                            image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/svg/rectangle_111.png'))),
+                      Stack(
+                        children: [
+                          Image.asset('assets/svg/rectangle_111.png'),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: Icon(
+                              Icons.cancel_outlined,
+                              size: 25,
+                              color: Color(0XFFC61236),
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      // Container(
+                      //   height: 107,
+                      //   width: 115,
+                      //   decoration: BoxDecoration(
+                      //       color: Colors.red,
+                      //       borderRadius: BorderRadius.circular(20),
+                      //       image: DecorationImage(
+                      //           image: AssetImage(
+                      //               'assets/svg/rectangle_111.png'))),
+                      // ),
+                      // SizedBox(height: 20),
                       Text(
-                        'Thumbnail Images',
-                        style: TextStyle(
-                            fontSize: 12, color: Colors.deepPurpleAccent),
+                        'Event description',
+                        style: TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
                       ),
-                      SizedBox(height: 20),
+                      3.height,
                       Container(
-                          height: 150,
-                          width: 340,
                           decoration: BoxDecoration(
-                            color: Colors.grey,
+                            color: Color(0XFFF5F4F9),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Padding(
@@ -668,7 +756,7 @@ class EditingEvent extends GetView<HomeController> {
                             child: Text(
                               'RSVP means Please reply ( we are asking invitees/guests to reply if they are coming for event or attending the event , if so how many- so that you can plan your logistics around the count.) In Some cases like sri mantham or baby shower, please add gift registry to that guests can buy the items that are ',
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 13,
                               ),
                             ),
                           )),
@@ -676,21 +764,23 @@ class EditingEvent extends GetView<HomeController> {
                       Text(
                         'Event Tags',
                         style: TextStyle(
-                            fontSize: 12, color: Colors.deepPurpleAccent),
+                            fontSize: 10, color: Color(0XFF5E5A80)),
                       ),
                       SizedBox(height: 8),
                       Container(
-                        height: 40,
+                        height: 35,
                         child: TextField(
                           decoration: InputDecoration(
-                            hintText: 'Event Taggs',
-                            hintStyle: TextStyle(fontSize: 12),
-                            filled: true,
-                            fillColor: Colors.black12,
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
+                              hintText: 'Event Taggs',
+                              hintStyle: TextStyle(fontSize: 10),
+                              filled: true,
+                              fillColor: Color(0XFFF5F4F9),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20))),
                         ),
                       ),
                       SizedBox(height: 15),
@@ -740,67 +830,93 @@ class EditingEvent extends GetView<HomeController> {
                   ),
                 ),
               ),
+
               SizedBox(height: 18),
               Container(
-                height: 46,
+                height: 35,
                 width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.red),
-                ),
-                child: Center(
+                child: TextButton(
+                  onPressed: () {
+                    // Add your onPressed functionality here
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Color(0XFFF5F4F9), // Background color
+                    primary: Colors.black, // Text color
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side:
+                          BorderSide(color: Color(0XFFC61236)), // Border color
+                    ),
+                  ),
                   child: Text(
                     'Save Event',
-                    style: TextStyle(fontSize: 16, color: Colors.red,fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 13, color: Color(0XFFC61236)),
                   ),
                 ),
               ),
               SizedBox(height: 18),
               Container(
-                height: 46,
+                height: 35,
                 width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.red),
-                ),
-                child: Center(
+                child: TextButton(
+                  onPressed: () {
+                    // Add your onPressed functionality here
+                  },
+                  style: TextButton.styleFrom(
+                    primary: Colors.black, // Text color
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side:
+                          BorderSide(color: Color(0XFFC61236)), // Border color
+                    ),
+                  ),
                   child: Text(
-                    'preview Event',
-                    style: TextStyle(fontSize: 16, color: Colors.red,fontWeight: FontWeight.bold),
+                    'Preview Event',
+                    style: TextStyle(fontSize: 13, color: Color(0XFFC61236)),
                   ),
                 ),
               ),
               SizedBox(height: 18),
               Container(
-                height: 46,
+                height: 35,
                 width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.pink,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.red),
-                ),
-                child: Center(
+                child: TextButton(
+                  onPressed: () {
+                    // Add your onPressed functionality here
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Color(0XFFC61236), // Background color
+                    primary: Colors.black, // Text color
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8), // Border color
+                    ),
+                  ),
                   child: Text(
                     'Publish Event',
-                    style: TextStyle(fontSize: 16, color: Colors.white,fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 13, color: Colors.white),
                   ),
                 ),
               ),
               SizedBox(height: 18),
               Container(
-                height: 46,
+                height: 35,
                 width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(color: Colors.red),
-                ),
-                child: Center(
+                child: TextButton(
+                  onPressed: () {
+                    // Add your onPressed functionality here
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Color(0XFFF5F4F9), // Background color
+                    primary: Colors.black, // Text color
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side:
+                          BorderSide(color: Color(0XFFC9C6E1)), // Border color
+                    ),
+                  ),
                   child: Text(
                     'Cancel Event',
-                    style: TextStyle(fontSize: 16, color: Colors.red,fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 13),
                   ),
                 ),
               ),

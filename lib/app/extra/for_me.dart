@@ -1,41 +1,65 @@
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:get/get.dart';
-
-class YourController extends GetxController {
-  List<String> items = [];
-
-  Future<void> fetchDataFromApi() async {
-    final url = Uri.parse('https://funzippy.com/user/resetPassword');
-    Map<String, dynamic> bodyData = {
-      "emailAddress": "nmeda@openteqgroup.com",
-      "tempPasswordToken": "754a",
-      "password": "12345",
-      "products": ["event"]
-    };
-
-    try {
-      final response = await http.post(url, body: jsonEncode(bodyData),
-          headers: {'Content-Type': 'application/json'});
-
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-
-        if (data['products'] is List) {
-          // Check if 'products' is a List in the response
-          items.addAll(data['products'].cast<String>());
-          Get.defaultDialog(title: "Success and API done");
-        } else {
-          // Handle a case where 'products' is not a List
-          Get.defaultDialog(title: "API response format error");
-        }
-      } else {
-        // Handle non-200 status code (e.g., server errors)
-        Get.defaultDialog(title: "API request failed");
-      }
-    } catch (e) {
-      // Handle exceptions that occur during the API call
-      Get.defaultDialog(title: "Exception: $e");
-    }
-  }
-}
+// import 'package:flutter/material.dart';
+// import 'package:syncfusion_flutter_charts/charts.dart';
+// import 'package:syncfusion_flutter_charts/sparkcharts.dart';
+//
+// void main() {
+//   return runApp(_ChartApp());
+// }
+//
+// class _ChartApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       theme: ThemeData(primarySwatch: Colors.blue),
+//       home: _MyHomePage(),
+//     );
+//   }
+// }
+//
+// class _MyHomePage extends StatefulWidget {
+//   // ignore: prefer_const_constructors_in_immutables
+//   _MyHomePage({Key? key}) : super(key: key);
+//
+//   @override
+//   _MyHomePageState createState() => _MyHomePageState();
+// }
+//
+// class _MyHomePageState extends State<_MyHomePage> {
+//   List<_SalesData> data = [
+//     _SalesData('Jan', 35),
+//     _SalesData('Feb', 28),
+//     _SalesData('Mar', 34),
+//     _SalesData('Apr', 32),
+//     _SalesData('May', 40)
+//   ];
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         appBar: AppBar(
+//           title: const Text('Syncfusion Flutter chart'),
+//         ),
+//         body: Column(children: [
+//           //Initialize the chart widget
+//           Expanded(
+//             child: Padding(
+//               padding: const EdgeInsets.all(8.0),
+//               //Initialize the spark charts widget
+//               child: SfSparkLineChart.custom(
+//                 //Enable the trackball
+//                 trackball: SparkChartTrackball(
+//                     activationMode: SparkChartActivationMode.tap),
+//                 //Enable marker
+//                 marker: SparkChartMarker(
+//                     displayMode: SparkChartMarkerDisplayMode.all),
+//                 //Enable data label
+//                 labelDisplayMode: SparkChartLabelDisplayMode.all,
+//                 xValueMapper: (int index) => data[index].year,
+//                 yValueMapper: (int index) => data[index].sales,
+//                 dataCount: 5,
+//               ),
+//             ),
+//           )
+//         ]));
+//   }
+// }
+//
