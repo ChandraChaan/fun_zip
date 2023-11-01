@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
+import 'package:get/get.dart';
 
+import '../../app/widgets/custom_buttons.dart';
 import '../common_container.dart';
 
 class TicketSaleDetailsScreen extends StatelessWidget {
   static const List listData = [
     {"name": "Category", "sub": "General", "button": true},
     {"name": "Date", "sub": "Mar 19 Sun", "button": false},
-    {"name": "Date", "sub": "Mar 19 Sun", "button": false},
-    {"name": "Date", "sub": "Mar 19 Sun", "button": false},
-    {"name": "Date", "sub": "Mar 19 Sun", "button": true},
-    {"name": "Date", "sub": "Mar 19 Sun", "button": false},
+    {"name": "Name", "sub": "Vasantha", "button": false},
+    {"name": "Count", "sub": "1", "button": false},
+    {"name": "Total", "sub": "1", "button": false},
+    {"name": "Checked In", "sub": "0", "button": false},
   ];
 
   @override
@@ -21,10 +23,15 @@ class TicketSaleDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
-          size: 20,
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+            size: 20,
+          ),
         ),
         title: Center(
           child: Text(
@@ -58,7 +65,7 @@ class TicketSaleDetailsScreen extends StatelessWidget {
                             Row(
                               children: [
                                 Expanded(
-                                    flex: 17,
+                                    flex: 8,
                                     child: Text('${listData[a]['name']}',
                                         style: TextStyle(fontSize: 12))),
                                 Expanded(
@@ -69,132 +76,84 @@ class TicketSaleDetailsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Expanded(
-                                    flex: 7,
+                                    flex: 4,
                                     child: listData[a]['button'].toString() ==
                                             'true'
-                                        ? CommonContainer()
+                                        ? InkWell(
+                                        onTap: (){},
+                                        child: CommonContainer())
                                         : Container()),
                               ],
                             ),
                             SizedBox(height: 7),
                           ],
-                          // Row(
-                          //   children: [
-                          //     Text(
-                          //       'Date',
-                          //       style: TextStyle(fontSize: 12),
-                          //     ),
-                          //     133.width,
-                          //     Text(
-                          //       ': ',
-                          //       style: TextStyle(fontSize: 12),
-                          //     ),
-                          //   ],
-                          // ),
-                          // SizedBox(height: 7),
-                          // Row(
-                          //   children: [
-                          //     Text(
-                          //       'Name',
-                          //       style: TextStyle(fontSize: 12),
-                          //     ),
-                          //     126.width,
-                          //     Text(
-                          //       ': Vasantha',
-                          //       style: TextStyle(fontSize: 12),
-                          //     ),
-                          //   ],
-                          // ),
-                          // SizedBox(height: 7),
-                          // Row(
-                          //   children: [
-                          //     Text(
-                          //       'Count',
-                          //       style: TextStyle(fontSize: 12),
-                          //     ),
-                          //     126.width,
-                          //     Text(
-                          //       ': 1',
-                          //       style: TextStyle(fontSize: 12),
-                          //     ),
-                          //   ],
-                          // ),
-                          // SizedBox(height: 7),
-                          // Row(
-                          //   children: [
-                          //     Text(
-                          //       'Total',
-                          //       style: TextStyle(fontSize: 12),
-                          //     ),
-                          //     131.width,
-                          //     Text(
-                          //       ': 1',
-                          //       style: TextStyle(fontSize: 12),
-                          //     ),
-                          //   ],
-                          // ),
-                          // SizedBox(height: 7),
-                          // Row(
-                          //   children: [
-                          //     Text(
-                          //       'Checked in',
-                          //       style: TextStyle(fontSize: 12),
-                          //     ),
-                          //     99.width,
-                          //     Text(
-                          //       ': 0',
-                          //       style: TextStyle(fontSize: 12),
-                          //     ),
-                          //   ],
-                          // ),
                         ],
                       ),
                     ),
                   ),
                 ),
               Padding(
-                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                padding: const EdgeInsets.only(bottom: 10, top: 10),
                 child: Container(
                   height: 35,
+                  width: double.infinity,
                   decoration: BoxDecoration(
                       color: Color(0XFFC61236),
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Center(
-                      child: Text(
-                    'Export',
-                    style: TextStyle(color: Colors.white),
-                  )),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child:
+                        Text('Export', style: TextStyle(color: Colors.white)),
+                  ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Container(
                   height: 35,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Color(0XFFC61236))),
-                  child: Center(
-                    child: Text(
-                      'Send Reminder',
-                      style: TextStyle(color: Color(0XFFC61236)),
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {
+                      // Add your onPressed functionality here
+                    },
+                    style: TextButton.styleFrom(
+                      // backgroundColor: Color(0XFFC61236), // Background color
+                      primary: Colors.black, // Text color
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        side: BorderSide(
+                            color: Color(0XFFC61236)), // Border color
+                      ),
                     ),
+                    child: Text('Send Reminder',
+                        style: TextStyle(color: Color(0XFFC61236))),
                   ),
                 ),
               ),
-              TextButton(
-                onPressed: () {
-                  // Add your onPressed functionality here
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: Color(0XFFF5F4F9), // Background color
-                  primary: Color(0XFFC9C6E1), // Text color
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    side: BorderSide(color: Color(0XFFC9C6E1)), // Border color
+              Container(
+                height: 35,
+                width: double.infinity,
+                child: TextButton(
+                  onPressed: () {
+                    // Add your onPressed functionality here
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Color(0XFFF5F4F9), // Background color
+                    primary: Colors.black, // Text color
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side:
+                          BorderSide(color: Color(0XFFC9C6E1)), // Border color
+                    ),
                   ),
+                  child: Text('Close'),
                 ),
-                child: Text('Close'),
-              )
+              ),
             ],
           ),
         ),

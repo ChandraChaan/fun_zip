@@ -9,8 +9,8 @@ class CommonContainer extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             border: Border.all(color: Color(0XFFC61236))),
-        height: 20,
-        width: 59,
+        height: 18,
+        width: 45,
         child: Center(
           child: Text(
             'Resend',
