@@ -15,15 +15,16 @@ class MyEvents extends StatefulWidget {
 }
 
 class _MyEventsState extends State<MyEvents> {
+  bool upcoming = false;
+  bool completed = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 5,
         backgroundColor: Colors.white,
-        leading: InkWell(
-            onTap: (){},
-            child: Image.asset('assets/svg/bars_2.png')),
+        leading:
+            InkWell(onTap: () {}, child: Image.asset('assets/svg/bars_2.png')),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -65,13 +66,49 @@ class _MyEventsState extends State<MyEvents> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
-                    'Upcoming',
-                    style: TextStyle(color: Color(0XFF5B46F4)),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        upcoming = false;
+                      });
+                    },
+                    child: Container(
+                      child: Text(
+                        'Upcoming',
+                        style: TextStyle(
+                          color: Color(0XFF5B46F4),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: !upcoming
+                                    ? Colors.blueAccent
+                                    : Color(0XFF5B46F4))),
+                      ),
+                    ),
                   ),
-                  Text(
-                    'Completed',
-                    style: TextStyle(color: Color(0XFF5B46F4)),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        completed = false;
+                      });
+                    },
+                    child: Container(
+                      child: Text(
+                        'Completed',
+                        style: TextStyle(
+                          color: Color(0XFF5B46F4),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: !upcoming
+                                    ? Colors.red
+                                    : Color(0XFF5B46F4))),
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -234,7 +271,7 @@ class _MyEventsState extends State<MyEvents> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(25),
                                     border:
-                                    Border.all(color: Color(0XFFFD3A84))),
+                                        Border.all(color: Color(0XFFFD3A84))),
                                 child: InkWell(
                                     onTap: () {
                                       Get.toNamed(Routes.EditingEvent);

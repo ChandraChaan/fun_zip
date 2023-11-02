@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fun_zippy/app/theme/colors.dart';
+import 'package:fun_zippy/sathya/common_data/common_text.dart';
 import 'package:get/get.dart';
 
 class EventScreen extends StatefulWidget {
@@ -12,12 +14,12 @@ class _EventScreenState extends State<EventScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
+      backgroundColor: backgroundColor,
       appBar: AppBar(
         elevation: 5,
         backgroundColor: Colors.white,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: Icon(
@@ -55,42 +57,143 @@ class _EventScreenState extends State<EventScreen> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             Container(
               height: 392,
               width: double.infinity,
-              color: Colors.white,
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Basic Details',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 18,),
-                    Row(
-                      children: [
-                        Text(
-                          'Event Name',
-                          style: TextStyle(
-                              fontSize: 12),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Basic Details',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ],
-                    ),SizedBox(height: 10),
-                    Text(
-                      'Start date & time',
-                      style: TextStyle(
-                          fontSize: 12),
-                    ),
-                  ],
+                      ),
+                      Row(
+                        children: [
+                          Text10('Event Name'),
+                          Text10(': The Great Gatsby Party : Hyderabad')
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text10('Start date & ime'),
+                          Text10(': Dec 9, 2023 06:00 PM'),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                              flex:3 ,child: Text10('End Date & time')),
+                          Expanded(
+                              flex: 8,
+                              child: Text10(': Dec 9, 2023')),
+                        ],
+                      ),
+                      Text10('Event Locality'),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              height: 35,
+                              decoration: BoxDecoration(
+                                color: Color(0XFFE3DFFF),
+                                border: Border.all(color: Color(0XFF5B46F4)),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'In Person',
+                                  style: TextStyle(fontSize: 10),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Expanded(
+                            child: Container(
+                              height: 35,
+                              decoration: BoxDecoration(
+                                color: Color(0XFFE3DFFF),
+                                border: Border.all(color: Color(0XFF5B46F4)),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Center(
+                                  child: Text(
+                                    'Online',
+                                    style: TextStyle(fontSize: 10),
+                                  )),
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          Expanded(
+                            child: Container(
+                              height: 35,
+                              decoration: BoxDecoration(
+                                color: Color(0XFFE3DFFF),
+                                border: Border.all(color: Color(0XFF5B46F4)),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Center(
+                                  child: Text(
+                                    'Mixed',
+                                    style: TextStyle(fontSize: 10),
+                                  )),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(flex:3,child: Text10('Event location')),
+                          Expanded(
+                              flex: 8,
+                              child: Text10(': Taj Banjara,Hyderabad')),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text10('Address'),
+                          Text10(': Rd Number1'),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text10('City'),
+                          Text10(': Hyderabad'),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text10('State'),
+                          Text10(': TS'),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text10('Zip'),
+                          Text10(': 500034'),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text10('Country'),
+                          Text10(': India'),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

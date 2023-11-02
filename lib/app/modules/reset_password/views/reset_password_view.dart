@@ -160,7 +160,7 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
               } else if (formKey.currentState!.saveAndValidate()) {
                 // update password
                 // final newPassword = controller.passwordTextEditingController.text;
-                // controller.resetPwApi(newPassword);
+                controller.resetPwApi();
               }
             }),
       ),

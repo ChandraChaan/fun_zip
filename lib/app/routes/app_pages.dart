@@ -13,6 +13,7 @@ import '../../sathya/rsvp_screen.dart';
 import '../../sathya/schedule_screen/schedule_screen.dart';
 import '../../sathya/sponsorship/sponsorship_screen.dart';
 import '../../sathya/ticket_sale_dettails/ticket_sale_details.dart';
+import '../extra/for_me.dart';
 import '../extra/forsecond.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
@@ -39,7 +40,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.MyEvents;
+  static const INITIAL = Routes.EventScreen;
 
   static final routes = [
     GetPage(
@@ -162,5 +163,10 @@ class AppPages {
       page: () => QrErrorScreen(),
       binding: EventDetailsBinding(),
     ),
+    // GetPage(
+    //   name: _Paths.SelectionPage,
+    //   page: () => SelectionPage(),
+    //   binding: EventDetailsBinding(),
+    // ),
   ];
 }
