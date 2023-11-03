@@ -1,9 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:fun_zippy/sathya/event_dashboard/even_dashboard.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
+import 'package:http/http.dart' as http;
 import '../../app/routes/app_pages.dart';
 import '../scanner.dart';
 
@@ -17,6 +19,22 @@ class MyEvents extends StatefulWidget {
 class _MyEventsState extends State<MyEvents> {
   bool Upcoming = false;
   bool Completed = false;
+  List<Map<String,dynamic>> data = [];
+
+  Future<void> fetchDataApi() async {
+    final response = await http.get(Uri.parse(
+        'https://funzippy.com/auth/event/event/search/getManagedEvents?AuthTokenf272c34d-f3fb-4745-9e7b-6e4b942b91c4'));
+
+    if (response.statusCode == 200) {
+      var apidata = json.decode(response.body);
+      data.addAll(apidata["results"]);
+      setState(() {
+
+      });
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,14 +98,14 @@ class _MyEventsState extends State<MyEvents> {
                       child: Text(
                         'Upcoming',
                         style: TextStyle(
-                          color: Upcoming ? Colors.red :Colors.green
+                          color: Upcoming ? Color(0XFF5B46F4) :Color(0XFF696488)
                         ),
                       ),
                       decoration: BoxDecoration(
                         border: Border(
                             bottom: BorderSide(
                                 color: Upcoming
-                                    ? Colors.blueAccent
+                                    ? Color(0XFF5B46F4)
                                     : Colors.transparent)),
                       ),
                     ),
@@ -103,22 +121,22 @@ class _MyEventsState extends State<MyEvents> {
                       child: Text(
                         'Completed',
                         style: TextStyle(
-                          color: Completed ? Colors.red : Colors.green
+                          color: Completed ? Color(0XFF5B46F4) : Color(0XFF696488)
                         ),
                       ),
                       decoration: BoxDecoration(
                         border: Border(
                             bottom: BorderSide(
                                 color: Upcoming
-                                    ? Colors.red
-                                    : Color(0XFF5B46F4))),
+                                    ? Color(0XFF5B46F4)
+                                    : Colors.transparent)),
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            for (int a = 1; a < 4; a++)
+            for (int a = 0; a <data.length; a++)
               // for (int index = 0;
               // index < controller.eventDetailsModel.sponsors!.length;
               // index++)
@@ -138,7 +156,7 @@ class _MyEventsState extends State<MyEvents> {
                         Image.asset('assets/svg/rectangle_32.png'),
                         SizedBox(height: 7),
                         Text(
-                          'The Great Gatsby Party : Hyderabad',
+                          '${data[a]["name"]}',
                           style: TextStyle(fontSize: 16),
                         ),
                         SizedBox(height: 7),

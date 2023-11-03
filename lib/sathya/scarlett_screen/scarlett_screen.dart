@@ -3,127 +3,87 @@ import 'package:fun_zippy/app/routes/app_pages.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
 
+import '../common_data/common_text.dart';
+
 class ScarlettScreen extends StatelessWidget {
   const ScarlettScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white,
-      //   title: Row(
-      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //     children: [
-      //       Text(
-      //         'Event Management',
-      //         style: TextStyle(color: Colors.black),
-      //       ),
-      //       Row(
-      //         children: [
-      //           InkWell(
-      //             onTap: () {
-      //               Get.toNamed(Routes.MyEvents);
-      //             },
-      //             child: Container(
-      //               height: 22,
-      //               width: 55,
-      //               decoration: BoxDecoration(
-      //                   borderRadius: BorderRadius.circular(20),
-      //                   border: Border.all(color: Color(0XFFC61236))),
-      //               child: Center(
-      //                 child: Text(
-      //                   'Go to Events',
-      //                   style: TextStyle(fontSize: 7, color: Color(0XFFC61236)),
-      //                 ),
-      //               ),
-      //             ),
-      //           ),
-      //           5.width,
-      //           InkWell(
-      //             onTap: () {
-      //               Get.back();
-      //             },
-      //             child: Icon(
-      //               Icons.cancel_outlined,
-      //               color: Color(0XFF5E5A80),
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ],
-      //   ),
-      // ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 15,right: 15,bottom: 15),
+        padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
-                color: Colors.red,
                 width: double.infinity,
                 child: ListTile(
                   minLeadingWidth: 0,
                   minVerticalPadding: 0,
                   horizontalTitleGap: 10,
                   contentPadding: const EdgeInsets.all(0),
-                  leading: InkWell(
-                    child: Icon(
-                      Icons.location_on,
-                      size: 38,
-                      color: Colors.deepOrange,
+                  leading: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.deepPurple, // Border color
+                        width: 2.0, // Border width
+                      ),
+                      shape: BoxShape.circle, // To make it a circular border
                     ),
-                    onTap: () {
-                    },
+                    child: InkWell(
+                      onTap: () {},
+                      child: CircleAvatar(
+                        radius: 18,
+                        backgroundColor: Colors.white,
+                        child: Image.asset(
+                          'assets/svg/ellipse_1.png',
+                          width: 90,
+                          height: 90,
+                        ),
+                      ),
+                    ),
                   ),
                   title: SizedBox(
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Madhapur',
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold),
+                          'Scarlett Johansson',
+                          style: TextStyle(fontSize: 16),
                         ),
-                        SizedBox(width: 7),
-                        IconButton(
-                            onPressed: () {
+                        InkWell(
+                            onTap: () {
+                              Get.back();
                             },
-                            icon: Icon(Icons.expand_more))
+                            child: Icon(Icons.cancel_outlined))
                       ],
                     ),
                   ),
-                  subtitle: Text(
-                    'Rahimpura, Dattatreya Nagar, Hyderabad',
-                    style: TextStyle(fontSize: 14),
+                  subtitle: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Image.asset('assets/svg/email_grey.png'),
+                          5.width,
+                          Text10('johansson@gmail.com')
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Image.asset('assets/svg/phone_grey.png'),
+                          5.width,
+                          Text10('+91 9876543210')
+                        ],
+                      )
+                    ],
                   ),
-                  // trailing: SizedBox(
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //     mainAxisSize: MainAxisSize.min,
-                  //     children: [
-                  //       InkWell(
-                  //         child: Icon(Icons.notifications),
-                  //         onTap: () {},
-                  //       ),
-                  //       InkWell(
-                  //         child: CircleAvatar(
-                  //           backgroundImage:
-                  //           AssetImage('assets/images/profile_picture.png'),
-                  //           radius: 23,
-                  //         ),
-                  //         onTap: () {
-                  //
-                  //         },
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                 ),
               ),
-
               buildRow('Home', 'assets/svg/h1.png'),
               buildRow('Create an Event', 'assets/svg/h2.png'),
               buildRow('My Events', 'assets/svg/h3.png'),
