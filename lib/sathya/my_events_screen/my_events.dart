@@ -19,21 +19,25 @@ class MyEvents extends StatefulWidget {
 class _MyEventsState extends State<MyEvents> {
   bool Upcoming = false;
   bool Completed = false;
-  List<Map<String,dynamic>> data = [];
+  List<dynamic> data = [];
 
   Future<void> fetchDataApi() async {
     final response = await http.get(Uri.parse(
-        'https://funzippy.com/auth/event/event/search/getManagedEvents?AuthTokenf272c34d-f3fb-4745-9e7b-6e4b942b91c4'));
+        'https://funzippy.com/auth/event/event/search/getManagedEvents?AuthToken:f272c34d-f3fb-4745-9e7b-6e4b942b91c4'));
 
     if (response.statusCode == 200) {
       var apidata = json.decode(response.body);
-      data.addAll(apidata["results"]);
-      setState(() {
-
-      });
+      data.addAll(apidata['results']);
+      setState(() {});
     } else {
       throw Exception('Failed to load data');
     }
+  }
+
+  @override
+  void initState() {
+    fetchDataApi();
+    super.initState();
   }
 
   @override
@@ -42,10 +46,11 @@ class _MyEventsState extends State<MyEvents> {
       appBar: AppBar(
         elevation: 5,
         backgroundColor: Colors.white,
-        leading:
-            InkWell(onTap: () {
+        leading: InkWell(
+            onTap: () {
               Get.toNamed(Routes.ScarlettScreen);
-            }, child: Image.asset('assets/svg/bars_2.png')),
+            },
+            child: Image.asset('assets/svg/bars_2.png')),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -58,12 +63,11 @@ class _MyEventsState extends State<MyEvents> {
                 shape: BoxShape.circle, // To make it a circular border
               ),
               child: InkWell(
-                onTap: (){},
+                onTap: () {},
                 child: CircleAvatar(
-                  radius: 15,
-                  backgroundColor: Colors.white,
-                  child: Image.asset('assets/svg/ellipse_1.png')
-                ),
+                    radius: 15,
+                    backgroundColor: Colors.white,
+                    child: Image.asset('assets/svg/ellipse_1.png')),
               ),
             ),
           )
@@ -98,8 +102,9 @@ class _MyEventsState extends State<MyEvents> {
                       child: Text(
                         'Upcoming',
                         style: TextStyle(
-                          color: Upcoming ? Color(0XFF5B46F4) :Color(0XFF696488)
-                        ),
+                            color: Upcoming
+                                ? Color(0XFF5B46F4)
+                                : Color(0XFF696488)),
                       ),
                       decoration: BoxDecoration(
                         border: Border(
@@ -121,8 +126,9 @@ class _MyEventsState extends State<MyEvents> {
                       child: Text(
                         'Completed',
                         style: TextStyle(
-                          color: Completed ? Color(0XFF5B46F4) : Color(0XFF696488)
-                        ),
+                            color: Completed
+                                ? Color(0XFF5B46F4)
+                                : Color(0XFF696488)),
                       ),
                       decoration: BoxDecoration(
                         border: Border(
@@ -136,7 +142,7 @@ class _MyEventsState extends State<MyEvents> {
                 ],
               ),
             ),
-            for (int a = 0; a <data.length; a++)
+            for (int a = 0; a < data.length; a++)
               // for (int index = 0;
               // index < controller.eventDetailsModel.sponsors!.length;
               // index++)
