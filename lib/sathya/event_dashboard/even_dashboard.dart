@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
+import 'package:fun_zippy/sathya/common_data/common_text.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+import '../../app/routes/app_pages.dart';
 import '../scanner.dart';
 
 class EventDashboardScreen extends StatefulWidget {
@@ -30,8 +32,13 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: Image.asset(
-          'assets/svg/vector_22.png',
+        leading: InkWell(
+          onTap: (){
+            Get.toNamed(Routes.EventManagementScreen);
+          },
+          child: Image.asset(
+            'assets/svg/vector_22.png',
+          ),
         ),
         actions: [
           Padding(
@@ -52,7 +59,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                     radius: 20,
                     backgroundColor: Colors.white,
                     child: InkWell(
-                      onTap: (){
+                      onTap: () {
                         Get.to(QRCodeScannerScreen());
                       },
                       child: Icon(
@@ -129,10 +136,9 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            Text10(
                               'Invited',
-                              style:
-                                  TextStyle(fontSize: 10, color: Colors.white),
+                              style: TextStyle(color: Colors.white),
                             ),
                             Text(
                               '10,250',
@@ -174,10 +180,9 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            Text10(
                               'Invited',
-                              style: TextStyle(
-                                  fontSize: 10, color: Color(0XFF86839B)),
+                              style: TextStyle(color: Color(0XFF86839B)),
                             ),
                             Text(
                               '5,250',
@@ -219,10 +224,9 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            Text10(
                               'Adult Count',
-                              style: TextStyle(
-                                  fontSize: 10, color: Color(0XFF86839B)),
+                              style: TextStyle(color: Color(0XFF86839B)),
                             ),
                             Text(
                               '15',
@@ -283,10 +287,9 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            Text10(
                               'All the latest stats for your event',
-                              style: TextStyle(
-                                  fontSize: 10, color: Color(0XFF86839B)),
+                              style: TextStyle(color: Color(0XFF86839B)),
                             ),
                             SizedBox(
                               height: 18,
@@ -297,7 +300,11 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                   border: Border.all(color: Color(0XFF86839B)),
                                   color: Color(0XFFF9F9F9),
                                 ),
-                                child: Icon(Icons.home,size: 10,color: Color(0XFF86839B),),
+                                child: Icon(
+                                  Icons.home,
+                                  size: 10,
+                                  color: Color(0XFF86839B),
+                                ),
                               ),
                             )
                           ],
@@ -306,7 +313,8 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                         SfCartesianChart(
                             primaryXAxis: CategoryAxis(),
                             // Chart title
-                            title: ChartTitle(text: 'Half yearly sales analysis'),
+                            title:
+                                ChartTitle(text: 'Half yearly sales analysis'),
                             // Enable legend
                             legend: Legend(isVisible: true),
                             // Enable tooltip
@@ -314,11 +322,14 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                             series: <ChartSeries<_SalesData, String>>[
                               LineSeries<_SalesData, String>(
                                   dataSource: data,
-                                  xValueMapper: (_SalesData sales, _) => sales.year,
-                                  yValueMapper: (_SalesData sales, _) => sales.sales,
+                                  xValueMapper: (_SalesData sales, _) =>
+                                      sales.year,
+                                  yValueMapper: (_SalesData sales, _) =>
+                                      sales.sales,
                                   name: 'Sales',
                                   // Enable data label
-                                  dataLabelSettings: DataLabelSettings(isVisible: true))
+                                  dataLabelSettings:
+                                      DataLabelSettings(isVisible: true))
                             ]),
 
                         //
@@ -330,8 +341,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
               for (int a = 1; a <= 7; a++)
                 Padding(
                   padding: const EdgeInsets.all(5),
-                  child:
-                  Container(
+                  child: Container(
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10)),
@@ -438,10 +448,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                         children: [
                                           Row(
                                             children: [
-                                              Text(
-                                                'Name',
-                                                style: TextStyle(fontSize: 10),
-                                              ),
+                                              Text10('Name'),
                                               Icon(
                                                 Icons.expand_more,
                                                 size: 10,
@@ -450,10 +457,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                           ),
                                           Row(
                                             children: [
-                                              Text(
-                                                'Quantity',
-                                                style: TextStyle(fontSize: 10),
-                                              ),
+                                              Text10('Quantity'),
                                               Icon(
                                                 Icons.expand_more,
                                                 size: 10,
@@ -462,10 +466,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                           ),
                                           Row(
                                             children: [
-                                              Text(
-                                                'Total',
-                                                style: TextStyle(fontSize: 10),
-                                              ),
+                                              Text10('Total'),
                                               Icon(
                                                 Icons.expand_more,
                                                 size: 10,
@@ -496,20 +497,11 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                                       child: Image.asset(
                                                           'assets/svg/filter.png'))),
                                               SizedBox(width: 4),
-                                              Text(
-                                                'General',
-                                                style: TextStyle(fontSize: 10),
-                                              ),
+                                              Text10('General'),
                                             ],
                                           ),
-                                          Text(
-                                            '01',
-                                            style: TextStyle(fontSize: 10),
-                                          ),
-                                          Text(
-                                            '01',
-                                            style: TextStyle(fontSize: 10),
-                                          ),
+                                          Text10('01'),
+                                          Text10('01'),
                                         ],
                                       ),
                                     ),
@@ -535,20 +527,11 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                                       child: Image.asset(
                                                           'assets/svg/vip.png'))),
                                               SizedBox(width: 4),
-                                              Text(
-                                                'Vip',
-                                                style: TextStyle(fontSize: 10),
-                                              ),
+                                              Text10('Vip'),
                                             ],
                                           ),
-                                          Text(
-                                            '05',
-                                            style: TextStyle(fontSize: 10),
-                                          ),
-                                          Text(
-                                            '05',
-                                            style: TextStyle(fontSize: 10),
-                                          ),
+                                          Text10('05'),
+                                          Text10('05'),
                                         ],
                                       ),
                                     ),
@@ -574,20 +557,11 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                                       child: Image.asset(
                                                           'assets/svg/calendar_day.png'))),
                                               SizedBox(width: 4),
-                                              Text(
-                                                'Multiday pass',
-                                                style: TextStyle(fontSize: 10),
-                                              ),
+                                              Text10('Multiday pass'),
                                             ],
                                           ),
-                                          Text(
-                                            '03',
-                                            style: TextStyle(fontSize: 10),
-                                          ),
-                                          Text(
-                                            '03',
-                                            style: TextStyle(fontSize: 10),
-                                          ),
+                                          Text10('03'),
+                                          Text10('03'),
                                         ],
                                       ),
                                     ),
@@ -613,20 +587,11 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                                       child: Image.asset(
                                                           'assets/svg/badge.png'))),
                                               SizedBox(width: 4),
-                                              Text(
-                                                'Gem Show Pass',
-                                                style: TextStyle(fontSize: 10),
-                                              ),
+                                              Text10('Gem Show Pass'),
                                             ],
                                           ),
-                                          Text(
-                                            '02',
-                                            style: TextStyle(fontSize: 10),
-                                          ),
-                                          Text(
-                                            '02',
-                                            style: TextStyle(fontSize: 10),
-                                          ),
+                                          Text10('02'),
+                                          Text10('02'),
                                         ],
                                       ),
                                     ),
@@ -636,10 +601,9 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text(
+                                          Text10(
                                             'Showing 01_01 of 38',
                                             style: TextStyle(
-                                                fontSize: 10,
                                                 color: Color(0XFF85829B)),
                                           ),
                                           Row(
@@ -661,11 +625,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                                 width: 14,
                                                 color: Color(0XFFF6F6F6),
                                                 child: Center(
-                                                  child: Text(
-                                                    '1',
-                                                    style:
-                                                        TextStyle(fontSize: 10),
-                                                  ),
+                                                  child: Text10('1'),
                                                 ),
                                               ),
                                               SizedBox(
@@ -676,11 +636,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                                 width: 14,
                                                 color: Color(0XFFF6F6F6),
                                                 child: Center(
-                                                  child: Text(
-                                                    '2',
-                                                    style:
-                                                        TextStyle(fontSize: 10),
-                                                  ),
+                                                  child: Text10('2'),
                                                 ),
                                               ),
                                               SizedBox(
@@ -691,11 +647,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                                 width: 14,
                                                 color: Color(0XFFF6F6F6),
                                                 child: Center(
-                                                  child: Text(
-                                                    '3',
-                                                    style:
-                                                        TextStyle(fontSize: 10),
-                                                  ),
+                                                  child: Text10('3'),
                                                 ),
                                               ),
                                               SizedBox(

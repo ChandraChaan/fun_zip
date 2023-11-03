@@ -15,8 +15,9 @@ class MyEvents extends StatefulWidget {
 }
 
 class _MyEventsState extends State<MyEvents> {
-  bool upcoming = false;
-  bool completed = false;
+  bool Upcoming = false;
+  bool Completed = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +25,9 @@ class _MyEventsState extends State<MyEvents> {
         elevation: 5,
         backgroundColor: Colors.white,
         leading:
-            InkWell(onTap: () {}, child: Image.asset('assets/svg/bars_2.png')),
+            InkWell(onTap: () {
+              Get.toNamed(Routes.ScarlettScreen);
+            }, child: Image.asset('assets/svg/bars_2.png')),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -36,12 +39,12 @@ class _MyEventsState extends State<MyEvents> {
                 ),
                 shape: BoxShape.circle, // To make it a circular border
               ),
-              child: CircleAvatar(
-                radius: 20,
-                backgroundColor: Colors.white,
-                child: Icon(
-                  Icons.qr_code,
-                  color: Colors.deepPurple,
+              child: InkWell(
+                onTap: (){},
+                child: CircleAvatar(
+                  radius: 15,
+                  backgroundColor: Colors.white,
+                  child: Image.asset('assets/svg/ellipse_1.png')
                 ),
               ),
             ),
@@ -69,42 +72,44 @@ class _MyEventsState extends State<MyEvents> {
                   InkWell(
                     onTap: () {
                       setState(() {
-                        upcoming = false;
+                        Upcoming = true;
+                        Completed = false;
                       });
                     },
                     child: Container(
                       child: Text(
                         'Upcoming',
                         style: TextStyle(
-                          color: Color(0XFF5B46F4),
+                          color: Upcoming ? Colors.red :Colors.green
                         ),
                       ),
                       decoration: BoxDecoration(
                         border: Border(
                             bottom: BorderSide(
-                                color: !upcoming
+                                color: Upcoming
                                     ? Colors.blueAccent
-                                    : Color(0XFF5B46F4))),
+                                    : Colors.transparent)),
                       ),
                     ),
                   ),
                   InkWell(
                     onTap: () {
                       setState(() {
-                        completed = false;
+                        Completed = true;
+                        Upcoming = false;
                       });
                     },
                     child: Container(
                       child: Text(
                         'Completed',
                         style: TextStyle(
-                          color: Color(0XFF5B46F4),
+                          color: Completed ? Colors.red : Colors.green
                         ),
                       ),
                       decoration: BoxDecoration(
                         border: Border(
                             bottom: BorderSide(
-                                color: !upcoming
+                                color: Upcoming
                                     ? Colors.red
                                     : Color(0XFF5B46F4))),
                       ),
@@ -153,7 +158,7 @@ class _MyEventsState extends State<MyEvents> {
                               height: 18,
                               width: 50,
                               decoration: BoxDecoration(
-                                color: Colors.grey,
+                                color: Color(0XFFFF5C00).withOpacity(.22),
                                 borderRadius: BorderRadius.circular(25),
                               ),
                               child: Center(

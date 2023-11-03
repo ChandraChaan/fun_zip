@@ -31,6 +31,8 @@ abstract class Routes {
   static const QrSuccessfulScreen = _Paths.QrSuccessfulScreen;
   static const QrErrorScreen = _Paths.QrErrorScreen;
   static const SelectionPage = _Paths.SelectionPage;
+  static const EventManagementScreen = _Paths.EventManagementScreen;
+  static const ScarlettScreen = _Paths.ScarlettScreen;
 }
 
 abstract class _Paths {
@@ -63,5 +65,7 @@ abstract class _Paths {
   static const QrSuccessfulScreen = '/QrSuccessfulScreen';
   static const QrErrorScreen = '/QrErrorScreen';
   static const SelectionPage = '/SelectionPage';
+  static const EventManagementScreen = '/EventManagementScreen';
+  static const ScarlettScreen = '/ScarlettScreen';
 
 }

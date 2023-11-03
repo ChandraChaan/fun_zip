@@ -730,17 +730,6 @@ class EditingEvent extends GetView<HomeController> {
                       SizedBox(
                         height: 10,
                       ),
-                      // Container(
-                      //   height: 107,
-                      //   width: 115,
-                      //   decoration: BoxDecoration(
-                      //       color: Colors.red,
-                      //       borderRadius: BorderRadius.circular(20),
-                      //       image: DecorationImage(
-                      //           image: AssetImage(
-                      //               'assets/svg/rectangle_111.png'))),
-                      // ),
-                      // SizedBox(height: 20),
                       Text(
                         'Event description',
                         style: TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
