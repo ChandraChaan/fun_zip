@@ -130,8 +130,8 @@ class ScarlettScreen extends StatelessWidget {
           Get.toNamed(Routes.MyEvents);
         } else if (title.contains('Blog')) {
           Get.toNamed(Routes.BookTickets);
-        } else if (title.contains('Home')) {
-          Get.toNamed(Routes.HOME);
+        } else if (title.contains('Log Out')) {
+          Get.offAllNamed(Routes.SIGN_IN);
         }
       },
       title: Text(

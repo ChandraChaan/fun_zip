@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:fun_zippy/sathya/scarlett_screen/scarlett_screen.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
+import '../../app/data/model/UserModel.dart';
 import '../../app/routes/app_pages.dart';
 import '../scanner.dart';
+
+UserModel userModel = UserModel();
 
 class MyEvents extends StatefulWidget {
   const MyEvents({Key? key});
@@ -19,6 +23,50 @@ class _MyEventsState extends State<MyEvents> {
   bool upcoming = false;
   bool completed = false;
 
+  List<dynamic> data = [];
+  final getStorage = GetStorage();
+
+  Future<void> apiCalls() async {
+    try {
+      final response = await fetchApiData();
+      if (response.statusCode == 200) {
+        final apiData = json.decode(response.body);
+        data.addAll(apiData['results']);
+
+        setState(() {});
+      } else {
+        Get.defaultDialog(title: "Failure");
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      print('API call error: $e');
+      // Handle the error as needed
+    }
+  }
+
+  Future<http.Response> fetchApiData() async {
+    dynamic userMap = getStorage.read('user');
+    if (userMap != null) {
+      userModel = UserModel.fromJson(userMap);
+    }
+
+    final url = Uri.parse(
+        'https://funzippy.com/auth/event/event/search/getManagedEvents');
+    final headers = {
+      'Cookie': 'AuthToken=${userModel.token};',
+    };
+
+    final response = await http.get(url, headers: headers);
+
+    print(response.body);
+    return response;
+  }
+
+  @override
+  void initState() {
+    apiCalls();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +96,8 @@ class _MyEventsState extends State<MyEvents> {
                       child: Text(
                         'Upcoming',
                         style: TextStyle(
-                          color: upcoming
-                              ? Color(0XFF5B46F4)
-                              : Color(0XFF696488),
+                          color:
+                              upcoming ? Color(0XFF5B46F4) : Color(0XFF696488),
                         ),
                       ),
                       decoration: BoxDecoration(
@@ -75,9 +122,8 @@ class _MyEventsState extends State<MyEvents> {
                       child: Text(
                         'Completed',
                         style: TextStyle(
-                          color: completed
-                              ? Color(0XFF5B46F4)
-                              : Color(0XFF696488),
+                          color:
+                              completed ? Color(0XFF5B46F4) : Color(0XFF696488),
                         ),
                       ),
                       decoration: BoxDecoration(
@@ -94,7 +140,7 @@ class _MyEventsState extends State<MyEvents> {
                 ],
               ),
             ),
-            for (int a = 0; a < 5; a++)
+            for (int a = 0; a < data.length; a++)
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -112,7 +158,7 @@ class _MyEventsState extends State<MyEvents> {
                         Image.asset('assets/svg/rectangle_32.png'),
                         SizedBox(height: 7),
                         Text(
-                          'The Great Gatsby Party : Hyderabad',
+                          '${data[a]["name"]}',
                           style: TextStyle(fontSize: 16),
                         ),
                         SizedBox(height: 7),
@@ -139,8 +185,7 @@ class _MyEventsState extends State<MyEvents> {
                                 child: Text(
                                   '10 Days',
                                   style: TextStyle(
-                                      color: Color(0XFFFF5C00),
-                                      fontSize: 8),
+                                      color: Color(0XFFFF5C00), fontSize: 8),
                                 ),
                               ),
                             ),
