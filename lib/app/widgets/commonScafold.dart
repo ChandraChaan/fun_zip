@@ -15,13 +15,13 @@ class CommonScafold extends StatefulWidget {
   final Widget child;
   final Widget? titleChild;
   final Widget? bottomNavigationBar;
-  final bool showNavChild;
+  final bool navChild;
 
   CommonScafold(
       {super.key,
       this.title,
       this.titleChild,
-      this.showNavChild = false,
+      this.navChild = false,
       this.bottomNavigationBar,
       required this.child});
 
@@ -46,11 +46,10 @@ class _CommonScafoldState extends State<CommonScafold> {
     return Scaffold(
       backgroundColor: backgroundColor,
       key: _scaffoldKey,
-      drawer: Drawer(child:ScarlettScreen()),
+      drawer: Drawer(child: ScarlettScreen()),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-
         leading: InkWell(
           onTap: () {
             _scaffoldKey.currentState?.openDrawer();
@@ -87,9 +86,10 @@ class _CommonScafoldState extends State<CommonScafold> {
               ),
         ),
       ),
-      body: widget.showNavChild ? _widgetOptions.elementAt(selectedIndex) : widget.child,
-      bottomNavigationBar:
-          widget.bottomNavigationBar ?? BottomNavigation(),
+      body: widget.navChild == false && selectedIndex != 0
+          ? _widgetOptions.elementAt(selectedIndex)
+          : widget.child,
+      bottomNavigationBar: widget.bottomNavigationBar ?? BottomNavigation(),
     );
   }
 
@@ -120,10 +120,10 @@ class _CommonScafoldState extends State<CommonScafold> {
       unselectedItemColor: textColor,
       unselectedLabelStyle: normalText.copyWith(fontSize: 10),
       showUnselectedLabels: true,
-      onTap: (int index){
-setState(() {
-  selectedIndex = index;
-});
+      onTap: (int index) {
+        setState(() {
+          selectedIndex = index;
+        });
       },
     );
   }
