@@ -476,65 +476,86 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                         ],
                                       ),
                                     ),
-                                    Container(
-                                      height: 30,
-                                      color: Color(0XFFF6F6F6),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Row(
+                                    Column(
+                                      children: [
+                                        Container(
+                                          height: 30,
+                                          color: Color(0XFFF6F6F6),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                                             children: [
-                                              Container(
-                                                  height: 22,
-                                                  width: 22,
-                                                  decoration: BoxDecoration(
-                                                      color: Color(0XFFFFE2D2),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20)),
-                                                  child: Center(
-                                                      child: Image.asset(
-                                                          'assets/svg/filter.png'))),
-                                              SizedBox(width: 4),
-                                              Text10('General'),
+                                              Flexible(
+                                                flex: 1, // Adjust the flex value as needed
+                                                child: Row(
+                                                  children: [
+                                                    Container(
+                                                      height: 22,
+                                                      width: 22,
+                                                      decoration: BoxDecoration(
+                                                        color: Color(0XFFFFE2D2),
+                                                        borderRadius: BorderRadius.circular(20),
+                                                      ),
+                                                      child: Center(
+                                                        child: Image.asset('assets/svg/filter.png'),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 4),
+                                                    Text10('General'),
+                                                  ],
+                                                ),
+                                              ),
+                                              Flexible(
+                                                flex: 2, // Adjust the flex value as needed
+                                                child: Text10('01'),
+                                              ),
+                                              Flexible(
+                                                flex: 1, // Adjust the flex value as needed
+                                                child: Text10('01'),
+                                              ),
                                             ],
                                           ),
-                                          Text10('01'),
-                                          Text10('01'),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 1),
-                                    Container(
-                                      height: 30,
-                                      color: Color(0XFFF6F6F6),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Row(
+                                        ),
+                                        SizedBox(height: 1),
+                                        Container(
+                                          height: 30,
+                                          color: Color(0XFFF6F6F6),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                                             children: [
-                                              Container(
-                                                  height: 22,
-                                                  width: 22,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20)),
-                                                  child: Center(
-                                                      child: Image.asset(
-                                                          'assets/svg/vip.png'))),
-                                              SizedBox(width: 4),
-                                              Text10('Vip'),
+                                              Flexible(
+                                                flex: 1, // Adjust the flex value as needed
+                                                child: Row(
+                                                  children: [
+                                                    Container(
+                                                      height: 22,
+                                                      width: 22,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius: BorderRadius.circular(20),
+                                                      ),
+                                                      child: Center(
+                                                        child: Image.asset('assets/svg/vip.png'),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 4),
+                                                    Text10('Vip'),
+                                                  ],
+                                                ),
+                                              ),
+                                              Flexible(
+                                                flex: 1, // Adjust the flex value as needed
+                                                child: Text10('05'),
+                                              ),
+                                              Flexible(
+                                                flex: 5, // Adjust the flex value as needed
+                                                child: Text10('05'),
+                                              ),
                                             ],
                                           ),
-                                          Text10('05'),
-                                          Text10('05'),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
+
                                     SizedBox(height: 1),
                                     Container(
                                       height: 30,

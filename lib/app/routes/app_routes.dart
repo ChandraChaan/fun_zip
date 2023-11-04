@@ -33,6 +33,10 @@ abstract class Routes {
   static const SelectionPage = _Paths.SelectionPage;
   static const EventManagementScreen = _Paths.EventManagementScreen;
   static const ScarlettScreen = _Paths.ScarlettScreen;
+  static const QRCodeScannerScreen = _Paths.QRCodeScannerScreen;
+  static const SideMenu = _Paths.SideMenu;
+  static const MyProfile = _Paths.MyProfile;
+  static const OrganizationScreen = _Paths.OrganizationScreen;
 }
 
 abstract class _Paths {
@@ -67,5 +71,9 @@ abstract class _Paths {
   static const SelectionPage = '/SelectionPage';
   static const EventManagementScreen = '/EventManagementScreen';
   static const ScarlettScreen = '/ScarlettScreen';
+  static const QRCodeScannerScreen = '/QRCodeScannerScreen';
+  static const SideMenu = '/SideMenu';
+  static const MyProfile = '/MyProfile';
+  static const OrganizationScreen = '/OrganizationScreen';
 
 }

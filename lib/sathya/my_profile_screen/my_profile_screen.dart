@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fun_zippy/app/theme/colors.dart';
+import 'package:fun_zippy/app/utilities/extention.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
@@ -11,7 +13,7 @@ class _MyProfileState extends State<MyProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: backgroundColor,
       appBar: AppBar(
         elevation: 5,
         backgroundColor: Colors.white,
@@ -22,7 +24,7 @@ class _MyProfileState extends State<MyProfile> {
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.deepPurple, // Border color
+                  color: Colors.white, // Border color
                   width: 2.0, // Border width
                 ),
                 shape: BoxShape.circle, // To make it a circular border
@@ -35,22 +37,24 @@ class _MyProfileState extends State<MyProfile> {
           )
         ],
         title: Center(
-            child: Text(
-          'My Profile',
-          style: TextStyle(color: Colors.black, fontSize: 20),
-        )),
+          child: Text(
+            'My Profile',
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                height: 115,
+                height: 85,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(15),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 25),
@@ -109,13 +113,15 @@ class _MyProfileState extends State<MyProfile> {
                 height: 20,
               ),
               Container(
-                height: 780,
+                height: 680,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all()),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                ),
                 child: Padding(
-                  padding: const EdgeInsets.all(18.0),
+                  padding: const EdgeInsets.all(19.0),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
@@ -123,15 +129,9 @@ class _MyProfileState extends State<MyProfile> {
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
-                        height: 14,
-                      ),
                       Text(
                         'First Name',
                         style: TextStyle(fontSize: 11),
-                      ),
-                      SizedBox(
-                        height: 4,
                       ),
                       Container(
                         height: 40,
@@ -150,15 +150,9 @@ class _MyProfileState extends State<MyProfile> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 14,
-                      ),
                       Text(
                         'Last Name',
                         style: TextStyle(fontSize: 11),
-                      ),
-                      SizedBox(
-                        height: 4,
                       ),
                       Container(
                         height: 40,
@@ -177,15 +171,9 @@ class _MyProfileState extends State<MyProfile> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 14,
-                      ),
                       Text(
                         'Email Address',
                         style: TextStyle(fontSize: 11),
-                      ),
-                      SizedBox(
-                        height: 4,
                       ),
                       Container(
                         height: 40,
@@ -204,12 +192,10 @@ class _MyProfileState extends State<MyProfile> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 14),
                       Text(
                         'Phone Number',
                         style: TextStyle(fontSize: 11),
                       ),
-                      SizedBox(height: 4),
                       Container(
                         height: 40,
                         decoration: BoxDecoration(
@@ -252,15 +238,9 @@ class _MyProfileState extends State<MyProfile> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 14,
-                      ),
                       Text(
                         'Website',
                         style: TextStyle(fontSize: 11),
-                      ),
-                      SizedBox(
-                        height: 4,
                       ),
                       Container(
                         height: 40,
@@ -279,21 +259,12 @@ class _MyProfileState extends State<MyProfile> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
                       Divider(
                         thickness: 2,
-                      ),
-                      SizedBox(
-                        height: 10,
                       ),
                       Text(
                         'Address1',
                         style: TextStyle(fontSize: 11),
-                      ),
-                      SizedBox(
-                        height: 4,
                       ),
                       Container(
                         height: 40,
@@ -312,15 +283,9 @@ class _MyProfileState extends State<MyProfile> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 14,
-                      ),
                       Text(
                         'City',
                         style: TextStyle(fontSize: 11),
-                      ),
-                      SizedBox(
-                        height: 4,
                       ),
                       Container(
                         height: 40,
@@ -339,15 +304,9 @@ class _MyProfileState extends State<MyProfile> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 14,
-                      ),
                       Text(
                         'State/Province',
                         style: TextStyle(fontSize: 11),
-                      ),
-                      SizedBox(
-                        height: 4,
                       ),
                       Container(
                         height: 40,
@@ -366,9 +325,6 @@ class _MyProfileState extends State<MyProfile> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 14,
-                      ),
                       Row(
                         children: [
                           Text(
@@ -383,9 +339,6 @@ class _MyProfileState extends State<MyProfile> {
                             style: TextStyle(fontSize: 11),
                           ),
                         ],
-                      ),
-                      SizedBox(
-                        height: 4,
                       ),
                       Row(
                         children: [
@@ -440,13 +393,14 @@ class _MyProfileState extends State<MyProfile> {
                 height: 14,
               ),
               Container(
-                height: 470,
+                height: 420,
                 decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                    borderRadius: BorderRadius.circular(15)),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20)),
                 child: Padding(
                   padding: const EdgeInsets.all(18),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
@@ -454,16 +408,9 @@ class _MyProfileState extends State<MyProfile> {
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold),
                       ),
-
-                      SizedBox(
-                        height: 14,
-                      ),
                       Text(
                         'Facebook',
                         style: TextStyle(fontSize: 11),
-                      ),
-                      SizedBox(
-                        height: 4,
                       ),
                       Container(
                         height: 40,
@@ -481,17 +428,11 @@ class _MyProfileState extends State<MyProfile> {
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 14,
                       ),
                       Text(
                         'Last Name',
                         style: TextStyle(fontSize: 11),
                       ),
-                      SizedBox(
-                        height: 4,
-                      ),
                       Container(
                         height: 40,
                         decoration: BoxDecoration(
@@ -508,17 +449,11 @@ class _MyProfileState extends State<MyProfile> {
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 14,
                       ),
                       Text(
                         'Email Address',
                         style: TextStyle(fontSize: 11),
                       ),
-                      SizedBox(
-                        height: 4,
-                      ),
                       Container(
                         height: 40,
                         decoration: BoxDecoration(
@@ -535,17 +470,11 @@ class _MyProfileState extends State<MyProfile> {
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 14,
                       ),
                       Text(
                         'Instagram',
                         style: TextStyle(fontSize: 11),
                       ),
-                      SizedBox(
-                        height: 4,
-                      ),
                       Container(
                         height: 40,
                         decoration: BoxDecoration(
@@ -562,17 +491,11 @@ class _MyProfileState extends State<MyProfile> {
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 14,
                       ),
                       Text(
                         'Google+',
                         style: TextStyle(fontSize: 11),
                       ),
-                      SizedBox(
-                        height: 4,
-                      ),
                       Container(
                         height: 40,
                         decoration: BoxDecoration(
@@ -590,23 +513,60 @@ class _MyProfileState extends State<MyProfile> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 15,),
-                      InkWell(
-                        onTap: (){},
-                        child: Container(
-                          height: 40,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: Color(0XFFC61236),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Center(child: Text('Save',style: (TextStyle(color: Colors.white)),)),
-                          //                            fillColor: Color(0XFFC61236),
-                        ),
-                      ),
-
                     ],
                   ),
+                ),
+              ),
+              10.height,
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  height: 35,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Color(0XFFC61236),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Center(
+                      child: Text(
+                    'Save',
+                    style: (TextStyle(color: Colors.white, fontSize: 14)),
+                  )),
+                  //                            fillColor: Color(0XFFC61236),
+                ),
+              ),
+              10.height,
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  height: 35,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: Color(0XFFC61236))),
+                  child: Center(
+                      child: Text(
+                    'My Organization',
+                    style: (TextStyle(color: Color(0XFFC61236), fontSize: 14)),
+                  )),
+                  //                            fillColor: Color(0XFFC61236),
+                ),
+              ),
+              10.height,
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  height: 35,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: Color(0XFFC61236))),
+                  child: Center(
+                      child: Text(
+                    'My Business',
+                    style: (TextStyle(color: Color(0XFFC61236), fontSize: 14)),
+                  )),
+                  //                            fillColor: Color(0XFFC61236),
                 ),
               ),
             ],

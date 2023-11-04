@@ -4,6 +4,7 @@ import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
 
 import '../common_data/common_text.dart';
+import '../my_profile_screen/my_profile_screen.dart';
 
 class ScarlettScreen extends StatelessWidget {
   const ScarlettScreen({Key? key}) : super(key: key);
@@ -105,6 +106,8 @@ class ScarlettScreen extends StatelessWidget {
   Widget buildRow(String title, String imagePath) {
     return InkWell(
       onTap: () {
+        buildRow('My Profile', 'assets/svg/h6.png');
+        Get.toNamed(Routes.MyProfile);
         // Add your onTap functionality here
       },
       child: Row(

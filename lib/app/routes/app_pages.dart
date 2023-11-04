@@ -7,13 +7,17 @@ import '../../sathya/event_dashboard/even_dashboard.dart';
 import '../../sathya/event_dashboard/even_dashboard.dart';
 import '../../sathya/event_management/event_management_screen.dart';
 import '../../sathya/my_events_screen/my_events.dart';
+import '../../sathya/my_profile_screen/my_profile_screen.dart';
+import '../../sathya/organization/organization_screen.dart';
 import '../../sathya/qr_error.dart';
 import '../../sathya/qr_successful.dart';
 import '../../sathya/rsvp_screen.dart';
+import '../../sathya/scanner.dart';
 import '../../sathya/scarlett_screen/scarlett_screen.dart';
 import '../../sathya/schedule_screen/schedule_screen.dart';
 import '../../sathya/sponsorship/sponsorship_screen.dart';
 import '../../sathya/ticket_sale_dettails/ticket_sale_details.dart';
+import '../extra/extra1.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
 import '../modules/event_details/bindings/event_details_binding.dart';
@@ -39,7 +43,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.MyEvents;
 
   static final routes = [
     GetPage(
@@ -172,10 +176,21 @@ class AppPages {
       page: () => ScarlettScreen(),
       binding: EventDetailsBinding(),
     ),
-    // GetPage(
-    //   name: _Paths.SelectionPage,
-    //   page: () => SelectionPage(),
-    //   binding: EventDetailsBinding(),
-    // ),
+    GetPage(
+      name: _Paths.QRCodeScannerScreen,
+      page: () => QRCodeScannerScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.MyProfile,
+      page: () => MyProfile(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.OrganizationScreen,
+      page: () => OrganizationScreen(),
+      binding: EventDetailsBinding(),
+    ),
+
   ];
 }

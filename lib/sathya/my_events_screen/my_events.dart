@@ -1,56 +1,86 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:fun_zippy/app/utilities/extention.dart';
-import 'package:fun_zippy/sathya/event_dashboard/even_dashboard.dart';
+import 'package:fun_zippy/sathya/scarlett_screen/scarlett_screen.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
+
 import '../../app/routes/app_pages.dart';
 import '../scanner.dart';
 
 class MyEvents extends StatefulWidget {
-  const MyEvents({super.key});
+  const MyEvents({Key? key});
 
   @override
   State<MyEvents> createState() => _MyEventsState();
 }
 
 class _MyEventsState extends State<MyEvents> {
-  bool Upcoming = false;
-  bool Completed = false;
+  bool upcoming = false;
+  bool completed = false;
+
   List<dynamic> data = [];
 
-  Future<void> fetchDataApi() async {
-    final response = await http.get(Uri.parse(
-        'https://funzippy.com/auth/event/event/search/getManagedEvents?AuthToken:f272c34d-f3fb-4745-9e7b-6e4b942b91c4'));
-
-    if (response.statusCode == 200) {
-      var apidata = json.decode(response.body);
-      data.addAll(apidata['results']);
-      setState(() {});
-    } else {
-      throw Exception('Failed to load data');
+  Future<void> apiCalls() async {
+    try {
+      final response = await fetchApiData();
+      if (response.statusCode == 200) {
+        final apiData = json.decode(response.body);
+        data.addAll(apiData['results']);
+        // Update the state here if you are using a StatefulWidget
+        // setState(() {});
+        // Get.defaultDialog(title: "Success and API done");
+      } else {
+        Get.defaultDialog(title: "Failure");
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      print('API call error: $e');
+      // Handle the error as needed
     }
   }
 
-  @override
-  void initState() {
-    fetchDataApi();
-    super.initState();
+  Future<http.Response> fetchApiData() async {
+    final url = Uri.parse(
+        'https://funzippy.com/auth/event/event/search/getManagedEvents?csrftkn=dINIu&nullAuthToken=67002ebc-25bd-4a6d-9d4d-7e8cbfb7191d');
+    final response = await http.get(url);
+    print(response.body);
+    return response;
   }
+
+  // List<dynamic> data = [];
+  //
+  // Future<void> fetchDataApi() async {
+  //   final response = await http.get(Uri.parse(
+  //       'https://funzippy.com/auth/event/event/search/getManagedEvents?'));
+  //
+  //   if (response.statusCode == 200) {
+  //     final apiData = json.decode(response.body);
+  //     data.addAll(apiData['results']);
+  //     setState(() {});
+  //   } else {
+  //     throw Exception('Failed to load data');
+  //   }
+  // }
+  //
+  // @override
+  // void initState() {
+  //   fetchDataApi();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(child: ScarlettScreen()),
       appBar: AppBar(
         elevation: 5,
         backgroundColor: Colors.white,
         leading: InkWell(
-            onTap: () {
-              Get.toNamed(Routes.ScarlettScreen);
-            },
-            child: Image.asset('assets/svg/bars_2.png')),
+          onTap: () {
+            Get.toNamed(Routes.ScarlettScreen);
+          },
+          child: Image.asset('assets/svg/bars_2.png'),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -65,18 +95,20 @@ class _MyEventsState extends State<MyEvents> {
               child: InkWell(
                 onTap: () {},
                 child: CircleAvatar(
-                    radius: 15,
-                    backgroundColor: Colors.white,
-                    child: Image.asset('assets/svg/ellipse_1.png')),
+                  radius: 15,
+                  backgroundColor: Colors.white,
+                  child: Image.asset('assets/svg/ellipse_1.png'),
+                ),
               ),
             ),
           )
         ],
         title: Center(
-            child: Text(
-          'My Events',
-          style: TextStyle(color: Colors.black, fontSize: 20),
-        )),
+          child: Text(
+            'My Events',
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -94,48 +126,52 @@ class _MyEventsState extends State<MyEvents> {
                   InkWell(
                     onTap: () {
                       setState(() {
-                        Upcoming = true;
-                        Completed = false;
+                        upcoming = true;
+                        completed = false;
                       });
                     },
                     child: Container(
                       child: Text(
                         'Upcoming',
                         style: TextStyle(
-                            color: Upcoming
-                                ? Color(0XFF5B46F4)
-                                : Color(0XFF696488)),
+                          color:
+                              upcoming ? Color(0XFF5B46F4) : Color(0XFF696488),
+                        ),
                       ),
                       decoration: BoxDecoration(
                         border: Border(
-                            bottom: BorderSide(
-                                color: Upcoming
-                                    ? Color(0XFF5B46F4)
-                                    : Colors.transparent)),
+                          bottom: BorderSide(
+                            color: upcoming
+                                ? Color(0XFF5B46F4)
+                                : Colors.transparent,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                   InkWell(
                     onTap: () {
                       setState(() {
-                        Completed = true;
-                        Upcoming = false;
+                        completed = true;
+                        upcoming = false;
                       });
                     },
                     child: Container(
                       child: Text(
                         'Completed',
                         style: TextStyle(
-                            color: Completed
-                                ? Color(0XFF5B46F4)
-                                : Color(0XFF696488)),
+                          color:
+                              completed ? Color(0XFF5B46F4) : Color(0XFF696488),
+                        ),
                       ),
                       decoration: BoxDecoration(
                         border: Border(
-                            bottom: BorderSide(
-                                color: Upcoming
-                                    ? Color(0XFF5B46F4)
-                                    : Colors.transparent)),
+                          bottom: BorderSide(
+                            color: completed
+                                ? Color(0XFF5B46F4)
+                                : Colors.transparent,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -143,16 +179,14 @@ class _MyEventsState extends State<MyEvents> {
               ),
             ),
             for (int a = 0; a < data.length; a++)
-              // for (int index = 0;
-              // index < controller.eventDetailsModel.sponsors!.length;
-              // index++)
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   height: 380,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: Color(0XFFC9C6E1))),
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: Color(0XFFC9C6E1)),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -172,12 +206,12 @@ class _MyEventsState extends State<MyEvents> {
                               Icons.calendar_today,
                               size: 14,
                             ),
-                            5.width,
+                            const SizedBox(width: 5),
                             Text(
                               'Aug 25, 2023 | 8:30PM',
                               style: TextStyle(fontSize: 10),
                             ),
-                            10.width,
+                            const SizedBox(width: 10),
                             Container(
                               height: 18,
                               width: 50,
@@ -192,40 +226,39 @@ class _MyEventsState extends State<MyEvents> {
                                       color: Color(0XFFFF5C00), fontSize: 8),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
-                        5.width,
-                        5.height,
+                        const SizedBox(height: 5),
                         Row(
                           children: [
                             Icon(
                               Icons.location_on_outlined,
                               size: 14,
                             ),
-                            5.width,
+                            const SizedBox(width: 5),
                             Text(
                               'Hi-tech City, Hyderabad',
                               style: TextStyle(fontSize: 10),
-                            )
+                            ),
                           ],
                         ),
                         Divider(
                           thickness: 1,
                           color: Color(0XFFD3CFEB),
                         ),
-                        7.height,
+                        const SizedBox(height: 7),
                         Row(
                           children: [
                             Text(
                               'Event Type',
                               style: TextStyle(fontSize: 10),
                             ),
-                            14.width,
+                            const SizedBox(width: 14),
                             Text(
                               ': Public',
                               style: TextStyle(fontSize: 10),
-                            )
+                            ),
                           ],
                         ),
                         Expanded(
@@ -236,20 +269,20 @@ class _MyEventsState extends State<MyEvents> {
                                 'Attendance',
                                 style: TextStyle(fontSize: 10),
                               ),
-                              10.width,
+                              const SizedBox(width: 10),
                               Text(
                                 ': In Person',
                                 style: TextStyle(
                                     fontSize: 10, color: Color(0XFFDC143C)),
                               ),
-                              30.width,
+                              const SizedBox(width: 30),
                               Container(
                                 height: 27,
                                 width: 27,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25),
-                                    border:
-                                        Border.all(color: Color(0XFFFD3A84))),
+                                  borderRadius: BorderRadius.circular(25),
+                                  border: Border.all(color: Color(0XFFFD3A84)),
+                                ),
                                 child: InkWell(
                                   onTap: () {
                                     Get.to(QRCodeScannerScreen());
@@ -261,55 +294,58 @@ class _MyEventsState extends State<MyEvents> {
                                   ),
                                 ),
                               ),
-                              7.width,
+                              const SizedBox(width: 7),
                               Container(
                                 height: 27,
                                 width: 27,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25),
-                                    border:
-                                        Border.all(color: Color(0XFF03A9F4))),
+                                  borderRadius: BorderRadius.circular(25),
+                                  border: Border.all(color: Color(0XFF03A9F4)),
+                                ),
                                 child: InkWell(
-                                    onTap: () {
-                                      Get.toNamed(Routes.EventDashboardScreen);
-                                    },
-                                    child: Image.asset('assets/svg/day.png')),
+                                  onTap: () {
+                                    Get.toNamed(Routes.EventDashboardScreen);
+                                  },
+                                  child: Image.asset('assets/svg/day.png'),
+                                ),
                               ),
-                              7.width,
+                              const SizedBox(width: 7),
                               Container(
                                 height: 27,
                                 width: 27,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25),
-                                    border:
-                                        Border.all(color: Color(0XFF5B46F4))),
+                                  borderRadius: BorderRadius.circular(25),
+                                  border: Border.all(color: Color(0XFF5B46F4)),
+                                ),
                                 child: InkWell(
-                                    onTap: () {
-                                      Get.toNamed(Routes.EventScreen);
-                                    },
-                                    child: Icon(
-                                      Icons.visibility_outlined,
-                                      size: 15,
-                                      color: Color(0XFF5B46F4),
-                                    )),
+                                  onTap: () {
+                                    Get.toNamed(Routes.EventScreen);
+                                  },
+                                  child: Icon(
+                                    Icons.visibility_outlined,
+                                    size: 15,
+                                    color: Color(0XFF5B46F4),
+                                  ),
+                                ),
                               ),
-                              7.width,
+                              const SizedBox(width: 7),
                               Container(
                                 height: 27,
                                 width: 27,
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(25),
-                                    border:
-                                        Border.all(color: Color(0XFFFD3A84))),
+                                  borderRadius: BorderRadius.circular(25),
+                                  border: Border.all(color: Color(0XFFFD3A84)),
+                                ),
                                 child: InkWell(
-                                    onTap: () {
-                                      Get.toNamed(Routes.EditingEvent);
-                                    },
-                                    child: Icon(
-                                      Icons.edit,
-                                      size: 15,
-                                      color: Color(0XFFFD3A84),
-                                    )),
+                                  onTap: () {
+                                    Get.toNamed(Routes.EditingEvent);
+                                  },
+                                  child: Icon(
+                                    Icons.edit,
+                                    size: 15,
+                                    color: Color(0XFFFD3A84),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
