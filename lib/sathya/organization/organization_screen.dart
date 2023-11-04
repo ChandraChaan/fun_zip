@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fun_zippy/app/theme/colors.dart';
 
 class OrganizationScreen extends StatelessWidget {
   const OrganizationScreen({super.key});
@@ -6,6 +7,7 @@ class OrganizationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       appBar: AppBar(
         elevation: 5,
         backgroundColor: Colors.white,
@@ -35,150 +37,181 @@ class OrganizationScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
-        height: 680,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(19.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Edit Your Personal Settings',
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                'First Name',
-                style: TextStyle(fontSize: 11),
-              ),
-              Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Color(0XFFF5F4F9),
-                  borderRadius: BorderRadius.circular(20),
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Container(
+          height: 650,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(19.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Details that apply across your events and venues',
+                  style: TextStyle(fontSize: 12),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Scarlett',
-                      hintStyle: TextStyle(fontSize: 11),
+                Row(
+                  children: [
+                    Text(
+                      'Organization Name',
+                      style: TextStyle(fontSize: 11),
+                    ),
+                    Text(
+                      '*',
+                      style: TextStyle(color: Colors.red),
+                    )
+                  ],
+                ),
+                Container(
+                  height: 35,
+                  decoration: BoxDecoration(
+                    color: Color(0XFFF5F4F9),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: '6160',
+                        hintStyle: TextStyle(fontSize: 11),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Text(
-                'First Name',
-                style: TextStyle(fontSize: 11),
-              ),
-              Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Color(0XFFF5F4F9),
-                  borderRadius: BorderRadius.circular(20),
+                Text(
+                  'Description',
+                  style: TextStyle(fontSize: 11),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Scarlett',
-                      hintStyle: TextStyle(fontSize: 11),
+                Container(
+                  height: 125,
+                  decoration: BoxDecoration(
+                    color: Color(0XFFF5F4F9),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Description',
+                        hintStyle: TextStyle(fontSize: 11),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Text(
-                'First Name',
-                style: TextStyle(fontSize: 11),
-              ),
-              Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Color(0XFFF5F4F9),
-                  borderRadius: BorderRadius.circular(20),
+                Text(
+                  'Website',
+                  style: TextStyle(fontSize: 11),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Scarlett',
-                      hintStyle: TextStyle(fontSize: 11),
+                Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Color(0XFFF5F4F9),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Website',
+                        hintStyle: TextStyle(fontSize: 11),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Text(
-                'First Name',
-                style: TextStyle(fontSize: 11),
-              ),
-              Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Color(0XFFF5F4F9),
-                  borderRadius: BorderRadius.circular(20),
+                Text(
+                  'Email',
+                  style: TextStyle(fontSize: 11),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Scarlett',
-                      hintStyle: TextStyle(fontSize: 11),
+                Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Color(0XFFF5F4F9),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Email',
+                        hintStyle: TextStyle(fontSize: 11),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Text(
-                'First Name',
-                style: TextStyle(fontSize: 11),
-              ),
-              Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Color(0XFFF5F4F9),
-                  borderRadius: BorderRadius.circular(20),
+                Text(
+                  'Phone Number',
+                  style: TextStyle(fontSize: 11),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Scarlett',
-                      hintStyle: TextStyle(fontSize: 11),
+                Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Color(0XFFF5F4F9),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Website',
+                        hintStyle: TextStyle(fontSize: 11),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Text(
-                'First Name',
-                style: TextStyle(fontSize: 11),
-              ),
-              Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Color(0XFFF5F4F9),
-                  borderRadius: BorderRadius.circular(20),
+                Text(
+                  'Event Category',
+                  style: TextStyle(fontSize: 11),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Scarlett',
-                      hintStyle: TextStyle(fontSize: 11),
+                Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Color(0XFFF5F4F9),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Event Category',
+                        hintStyle: TextStyle(fontSize: 11),
+                      ),
                     ),
                   ),
                 ),
-              ),
-
-            ],
+                Text(
+                  'Organization/Business Tags',
+                  style: TextStyle(fontSize: 11),
+                ),
+                Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Color(0XFFF5F4F9),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Organization/Business Tags',
+                        hintStyle: TextStyle(fontSize: 11),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

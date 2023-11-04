@@ -93,7 +93,6 @@ class EditingEvent extends GetView<HomeController> {
                           )
                         ],
                       ),
-                      SizedBox(height: 8),
                       Container(
                         height: 35,
                         child: TextField(

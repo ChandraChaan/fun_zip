@@ -37,6 +37,7 @@ abstract class Routes {
   static const SideMenu = _Paths.SideMenu;
   static const MyProfile = _Paths.MyProfile;
   static const OrganizationScreen = _Paths.OrganizationScreen;
+  static const EventContactsScreen = _Paths.EventContactsScreen;
 }
 
 abstract class _Paths {
@@ -75,5 +76,7 @@ abstract class _Paths {
   static const SideMenu = '/SideMenu';
   static const MyProfile = '/MyProfile';
   static const OrganizationScreen = '/OrganizationScreen';
+  static const TimeSlotGenerator = '/TimeSlotGenerator';
+  static const EventContactsScreen = '/EventContactsScreen';
 
 }

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../../sathya/booking_tickets/booking_tickets.dart';
 import '../../sathya/editing_event/editing_event.dart';
 import '../../sathya/editing_event/event_screen.dart';
+import '../../sathya/event_contacts.dart';
 import '../../sathya/event_dashboard/even_dashboard.dart';
 import '../../sathya/event_dashboard/even_dashboard.dart';
 import '../../sathya/event_management/event_management_screen.dart';
@@ -17,6 +18,7 @@ import '../../sathya/scarlett_screen/scarlett_screen.dart';
 import '../../sathya/schedule_screen/schedule_screen.dart';
 import '../../sathya/sponsorship/sponsorship_screen.dart';
 import '../../sathya/ticket_sale_dettails/ticket_sale_details.dart';
+import '../../sathya/timeslot_generator.dart';
 import '../extra/extra1.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
@@ -43,7 +45,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.MyEvents;
+  static const INITIAL = Routes.OrganizationScreen;
 
   static final routes = [
     GetPage(
@@ -189,6 +191,16 @@ class AppPages {
     GetPage(
       name: _Paths.OrganizationScreen,
       page: () => OrganizationScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.TimeSlotGenerator,
+      page: () => TimeSlotGenerator(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.EventContactsScreen,
+      page: () => EventContactsScreen(),
       binding: EventDetailsBinding(),
     ),
 
