@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/modules/home/views/tabs/event_tab/event_tab.dart';
+import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:fun_zippy/sathya/my_events_screen/my_events.dart';
 
 import 'package:get/get.dart';
@@ -25,23 +26,10 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      drawer: Drawer(
-        elevation: 0,
-        child: ElevatedButton(
-            onPressed: () {
-              GetStorage().remove('user');
-              Get.offAllNamed(Routes.SIGN_IN);
-            },
-            child: Text('logout')),
-      ),
-      body: Obx(() {
+    return Obx(() {
         return Center(
           child: _widgetOptions.elementAt(controller.selectedIndex.value),
         );
-      }),
-      bottomNavigationBar: BottomNavigationBarWidget(controller: controller),
-    );
+      });
   }
 }

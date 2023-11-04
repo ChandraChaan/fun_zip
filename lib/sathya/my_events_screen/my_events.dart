@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:fun_zippy/sathya/scarlett_screen/scarlett_screen.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -70,294 +71,264 @@ class _MyEventsState extends State<MyEvents> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: Drawer(child: ScarlettScreen()),
-      appBar: AppBar(
-        elevation: 5,
-        backgroundColor: Colors.white,
-        leading: InkWell(
-          onTap: () {
-            Get.toNamed(Routes.ScarlettScreen);
-          },
-          child: Image.asset('assets/svg/bars_2.png'),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.deepPurple, // Border color
-                  width: 2.0, // Border width
-                ),
-                shape: BoxShape.circle, // To make it a circular border
-              ),
-              child: InkWell(
-                onTap: () {},
-                child: CircleAvatar(
-                  radius: 15,
-                  backgroundColor: Colors.white,
-                  child: Image.asset('assets/svg/ellipse_1.png'),
-                ),
-              ),
+    return CommonScafold(
+       title: 'My Events',
+       child: SingleChildScrollView(
+      child: Column(
+        children: [
+          Container(
+            height: 46,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Color(0XFFEFEDFF),
+              borderRadius: BorderRadius.circular(8),
             ),
-          )
-        ],
-        title: Center(
-          child: Text(
-            'My Events',
-            style: TextStyle(color: Colors.black, fontSize: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      upcoming = true;
+                      completed = false;
+                    });
+                  },
+                  child: Container(
+                    child: Text(
+                      'Upcoming',
+                      style: TextStyle(
+                        color: upcoming
+                            ? Color(0XFF5B46F4)
+                            : Color(0XFF696488),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: upcoming
+                              ? Color(0XFF5B46F4)
+                              : Colors.transparent,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      completed = true;
+                      upcoming = false;
+                    });
+                  },
+                  child: Container(
+                    child: Text(
+                      'Completed',
+                      style: TextStyle(
+                        color: completed
+                            ? Color(0XFF5B46F4)
+                            : Color(0XFF696488),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: completed
+                              ? Color(0XFF5B46F4)
+                              : Colors.transparent,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 46,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Color(0XFFEFEDFF),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        upcoming = true;
-                        completed = false;
-                      });
-                    },
-                    child: Container(
-                      child: Text(
-                        'Upcoming',
-                        style: TextStyle(
-                          color:
-                              upcoming ? Color(0XFF5B46F4) : Color(0XFF696488),
-                        ),
+          for (int a = 0; a < data.length; a++)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 380,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  border: Border.all(color: Color(0XFFC9C6E1)),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/svg/rectangle_32.png'),
+                      SizedBox(height: 7),
+                      Text(
+                        '${data[a]["name"]}',
+                        style: TextStyle(fontSize: 16),
                       ),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: upcoming
-                                ? Color(0XFF5B46F4)
-                                : Colors.transparent,
+                      SizedBox(height: 7),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.calendar_today,
+                            size: 14,
                           ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      setState(() {
-                        completed = true;
-                        upcoming = false;
-                      });
-                    },
-                    child: Container(
-                      child: Text(
-                        'Completed',
-                        style: TextStyle(
-                          color:
-                              completed ? Color(0XFF5B46F4) : Color(0XFF696488),
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: completed
-                                ? Color(0XFF5B46F4)
-                                : Colors.transparent,
+                          const SizedBox(width: 5),
+                          Text(
+                            'Aug 25, 2023 | 8:30PM',
+                            style: TextStyle(fontSize: 10),
                           ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            for (int a = 0; a < data.length; a++)
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 380,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: Color(0XFFC9C6E1)),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset('assets/svg/rectangle_32.png'),
-                        SizedBox(height: 7),
-                        Text(
-                          '${data[a]["name"]}',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        SizedBox(height: 7),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.calendar_today,
-                              size: 14,
+                          const SizedBox(width: 10),
+                          Container(
+                            height: 18,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              color: Color(0XFFFF5C00).withOpacity(.22),
+                              borderRadius: BorderRadius.circular(25),
                             ),
-                            const SizedBox(width: 5),
+                            child: Center(
+                              child: Text(
+                                '10 Days',
+                                style: TextStyle(
+                                    color: Color(0XFFFF5C00),
+                                    fontSize: 8),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.location_on_outlined,
+                            size: 14,
+                          ),
+                          const SizedBox(width: 5),
+                          Text(
+                            'Hi-tech City, Hyderabad',
+                            style: TextStyle(fontSize: 10),
+                          ),
+                        ],
+                      ),
+                      Divider(
+                        thickness: 1,
+                        color: Color(0XFFD3CFEB),
+                      ),
+                      const SizedBox(height: 7),
+                      Row(
+                        children: [
+                          Text(
+                            'Event Type',
+                            style: TextStyle(fontSize: 10),
+                          ),
+                          const SizedBox(width: 14),
+                          Text(
+                            ': Public',
+                            style: TextStyle(fontSize: 10),
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: Row(
+                          children: [
                             Text(
-                              'Aug 25, 2023 | 8:30PM',
+                              'Attendance',
                               style: TextStyle(fontSize: 10),
                             ),
                             const SizedBox(width: 10),
+                            Text(
+                              ': In Person',
+                              style: TextStyle(
+                                  fontSize: 10, color: Color(0XFFDC143C)),
+                            ),
+                            const SizedBox(width: 30),
                             Container(
-                              height: 18,
-                              width: 50,
+                              height: 27,
+                              width: 27,
                               decoration: BoxDecoration(
-                                color: Color(0XFFFF5C00).withOpacity(.22),
                                 borderRadius: BorderRadius.circular(25),
+                                border:
+                                Border.all(color: Color(0XFFFD3A84)),
                               ),
-                              child: Center(
-                                child: Text(
-                                  '10 Days',
-                                  style: TextStyle(
-                                      color: Color(0XFFFF5C00), fontSize: 8),
+                              child: InkWell(
+                                onTap: () {
+                                  Get.to(QRCodeScannerScreen());
+                                },
+                                child: Icon(
+                                  Icons.photo_camera,
+                                  size: 16,
+                                  color: Color(0XFFFD3A84),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 7),
+                            Container(
+                              height: 27,
+                              width: 27,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(25),
+                                border:
+                                Border.all(color: Color(0XFF03A9F4)),
+                              ),
+                              child: InkWell(
+                                onTap: () {
+                                  Get.toNamed(
+                                      Routes.EventDashboardScreen);
+                                },
+                                child: Image.asset('assets/svg/day.png'),
+                              ),
+                            ),
+                            const SizedBox(width: 7),
+                            Container(
+                              height: 27,
+                              width: 27,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(25),
+                                border:
+                                Border.all(color: Color(0XFF5B46F4)),
+                              ),
+                              child: InkWell(
+                                onTap: () {
+                                  Get.toNamed(Routes.EventScreen);
+                                },
+                                child: Icon(
+                                  Icons.visibility_outlined,
+                                  size: 15,
+                                  color: Color(0XFF5B46F4),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 7),
+                            Container(
+                              height: 27,
+                              width: 27,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(25),
+                                border:
+                                Border.all(color: Color(0XFFFD3A84)),
+                              ),
+                              child: InkWell(
+                                onTap: () {
+                                  Get.toNamed(Routes.EditingEvent);
+                                },
+                                child: Icon(
+                                  Icons.edit,
+                                  size: 15,
+                                  color: Color(0XFFFD3A84),
                                 ),
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 5),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.location_on_outlined,
-                              size: 14,
-                            ),
-                            const SizedBox(width: 5),
-                            Text(
-                              'Hi-tech City, Hyderabad',
-                              style: TextStyle(fontSize: 10),
-                            ),
-                          ],
-                        ),
-                        Divider(
-                          thickness: 1,
-                          color: Color(0XFFD3CFEB),
-                        ),
-                        const SizedBox(height: 7),
-                        Row(
-                          children: [
-                            Text(
-                              'Event Type',
-                              style: TextStyle(fontSize: 10),
-                            ),
-                            const SizedBox(width: 14),
-                            Text(
-                              ': Public',
-                              style: TextStyle(fontSize: 10),
-                            ),
-                          ],
-                        ),
-                        Expanded(
-                          flex: 5,
-                          child: Row(
-                            children: [
-                              Text(
-                                'Attendance',
-                                style: TextStyle(fontSize: 10),
-                              ),
-                              const SizedBox(width: 10),
-                              Text(
-                                ': In Person',
-                                style: TextStyle(
-                                    fontSize: 10, color: Color(0XFFDC143C)),
-                              ),
-                              const SizedBox(width: 30),
-                              Container(
-                                height: 27,
-                                width: 27,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(color: Color(0XFFFD3A84)),
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.to(QRCodeScannerScreen());
-                                  },
-                                  child: Icon(
-                                    Icons.photo_camera,
-                                    size: 16,
-                                    color: Color(0XFFFD3A84),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 7),
-                              Container(
-                                height: 27,
-                                width: 27,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(color: Color(0XFF03A9F4)),
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.toNamed(Routes.EventDashboardScreen);
-                                  },
-                                  child: Image.asset('assets/svg/day.png'),
-                                ),
-                              ),
-                              const SizedBox(width: 7),
-                              Container(
-                                height: 27,
-                                width: 27,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(color: Color(0XFF5B46F4)),
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.toNamed(Routes.EventScreen);
-                                  },
-                                  child: Icon(
-                                    Icons.visibility_outlined,
-                                    size: 15,
-                                    color: Color(0XFF5B46F4),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 7),
-                              Container(
-                                height: 27,
-                                width: 27,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(color: Color(0XFFFD3A84)),
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.toNamed(Routes.EditingEvent);
-                                  },
-                                  child: Icon(
-                                    Icons.edit,
-                                    size: 15,
-                                    color: Color(0XFFFD3A84),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-          ],
-        ),
+            ),
+        ],
       ),
+    ),
     );
   }
 }

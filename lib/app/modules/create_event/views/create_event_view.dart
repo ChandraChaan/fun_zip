@@ -3,6 +3,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:fun_zippy/app/modules/create_event/views/tabs/TypeOfEventWidget/TypeOfEventWidget.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
+import 'package:fun_zippy/app/widgets/commonScafold.dart';
+import 'package:fun_zippy/sathya/my_events_screen/my_events.dart';
 import 'package:get/get.dart';
 import '../../../../sathya/common_logo_widget.dart';
 import '../../../widgets/AppBarWidget.dart';
@@ -18,14 +20,9 @@ class CreateEventView extends GetView<CreateEventController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      resizeToAvoidBottomInset: true,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(AppBar().preferredSize.height),
-        child: AppBarWidget(color: whiteColor, title: 'Create an Event'),
-      ),
-      body: GetX<CreateEventController>(
+    return CommonScafold(
+      title: 'Create an Event',
+      child: GetX<CreateEventController>(
         init: CreateEventController(),
         initState: (state) {
           // controller.getCategories();
@@ -65,39 +62,39 @@ class CreateEventView extends GetView<CreateEventController> {
           }
         },
       ),
-      bottomNavigationBar: ButtonNavigationEventWidget(
-        controller: controller,
-        onGenerateDescriptionPressed: () {
-          FocusScope.of(context).unfocus();
-          controller.generateDescription();
-        },
-        onNextPressed: () async {
-          if (controller.formKey.currentState!.saveAndValidate()) {
-            FocusScope.of(context).unfocus();
-
-            await controller.pageController.nextPage(
-                duration: const Duration(milliseconds: 200),
-                curve: Curves.linear);
-
-            controller.currentPage.value =
-                controller.pageController.page!.toInt();
-          }
-        },
-        onBackPressed: () async {
-          FocusScope.of(context).unfocus();
-
-          await controller.pageController.previousPage(
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.linear);
-
-          controller.currentPage.value =
-              controller.pageController.page!.toInt();
-        },
-        onCreateAnEventPressed: () {
-          // Get.to(SuccessfulEventPage());
-          controller.createAnEvent();
-        },
-      ),
+      // bottomNavigationBar: ButtonNavigationEventWidget(
+      //   controller: controller,
+      //   onGenerateDescriptionPressed: () {
+      //     FocusScope.of(context).unfocus();
+      //     controller.generateDescription();
+      //   },
+      //   onNextPressed: () async {
+      //     if (controller.formKey.currentState!.saveAndValidate()) {
+      //       FocusScope.of(context).unfocus();
+      //
+      //       await controller.pageController.nextPage(
+      //           duration: const Duration(milliseconds: 200),
+      //           curve: Curves.linear);
+      //
+      //       controller.currentPage.value =
+      //           controller.pageController.page!.toInt();
+      //     }
+      //   },
+      //   onBackPressed: () async {
+      //     FocusScope.of(context).unfocus();
+      //
+      //     await controller.pageController.previousPage(
+      //         duration: const Duration(milliseconds: 200),
+      //         curve: Curves.linear);
+      //
+      //     controller.currentPage.value =
+      //         controller.pageController.page!.toInt();
+      //   },
+      //   onCreateAnEventPressed: () {
+      //     // Get.to(SuccessfulEventPage());
+      //     controller.createAnEvent();
+      //   },
+      // ),
     );
   }
 }
