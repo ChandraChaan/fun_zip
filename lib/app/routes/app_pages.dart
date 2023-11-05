@@ -26,6 +26,9 @@ import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/my_goups/Success.dart';
+import '../modules/my_goups/contact_us.dart';
+import '../modules/my_goups/my_groups_screen.dart';
 import '../modules/otp_verification/bindings/otp_verification_binding.dart';
 import '../modules/otp_verification/views/otp_verification_view.dart';
 import '../modules/reset_password/bindings/reset_password_binding.dart';
@@ -42,7 +45,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SIGN_IN;
+  static const INITIAL = Routes.QRCodeScannerScreen;
 
   static final routes = [
     GetPage(
@@ -188,6 +191,21 @@ class AppPages {
     GetPage(
       name: _Paths.OrganizationScreen,
       page: () => OrganizationScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.MyGroupsScreen,
+      page: () => MyGroupsScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.ContactUs,
+      page: () => ContactUs(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.SuccessFullScreen,
+      page: () => SuccessFullScreen(),
       binding: EventDetailsBinding(),
     ),
 
