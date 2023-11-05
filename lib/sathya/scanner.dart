@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fun_zippy/app/modules/my_goups/Success.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'dart:developer';
@@ -118,23 +119,13 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
       showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
-            title: Text('QR Code Valid'),
-            content: Text('The QR Code is valid.'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
+          return SuccessFullScreen();
         },
       );
 
       await makeAPICall(qrCodeData);
-    } else {
+    }
+    else {
       showDialog(
         context: context,
         builder: (context) {
