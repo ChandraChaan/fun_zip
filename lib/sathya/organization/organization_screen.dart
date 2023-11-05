@@ -210,6 +210,35 @@ class OrganizationScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                Container(
+                  height: 350,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: Column(children: [
+                    Text(
+                      'Organization/Business Tags',
+                      style: TextStyle(fontSize: 11),
+                    ),
+                    Container(
+                      height: 40,
+                      decoration: BoxDecoration(
+                        color: Color(0XFFF5F4F9),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Organization/Business Tags',
+                            hintStyle: TextStyle(fontSize: 11),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],),
+                )
               ],
             ),
           ),

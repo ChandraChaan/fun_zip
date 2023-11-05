@@ -4,7 +4,6 @@ import '../../sathya/booking_tickets/booking_tickets.dart';
 import '../../sathya/editing_event/editing_event.dart';
 import '../../sathya/editing_event/event_screen.dart';
 import '../../sathya/event_dashboard/even_dashboard.dart';
-import '../../sathya/event_dashboard/even_dashboard.dart';
 import '../../sathya/event_management/event_management_screen.dart';
 import '../../sathya/my_events_screen/my_events.dart';
 import '../../sathya/my_profile_screen/my_profile_screen.dart';
@@ -43,7 +42,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH;
+  static const INITIAL = Routes.SIGN_IN;
 
   static final routes = [
     GetPage(

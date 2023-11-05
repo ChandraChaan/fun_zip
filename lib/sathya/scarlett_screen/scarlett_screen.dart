@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/routes/app_pages.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../common_data/common_text.dart';
 import '../my_profile_screen/my_profile_screen.dart';
@@ -131,6 +132,8 @@ class ScarlettScreen extends StatelessWidget {
         } else if (title.contains('Blog')) {
           Get.toNamed(Routes.BookTickets);
         } else if (title.contains('Log Out')) {
+          final getStorage = GetStorage();
+          getStorage.erase();
           Get.offAllNamed(Routes.SIGN_IN);
         }
       },

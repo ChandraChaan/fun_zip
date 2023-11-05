@@ -31,6 +31,24 @@ class CommonScafold extends StatefulWidget {
 
 class _CommonScafoldState extends State<CommonScafold> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  List<BottomNavigationBarItem> itemsBoomList = [
+    menuItemWidget(
+      label: 'Home',
+      image: homeButtonNavigationIconImage,
+    ),
+    menuItemWidget(
+      label: 'Create Event',
+      image: plusButtonNavigationIconImage,
+    ),
+    menuItemWidget(
+      label: 'My Event',
+      image: eventButtonNavigationIconImage,
+    ),
+    menuItemWidget(
+      label: 'My Profile',
+      image: profileButtonNavigationIconImage,
+    ),
+  ];
   int selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     EventTab(),
@@ -79,11 +97,12 @@ class _CommonScafoldState extends State<CommonScafold> {
           )
         ],
         title: Center(
-          child: widget.titleChild ??
+          child: widget.navChild == false && selectedIndex != 0
+              ?Text('${itemsBoomList[selectedIndex].label}',style: TextStyle(color: Colors.black, fontSize: 20),): (widget.titleChild ??
               Text(
-                widget.title ?? ' ',
+                (widget.title ?? ' '),
                 style: TextStyle(color: Colors.black, fontSize: 20),
-              ),
+              )),
         ),
       ),
       body: widget.navChild == false && selectedIndex != 0
@@ -97,24 +116,7 @@ class _CommonScafoldState extends State<CommonScafold> {
     return BottomNavigationBar(
       selectedLabelStyle: normalText.copyWith(fontSize: 10),
       unselectedFontSize: 10,
-      items: <BottomNavigationBarItem>[
-        menuItemWidget(
-          label: 'Home',
-          image: homeButtonNavigationIconImage,
-        ),
-        menuItemWidget(
-          label: 'Create Event',
-          image: plusButtonNavigationIconImage,
-        ),
-        menuItemWidget(
-          label: 'My Event',
-          image: eventButtonNavigationIconImage,
-        ),
-        menuItemWidget(
-          label: 'My Profile',
-          image: profileButtonNavigationIconImage,
-        ),
-      ],
+      items: itemsBoomList,
       currentIndex: selectedIndex,
       selectedItemColor: Colors.red,
       unselectedItemColor: textColor,
@@ -128,8 +130,3 @@ class _CommonScafoldState extends State<CommonScafold> {
     );
   }
 }
-
-
-
-
-
