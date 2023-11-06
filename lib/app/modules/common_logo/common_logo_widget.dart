@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../app/theme/colors.dart';
+import '../../theme/colors.dart';
+
 
 class LogoCommon extends StatelessWidget {
   final Widget child;

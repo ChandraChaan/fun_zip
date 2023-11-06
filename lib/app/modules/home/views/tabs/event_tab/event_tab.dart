@@ -5,7 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:fun_zippy/app/theme/text_theme.dart';
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
-import 'package:fun_zippy/sathya/my_events_screen/my_events.dart';
 
 import 'package:get/get.dart';
 

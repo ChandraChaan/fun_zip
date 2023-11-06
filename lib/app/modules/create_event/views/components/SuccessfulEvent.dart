@@ -6,10 +6,10 @@ import 'package:get/get.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 
-import '../../../../../sathya/common_logo_widget.dart';
 import '../../../../config/images_links.dart';
 import '../../../../theme/text_theme.dart';
 import '../../../../widgets/custom_buttons.dart';
+import '../../../common_logo/common_logo_widget.dart';
 import '../../controllers/create_event_controller.dart';
 
 class SuccessfulEventPage extends GetView<CreateEventController> {

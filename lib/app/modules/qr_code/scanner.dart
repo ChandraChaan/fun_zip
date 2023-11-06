@@ -7,7 +7,8 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-import '../app/routes/app_pages.dart';
+import '../../routes/app_pages.dart';
+
 
 class QRCodeScannerScreen extends StatefulWidget {
   const QRCodeScannerScreen({Key? key}) : super(key: key);
@@ -75,8 +76,8 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
   Widget _buildQrView(BuildContext context) {
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
         MediaQuery.of(context).size.height < 400)
-        ? 350.0
-        : 650.0;
+        ? 250.0
+        : 250.0;
     return QRView(
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,

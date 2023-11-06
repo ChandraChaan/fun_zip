@@ -4,9 +4,7 @@ import 'package:fun_zippy/app/modules/create_event/views/tabs/TypeOfEventWidget/
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
-import 'package:fun_zippy/sathya/my_events_screen/my_events.dart';
 import 'package:get/get.dart';
-import '../../../../sathya/common_logo_widget.dart';
 import '../../../widgets/AppBarWidget.dart';
 import '../controllers/create_event_controller.dart';
 import 'tabs/BasicDetailsStepWidget/BasicDetailsStepWidget.dart';

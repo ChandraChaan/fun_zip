@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'common_data/common_text_container.dart';
+import '../app/modules/common_data/common_text_container.dart';
 
 class TimeSlotGenerator extends StatelessWidget {
   const TimeSlotGenerator({super.key});

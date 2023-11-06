@@ -3,7 +3,7 @@ import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
 
-import '../../app/modules/home/controllers/home_controller.dart';
+import '../home/controllers/home_controller.dart';
 
 class EditingEvent extends GetView<HomeController> {
 //   const EditingEvent({super.key});

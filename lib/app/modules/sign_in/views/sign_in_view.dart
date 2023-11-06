@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:fun_zippy/app/config/images_links.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
-import '../../../../sathya/common_logo_widget.dart';
 import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../../widgets/custom_buttons.dart';

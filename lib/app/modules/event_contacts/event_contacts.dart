@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fun_zippy/app/utilities/extention.dart';
-import 'package:get/get_core/src/get_main.dart';
 
-import '../app/widgets/commonScafold.dart';
-import 'common_data/common_text.dart';
+import '../../widgets/commonScafold.dart';
+import '../common_data/common_text.dart';
+
 
 class EventContactsScreen extends StatelessWidget {
   const EventContactsScreen({super.key});

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/modules/home/views/tabs/event_tab/event_tab.dart';
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
-import 'package:fun_zippy/sathya/my_events_screen/my_events.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../../../sathya/common_logo_widget.dart';
 import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../create_event/views/create_event_view.dart';
+import '../../my_events_screen/my_events.dart';
 import '../controllers/home_controller.dart';
 import 'components/BottomNavigationBarWidget.dart';
 

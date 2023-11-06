@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fun_zippy/sathya/common_data/common_text.dart';
+
+import 'common_text.dart';
 
 class CommonTextFieldContainer extends StatelessWidget {
   final IconData iconData;

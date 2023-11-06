@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
-import 'package:fun_zippy/sathya/add_calendar/add_calendar.dart';
-import 'package:fun_zippy/sathya/booking_tickets/booking_tickets.dart';
 import 'package:get/get.dart';
 
-import '../../../../sathya/rsvp_screen.dart';
-import '../../../data/model/AddEventBodyModel.dart';
+import '../../add_calendar/add_calendar.dart';
+import '../../booking_tickets/booking_tickets.dart';
 import '../../create_event/controllers/create_event_controller.dart';
+import '../../rsvp/rsvp_screen.dart';
 import '../controllers/event_details_controller.dart';
 import 'components/AboutThisPageWidget.dart';
 import 'components/AppBarWidgetEventDetails.dart';
