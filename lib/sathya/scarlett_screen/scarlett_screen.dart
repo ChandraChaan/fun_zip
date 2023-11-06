@@ -4,8 +4,8 @@ import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../common_data/common_text.dart';
-import '../my_profile_screen/my_profile_screen.dart';
+import '../../app/modules/common_data/common_text.dart';
+
 
 class ScarlettScreen extends StatelessWidget {
   const ScarlettScreen({Key? key}) : super(key: key);

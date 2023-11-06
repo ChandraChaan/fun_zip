@@ -5,9 +5,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
 import '../../app/data/model/UserModel.dart';
+import '../../app/modules/qr_code/scanner.dart';
 import '../../app/routes/app_pages.dart';
 import '../../app/widgets/commonScafold.dart';
-import '../scanner.dart';
 
 UserModel userModel = UserModel();
 
@@ -154,7 +154,7 @@ class _MyEventsState extends State<MyEvents> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Image.network('assets/svg/rectangle_32.png'),
+                        Image.asset('assets/svg/rectangle_32.png'),
                         SizedBox(height: 7),
                         Text(
                           '${data[a]["name"]}',

@@ -1,6 +1,7 @@
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:get/get.dart';
 
+import '../../sathya/my_events_screen/my_events.dart';
 import '../modules/booking_tickets/booking_tickets.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
@@ -15,7 +16,6 @@ import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/my_events_screen/my_events.dart';
 import '../modules/my_goups/Success.dart';
 import '../modules/my_goups/contact_us.dart';
 import '../modules/my_goups/my_groups_screen.dart';
