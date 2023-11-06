@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/widgets/CommonDropdownWidget.dart';
 import 'package:fun_zippy/app/widgets/CommonTextField.dart';
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
-import 'package:fun_zippy/sathya/common_data/common_container.dart';
-import 'package:fun_zippy/sathya/common_data/common_text_container.dart';
 
 class ContactUs extends StatelessWidget {
   const ContactUs({super.key});

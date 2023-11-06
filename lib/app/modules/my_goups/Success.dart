@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
-import 'package:fun_zippy/sathya/my_events_screen/my_events.dart';
 import 'package:get/get.dart';
 
-import '../../../sathya/scanner.dart';
+import '../qr_code/scanner.dart';
 
 class SuccessFullScreen extends StatefulWidget {
   const SuccessFullScreen({super.key});

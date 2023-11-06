@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../app/modules/event_details/controllers/event_details_controller.dart';
+import '../event_details/controllers/event_details_controller.dart';
+
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({super.key});

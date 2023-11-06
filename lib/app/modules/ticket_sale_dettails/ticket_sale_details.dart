@@ -3,7 +3,6 @@ import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
 
-import '../../app/widgets/custom_buttons.dart';
 import '../common_data/common_container.dart';
 
 class TicketSaleDetailsScreen extends StatelessWidget {

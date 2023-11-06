@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
-import 'package:fun_zippy/sathya/common_data/common_text.dart';
 import 'package:get/get.dart';
+
+import '../common_data/common_text.dart';
 
 class EventScreen extends StatefulWidget {
   const EventScreen({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/widgets/rounded_border.dart';
 
-import '../../app/modules/event_details/controllers/event_details_controller.dart';
+import '../event_details/controllers/event_details_controller.dart';
 
 class AddToCalendar extends StatelessWidget {
   const AddToCalendar({

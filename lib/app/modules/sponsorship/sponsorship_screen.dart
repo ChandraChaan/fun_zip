@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../app/modules/event_details/controllers/event_details_controller.dart';
+import '../event_details/controllers/event_details_controller.dart';
+
 
 class SponsorshipScreen extends GetView<EventDetailsController> {
   final bool boots;

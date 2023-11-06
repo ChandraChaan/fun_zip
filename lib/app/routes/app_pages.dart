@@ -1,45 +1,44 @@
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:get/get.dart';
 
-import '../../sathya/booking_tickets/booking_tickets.dart';
-import '../../sathya/editing_event/editing_event.dart';
-import '../../sathya/editing_event/event_screen.dart';
-import '../../sathya/event_dashboard/even_dashboard.dart';
-import '../../sathya/event_management/event_management_screen.dart';
-import '../../sathya/my_events_screen/my_events.dart';
-import '../../sathya/my_profile_screen/my_profile_screen.dart';
-import '../../sathya/organization/organization_screen.dart';
-import '../../sathya/qr_error.dart';
-import '../../sathya/qr_successful.dart';
-import '../../sathya/rsvp_screen.dart';
-import '../../sathya/scanner.dart';
-import '../../sathya/scarlett_screen/scarlett_screen.dart';
-import '../../sathya/schedule_screen/schedule_screen.dart';
-import '../../sathya/sponsorship/sponsorship_screen.dart';
-import '../../sathya/ticket_sale_dettails/ticket_sale_details.dart';
-import '../extra/extra1.dart';
+import '../modules/booking_tickets/booking_tickets.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
+import '../modules/editing_event/editing_event.dart';
+import '../modules/editing_event/event_screen.dart';
+import '../modules/event_dashboard/even_dashboard.dart';
 import '../modules/event_details/bindings/event_details_binding.dart';
 import '../modules/event_details/views/components/SignUpItemWidget.dart';
 import '../modules/event_details/views/event_details_view.dart';
+import '../modules/event_management/event_management_screen.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/my_events_screen/my_events.dart';
 import '../modules/my_goups/Success.dart';
 import '../modules/my_goups/contact_us.dart';
 import '../modules/my_goups/my_groups_screen.dart';
+import '../modules/my_profile_screen/my_profile_screen.dart';
+import '../modules/organization/organization_screen.dart';
 import '../modules/otp_verification/bindings/otp_verification_binding.dart';
 import '../modules/otp_verification/views/otp_verification_view.dart';
+import '../modules/qr_code/qr_error.dart';
+import '../modules/qr_code/qr_successful.dart';
+import '../modules/qr_code/scanner.dart';
 import '../modules/reset_password/bindings/reset_password_binding.dart';
 import '../modules/reset_password/views/reset_password_view.dart';
+import '../modules/rsvp/rsvp_screen.dart';
+import '../modules/scarlett_screen/scarlett_screen.dart';
+import '../modules/schedule_screen/schedule_screen.dart';
 import '../modules/sign_in/bindings/sign_in_binding.dart';
 import '../modules/sign_in/views/sign_in_view.dart';
 import '../modules/sign_up/bindings/sign_up_binding.dart';
 import '../modules/sign_up/views/sign_up_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/sponsorship/sponsorship_screen.dart';
+import '../modules/ticket_sale_dettails/ticket_sale_details.dart';
 
 part 'app_routes.dart';
 
@@ -161,11 +160,7 @@ class AppPages {
       ),
       binding: EventDetailsBinding(),
     ),
-    // GetPage(
-    //   name: _Paths.ChartPage,
-    //   page: () => ChartPage(),
-    //   binding: EventDetailsBinding(),
-    // ),
+
     GetPage(
       name: _Paths.TicketSaleDetailsScreen,
       page: () => TicketSaleDetailsScreen(),

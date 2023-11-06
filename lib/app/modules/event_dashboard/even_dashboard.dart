@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
-import 'package:fun_zippy/sathya/common_data/common_text.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../../app/routes/app_pages.dart';
-import '../scanner.dart';
+import '../../routes/app_pages.dart';
+import '../common_data/common_text.dart';
+import '../qr_code/scanner.dart';
 
 class EventDashboardScreen extends StatefulWidget {
   const EventDashboardScreen({super.key});
