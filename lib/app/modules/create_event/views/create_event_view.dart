@@ -16,7 +16,9 @@ import 'tabs/DateAndTimeStepWidget/DateAndTimeStepWidget.dart';
 import 'components/StepperWidget.dart';
 
 class CreateEventView extends GetView<CreateEventController> {
-  const CreateEventView({Key? key}) : super(key: key);
+  final bool isSfald;
+
+  CreateEventView({this.isSfald = false});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,8 @@ class CreateEventView extends GetView<CreateEventController> {
         if (controller.loading.value == true) {
           return Text('loading');
         } else {
-          return FormBuilder(
+          return ForBuilderEvent(
+              chil: FormBuilder(
             key: controller.formKey,
             child: Padding(
               padding: const EdgeInsets.only(
@@ -56,9 +59,20 @@ class CreateEventView extends GetView<CreateEventController> {
                 ],
               ),
             ),
-          );
+          ));
         }
       },
     );
+  }
+
+  Widget ForBuilderEvent({required Widget chil}) {
+    return isSfald
+        ? CommonScafold(
+            title: 'Create New Event',
+            selectedIndex: 1,
+            navChild: true,
+            child: chil,
+          )
+        : chil;
   }
 }

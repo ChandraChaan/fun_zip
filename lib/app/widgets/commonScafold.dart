@@ -12,18 +12,20 @@ import '../theme/text_theme.dart';
 
 class CommonScafold extends StatefulWidget {
   final String? title;
-  final Widget child;
+  final Widget? child;
   final Widget? titleChild;
   final Widget? bottomNavigationBar;
+  final int? selectedIndex;
   final bool navChild;
 
   CommonScafold(
       {super.key,
       this.title,
       this.titleChild,
+      this.selectedIndex = 0,
       this.navChild = false,
       this.bottomNavigationBar,
-      required this.child});
+      this.child});
 
   @override
   State<CommonScafold> createState() => _CommonScafoldState();
@@ -50,12 +52,24 @@ class _CommonScafoldState extends State<CommonScafold> {
     ),
   ];
   int selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
+  bool useMenu = false;
+  @override
+  void initState() {
+    setState(() {
+      selectedIndex = widget.selectedIndex ?? selectedIndex;
+    });
+    super.initState();
+  }
+  static List<Widget> _widgetOptions = <Widget>[
     EventTab(),
-    CreateEventView(),
-    MyEvents(),
-    Text(
-      'Index 3: Settings',
+    CreateEventView(
+      isSfald: false,
+    ),
+    MyEvents(isSfald: false,),
+    Center(
+      child: Text(
+        'My Profile',
+      ),
     ),
   ];
 
@@ -97,15 +111,19 @@ class _CommonScafoldState extends State<CommonScafold> {
           )
         ],
         title: Center(
-          child: widget.navChild == false && selectedIndex != 0
-              ?Text('${itemsBoomList[selectedIndex].label}',style: TextStyle(color: Colors.black, fontSize: 20),): (widget.titleChild ??
-              Text(
-                (widget.title ?? ' '),
-                style: TextStyle(color: Colors.black, fontSize: 20),
-              )),
+          child: widget.navChild == false || selectedIndex != 0 || useMenu
+              ? Text(
+                  '${itemsBoomList[selectedIndex].label}',
+                  style: TextStyle(color: Colors.black, fontSize: 20),
+                )
+              : (widget.titleChild ??
+                  Text(
+                    (widget.title ?? ' '),
+                    style: TextStyle(color: Colors.black, fontSize: 20),
+                  )),
         ),
       ),
-      body: widget.navChild == false && selectedIndex != 0
+      body: widget.navChild == true || selectedIndex != 0 || useMenu
           ? _widgetOptions.elementAt(selectedIndex)
           : widget.child,
       bottomNavigationBar: widget.bottomNavigationBar ?? BottomNavigation(),
@@ -125,6 +143,7 @@ class _CommonScafoldState extends State<CommonScafold> {
       onTap: (int index) {
         setState(() {
           selectedIndex = index;
+          useMenu = true;
         });
       },
     );
