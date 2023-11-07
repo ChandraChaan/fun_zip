@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
+import 'package:get/get.dart';
 
 class QrErrorScreen extends StatelessWidget {
   const QrErrorScreen({super.key});
@@ -19,19 +20,22 @@ class QrErrorScreen extends StatelessWidget {
             ),
             20.height,
             Text(
-              'Successful',
+              'Error',
               style: TextStyle(fontSize: 18),
             ),
             10.height,
-            Center(
-              child: Text(
-                  'It is a long established fact that a reader will be distracted by the readable content.'),
+            // Center(
+            //   child: Text(
+            //       'It is a long established fact that a reader will be distracted by the readable content.'),
+            // ),
+            SizedBox(
+              height: 25,
             ),
             Container(
-              height: 30,
+              height: 35,
               child: TextButton(
                 onPressed: () {
-                  // Add your onPressed functionality here
+                  Get.back();
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: Color(0XFFC61236), // Background color
@@ -41,7 +45,8 @@ class QrErrorScreen extends StatelessWidget {
                     // Border color
                   ),
                 ),
-                child: Text('Error', style: TextStyle(color: Colors.white)),
+                child:
+                    Text('Scan Again', style: TextStyle(color: Colors.white)),
               ),
             ),
           ],

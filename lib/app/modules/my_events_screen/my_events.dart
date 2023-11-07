@@ -68,7 +68,6 @@ class _MyEventsState extends State<MyEvents> {
     super.initState();
   }
 
-// date format
   final date = [
     {"startDateTime": "2023-08-03T12:00:00"},
     // Add more data as needed
@@ -157,8 +156,7 @@ class _MyEventsState extends State<MyEvents> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.network(
-                          '${data[a]["summaryPicture"]}'),
+                      Image.asset('${data[a]["summaryPicture"]}'),
                       SizedBox(height: 7),
                       Text(
                         '${data[a]["name"]}',

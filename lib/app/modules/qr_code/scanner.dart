@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/modules/my_goups/Success.dart';
+import 'package:fun_zippy/app/modules/qr_code/qr_error.dart';
+import 'package:fun_zippy/app/modules/qr_code/qr_successful.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'dart:developer';
@@ -7,6 +9,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../sathya/my_events_screen/my_events.dart';
 import '../../routes/app_pages.dart';
 
 
@@ -120,7 +123,7 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
       showDialog(
         context: context,
         builder: (context) {
-          return SuccessFullScreen();
+          return QrSuccessfulScreen();
         },
       );
 
@@ -130,28 +133,29 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
       showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog(
-            title: InkWell(
-              onTap: () {
-                Get.toNamed(Routes.QrErrorScreen);
-              },
-              child: Text('QR Code Invalid'),
-            ),
-            content: InkWell(
-              onTap: () {
-                Get.toNamed(Routes.QrSuccessfulScreen);
-              },
-              child: Text('The QR Code is not valid or expired.'),
-            ),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
+          return QrErrorScreen();
+          // return AlertDialog(
+          //   title: InkWell(
+          //     onTap: () {
+          //       Get.toNamed(Routes.QrErrorScreen);
+          //     },
+          //     child: Text('QR Code Invalid'),
+          //   ),
+          //   content: InkWell(
+          //     onTap: () {
+          //       Get.toNamed(Routes.QrSuccessfulScreen);
+          //     },
+          //     child: Text('The QR Code is not valid or expired.'),
+          //   ),
+          //   actions: <Widget>[
+          //     TextButton(
+          //       onPressed: () {
+          //         Navigator.of(context).pop();
+          //       },
+          //       child: Text('OK'),
+          //     ),
+          //   ],
+          // );
         },
       );
     }
@@ -160,6 +164,9 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
   Future<bool> isQRCodeValid(String qrCodeData) async {
     if (qrCodeData.isNotEmpty) {
       final apiUrl = 'https://your-api-endpoint.com/your-api';
+      final headers = {
+        'Cookie': 'AuthToken=${userModel.token};',
+      };
       final response = await http.post(Uri.parse(apiUrl), body: {
         'qr_code_data': qrCodeData,
       });
@@ -172,12 +179,17 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
   }
 
   Future<void> makeAPICall(String qrCodeData) async {
-    // Implement your API call logic here
-    // Example:
     final apiUrl = 'https://your-api-endpoint.com/your-api';
+    final headers = {
+      'Cookie': 'AuthToken=${userModel.token};',
+    };
     final response = await http.post(Uri.parse(apiUrl), body: {
       'qr_code_data': qrCodeData,
     });
-    // Handle the API response as needed
+    if (response.statusCode == 200) {
+      //return true;
+    }
   }
+
 }
+

@@ -15,7 +15,6 @@ import '../modules/event_management/event_management_screen.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
-import '../modules/home/views/home_view.dart';
 import '../modules/my_goups/Success.dart';
 import '../modules/my_goups/contact_us.dart';
 import '../modules/my_goups/my_groups_screen.dart';
@@ -212,8 +211,8 @@ class AppPages {
       binding: EventDetailsBinding(),
     ),
     GetPage(
-      name: _Paths.SuccessFullScreen,
-      page: () => SuccessFullScreen(),
+      name: _Paths.QrSuccessfulScreen,
+      page: () => QrSuccessfulScreen(),
       binding: EventDetailsBinding(),
     ),
   ];

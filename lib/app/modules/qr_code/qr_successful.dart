@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
+import 'package:get/get.dart';
 
 class QrSuccessfulScreen extends StatelessWidget {
   const QrSuccessfulScreen({super.key});
@@ -23,15 +24,16 @@ class QrSuccessfulScreen extends StatelessWidget {
               style: TextStyle(fontSize: 18),
             ),
             10.height,
-            Center(
-              child: Text(
-                  'It is a long established fact that a reader will be distracted by the readable content.'),
-            ),
+            // Center(
+            //   child: Text(
+            //       'It is a long established fact that a reader will be distracted by the readable content.'),
+            // ),
+            SizedBox(height: 25,),
             Container(
               height: 30,
               child: TextButton(
                 onPressed: () {
-                  // Add your onPressed functionality here
+                  Get.back();
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: Color(0XFFC61236), // Background color
