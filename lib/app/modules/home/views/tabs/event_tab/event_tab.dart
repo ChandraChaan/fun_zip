@@ -52,11 +52,11 @@ class EventTab extends GetView<HomeController> {
   }
 
   Widget bodyWidget() {
-    return CommonScafold(
+    return /*CommonScafold(
       titleChild: Obx(() {
         return Text('${controller.userAddress.value.locality ?? 'EMPTY'}');
       }),
-      child: Column(
+      child:*/ Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           // Obx(() {
@@ -198,8 +198,7 @@ class EventTab extends GetView<HomeController> {
             },
           ),
         ],
-      ),
-    );
+      );
   }
 
 // Create a function to build the dots indicator

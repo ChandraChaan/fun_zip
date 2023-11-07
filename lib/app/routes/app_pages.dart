@@ -1,5 +1,7 @@
+import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:get/get.dart';
 
+import '../../sathya/my_events_screen/my_events.dart';
 import '../modules/booking_tickets/booking_tickets.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
@@ -14,7 +16,6 @@ import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/my_events_screen/my_events.dart';
 import '../modules/my_goups/Success.dart';
 import '../modules/my_goups/contact_us.dart';
 import '../modules/my_goups/my_groups_screen.dart';
@@ -49,7 +50,9 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => HomeView(),
+      page: () => CommonScafold(
+        navChild: true,
+      ),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -84,7 +87,9 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CREATE_EVENT,
-      page: () => const CreateEventView(),
+      page: () => CreateEventView(
+        isSfald: true,
+      ),
       binding: CreateEventBinding(),
     ),
     GetPage(
@@ -94,12 +99,16 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SponsorshipScreen,
-      page: () => SponsorshipScreen(boots: false,),
+      page: () => SponsorshipScreen(
+        boots: false,
+      ),
       binding: EventDetailsBinding(),
     ),
     GetPage(
       name: _Paths.BootsScreen,
-      page: () => SponsorshipScreen(boots: true,),
+      page: () => SponsorshipScreen(
+        boots: true,
+      ),
       binding: EventDetailsBinding(),
     ),
     GetPage(
@@ -129,7 +138,9 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.BookTickets,
-      page: () => BookTickets(controller: null,),
+      page: () => BookTickets(
+        controller: null,
+      ),
       binding: EventDetailsBinding(),
     ),
     GetPage(
@@ -144,7 +155,9 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.MyEvents,
-      page: () => MyEvents(),
+      page: () => MyEvents(
+        isSfald: true,
+      ),
       binding: EventDetailsBinding(),
     ),
 
@@ -203,6 +216,5 @@ class AppPages {
       page: () => SuccessFullScreen(),
       binding: EventDetailsBinding(),
     ),
-
   ];
 }

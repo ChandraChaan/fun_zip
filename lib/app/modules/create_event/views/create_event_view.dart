@@ -14,7 +14,9 @@ import 'tabs/DateAndTimeStepWidget/DateAndTimeStepWidget.dart';
 import 'components/StepperWidget.dart';
 
 class CreateEventView extends GetView<CreateEventController> {
-  const CreateEventView({Key? key}) : super(key: key);
+  final bool isSfald;
+
+  CreateEventView({this.isSfald = false});
 
   @override
   Widget build(BuildContext context) {
@@ -27,36 +29,84 @@ class CreateEventView extends GetView<CreateEventController> {
         if (controller.loading.value == true) {
           return Text('loading');
         } else {
-          return FormBuilder(
+          return ForBuilderEvent(
+              chil: Scaffold(
+                body: FormBuilder(
             key: controller.formKey,
             child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 20, bottom: 0, right: 20, left: 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  StepperWidget(),
-                  20.height,
-                  Expanded(
-                    child: PageView(
-                      physics: NeverScrollableScrollPhysics(),
-                      controller: controller.pageController,
-                      children: [
-                        BasicDetailsStepWidget(),
-                        TypeOfEventWidget(),
-                        DateAndTimeStepWidget(),
-                        CategoryWidget(),
-                      ],
+                padding: const EdgeInsets.only(
+                    top: 20, bottom: 0, right: 20, left: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    StepperWidget(),
+                    20.height,
+                    Expanded(
+                      child: PageView(
+                        physics: NeverScrollableScrollPhysics(),
+                        controller: controller.pageController,
+                        children: [
+                          BasicDetailsStepWidget(),
+                          TypeOfEventWidget(),
+                          DateAndTimeStepWidget(),
+                          CategoryWidget(),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
             ),
+          ),
+                bottomNavigationBar: ButtonNavigationEventWidget(
+                controller: controller,
+                onGenerateDescriptionPressed: () {
+                  FocusScope.of(context).unfocus();
+                  controller.generateDescription();
+                },
+                onNextPressed: () async {
+                  if (controller.formKey.currentState!.saveAndValidate()) {
+                    FocusScope.of(context).unfocus();
+
+                    await controller.pageController.nextPage(
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.linear);
+
+                    controller.currentPage.value =
+                        controller.pageController.page!.toInt();
+                  }
+                },
+                onBackPressed: () async {
+                  FocusScope.of(context).unfocus();
+
+                  await controller.pageController.previousPage(
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.linear);
+
+                  controller.currentPage.value =
+                      controller.pageController.page!.toInt();
+                },
+                onCreateAnEventPressed: () {
+                  // Get.to(SuccessfulEventPage());
+                  controller.createAnEvent();
+                },
+              ),
+              )
           );
         }
       },
     );
+  }
+
+  Widget ForBuilderEvent({required Widget chil}) {
+    return isSfald
+        ? CommonScafold(
+            title: 'Create New Event',
+            selectedIndex: 1,
+            navChild: true,
+            child: chil,
+          )
+        : chil;
   }
 }
