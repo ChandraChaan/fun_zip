@@ -3,6 +3,7 @@ import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
 
+import '../../../utilities/date_time_format.dart';
 import '../../add_calendar/add_calendar.dart';
 import '../../booking_tickets/booking_tickets.dart';
 import '../../create_event/controllers/create_event_controller.dart';
@@ -21,10 +22,41 @@ import 'components/SignUpItemWidget.dart';
 import 'components/SpeakersWidget.dart';
 import 'components/SponsorsWidget.dart';
 import 'components/WhatIsPlaceOfferWidget.dart';
-import 'components/contacts.dart';
 
 class EventDetailsView extends GetView<EventDetailsController> {
   const EventDetailsView({Key? key}) : super(key: key);
+  calculateDayLeft({required startDate}) {
+    String day = '';
+    DateTime? currentDate;
+    if (startDate.runtimeType == int) {
+      currentDate = DateTime.fromMillisecondsSinceEpoch(startDate);
+    } else if (startDate.runtimeType == String) {
+      currentDate = DateTime.tryParse(startDate.toString());
+    }
+
+    final difference = currentDate!.difference(today).inDays;
+
+    if (difference == 0) {
+      return 'Today';
+    }
+
+    if (difference / 30 > 1) {
+      day += '${difference ~/ 30} month';
+    }
+
+    if (difference / 30 >= 2) {
+      day += 's';
+    }
+
+    if (difference % 30 >= 2) {
+      day += ' ${difference % 30} days left';
+    } else {
+      day += ' ${difference % 30} day left';
+    }
+
+    return day;
+  }
+
 
   @override
   Widget build(BuildContext context) {

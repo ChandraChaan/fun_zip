@@ -20,6 +20,7 @@ class _SuccessFullScreenState extends State<SuccessFullScreen> {
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,13 +44,25 @@ class _SuccessFullScreenState extends State<SuccessFullScreen> {
                 'Successful',
                 style: TextStyle(fontSize: 16),
               ),
-              Text('Your have created a group\nsuccessfully', textAlign: TextAlign.center,),
-              SizedBox(height: 40,),
+              Text(
+                'Your have created a group\nsuccessfully',
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 40,
+              ),
               Container(
                 height: 35,
                 width: 90,
-                color: Colors.red,
-                child: Center(child: Text('Done')),
+                decoration: BoxDecoration(
+                    color: Color(0XFFC61236),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Center(
+                  child: Text(
+                    'Done!',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
               )
             ],
           ),
