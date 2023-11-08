@@ -3,6 +3,7 @@ import 'package:fun_zippy/app/modules/my_goups/Success.dart';
 import 'package:fun_zippy/app/modules/qr_code/qr_error.dart';
 import 'package:fun_zippy/app/modules/qr_code/qr_successful.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'dart:developer';
 import 'dart:io';
@@ -10,8 +11,8 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import '../../../sathya/my_events_screen/my_events.dart';
+import '../../data/model/UserModel.dart';
 import '../../routes/app_pages.dart';
-
 
 class QRCodeScannerScreen extends StatefulWidget {
   const QRCodeScannerScreen({Key? key}) : super(key: key);
@@ -65,7 +66,7 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
                 children: <Widget>[
                   if (result != null)
                     Text(
-                      'Barcode Type: ${result!.format}   Data: ${result!.code}',
+                      'Data: ${result!.code}',
                     ),
                 ],
               ),
@@ -78,7 +79,7 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
 
   Widget _buildQrView(BuildContext context) {
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
-        MediaQuery.of(context).size.height < 400)
+            MediaQuery.of(context).size.height < 400)
         ? 250.0
         : 250.0;
     return QRView(
@@ -96,11 +97,13 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
   }
 
   void _onQRViewCreated(QRViewController controller) {
+    print('QR scaning bro');
     setState(() {
       this.controller = controller;
     });
     controller.scannedDataStream.listen((scanData) {
       setState(() {
+        print('QR data asign bro');
         result = scanData;
       });
       checkValidityAndExpiration(scanData.code.toString());
@@ -117,9 +120,11 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
   }
 
   Future<void> checkValidityAndExpiration(String qrCodeData) async {
+    print('QR validity checking bro');
     final isValid = await isQRCodeValid(qrCodeData);
 
     if (isValid) {
+      print('QR is valid bro');
       showDialog(
         context: context,
         builder: (context) {
@@ -127,69 +132,51 @@ class _QRCodeScannerScreenState extends State<QRCodeScannerScreen> {
         },
       );
 
-      await makeAPICall(qrCodeData);
-    }
-    else {
+      // await makeAPICall(qrCodeData);
+    } else {
+      print('QR not bro');
       showDialog(
         context: context,
         builder: (context) {
           return QrErrorScreen();
-          // return AlertDialog(
-          //   title: InkWell(
-          //     onTap: () {
-          //       Get.toNamed(Routes.QrErrorScreen);
-          //     },
-          //     child: Text('QR Code Invalid'),
-          //   ),
-          //   content: InkWell(
-          //     onTap: () {
-          //       Get.toNamed(Routes.QrSuccessfulScreen);
-          //     },
-          //     child: Text('The QR Code is not valid or expired.'),
-          //   ),
-          //   actions: <Widget>[
-          //     TextButton(
-          //       onPressed: () {
-          //         Navigator.of(context).pop();
-          //       },
-          //       child: Text('OK'),
-          //     ),
-          //   ],
-          // );
         },
       );
     }
   }
 
   Future<bool> isQRCodeValid(String qrCodeData) async {
+    print('QR valid checking bro');
+    final getStorage = GetStorage();
+    dynamic userMap = getStorage.read('user');
+    if (userMap != null) {
+      userModel = UserModel.fromJson(userMap);
+    }
     if (qrCodeData.isNotEmpty) {
-      final apiUrl = 'https://your-api-endpoint.com/your-api';
+      print('QR is not bro');
+      final apiUrl = '${result?.code}';
       final headers = {
         'Cookie': 'AuthToken=${userModel.token};',
       };
-      final response = await http.post(Uri.parse(apiUrl), body: {
-        'qr_code_data': qrCodeData,
-      });
-
-      if (response.statusCode == 200) {
+      final response = await http.post(Uri.parse(apiUrl), headers: headers);
+      print('QR the API results bro ${response.body}');
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print('QR we hit API bro');
         return true;
       }
     }
     return false;
   }
 
-  Future<void> makeAPICall(String qrCodeData) async {
-    final apiUrl = 'https://your-api-endpoint.com/your-api';
-    final headers = {
-      'Cookie': 'AuthToken=${userModel.token};',
-    };
-    final response = await http.post(Uri.parse(apiUrl), body: {
-      'qr_code_data': qrCodeData,
-    });
-    if (response.statusCode == 200) {
-      //return true;
-    }
-  }
-
+  // Future<void> makeAPICall(String qrCodeData) async {
+  //   final apiUrl = 'https://your-api-endpoint.com/your-api';
+  //   final headers = {
+  //     'Cookie': 'AuthToken=${userModel.token};',
+  //   };
+  //   final response = await http.post(Uri.parse(apiUrl), body: {
+  //     'qr_code_data': qrCodeData,
+  //   });
+  //   if (response.statusCode == 200) {
+  //     //return true;
+  //   }
+  // }
 }
-

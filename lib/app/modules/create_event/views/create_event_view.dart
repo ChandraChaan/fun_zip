@@ -31,9 +31,9 @@ class CreateEventView extends GetView<CreateEventController> {
         } else {
           return ForBuilderEvent(
               chil: Scaffold(
-                body: FormBuilder(
-            key: controller.formKey,
-            child: Padding(
+            body: FormBuilder(
+              key: controller.formKey,
+              child: Padding(
                 padding: const EdgeInsets.only(
                     top: 20, bottom: 0, right: 20, left: 20),
                 child: Column(
@@ -57,43 +57,42 @@ class CreateEventView extends GetView<CreateEventController> {
                     ),
                   ],
                 ),
+              ),
             ),
-          ),
-                bottomNavigationBar: ButtonNavigationEventWidget(
-                controller: controller,
-                onGenerateDescriptionPressed: () {
-                  FocusScope.of(context).unfocus();
-                  controller.generateDescription();
-                },
-                onNextPressed: () async {
-                  if (controller.formKey.currentState!.saveAndValidate()) {
-                    FocusScope.of(context).unfocus();
-
-                    await controller.pageController.nextPage(
-                        duration: const Duration(milliseconds: 200),
-                        curve: Curves.linear);
-
-                    controller.currentPage.value =
-                        controller.pageController.page!.toInt();
-                  }
-                },
-                onBackPressed: () async {
+            bottomNavigationBar: ButtonNavigationEventWidget(
+              controller: controller,
+              onGenerateDescriptionPressed: () {
+                FocusScope.of(context).unfocus();
+                controller.generateDescription();
+              },
+              onNextPressed: () async {
+                if (controller.formKey.currentState!.saveAndValidate()) {
                   FocusScope.of(context).unfocus();
 
-                  await controller.pageController.previousPage(
+                  await controller.pageController.nextPage(
                       duration: const Duration(milliseconds: 200),
                       curve: Curves.linear);
 
                   controller.currentPage.value =
                       controller.pageController.page!.toInt();
-                },
-                onCreateAnEventPressed: () {
-                  // Get.to(SuccessfulEventPage());
-                  controller.createAnEvent();
-                },
-              ),
-              )
-          );
+                }
+              },
+              onBackPressed: () async {
+                FocusScope.of(context).unfocus();
+
+                await controller.pageController.previousPage(
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.linear);
+
+                controller.currentPage.value =
+                    controller.pageController.page!.toInt();
+              },
+              onCreateAnEventPressed: () {
+                // Get.to(SuccessfulEventPage());
+                controller.createAnEvent();
+              },
+            ),
+          ));
         }
       },
     );
