@@ -38,7 +38,7 @@ class SearchEventDialog extends GetView<HomeController> {
       body: SingleChildScrollView(
         child: Padding(
           padding:
-              const EdgeInsets.only(top: 0, bottom: 0, right: 20, left: 20),
+          const EdgeInsets.only(top: 0, bottom: 0, right: 20, left: 20),
           child: FormBuilder(
             key: formKey,
             child: Column(
@@ -55,43 +55,45 @@ class SearchEventDialog extends GetView<HomeController> {
                 ),
                 20.height,
                 // add obx
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // 20.height,
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                              text: 'Where',
-                              style: normalText.copyWith(
-                                  fontWeight: FontWeight.bold)),
-                          TextSpan(
-                            text: '*',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, color: redColor),
-                          ),
-                        ],
+                Obx(() {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // 20.height,
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                                text: 'Where',
+                                style: normalText.copyWith(
+                                    fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '*',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, color: redColor),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    10.height,
-                    CommonDropdownWidget(
-                      keyName: 'Location',
-                      hintText: 'Location',
-                      itemList: listOfCities,
-                      onPressed: (value) {
-                        controller.selectedCity = value;
-                      },
-                    ),
-                    if(controller.locReq.value)
-                    Text(
-                      "This is mandatory field",
-                      style: TextStyle(color: Colors.red,fontSize: 10),
-                    ),
-                  ],
-                ),
+                      10.height,
+                      CommonDropdownWidget(
+                        keyName: 'Location',
+                        hintText: 'Location',
+                        itemList: listOfCities,
+                        onPressed: (value) {
+                          controller.selectedCity = value;
+                        },
+                      ),
+                      if(controller.locReq.value)
+                        Text(
+                          "This is mandatory field",
+                          style: TextStyle(color: Colors.red, fontSize: 10),
+                        ),
+                    ],
+                  );
+                }),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -212,11 +214,10 @@ class SearchEventDialog extends GetView<HomeController> {
                       controller.getAllEvents();
                       // controller.fetchData();
                       formKey.currentState!.reset();
-                     // controller.verifyPhoneOTP();
-                     }else {
+                      // controller.verifyPhoneOTP();
+                    } else {
                       controller.locReq.value = true;
                     }
-
                   }),
             ),
           ],
@@ -244,7 +245,8 @@ class _CountrySearchWidgetState extends State<CountrySearchWidget> {
   void _onSearchTextChanged() {
     setState(() {
       _suggestions = listOfCities
-          .where((country) => country
+          .where((country) =>
+          country
               .toLowerCase()
               .contains(_searchController.text.toLowerCase()))
           .toList();
