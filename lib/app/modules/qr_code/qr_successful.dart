@@ -19,18 +19,24 @@ class QrSuccessfulScreen extends StatelessWidget {
               ),
             ),
             20.height,
-            Text(
-              'Successful',
-              style: TextStyle(fontSize: 18),
+            Container(
+              height: 40,
+              width: double.infinity,
+              color: Colors.green.shade100,
+              child: Center(
+                  child: Text(
+                'Thanks for check-in.',
+                style: TextStyle(color: Colors.green),
+              )),
             ),
             10.height,
             // Center(
             //   child: Text(
             //       'It is a long established fact that a reader will be distracted by the readable content.'),
             // ),
-            SizedBox(height: 25,),
+            10.height,
             Container(
-              height: 30,
+              height: 35,
               child: TextButton(
                 onPressed: () {
                   Get.back();
@@ -43,7 +49,27 @@ class QrSuccessfulScreen extends StatelessWidget {
                     // Border color
                   ),
                 ),
-                child: Text('Done!', style: TextStyle(color: Colors.white)),
+                child: Text('Stop Scanning',
+                    style: TextStyle(color: Colors.white)),
+              ),
+            ),
+            10.height,
+            Container(
+              height: 35,
+              child: TextButton(
+                onPressed: () {
+                  Get.back();
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: Color(0XFFC61236), // Background color
+                  primary: Colors.black, // Text color
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    // Border color
+                  ),
+                ),
+                child: Text('Close and scan another',
+                    style: TextStyle(color: Colors.white)),
               ),
             ),
           ],

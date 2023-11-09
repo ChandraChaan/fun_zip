@@ -19,18 +19,18 @@ class QrErrorScreen extends StatelessWidget {
               ),
             ),
             20.height,
-            Text(
-              'Error',
-              style: TextStyle(fontSize: 18),
+            Container(
+              height: 40,
+              width: double.infinity,
+              color: Colors.pink.shade100,
+              child: Center(child: Text('Please check-in before check-out.',style: TextStyle(color: Colors.red),)),
             ),
-            10.height,
             // Center(
             //   child: Text(
             //       'It is a long established fact that a reader will be distracted by the readable content.'),
             // ),
-            SizedBox(
-              height: 25,
-            ),
+
+            10.height,
             Container(
               height: 35,
               child: TextButton(
@@ -46,9 +46,29 @@ class QrErrorScreen extends StatelessWidget {
                   ),
                 ),
                 child:
-                    Text('Scan Again', style: TextStyle(color: Colors.white)),
+                    Text('Stop Scanning', style: TextStyle(color: Colors.white)),
               ),
             ),
+            10.height,
+            Container(
+              height: 35,
+              child: TextButton(
+                onPressed: () {
+                  Get.back();
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: Color(0XFFC61236), // Background color
+                  primary: Colors.black, // Text color
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    // Border color
+                  ),
+                ),
+                child:
+                Text('Close and scan another', style: TextStyle(color: Colors.white)),
+              ),
+            ),
+
           ],
         ),
       ),

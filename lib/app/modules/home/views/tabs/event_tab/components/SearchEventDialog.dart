@@ -54,6 +54,7 @@ class SearchEventDialog extends GetView<HomeController> {
                   ),
                 ),
                 20.height,
+                // add obx
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,6 +84,11 @@ class SearchEventDialog extends GetView<HomeController> {
                       onPressed: (value) {
                         controller.selectedCity = value;
                       },
+                    ),
+                    if(controller.locReq.value)
+                    Text(
+                      "This is mandatory field",
+                      style: TextStyle(color: Colors.red,fontSize: 10),
                     ),
                   ],
                 ),
@@ -199,13 +205,18 @@ class SearchEventDialog extends GetView<HomeController> {
                   radius: 10,
                   text: 'Search',
                   onPressed: () {
-                    // if (formKey.currentState!.saveAndValidate()) {
-                    //   controller.verifyPhoneOTP();
-                    // }
-                    Get.back();
-                    controller.getAllEvents();
-                    // controller.fetchData();
-                    formKey.currentState!.reset();
+                    // changes satyha
+                    if (controller.selectedCity != null) {
+                      controller.locReq.value = false;
+                      Get.back();
+                      controller.getAllEvents();
+                      // controller.fetchData();
+                      formKey.currentState!.reset();
+                     // controller.verifyPhoneOTP();
+                     }else {
+                      controller.locReq.value = true;
+                    }
+
                   }),
             ),
           ],

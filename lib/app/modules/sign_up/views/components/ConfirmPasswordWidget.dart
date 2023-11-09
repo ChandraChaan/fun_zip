@@ -48,7 +48,7 @@ class ConfirmPasswordWidget extends StatelessWidget {
           })),
           prefixIcon: IconButton(
             onPressed: null,
-            icon: SvgPicture.asset(SearchIconTextFieldIconImage),
+            icon: SvgPicture.asset(lockIconImage),
           ),
           prefixIconConstraints: BoxConstraints(minWidth: 14, minHeight: 10),
         ),

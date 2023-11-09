@@ -6,6 +6,7 @@ import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
 
 import '../../../config/images_links.dart';
+import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/text_theme.dart';
 import '../../../widgets/custom_buttons.dart';

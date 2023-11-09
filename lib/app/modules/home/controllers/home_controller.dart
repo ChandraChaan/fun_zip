@@ -16,6 +16,7 @@ class HomeController extends GetxController {
   Rx<HomeApiResponseModel> apiResponseModel = HomeApiResponseModel().obs;
   Rx<Placemark> userAddress = Placemark().obs;
   RxBool loading = true.obs;
+  RxBool locReq = false.obs;
   int currentSlide = 0;
   TextEditingController? searchEventTextEditingController =
       TextEditingController();

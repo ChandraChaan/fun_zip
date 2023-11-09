@@ -8,18 +8,52 @@ import 'package:intl/intl.dart';
 
 import '../../data/model/UserModel.dart';
 import '../../routes/app_pages.dart';
+import '../../utilities/date_time_format.dart';
 import '../qr_code/scanner.dart';
 
 UserModel userModel = UserModel();
 
-class MyEvents extends StatefulWidget {
-  const MyEvents({Key? key});
+class MyEventsChnge extends StatefulWidget {
+  const MyEventsChnge({Key? key});
 
   @override
-  State<MyEvents> createState() => _MyEventsState();
+  State<MyEventsChnge> createState() => _MyEventsChngeState();
 }
 
-class _MyEventsState extends State<MyEvents> {
+class _MyEventsChngeState extends State<MyEventsChnge> {
+
+  calculateDayLeft({required startDate}) {
+    String day = '';
+    DateTime? currentDate;
+    if (startDate.runtimeType == int) {
+      currentDate = DateTime.fromMillisecondsSinceEpoch(startDate);
+    } else if (startDate.runtimeType == String) {
+      currentDate = DateTime.tryParse(startDate.toString());
+    }
+
+    final difference = currentDate!.difference(today).inDays;
+
+    if (difference == 0) {
+      return 'Today';
+    }
+
+    if (difference / 30 > 1) {
+      day += '${difference ~/ 30} month';
+    }
+
+    if (difference / 30 >= 2) {
+      day += 's';
+    }
+
+    if (difference % 30 >= 2) {
+      day += ' ${difference % 30} days left';
+    } else {
+      day += ' ${difference % 30} day left';
+    }
+
+    return day;
+  }
+
   bool upcoming = false;
   bool completed = false;
 
@@ -145,7 +179,7 @@ class _MyEventsState extends State<MyEvents> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                height: 380,
+                //height: 410,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   border: Border.all(color: Color(0XFFC9C6E1)),
@@ -156,7 +190,8 @@ class _MyEventsState extends State<MyEvents> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.asset('${data[a]["summaryPicture"]}'),
+                      Image.asset('assets/svg/img.png'),
+                        //('${data[a]["summaryPicture"]}'),
                       SizedBox(height: 7),
                       Text(
                         '${data[a]["name"]}',
@@ -171,8 +206,7 @@ class _MyEventsState extends State<MyEvents> {
                           ),
                           const SizedBox(width: 5),
                           Text(
-                            DateFormat('MMM-dd-yy').format(
-                                DateTime.parse(data[a]["startDateTime"])),
+                              DateFormat('MMM/dd/yy').format(DateTime.parse(data[a]["startDateTime"])),
                             style: TextStyle(fontSize: 10),
                           ),
                           const SizedBox(width: 10),

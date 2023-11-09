@@ -3,15 +3,54 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 import '../../app/data/model/UserModel.dart';
 import '../../app/modules/qr_code/scanner.dart';
 import '../../app/routes/app_pages.dart';
+import '../../app/utilities/date_time_format.dart';
 import '../../app/widgets/commonScafold.dart';
 
 UserModel userModel = UserModel();
 
 class MyEvents extends StatefulWidget {
+  calculateDayLeft({required startDate}) {
+    String day = '';
+    DateTime? currentDate;
+    if (startDate.runtimeType == int) {
+      currentDate = DateTime.fromMillisecondsSinceEpoch(startDate);
+    } else if (startDate.runtimeType == String) {
+      currentDate = DateTime.tryParse(startDate.toString());
+    }
+
+    final difference = currentDate!.difference(today).inDays;
+
+    if (difference == 0) {
+      return 'Today';
+    }
+
+    if (difference / 30 > 1) {
+      day += '${difference ~/ 30} month';
+    }
+
+    if (difference / 30 >= 2) {
+      day += 's';
+    }
+
+    if (difference % 30 >= 2) {
+      day += ' ${difference % 30} days left';
+    } else {
+      day += ' ${difference % 30} day left';
+    }
+
+    return day;
+  }
+  final date = [
+    {"startDateTime": "2023-08-03T12:00:00"},
+    // Add more data as needed
+  ];
+
+
   final bool isSfald;
 
   MyEvents({this.isSfald = false});
@@ -154,7 +193,9 @@ class _MyEventsState extends State<MyEvents> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Image.asset('assets/svg/rectangle_32.png'),
+                        Image.asset('assets/svg/img.png'),
+                          //('${data[a]["summaryPicture"]}'),
+                        //Image.asset('assets/svg/rectangle_32.png'),
                         SizedBox(height: 7),
                         Text(
                           '${data[a]["name"]}',
@@ -169,7 +210,9 @@ class _MyEventsState extends State<MyEvents> {
                             ),
                             const SizedBox(width: 5),
                             Text(
-                              '${data[a]["startDateTime"]}',
+                              DateFormat('MMM-dd-yy').format(DateTime.parse(data[a]["startDateTime"])),
+
+                              //'${data[a]["startDateTime"]}',
                               style: TextStyle(fontSize: 10),
                             ),
                             const SizedBox(width: 10),
@@ -225,88 +268,98 @@ class _MyEventsState extends State<MyEvents> {
                         Expanded(
                           flex: 5,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'Attendance',
-                                style: TextStyle(fontSize: 10),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Attendance',
+                                    style: TextStyle(fontSize: 10),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    ': In Person',
+                                    style: TextStyle(
+                                        fontSize: 10, color: Color(0XFFDC143C)),
+                                  ),
+                                ],
                               ),
-                              const SizedBox(width: 10),
-                              Text(
-                                ': In Person',
-                                style: TextStyle(
-                                    fontSize: 10, color: Color(0XFFDC143C)),
-                              ),
+
                               const SizedBox(width: 30),
-                              Container(
-                                height: 27,
-                                width: 27,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(color: Color(0XFFFD3A84)),
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.to(QRCodeScannerScreen());
-                                  },
-                                  child: Icon(
-                                    Icons.photo_camera,
-                                    size: 16,
-                                    color: Color(0XFFFD3A84),
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 27,
+                                    width: 27,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(25),
+                                      border: Border.all(color: Color(0XFFFD3A84)),
+                                    ),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.to(QRCodeScannerScreen());
+                                      },
+                                      child: Icon(
+                                        Icons.photo_camera,
+                                        size: 16,
+                                        color: Color(0XFFFD3A84),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              const SizedBox(width: 7),
-                              Container(
-                                height: 27,
-                                width: 27,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(color: Color(0XFF03A9F4)),
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.toNamed(Routes.EventDashboardScreen);
-                                  },
-                                  child: Image.asset('assets/svg/day.png'),
-                                ),
-                              ),
-                              const SizedBox(width: 7),
-                              Container(
-                                height: 27,
-                                width: 27,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(color: Color(0XFF5B46F4)),
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.toNamed(Routes.EventScreen);
-                                  },
-                                  child: Icon(
-                                    Icons.visibility_outlined,
-                                    size: 15,
-                                    color: Color(0XFF5B46F4),
+                                  const SizedBox(width: 7),
+                                  Container(
+                                    height: 27,
+                                    width: 27,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(25),
+                                      border: Border.all(color: Color(0XFF03A9F4)),
+                                    ),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.toNamed(Routes.EventDashboardScreen);
+                                      },
+                                      child: Image.asset('assets/svg/day.png'),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              const SizedBox(width: 7),
-                              Container(
-                                height: 27,
-                                width: 27,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  border: Border.all(color: Color(0XFFFD3A84)),
-                                ),
-                                child: InkWell(
-                                  onTap: () {
-                                    Get.toNamed(Routes.EditingEvent);
-                                  },
-                                  child: Icon(
-                                    Icons.edit,
-                                    size: 15,
-                                    color: Color(0XFFFD3A84),
+                                  const SizedBox(width: 7),
+                                  Container(
+                                    height: 27,
+                                    width: 27,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(25),
+                                      border: Border.all(color: Color(0XFF5B46F4)),
+                                    ),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.toNamed(Routes.EventScreen);
+                                      },
+                                      child: Icon(
+                                        Icons.visibility_outlined,
+                                        size: 15,
+                                        color: Color(0XFF5B46F4),
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  const SizedBox(width: 7),
+                                  Container(
+                                    height: 27,
+                                    width: 27,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(25),
+                                      border: Border.all(color: Color(0XFFFD3A84)),
+                                    ),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.toNamed(Routes.EditingEvent);
+                                      },
+                                      child: Icon(
+                                        Icons.edit,
+                                        size: 15,
+                                        color: Color(0XFFFD3A84),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
