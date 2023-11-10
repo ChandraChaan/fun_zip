@@ -120,8 +120,15 @@ class SearchEventDialog extends GetView<HomeController> {
                       keyName: 'When',
                       hintText: 'When',
                       itemList: ['Today', 'This Week', 'This Month'],
-                      onPressed: (p0) {},
+                      onPressed: (p0) {
+                        controller.selectedDay = p0;
+                      },
                     ),
+                    if(controller.dayReq.value)
+                      Text(
+                        "This is mandatory field",
+                        style: TextStyle(color: Colors.red, fontSize: 10),
+                      ),
                   ],
                 ),
                 Column(
@@ -208,7 +215,7 @@ class SearchEventDialog extends GetView<HomeController> {
                   text: 'Search',
                   onPressed: () {
                     // changes satyha
-                    if (controller.selectedCity != null) {
+                    if (controller.selectedCity != null && controller.selectedDay != null )  {
                       controller.locReq.value = false;
                       Get.back();
                       controller.getAllEvents();
@@ -216,7 +223,7 @@ class SearchEventDialog extends GetView<HomeController> {
                       formKey.currentState!.reset();
                       // controller.verifyPhoneOTP();
                     } else {
-                      controller.locReq.value = true;
+                      controller.locReq.value = false;
                     }
                   }),
             ),

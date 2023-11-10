@@ -40,6 +40,7 @@ abstract class Routes {
   static const EventContactsScreen = _Paths.EventContactsScreen;
   static const MyGroupsScreen = _Paths.MyGroupsScreen;
   static const ContactUs = _Paths.ContactUs;
+  static const NewGiftRegisterItem = _Paths.NewGiftRegisterItem;
 }
 
 abstract class _Paths {
@@ -82,5 +83,6 @@ abstract class _Paths {
   static const EventContactsScreen = '/EventContactsScreen';
   static const MyGroupsScreen = '/MyGroupsScreen';
   static const ContactUs = '/ContactUs';
+  static const NewGiftRegisterItem = '/NewGiftRegisterItem';
 
 }

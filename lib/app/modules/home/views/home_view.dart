@@ -1,7 +1,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:fun_zippy/app/modules/home/views/tabs/event_tab/event_tab.dart';
 // import 'package:fun_zippy/app/widgets/commonScafold.dart';
-// import 'package:fun_zippy/sathya/my_events_screen/my_events.dart';
+// import 'package:fun_zippy/sathya/my_events_screen/my_eventssss.dart';
 //
 // import 'package:get/get.dart';
 // import 'package:get_storage/get_storage.dart';

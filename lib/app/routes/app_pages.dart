@@ -1,7 +1,9 @@
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:get/get.dart';
 
-import '../../sathya/my_events_screen/my_events.dart';
+import '../modules/contact_us/contact_us.dart';
+import '../modules/logout_screen/logout_screen.dart';
+import '../modules/my_events_screen/my_events.dart';
 import '../modules/booking_tickets/booking_tickets.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
@@ -14,6 +16,7 @@ import '../modules/event_details/views/event_details_view.dart';
 import '../modules/event_management/event_management_screen.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
+import '../modules/gift_screens/new_gift_registry.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/my_goups/Success.dart';
 import '../modules/my_goups/contact_us.dart';
@@ -44,7 +47,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.MyEvents;
 
   static final routes = [
     GetPage(
@@ -205,15 +208,17 @@ class AppPages {
       page: () => MyGroupsScreen(),
       binding: EventDetailsBinding(),
     ),
-    GetPage(
-      name: _Paths.ContactUs,
-      page: () => ContactUs(),
-      binding: EventDetailsBinding(),
-    ),
+
     GetPage(
       name: _Paths.QrSuccessfulScreen,
       page: () => QrSuccessfulScreen(),
       binding: EventDetailsBinding(),
     ),
+    GetPage(
+      name: _Paths.NewGiftRegisterItem,
+      page: () => NewGiftRegisterItem(),
+      binding: EventDetailsBinding(),
+    ),
+
   ];
 }

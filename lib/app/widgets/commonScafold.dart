@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../sathya/my_events_screen/my_events.dart';
+import '../modules/my_events_screen/my_events.dart';
 import '../../sathya/scarlett_screen/scarlett_screen.dart';
 import '../config/images_links.dart';
 import '../modules/create_event/views/create_event_view.dart';
@@ -8,6 +8,7 @@ import '../modules/home/views/components/BottomNavigationBarItemWidget.dart';
 import '../modules/home/views/components/BottomNavigationBarWidget.dart';
 import '../modules/home/views/tabs/event_tab/event_tab.dart';
 // import '../modules/scarlett_screen/scarlett_screen.dart';
+import '../modules/scarlett_screen/scarlett_screen.dart';
 import '../theme/colors.dart';
 import '../theme/text_theme.dart';
 

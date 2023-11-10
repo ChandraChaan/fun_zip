@@ -17,10 +17,12 @@ class HomeController extends GetxController {
   Rx<Placemark> userAddress = Placemark().obs;
   RxBool loading = true.obs;
   RxBool locReq = false.obs;
+  RxBool dayReq = false.obs;
   int currentSlide = 0;
   TextEditingController? searchEventTextEditingController =
       TextEditingController();
   String? selectedCity;
+  String? selectedDay;
   String? selectedCategory;
   bool? selectedModeOnline = false;
   List<Map<String, dynamic>> items = [

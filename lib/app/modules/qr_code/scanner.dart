@@ -11,7 +11,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../sathya/my_events_screen/my_events.dart';
+import '../my_events_screen/my_events.dart';
 import '../../data/model/UserModel.dart';
 import '../../routes/app_pages.dart';
 

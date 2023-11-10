@@ -86,6 +86,7 @@ class ScarlettScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              Divider(thickness: 2,),
               buildRow('Home', 'assets/svg/h1.png'),
               buildRow('Create an Event', 'assets/svg/h2.png'),
               buildRow('My Events', 'assets/svg/h3.png'),
@@ -96,7 +97,9 @@ class ScarlettScreen extends StatelessWidget {
               buildRow('Contact Us', 'assets/svg/h8.png'),
               buildRow('About Us', 'assets/svg/h9.png'),
               buildRow('Privacy Policy', 'assets/svg/h10.png'),
+              Divider(thickness: 2,),
               buildRow('Log Out', 'assets/svg/exit.png'),
+
             ],
           ),
         ),

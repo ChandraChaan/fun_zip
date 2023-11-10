@@ -3,7 +3,7 @@ import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
 
-import '../my_events_screen/my_events.dart';
+import '../my_events_screen/my_eventssss.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
