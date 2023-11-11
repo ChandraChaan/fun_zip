@@ -57,7 +57,7 @@ class OtpVerificationView extends GetView<OtpVerificationController> {
                             ),
                             20.height,
                             Text(
-                              '4 Digit Otp has been send to your mobile number',
+                              '4 Digit Otp has been send to your mobile number & email ',
                               style: normalText,
                               textAlign: TextAlign.center,
                             ),

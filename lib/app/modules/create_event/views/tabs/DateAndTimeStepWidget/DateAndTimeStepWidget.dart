@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
@@ -44,8 +43,7 @@ class DateAndTimeStepWidget extends GetView<CreateEventController> {
                     style: normalText.copyWith(fontWeight: FontWeight.bold)),
                 TextSpan(
                   text: '*',
-                  style:
-                      TextStyle(fontWeight: FontWeight.bold, color: redColor),
+                  style: TextStyle(fontWeight: FontWeight.bold, color: redColor),
                 ),
               ],
             ),
@@ -78,8 +76,7 @@ class DateAndTimeStepWidget extends GetView<CreateEventController> {
                     style: normalText.copyWith(fontWeight: FontWeight.bold)),
                 TextSpan(
                   text: '*',
-                  style:
-                      TextStyle(fontWeight: FontWeight.bold, color: redColor),
+                  style: TextStyle(fontWeight: FontWeight.bold, color: redColor),
                 ),
               ],
             ),
@@ -112,8 +109,7 @@ class DateAndTimeStepWidget extends GetView<CreateEventController> {
                     style: normalText.copyWith(fontWeight: FontWeight.bold)),
                 TextSpan(
                   text: '*',
-                  style:
-                      TextStyle(fontWeight: FontWeight.bold, color: redColor),
+                  style: TextStyle(fontWeight: FontWeight.bold, color: redColor),
                 ),
               ],
             ),
@@ -121,10 +117,35 @@ class DateAndTimeStepWidget extends GetView<CreateEventController> {
           5.height,
           InkWell(
             onTap: () async {
-              controller.endDate = await selectDate(context);
+              DateTime? selectedEndDate = await selectDate(context);
 
-              controller.endDateTextEditingController?.text =
-                  DateFormat('dd MMMM, yyyy').format(controller.endDate!);
+              // Validate that the selected end date is greater than or equal to the start date
+              if (selectedEndDate != null && selectedEndDate.isAfter(controller.startDate!)) {
+                controller.endDate = selectedEndDate;
+                controller.endDateTextEditingController?.text =
+                    DateFormat('dd MMMM, yyyy').format(controller.endDate!);
+              } else {
+                // Show an error or handle the validation failure as needed
+                // For example, you can display a snackbar or set an error message
+                // controller.endDateError = 'End date must be after start date';
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Error'),
+                      content: Text('End date should not be less than the start date.'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }
             },
             child: CommonTextField(
               controller: controller.endDateTextEditingController,
@@ -145,8 +166,7 @@ class DateAndTimeStepWidget extends GetView<CreateEventController> {
                     style: normalText.copyWith(fontWeight: FontWeight.bold)),
                 TextSpan(
                   text: '*',
-                  style:
-                      TextStyle(fontWeight: FontWeight.bold, color: redColor),
+                  style: TextStyle(fontWeight: FontWeight.bold, color: redColor),
                 ),
               ],
             ),

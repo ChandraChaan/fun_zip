@@ -161,6 +161,11 @@ class SearchEventDialog extends GetView<HomeController> {
                         controller.selectedCategory = value;
                       },
                     ),
+                    if(controller.categoryReq.value)
+                      Text(
+                        "This is mandatory field",
+                        style: TextStyle(color: Colors.red, fontSize: 10),
+                      ),
                   ],
                 ),
                 FormBuilderCheckbox(
@@ -170,6 +175,7 @@ class SearchEventDialog extends GetView<HomeController> {
                   activeColor: blueColor.withOpacity(.1),
                   onChanged: (value) {
                     controller.selectedModeOnline = value;
+
                   },
                   // decoration: InputDecoration(),
                   // shape: RoundedRectangleBorder(

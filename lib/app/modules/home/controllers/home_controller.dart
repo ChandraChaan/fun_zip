@@ -18,6 +18,7 @@ class HomeController extends GetxController {
   RxBool loading = true.obs;
   RxBool locReq = false.obs;
   RxBool dayReq = false.obs;
+  RxBool categoryReq = false.obs;
   int currentSlide = 0;
   TextEditingController? searchEventTextEditingController =
       TextEditingController();

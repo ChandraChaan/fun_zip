@@ -126,7 +126,7 @@ class ScarlettScreen extends StatelessWidget {
           Get.toNamed(Routes.MyEvents);
         } else if (title.contains('My Tickets')) {
           //TODO
-          Get.toNamed(Routes.MyProfile);
+          Get.toNamed(Routes.MyGroupsScreen);
         } else if (title.contains('My Group')) {
           //TODO
           Get.toNamed(Routes.MyEvents);

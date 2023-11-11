@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fun_zippy/app/modules/my_events_screen/my_events.dart';
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
 
 class MyGroupsScreen extends StatelessWidget {
@@ -31,25 +32,22 @@ class MyGroupsScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: TabBarView(
+
                     children: <Widget>[
                       // Content for Tab 1
                       Center(
-                        child: Text('Tab 1 Content'),
+                        child: Text('Messages'),
                       ),
                       // Content for Tab 2
-                      Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/svg/calls.svg'),
-                          ],
-                        ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/svg/airlines.svg'),
+                        ],
                       ),
                       // Content for Tab 3
-                      Center(
-                        child: Text('Tab 3 Content'),
-                      ),
+                      MyEvents()
                     ],
                   ),
                 ),
