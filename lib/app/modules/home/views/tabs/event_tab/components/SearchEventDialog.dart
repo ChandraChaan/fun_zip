@@ -38,7 +38,7 @@ class SearchEventDialog extends GetView<HomeController> {
       body: SingleChildScrollView(
         child: Padding(
           padding:
-          const EdgeInsets.only(top: 0, bottom: 0, right: 20, left: 20),
+              const EdgeInsets.only(top: 0, bottom: 0, right: 20, left: 20),
           child: FormBuilder(
             key: formKey,
             child: Column(
@@ -86,7 +86,7 @@ class SearchEventDialog extends GetView<HomeController> {
                           controller.selectedCity = value;
                         },
                       ),
-                      if(controller.locReq.value)
+                      if (controller.locReq.value)
                         Text(
                           "This is mandatory field",
                           style: TextStyle(color: Colors.red, fontSize: 10),
@@ -94,80 +94,84 @@ class SearchEventDialog extends GetView<HomeController> {
                     ],
                   );
                 }),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    20.height,
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                              text: 'When',
-                              style: normalText.copyWith(
-                                  fontWeight: FontWeight.bold)),
-                          TextSpan(
-                            text: '*',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, color: redColor),
-                          ),
-                        ],
+                Obx(() {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      20.height,
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                                text: 'When',
+                                style: normalText.copyWith(
+                                    fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '*',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, color: redColor),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    10.height,
-                    CommonDropdownWidget(
-                      keyName: 'When',
-                      hintText: 'When',
-                      itemList: ['Today', 'This Week', 'This Month'],
-                      onPressed: (p0) {
-                        controller.selectedDay = p0;
-                      },
-                    ),
-                    if(controller.dayReq.value)
-                      Text(
-                        "This is mandatory field",
-                        style: TextStyle(color: Colors.red, fontSize: 10),
+                      10.height,
+                      CommonDropdownWidget(
+                        keyName: 'When',
+                        hintText: 'When',
+                        itemList: ['Today', 'This Week', 'This Month'],
+                        onPressed: (p0) {
+                          controller.selectedDay = p0;
+                        },
                       ),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    20.height,
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                              text: 'Category',
-                              style: normalText.copyWith(
-                                  fontWeight: FontWeight.bold)),
-                          TextSpan(
-                            text: '*',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, color: redColor),
-                          ),
-                        ],
+                      if (controller.dayReq.value)
+                        Text(
+                          "This is mandatory field",
+                          style: TextStyle(color: Colors.red, fontSize: 10),
+                        ),
+                    ],
+                  );
+                }),
+                Obx(() {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      20.height,
+                      Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                                text: 'Category',
+                                style: normalText.copyWith(
+                                    fontWeight: FontWeight.bold)),
+                            TextSpan(
+                              text: '*',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, color: redColor),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    10.height,
-                    CommonDropdownWidget(
-                      keyName: 'Category',
-                      hintText: 'Category',
-                      itemList: listOfCategory,
-                      onPressed: (value) {
-                        controller.selectedCategory = value;
-                      },
-                    ),
-                    if(controller.categoryReq.value)
-                      Text(
-                        "This is mandatory field",
-                        style: TextStyle(color: Colors.red, fontSize: 10),
+                      10.height,
+                      CommonDropdownWidget(
+                        keyName: 'Category',
+                        hintText: 'Category',
+                        itemList: listOfCategory,
+                        onPressed: (value) {
+                          controller.selectedCategory = value;
+                        },
                       ),
-                  ],
-                ),
+                      if (controller.categoryReq.value)
+                        Text(
+                          "This is mandatory field",
+                          style: TextStyle(color: Colors.red, fontSize: 10),
+                        ),
+                    ],
+                  );
+                }),
                 FormBuilderCheckbox(
                   name: 'online',
                   title: Text('Online'),
@@ -175,7 +179,6 @@ class SearchEventDialog extends GetView<HomeController> {
                   activeColor: blueColor.withOpacity(.1),
                   onChanged: (value) {
                     controller.selectedModeOnline = value;
-
                   },
                   // decoration: InputDecoration(),
                   // shape: RoundedRectangleBorder(
@@ -221,15 +224,21 @@ class SearchEventDialog extends GetView<HomeController> {
                   text: 'Search',
                   onPressed: () {
                     // changes satyha
-                    if (controller.selectedCity != null && controller.selectedDay != null )  {
+                    if (controller.selectedCity != null &&
+                        controller.selectedDay != null &&
+                        controller.selectedCategory != null) {
                       controller.locReq.value = false;
+                      controller.dayReq.value = false;
+                      controller.categoryReq.value = false;
                       Get.back();
                       controller.getAllEvents();
                       // controller.fetchData();
                       formKey.currentState!.reset();
                       // controller.verifyPhoneOTP();
                     } else {
-                      controller.locReq.value = false;
+                      controller.locReq.value = true;
+                      controller.dayReq.value = true;
+                      controller.categoryReq.value = true;
                     }
                   }),
             ),
@@ -258,8 +267,7 @@ class _CountrySearchWidgetState extends State<CountrySearchWidget> {
   void _onSearchTextChanged() {
     setState(() {
       _suggestions = listOfCities
-          .where((country) =>
-          country
+          .where((country) => country
               .toLowerCase()
               .contains(_searchController.text.toLowerCase()))
           .toList();

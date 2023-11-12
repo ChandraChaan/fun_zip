@@ -148,6 +148,8 @@ class _BookTicketsState extends State<BookTickets> {
 
   @override
   Widget build(BuildContext context) {
+    int b = widget.controller?.eventDetailsModel
+        .ticketCategories?.length ?? 0;
     return Scaffold(
 //      backgroundColor: Colors.grey.shade300,
       body: Padding(
@@ -179,15 +181,14 @@ class _BookTicketsState extends State<BookTickets> {
                           height: 18,
                         ),
                         for (int a = 0;
-                            a <
-                                widget.controller!.eventDetailsModel
-                                    .ticketCategories!.length;
+                            a < b;
+
                             a++) ...[
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(widget.controller!.eventDetailsModel
-                                  .ticketCategories![a].name),
+                                  .ticketCategories![a].name ?? ' '),
                               Row(
                                 children: [
                                   Container(
@@ -227,7 +228,7 @@ class _BookTicketsState extends State<BookTickets> {
                           SizedBox(height: 7),
                           Text(
                             widget.controller!.eventDetailsModel
-                                .ticketCategories![a].inviteMessage,
+                                .ticketCategories![a].inviteMessage ?? ' ',
                             style: TextStyle(fontSize: 12),
                           ),
                           SizedBox(height: 7),

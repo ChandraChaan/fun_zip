@@ -27,7 +27,7 @@ class HomeController extends GetxController {
   String? selectedCategory;
   bool? selectedModeOnline = false;
   List<Map<String, dynamic>> items = [
-      {"name": "All", "": ""},
+    {"name": "All", "": ""},
     {"name": "Party", "icon": Icons.celebration},
     {"name": "Music", "icon": Icons.music_note},
     for (int a = 1; a <= 9; a++)
