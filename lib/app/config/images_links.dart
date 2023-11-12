@@ -1,4 +1,5 @@
 const String assetSplash = 'assets/svg/splash.png';
+const String qrCode = 'assets/svg/QR.png';
 const String googleImage = 'assets/svg/google.svg';
 const String facebookImage = 'assets/svg/facebook.svg';
 const String userIconImage = 'assets/svg/user.svg';
