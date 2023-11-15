@@ -1,8 +1,13 @@
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:get/get.dart';
 
-import '../modules/contact_us/contact_us.dart';
-import '../modules/logout_screen/logout_screen.dart';
+import '../extra/extra2.dart';
+import '../extra/extra3.dart';
+import '../modules/booking_tickets/booking_tickets.dart';
+import '../modules/common_data/common_phone_number.dart';
+import '../modules/event_scheduler/event_scheduler.dart';
+import '../modules/event_scheduler/event_scheduler.dart';
+import '../modules/funzipp/funzipp.dart';
 import '../modules/my_events_screen/my_events.dart';
 import '../modules/booking_tickets/booking_tickets.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
@@ -16,15 +21,15 @@ import '../modules/event_details/views/event_details_view.dart';
 import '../modules/event_management/event_management_screen.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
-import '../modules/gift_screens/new_gift_registry.dart';
 import '../modules/home/bindings/home_binding.dart';
-import '../modules/my_goups/Success.dart';
-import '../modules/my_goups/contact_us.dart';
 import '../modules/my_goups/my_groups_screen.dart';
+import '../modules/my_groups/my_groups.dart';
 import '../modules/my_profile_screen/my_profile_screen.dart';
+import '../modules/my_tickets/my_tickets.dart';
 import '../modules/organization/organization_screen.dart';
 import '../modules/otp_verification/bindings/otp_verification_binding.dart';
 import '../modules/otp_verification/views/otp_verification_view.dart';
+import '../modules/potluck_menu/potluck_menu.dart';
 import '../modules/qr_code/qr_error.dart';
 import '../modules/qr_code/qr_successful.dart';
 import '../modules/qr_code/scanner.dart';
@@ -41,13 +46,15 @@ import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/sponsorship/sponsorship_screen.dart';
 import '../modules/ticket_sale_dettails/ticket_sale_details.dart';
+import '../modules/ticket_screen.dart';
+import '../modules/ticketing_andrsvc/ticketing_rsvp.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.MyEvents;
 
   static final routes = [
     GetPage(
@@ -215,10 +222,41 @@ class AppPages {
       binding: EventDetailsBinding(),
     ),
     GetPage(
-      name: _Paths.NewGiftRegisterItem,
-      page: () => NewGiftRegisterItem(),
+      name: _Paths.FunZippy,
+      page: () => FunZippy(),
       binding: EventDetailsBinding(),
     ),
+    GetPage(
+      name: _Paths.MyTickets,
+      page: () => MyTickets(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.PotluckMenu,
+      page: () => PotluckMenu(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.MyGroups,
+      page: () => MyGroups(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.TicketingAndRSVP,
+      page: () => TicketingAndRSVP(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.DetailsScreen,
+      page: () => DetailsScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.PhoneNumber,
+      page: () => PhoneNumber(),
+      binding: EventDetailsBinding(),
+    ),
+
 
   ];
 }

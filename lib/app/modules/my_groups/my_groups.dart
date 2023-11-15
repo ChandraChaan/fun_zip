@@ -5,12 +5,12 @@ import 'package:fun_zippy/app/modules/my_tickets/my_tickets.dart';
 import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
 import 'package:fun_zippy/app/utilities/dynamic_size.dart';
 
-class my_groups extends StatefulWidget {
+class MyGroups extends StatefulWidget {
   @override
-  State<my_groups> createState() => _my_groupsState();
+  State<MyGroups> createState() => _MyGroupsState();
 }
 
-class _my_groupsState extends State<my_groups> {
+class _MyGroupsState extends State<MyGroups> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   String selectedCategory = 'Groups';
@@ -168,10 +168,10 @@ class _my_groupsState extends State<my_groups> {
       },
       child: Column(
         children: [
-          OptionButton(
-            text: category,
-            isSelected: isSelected,
-          ),
+          // OptionButton(
+          //   text: category,
+          //   isSelected: isSelected,
+          // ),
           if (isSelected)
             Column(
               children: [

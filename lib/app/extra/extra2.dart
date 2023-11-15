@@ -1,715 +1,116 @@
-// import 'package:flutter/material.dart';
-// import 'package:fun_zippy/app/theme/colors.dart';
-// import 'package:fun_zippy/app/utilities/extention.dart';
-// import 'package:fun_zippy/sathya/common_data/common_text.dart';
-// import 'package:get/get.dart';
-// import 'package:get/get_core/src/get_main.dart';
-// import 'package:syncfusion_flutter_charts/charts.dart';
-//
-// import '../../app/routes/app_pages.dart';
-// import '../scanner.dart';
-//
-// class EventDashboardScreen extends StatefulWidget {
-//   const EventDashboardScreen({super.key});
-//
-//   @override
-//   State<EventDashboardScreen> createState() => _EventDashboardScreenState();
-// }
-//
-// class _EventDashboardScreenState extends State<EventDashboardScreen> {
-//   List<_SalesData> data = [
-//     _SalesData('Jan', 35),
-//     _SalesData('Feb', 28),
-//     _SalesData('Mar', 34),
-//     _SalesData('Apr', 32),
-//     _SalesData('May', 40)
-//   ];
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: backgroundColor,
-//       appBar: AppBar(
-//         elevation: 0,
-//         backgroundColor: Colors.white,
-//         leading: InkWell(
-//           onTap: (){
-//             Get.toNamed(Routes.EventManagementScreen);
-//           },
-//           child: Image.asset(
-//             'assets/svg/vector_22.png',
-//           ),
-//         ),
-//         actions: [
-//           Padding(
-//             padding: const EdgeInsets.all(8.0),
-//             child: Row(
-//               children: [
-//                 Container(
-//                   height: 26,
-//                   decoration: BoxDecoration(
-//                     color: Color(0XFF5B46F4),
-//                     border: Border.all(
-//                       color: Color(0XFF5B46F4), // Border color
-//                       width: 2.0, // Border width
-//                     ),
-//                     shape: BoxShape.circle, // To make it a circular border
-//                   ),
-//                   child: CircleAvatar(
-//                     radius: 20,
-//                     backgroundColor: Colors.white,
-//                     child: InkWell(
-//                       onTap: () {
-//                         Get.to(QRCodeScannerScreen());
-//                       },
-//                       child: Icon(
-//                         Icons.photo_camera,
-//                         size: 14,
-//                         color: Colors.deepPurple,
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//                 Container(
-//                   height: 26,
-//                   decoration: BoxDecoration(
-//                     border: Border.all(
-//                       color: Color(0XFF5B46F4), // Border color
-//                       width: 2.0, // Border width
-//                     ),
-//                     shape: BoxShape.circle, // To make it a circular border
-//                   ),
-//                   child: CircleAvatar(
-//                       radius: 20,
-//                       backgroundColor: Colors.white,
-//                       child: Icon(
-//                         Icons.qr_code,
-//                         color: Color(0XFF5B46F4),
-//                         size: 14,
-//                       )),
-//                 ),
-//               ],
-//             ),
-//           )
-//         ],
-//         title: Center(
-//           child: Text(
-//             'Event Dashboard',
-//             style: TextStyle(color: Colors.black, fontSize: 20),
-//           ),
-//         ),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(10),
-//         child: SingleChildScrollView(
-//           child: Column(
-//             children: [
-//               Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-//                 children: [
-//                   Container(
-//                     height: 45,
-//                     width: 100,
-//                     decoration: BoxDecoration(
-//                         color: Color(0XFF5B46F4),
-//                         borderRadius: BorderRadius.circular(14)),
-//                     child: Row(
-//                       mainAxisAlignment: MainAxisAlignment.start,
-//                       crossAxisAlignment: CrossAxisAlignment.center,
-//                       children: [
-//                         Padding(
-//                           padding: const EdgeInsets.all(8.0),
-//                           child: Container(
-//                             height: 25,
-//                             width: 25,
-//                             decoration: BoxDecoration(
-//                                 color: Color(0XFF2F2194),
-//                                 borderRadius: BorderRadius.circular(4)),
-//                             child: Icon(
-//                               Icons.person_add_alt_1,
-//                               size: 13,
-//                               color: Colors.white,
-//                             ),
-//                           ),
-//                         ),
-//                         Column(
-//                           crossAxisAlignment: CrossAxisAlignment.start,
-//                           mainAxisAlignment: MainAxisAlignment.center,
-//                           children: [
-//                             Text10(
-//                               'Invited',
-//                               style: TextStyle(color: Colors.white),
-//                             ),
-//                             Text(
-//                               '10,250',
-//                               style:
-//                               TextStyle(fontSize: 12, color: Colors.white),
-//                             )
-//                           ],
-//                         )
-//                       ],
-//                     ),
-//                   ),
-//                   Container(
-//                     height: 45,
-//                     width: 100,
-//                     decoration: BoxDecoration(
-//                         color: Colors.white,
-//                         border: Border.all(color: Colors.white70),
-//                         borderRadius: BorderRadius.circular(10)),
-//                     child: Row(
-//                       mainAxisAlignment: MainAxisAlignment.start,
-//                       crossAxisAlignment: CrossAxisAlignment.center,
-//                       children: [
-//                         Padding(
-//                           padding: const EdgeInsets.all(8.0),
-//                           child: Container(
-//                             height: 25,
-//                             width: 25,
-//                             decoration: BoxDecoration(
-//                                 color: Color(0XFFFFE2D2),
-//                                 borderRadius: BorderRadius.circular(4)),
-//                             child: Icon(
-//                               Icons.person_add_alt_1,
-//                               size: 13,
-//                               color: Color(0XFFFD5900),
-//                             ),
-//                           ),
-//                         ),
-//                         Column(
-//                           crossAxisAlignment: CrossAxisAlignment.start,
-//                           mainAxisAlignment: MainAxisAlignment.center,
-//                           children: [
-//                             Text10(
-//                               'Invited',
-//                               style: TextStyle(color: Color(0XFF86839B)),
-//                             ),
-//                             Text(
-//                               '5,250',
-//                               style: TextStyle(
-//                                 fontSize: 12,
-//                               ),
-//                             )
-//                           ],
-//                         )
-//                       ],
-//                     ),
-//                   ),
-//                   Container(
-//                     height: 45,
-//                     width: 100,
-//                     decoration: BoxDecoration(
-//                         color: Colors.white,
-//                         borderRadius: BorderRadius.circular(10)),
-//                     child: Row(
-//                       mainAxisAlignment: MainAxisAlignment.start,
-//                       crossAxisAlignment: CrossAxisAlignment.center,
-//                       children: [
-//                         Padding(
-//                           padding: const EdgeInsets.all(8.0),
-//                           child: Container(
-//                             height: 25,
-//                             width: 25,
-//                             decoration: BoxDecoration(
-//                                 color: Color(0XFFD9FFD4),
-//                                 borderRadius: BorderRadius.circular(4)),
-//                             child: Icon(
-//                               Icons.person_add_alt_1,
-//                               size: 13,
-//                               color: Color(0XFF29A71A),
-//                             ),
-//                           ),
-//                         ),
-//                         Column(
-//                           crossAxisAlignment: CrossAxisAlignment.start,
-//                           mainAxisAlignment: MainAxisAlignment.center,
-//                           children: [
-//                             Text10(
-//                               'Adult Count',
-//                               style: TextStyle(color: Color(0XFF86839B)),
-//                             ),
-//                             Text(
-//                               '15',
-//                               style: TextStyle(fontSize: 12),
-//                             )
-//                           ],
-//                         )
-//                       ],
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//               Padding(
-//                 padding: const EdgeInsets.all(5.0),
-//                 child: Container(
-//                   decoration: BoxDecoration(
-//                       color: Colors.white,
-//                       borderRadius: BorderRadius.circular(10)),
-//                   child: Padding(
-//                     padding: const EdgeInsets.all(12),
-//                     child: Column(
-//                       crossAxisAlignment: CrossAxisAlignment.start,
-//                       children: [
-//                         Row(
-//                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                           children: [
-//                             Text('Event Page Traffic'),
-//                             Container(
-//                               height: 20,
-//                               width: 44,
-//                               decoration: BoxDecoration(
-//                                   color: Color(0XFFF0EEFF),
-//                                   borderRadius: BorderRadius.circular(5)),
-//                               child: Row(
-//                                 mainAxisAlignment: MainAxisAlignment.center,
-//                                 children: [
-//                                   Container(
-//                                     height: 10,
-//                                     width: 10,
-//                                     decoration: BoxDecoration(
-//                                         color: Color(0XFF5B46F4),
-//                                         borderRadius: BorderRadius.circular(2)),
-//                                   ),
-//                                   2.width,
-//                                   Text(
-//                                     ('Events'),
-//                                     style: TextStyle(
-//                                         fontSize: 6, color: Color(0XFF86839B)),
-//                                   ),
-//                                 ],
-//                               ),
-//                             ),
-//                           ],
-//                         ),
-//                         SizedBox(
-//                           height: 7,
-//                         ),
-//                         Row(
-//                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                           children: [
-//                             Text10(
-//                               'All the latest stats for your event',
-//                               style: TextStyle(color: Color(0XFF86839B)),
-//                             ),
-//                             SizedBox(
-//                               height: 18,
-//                               width: 18,
-//                               child: Container(
-//                                 decoration: BoxDecoration(
-//                                   borderRadius: BorderRadius.circular(10),
-//                                   border: Border.all(color: Color(0XFF86839B)),
-//                                   color: Color(0XFFF9F9F9),
-//                                 ),
-//                                 child: Icon(
-//                                   Icons.home,
-//                                   size: 10,
-//                                   color: Color(0XFF86839B),
-//                                 ),
-//                               ),
-//                             )
-//                           ],
-//                         ),
-//                         //Initialize the chart widget
-//                         SfCartesianChart(
-//                             primaryXAxis: CategoryAxis(),
-//                             // Chart title
-//                             title:
-//                             ChartTitle(text: 'Half yearly sales analysis'),
-//                             // Enable legend
-//                             legend: Legend(isVisible: true),
-//                             // Enable tooltip
-//                             tooltipBehavior: TooltipBehavior(enable: true),
-//                             series: <ChartSeries<_SalesData, String>>[
-//                               LineSeries<_SalesData, String>(
-//                                   dataSource: data,
-//                                   xValueMapper: (_SalesData sales, _) =>
-//                                   sales.year,
-//                                   yValueMapper: (_SalesData sales, _) =>
-//                                   sales.sales,
-//                                   name: 'Sales',
-//                                   // Enable data label
-//                                   dataLabelSettings:
-//                                   DataLabelSettings(isVisible: true))
-//                             ]),
-//
-//                         //
-//                       ],
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//               for (int a = 1; a <= 7; a++)
-//                 Padding(
-//                   padding: const EdgeInsets.all(5),
-//                   child: Container(
-//                     decoration: BoxDecoration(
-//                         color: Colors.white,
-//                         borderRadius: BorderRadius.circular(10)),
-//                     child: Padding(
-//                       padding: const EdgeInsets.all(12),
-//                       child: Container(
-//                         decoration: BoxDecoration(
-//                             color: Colors.white,
-//                             borderRadius: BorderRadius.circular(10)),
-//                         child: Padding(
-//                           padding: const EdgeInsets.all(12),
-//                           child: Column(
-//                             children: [
-//                               Row(
-//                                 mainAxisAlignment:
-//                                 MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text(
-//                                     'Ticket Summary',
-//                                     style: TextStyle(fontSize: 16),
-//                                   ),
-//                                   Row(
-//                                     children: [
-//                                       InkWell(
-//                                         onTap: () {},
-//                                         child: Container(
-//                                           height: 20,
-//                                           width: 44,
-//                                           decoration: BoxDecoration(
-//                                               color: Color(0XFFF0EEFF),
-//                                               borderRadius:
-//                                               BorderRadius.circular(5)),
-//                                           child: Row(
-//                                             mainAxisAlignment:
-//                                             MainAxisAlignment.center,
-//                                             children: [
-//                                               Image.asset(
-//                                                   'assets/svg/export.png'),
-//                                               SizedBox(
-//                                                 width: 2,
-//                                               ),
-//                                               Text(
-//                                                 ('Export'),
-//                                                 style: TextStyle(
-//                                                     fontSize: 6,
-//                                                     color: Color(0XFF86839B)),
-//                                               ),
-//                                             ],
-//                                           ),
-//                                         ),
-//                                       ),
-//                                       SizedBox(width: 5),
-//                                       Padding(
-//                                         padding: const EdgeInsets.all(8.0),
-//                                         child: InkWell(
-//                                           onTap: () {},
-//                                           child: Container(
-//                                             height: 20,
-//                                             width: 44,
-//                                             decoration: BoxDecoration(
-//                                                 color: Color(0XFFF0EEFF),
-//                                                 borderRadius:
-//                                                 BorderRadius.circular(5)),
-//                                             child: Row(
-//                                               mainAxisAlignment:
-//                                               MainAxisAlignment.center,
-//                                               children: [
-//                                                 Image.asset(
-//                                                     'assets/svg/filter.png'),
-//                                                 SizedBox(
-//                                                   width: 2,
-//                                                 ),
-//                                                 Text(
-//                                                   ('Export'),
-//                                                   style: TextStyle(
-//                                                       fontSize: 6,
-//                                                       color: Color(0XFF86839B)),
-//                                                 ),
-//                                               ],
-//                                             ),
-//                                           ),
-//                                         ),
-//                                       ),
-//                                     ],
-//                                   ),
-//                                 ],
-//                               ),
-//                               Container(
-//                                 decoration: BoxDecoration(
-//                                   borderRadius: BorderRadius.circular(10),
-//                                 ),
-//                                 child: Column(
-//                                   crossAxisAlignment: CrossAxisAlignment.start,
-//                                   children: [
-//                                     Container(
-//                                       decoration: BoxDecoration(
-//                                           color: Color(0XFFE3E3E3),
-//                                           borderRadius: BorderRadius.only(
-//                                               topRight: Radius.circular(10),
-//                                               topLeft: Radius.circular(10))),
-//                                       child: Row(
-//                                         mainAxisAlignment:
-//                                         MainAxisAlignment.spaceEvenly,
-//                                         children: [
-//                                           Row(
-//                                             children: [
-//                                               Text10('Name'),
-//                                               Icon(
-//                                                 Icons.expand_more,
-//                                                 size: 10,
-//                                               )
-//                                             ],
-//                                           ),
-//                                           Row(
-//                                             children: [
-//                                               Text10('Quantity'),
-//                                               Icon(
-//                                                 Icons.expand_more,
-//                                                 size: 10,
-//                                               )
-//                                             ],
-//                                           ),
-//                                           Row(
-//                                             children: [
-//                                               Text10('Total'),
-//                                               Icon(
-//                                                 Icons.expand_more,
-//                                                 size: 10,
-//                                               )
-//                                             ],
-//                                           ),
-//                                         ],
-//                                       ),
-//                                     ),
-//                                     Container(
-//                                       height: 30,
-//                                       color: Color(0XFFF6F6F6),
-//                                       child: Row(
-//                                         mainAxisAlignment:
-//                                         MainAxisAlignment.spaceAround,
-//                                         children: [
-//                                           Row(
-//                                             children: [
-//                                               Container(
-//                                                   height: 22,
-//                                                   width: 22,
-//                                                   decoration: BoxDecoration(
-//                                                       color: Color(0XFFFFE2D2),
-//                                                       borderRadius:
-//                                                       BorderRadius.circular(
-//                                                           20)),
-//                                                   child: Center(
-//                                                       child: Image.asset(
-//                                                           'assets/svg/filter.png'))),
-//                                               SizedBox(width: 4),
-//                                               Text10('General'),
-//                                             ],
-//                                           ),
-//                                           Text10('01'),
-//                                           Text10('01'),
-//                                         ],
-//                                       ),
-//                                     ),
-//                                     SizedBox(height: 1),
-//                                     Container(
-//                                       height: 30,
-//                                       color: Color(0XFFF6F6F6),
-//                                       child: Row(
-//                                         mainAxisAlignment:
-//                                         MainAxisAlignment.spaceAround,
-//                                         children: [
-//                                           Row(
-//                                             children: [
-//                                               Container(
-//                                                   height: 22,
-//                                                   width: 22,
-//                                                   decoration: BoxDecoration(
-//                                                       color: Colors.white,
-//                                                       borderRadius:
-//                                                       BorderRadius.circular(
-//                                                           20)),
-//                                                   child: Center(
-//                                                       child: Image.asset(
-//                                                           'assets/svg/vip.png'))),
-//                                               SizedBox(width: 4),
-//                                               Text10('Vip'),
-//                                             ],
-//                                           ),
-//                                           Text10('05'),
-//                                           Text10('05'),
-//                                         ],
-//                                       ),
-//                                     ),
-//                                     SizedBox(height: 1),
-//                                     Container(
-//                                       height: 30,
-//                                       color: Color(0XFFF6F6F6),
-//                                       child: Row(
-//                                         mainAxisAlignment:
-//                                         MainAxisAlignment.spaceAround,
-//                                         children: [
-//                                           Row(
-//                                             children: [
-//                                               Container(
-//                                                   height: 22,
-//                                                   width: 22,
-//                                                   decoration: BoxDecoration(
-//                                                       color: Color(0XFFFFECF0),
-//                                                       borderRadius:
-//                                                       BorderRadius.circular(
-//                                                           20)),
-//                                                   child: Center(
-//                                                       child: Image.asset(
-//                                                           'assets/svg/calendar_day.png'))),
-//                                               SizedBox(width: 4),
-//                                               Text10('Multiday pass'),
-//                                             ],
-//                                           ),
-//                                           Text10('03'),
-//                                           Text10('03'),
-//                                         ],
-//                                       ),
-//                                     ),
-//                                     SizedBox(height: 1),
-//                                     Container(
-//                                       height: 30,
-//                                       color: Color(0XFFF6F6F6),
-//                                       child: Row(
-//                                         mainAxisAlignment:
-//                                         MainAxisAlignment.spaceAround,
-//                                         children: [
-//                                           Row(
-//                                             children: [
-//                                               Container(
-//                                                   height: 22,
-//                                                   width: 22,
-//                                                   decoration: BoxDecoration(
-//                                                       color: Color(0XFFD9FFD4),
-//                                                       borderRadius:
-//                                                       BorderRadius.circular(
-//                                                           20)),
-//                                                   child: Center(
-//                                                       child: Image.asset(
-//                                                           'assets/svg/badge.png'))),
-//                                               SizedBox(width: 4),
-//                                               Text10('Gem Show Pass'),
-//                                             ],
-//                                           ),
-//                                           Text10('02'),
-//                                           Text10('02'),
-//                                         ],
-//                                       ),
-//                                     ),
-//                                     Padding(
-//                                       padding: const EdgeInsets.only(top: 10),
-//                                       child: Row(
-//                                         mainAxisAlignment:
-//                                         MainAxisAlignment.spaceBetween,
-//                                         children: [
-//                                           Text10(
-//                                             'Showing 01_01 of 38',
-//                                             style: TextStyle(
-//                                                 color: Color(0XFF85829B)),
-//                                           ),
-//                                           Row(
-//                                             children: [
-//                                               Container(
-//                                                 height: 14,
-//                                                 width: 14,
-//                                                 color: Color(0XFFF6F6F6),
-//                                                 child: Icon(
-//                                                   Icons.arrow_back_ios,
-//                                                   size: 7,
-//                                                 ),
-//                                               ),
-//                                               SizedBox(
-//                                                 width: 4,
-//                                               ),
-//                                               Container(
-//                                                 height: 14,
-//                                                 width: 14,
-//                                                 color: Color(0XFFF6F6F6),
-//                                                 child: Center(
-//                                                   child: Text10('1'),
-//                                                 ),
-//                                               ),
-//                                               SizedBox(
-//                                                 width: 4,
-//                                               ),
-//                                               Container(
-//                                                 height: 14,
-//                                                 width: 14,
-//                                                 color: Color(0XFFF6F6F6),
-//                                                 child: Center(
-//                                                   child: Text10('2'),
-//                                                 ),
-//                                               ),
-//                                               SizedBox(
-//                                                 width: 4,
-//                                               ),
-//                                               Container(
-//                                                 height: 14,
-//                                                 width: 14,
-//                                                 color: Color(0XFFF6F6F6),
-//                                                 child: Center(
-//                                                   child: Text10('3'),
-//                                                 ),
-//                                               ),
-//                                               SizedBox(
-//                                                 width: 4,
-//                                               ),
-//                                               Container(
-//                                                 height: 14,
-//                                                 width: 14,
-//                                                 color: Color(0XFFF6F6F6),
-//                                                 child: Icon(
-//                                                   Icons.arrow_forward_ios,
-//                                                   size: 7,
-//                                                 ),
-//                                               ),
-//                                             ],
-//                                           )
-//                                         ],
-//                                       ),
-//                                     ),
-//                                     SizedBox(height: 10),
-//                                     InkWell(
-//                                       onTap: () {},
-//                                       child: Container(
-//                                         height: 20,
-//                                         width: 58,
-//                                         decoration: BoxDecoration(
-//                                             borderRadius:
-//                                             BorderRadius.circular(15),
-//                                             border: Border.all(
-//                                                 color: Color(0XFFDC143C))),
-//                                         child: Center(
-//                                           child: Text(
-//                                             'Details',
-//                                             style: TextStyle(
-//                                                 color: Color(0XFFDC143C),
-//                                                 fontSize: 8),
-//                                           ),
-//                                         ),
-//                                       ),
-//                                     )
-//                                   ],
-//                                 ),
-//                               ),
-//                             ],
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-//
-// class _SalesData {
-//   _SalesData(this.year, this.sales);
-//
-//   final String year;
-//   final double sales;
-// }
-// //
+import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
+class CalSathya extends StatefulWidget {
+  @override
+  _CalSathyaState createState() => _CalSathyaState();
+}
+
+class _CalSathyaState extends State<CalSathya> {
+  final String eventName = "Sample Event";
+  final String eventLocation = "Sample Location";
+  final DateTime eventStartTime = DateTime.now();
+  final DateTime eventEndTime = DateTime.now().add(Duration(hours: 1));
+
+  String selectedCalendar = 'Select Calendar';
+
+  Future<void> _addToCalendar(String calendarType) async {
+    String url;
+
+    switch (calendarType) {
+      case 'google':
+        url = 'https://www.google.com/calendar/render?action=TEMPLATE&text=$eventName&dates=${eventStartTime.toUtc().toIso8601String().substring(0, 19)}Z/${eventEndTime.toUtc().toIso8601String().substring(0, 19)}Z&details=$eventLocation&location=$eventLocation';
+        break;
+      case 'yahoo':
+        url = 'https://calendar.yahoo.com/?v=60&view=d&type=20&title=$eventName&st=${eventStartTime.toUtc().toIso8601String().substring(0, 19)}Z&et=${eventEndTime.toUtc().toIso8601String().substring(0, 19)}Z&desc=$eventLocation&in_loc=$eventLocation';
+        break;
+      case 'ical':
+        url = 'data:text/calendar;charset=utf8,BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:$eventName\nLOCATION:$eventLocation\nDTSTART:${eventStartTime.toUtc().toIso8601String().substring(0, 19)}Z\nDTEND:${eventEndTime.toUtc().toIso8601String().substring(0, 19)}Z\nEND:VEVENT\nEND:VCALENDAR';
+        break;
+      case 'outlook':
+        url = 'https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&startdt=${eventStartTime.toUtc().toIso8601String().substring(0, 19)}Z&enddt=${eventEndTime.toUtc().toIso8601String().substring(0, 19)}Z&subject=$eventName&body=$eventLocation&location=$eventLocation';
+        break;
+      default:
+        throw 'Unsupported calendar type';
+    }
+
+    // Send event data to the server
+    await _sendEventDataToServer(calendarType);
+
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  Future<void> _sendEventDataToServer(String calendarType) async {
+    final String serverUrl = 'https://your-server-url.com'; // Replace with your server URL
+
+    final Map<String, dynamic> eventData = {
+      'type': calendarType,
+      'event': {
+        'name': eventName,
+        'location': eventLocation,
+        'startTime': eventStartTime.toUtc().toIso8601String(),
+        'endTime': eventEndTime.toUtc().toIso8601String(),
+      },
+    };
+
+    final response = await http.post(
+      Uri.parse('$serverUrl/add-event'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(eventData),
+    );
+
+    if (response.statusCode != 200) {
+      print('Failed to send event data to server');
+      // Handle error
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Calendar Event Example'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            DropdownButton<String>(
+              value: selectedCalendar,
+              icon: const Icon(Icons.arrow_downward),
+              iconSize: 24,
+              elevation: 16,
+              style: const TextStyle(color: Colors.deepPurple),
+              onChanged: (String? newValue) {
+                setState(() {
+                  selectedCalendar = newValue!;
+                });
+              },
+              items: <String>['Select Calendar', 'Google', 'Yahoo', 'iCal', 'Outlook']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: selectedCalendar != 'Select Calendar' ? () => _addToCalendar(selectedCalendar.toLowerCase()) : null,
+              child: Text('Add to $selectedCalendar Calendar'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  canLaunch(String url) {}
+
+  launch(String url) {}
+}

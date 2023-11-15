@@ -6,12 +6,12 @@ import 'package:fun_zippy/app/utilities/drawer.dart';
 import 'package:fun_zippy/app/utilities/dynamic_size.dart';
 
 
-class event_scheduler extends StatefulWidget {
+class EventScheduler extends StatefulWidget {
   @override
-  State<event_scheduler> createState() => _event_schedulerState();
+  State<EventScheduler> createState() => _EventSchedulerState();
 }
 
-class _event_schedulerState extends State<event_scheduler> {
+class _EventSchedulerState extends State<EventScheduler> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   int selectedOption = -1;
 

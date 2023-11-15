@@ -6,7 +6,7 @@ class AppColors {
   static const Color secondaryColor = Colors.green;
   static const Color textColor = Colors.black;
   static const Color deepPurple = Colors.deepPurple;
-  static const Color grey = Colors.grey;
+  static const Color grey = Color(0XFF86839B);
   static const Color red = Colors.red;
   static const Color white = Colors.white70;
   static const Color deepWhite = Colors.white;
@@ -18,9 +18,8 @@ class AppColors {
 
 class AppTextStyles {
   static const TextStyle appBarTitleStyle = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 20.0,
-    color: AppColors.textColor,
+    fontSize: 14.0,
+    color: Colors.black,
   );
   static const TextStyle buttonTextStyle = TextStyle(
     fontSize: 16.0,
@@ -28,7 +27,6 @@ class AppTextStyles {
   );
   static const TextStyle lineBoldTextStyle = TextStyle(
     fontSize: 16.0,
-    fontWeight: FontWeight.bold,
     color: AppColors.textColor,
   );
   static const TextStyle headingTextStyle = TextStyle(
@@ -63,8 +61,7 @@ class AppTextStyles {
   );
   static const TextStyle lineText14BoldStyle = TextStyle(
     fontSize: 14.0,
-    color: AppColors.textColor,
-    fontWeight: FontWeight.bold,
+    color: Colors.black,
   );
   static const TextStyle lineText12Style = TextStyle(
     fontSize: 12.0,

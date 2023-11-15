@@ -4,12 +4,12 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
 import 'package:fun_zippy/app/utilities/dynamic_size.dart';
 
-class potluck_menu extends StatefulWidget {
+class PotluckMenu extends StatefulWidget {
   @override
-  State<potluck_menu> createState() => _potluck_menuState();
+  State<PotluckMenu> createState() => _PotluckMenuState();
 }
 
-class _potluck_menuState extends State<potluck_menu> {
+class _PotluckMenuState extends State<PotluckMenu> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   int selectedOption = -1;
 

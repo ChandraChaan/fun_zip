@@ -40,7 +40,14 @@ abstract class Routes {
   static const EventContactsScreen = _Paths.EventContactsScreen;
   static const MyGroupsScreen = _Paths.MyGroupsScreen;
   static const ContactUs = _Paths.ContactUs;
-  static const NewGiftRegisterItem = _Paths.NewGiftRegisterItem;
+  static const FunZippy = _Paths.FunZippy;
+  static const MyTickets = _Paths.MyTickets;
+  static const PotluckMenu = _Paths.PotluckMenu;
+  static const MyGroups = _Paths.MyGroups;
+  static const YourWidget = _Paths.YourWidget;
+  static const TicketingAndRSVP = _Paths.TicketingAndRSVP;
+  static const DetailsScreen = _Paths.DetailsScreen;
+  static const PhoneNumber = _Paths.PhoneNumber;
 }
 
 abstract class _Paths {
@@ -83,6 +90,13 @@ abstract class _Paths {
   static const EventContactsScreen = '/EventContactsScreen';
   static const MyGroupsScreen = '/MyGroupsScreen';
   static const ContactUs = '/ContactUs';
-  static const NewGiftRegisterItem = '/NewGiftRegisterItem';
+  static const FunZippy = '/FunZippy';
+  static const MyTickets = '/MyTickets';
+  static const PotluckMenu = '/PotluckMenu';
+  static const MyGroups = '/MyGroups';
+  static const YourWidget = '/YourWidget';
+  static const TicketingAndRSVP = '/TicketingAndRSVP';
+  static const DetailsScreen = '/DetailsScreen';
+  static const PhoneNumber = '/PhoneNumber';
 
 }

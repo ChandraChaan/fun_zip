@@ -5,14 +5,19 @@ import 'package:get/get.dart';
 
 import '../home/controllers/home_controller.dart';
 
-class EditingEvent extends GetView<HomeController> {
-//   const EditingEvent({super.key});
-//
-//   @override
-//   State<EditingEvent> createState() => _EditingEventState();
-// }
-//
-// class _EditingEventState extends State<EditingEvent> {
+class EditingEvent extends StatefulWidget {
+  const EditingEvent({super.key});
+
+  @override
+  State<EditingEvent> createState() => _EditingEventState();
+}
+
+class _EditingEventState extends State<EditingEvent> {
+  String selectedOption = '';
+
+  bool firstRowSelected = false;
+  bool secondRowSelected = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +26,7 @@ class EditingEvent extends GetView<HomeController> {
         elevation: 5,
         backgroundColor: Colors.white,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.back();
           },
           child: Icon(
@@ -43,9 +48,51 @@ class EditingEvent extends GetView<HomeController> {
               child: CircleAvatar(
                 radius: 20,
                 backgroundColor: Colors.white,
-                child: Icon(
-                  Icons.qr_code,
-                  color: Colors.deepPurple,
+                child: InkWell(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          backgroundColor: backgroundColor,
+                          title: Column(
+                            children: [
+                              Text('QR Code'),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Image.asset("assets/svg/qr_code.png"),
+                              SizedBox(height: 15),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Container(
+                                  height: 35,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: Color(0XFFC61236),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Center(
+                                      child: Text(
+                                    'Done',
+                                    style: (TextStyle(
+                                        color: Colors.white, fontSize: 14)),
+                                  )),
+                                  //                            fillColor: Color(0XFFC61236),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: Icon(
+                    Icons.qr_code,
+                    color: Colors.deepPurple,
+                  ),
                 ),
               ),
             ),
@@ -138,7 +185,7 @@ class EditingEvent extends GetView<HomeController> {
                                       color: Color(0XFF5B46F4),
                                     ),
                                     5.width,
-                                    Text('06:00 PM',
+                                    Text('Aug/10/2023',
                                         style: TextStyle(
                                           fontSize: 10,
                                           color: Color(0XFF5E5A80),
@@ -146,7 +193,6 @@ class EditingEvent extends GetView<HomeController> {
                                   ],
                                 ),
                               ),
-
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
                               border: OutlineInputBorder(
@@ -194,7 +240,6 @@ class EditingEvent extends GetView<HomeController> {
                                   ],
                                 ),
                               ),
-
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
                               border: OutlineInputBorder(
@@ -268,7 +313,7 @@ class EditingEvent extends GetView<HomeController> {
                                 size: 16,
                                 color: Colors.deepPurpleAccent,
                               ),
-                              hintText:'11:00 PM',
+                              hintText: '11:00 PM',
                               hintStyle: TextStyle(
                                   fontSize: 10, color: Color(0XFF5E5A80)),
                               filled: true,
@@ -298,51 +343,77 @@ class EditingEvent extends GetView<HomeController> {
                       Row(
                         children: [
                           Expanded(
-                            child: Container(
-                              height: 35,
-                              decoration: BoxDecoration(
-                                color: Color(0XFFE3DFFF),
-                                border: Border.all(color: Color(0XFF5B46F4)),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'In Person',
-                                  style: TextStyle(fontSize: 10),
+                            child: GestureDetector(
+                              onTap: () {
+                                // Set the selected option when the container is tapped
+                                setSelectedOption('In Person');
+                              },
+                              child: Container(
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  color: selectedOption == 'In Person'
+                                      ? Color(0XFF5B46F4)
+                                      : Color(0XFFE3DFFF),
+                                  border: Border.all(color: Color(0XFF5B46F4)),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'In Person',
+                                    style: TextStyle(fontSize: 10),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                           SizedBox(width: 5),
                           Expanded(
-                            child: Container(
-                              height: 35,
-                              decoration: BoxDecoration(
-                                color: Color(0XFFE3DFFF),
-                                border: Border.all(color: Color(0XFF5B46F4)),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Center(
+                            child: GestureDetector(
+                              onTap: () {
+                                // Set the selected option when the container is tapped
+                                setSelectedOption('Online');
+                              },
+                              child: Container(
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  color: selectedOption == 'Online'
+                                      ? Color(0XFF5B46F4)
+                                      : Color(0XFFE3DFFF),
+                                  border: Border.all(color: Color(0XFF5B46F4)),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Center(
                                   child: Text(
-                                'Online',
-                                style: TextStyle(fontSize: 10),
-                              )),
+                                    'Online',
+                                    style: TextStyle(fontSize: 10),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                           SizedBox(width: 5),
                           Expanded(
-                            child: Container(
-                              height: 35,
-                              decoration: BoxDecoration(
-                                color: Color(0XFFE3DFFF),
-                                border: Border.all(color: Color(0XFF5B46F4)),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Center(
+                            child: GestureDetector(
+                              onTap: () {
+                                // Set the selected option when the container is tapped
+                                setSelectedOption('Mixed');
+                              },
+                              child: Container(
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  color: selectedOption == 'Mixed'
+                                      ? Color(0XFF5B46F4)
+                                      : Color(0XFFE3DFFF),
+                                  border: Border.all(color: Color(0XFF5B46F4)),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Center(
                                   child: Text(
-                                'Mixed',
-                                style: TextStyle(fontSize: 10),
-                              )),
+                                    'Mixed',
+                                    style: TextStyle(fontSize: 10),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ],
@@ -367,7 +438,8 @@ class EditingEvent extends GetView<HomeController> {
                         child: TextField(
                           decoration: InputDecoration(
                               hintText: 'Taj Banjara,Hyderabad',
-                              hintStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              hintStyle: TextStyle(
+                                  fontSize: 10, color: Color(0XFF5E5A80)),
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
                               border: OutlineInputBorder(
@@ -398,7 +470,8 @@ class EditingEvent extends GetView<HomeController> {
                         child: TextField(
                           decoration: InputDecoration(
                               hintText: 'Rd Number1',
-                              helperStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              helperStyle: TextStyle(
+                                  fontSize: 10, color: Color(0XFF5E5A80)),
                               hintStyle: TextStyle(fontSize: 10),
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
@@ -430,7 +503,8 @@ class EditingEvent extends GetView<HomeController> {
                         child: TextField(
                           decoration: InputDecoration(
                               hintText: 'Hyderabad',
-                              hintStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              hintStyle: TextStyle(
+                                  fontSize: 10, color: Color(0XFF5E5A80)),
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
                               border: OutlineInputBorder(
@@ -461,7 +535,8 @@ class EditingEvent extends GetView<HomeController> {
                         child: TextField(
                           decoration: InputDecoration(
                               hintText: 'TS',
-                              hintStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              hintStyle: TextStyle(
+                                  fontSize: 10, color: Color(0XFF5E5A80)),
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
                               border: OutlineInputBorder(
@@ -546,7 +621,8 @@ class EditingEvent extends GetView<HomeController> {
                         child: TextField(
                           decoration: InputDecoration(
                               hintText: 'Choose',
-                              hintStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              hintStyle: TextStyle(
+                                  fontSize: 10, color: Color(0XFF5E5A80)),
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
                               suffixIcon: Icon(Icons.expand_more),
@@ -561,39 +637,81 @@ class EditingEvent extends GetView<HomeController> {
                       SizedBox(height: 8),
                       Text(
                         'Livestream Provide',
-                        style: TextStyle(
-                            fontSize: 10, color: Color(0XFF5E5A80)),
+                        style:
+                            TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
                       ),
                       SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.circle_outlined,
-                            size: 14,
-                          ),
-                          SizedBox(width: 4),
-                          Text(
-                            'FunZippy StreamingLivestream features by Funzippy!',
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ],
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            firstRowSelected = !firstRowSelected;
+                          });
+                        },
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 14,
+                              height: 14,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: firstRowSelected
+                                    ? Color(0XFF5B46F4)
+                                    : Colors.transparent,
+                                border: Border.all(
+                                  color: Color(0XFF5E5A80),
+                                  width: 1.5,
+                                ),
+                              ),
+                              child: Icon(
+                                Icons.circle_outlined,
+                                size: 14,
+                                color: Colors.transparent,
+                              ),
+                            ),
+                            SizedBox(width: 4),
+                            Text(
+                              'FunZippy StreamingLivestream features by Funzippy!',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ),
-                      SizedBox(
-                        height: 12,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.circle_outlined,
-                            size: 14,
-                          ),
-                          SizedBox(width: 4),
-                          Text(
-                            'Custom linkYou own livestream link\n(Zoom, Skype, Twitch, etc.)',
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ],
+                      SizedBox(height: 12),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            secondRowSelected = !secondRowSelected;
+                          });
+                        },
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 14,
+                              height: 14,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: secondRowSelected
+                                    ? Color(0XFF5B46F4)
+                                    : Colors.transparent,
+                                border: Border.all(
+                                  color: Color(0XFF5E5A80),
+                                  width: 1.5,
+                                ),
+                              ),
+                              child: Icon(
+                                Icons.circle_outlined,
+                                size: 14,
+                                color: Colors.transparent,
+                              ),
+                            ),
+                            SizedBox(width: 4),
+                            Text(
+                              'Custom linkYou own livestream link\n(Zoom, Skype, Twitch, etc.)',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(height: 8),
                       Row(
@@ -611,7 +729,8 @@ class EditingEvent extends GetView<HomeController> {
                         child: TextField(
                           decoration: InputDecoration(
                               hintText: 'Your Livestream link',
-                              hintStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              hintStyle: TextStyle(
+                                  fontSize: 10, color: Color(0XFF5E5A80)),
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
                               border: OutlineInputBorder(
@@ -665,7 +784,8 @@ class EditingEvent extends GetView<HomeController> {
                         child: TextField(
                           decoration: InputDecoration(
                               hintText: 'Choose',
-                              hintStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              hintStyle: TextStyle(
+                                  fontSize: 10, color: Color(0XFF5E5A80)),
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
                               suffixIcon: Icon(Icons.expand_more),
@@ -693,7 +813,8 @@ class EditingEvent extends GetView<HomeController> {
                         child: TextField(
                           decoration: InputDecoration(
                               hintText: 'Choose',
-                              hintStyle: TextStyle(fontSize: 10,color: Color(0XFF5E5A80)),
+                              hintStyle: TextStyle(
+                                  fontSize: 10, color: Color(0XFF5E5A80)),
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
                               suffixIcon: Icon(Icons.expand_more),
@@ -708,8 +829,8 @@ class EditingEvent extends GetView<HomeController> {
                       SizedBox(height: 8),
                       Text(
                         'Thumbnail Images',
-                        style: TextStyle(
-                            fontSize: 10, color: Color(0XFF5E5A80)),
+                        style:
+                            TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
                       ),
                       SizedBox(height: 20),
                       Stack(
@@ -731,7 +852,8 @@ class EditingEvent extends GetView<HomeController> {
                       ),
                       Text(
                         'Event description',
-                        style: TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
+                        style:
+                            TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
                       ),
                       3.height,
                       Container(
@@ -751,8 +873,8 @@ class EditingEvent extends GetView<HomeController> {
                       SizedBox(height: 8),
                       Text(
                         'Event Tags',
-                        style: TextStyle(
-                            fontSize: 10, color: Color(0XFF5E5A80)),
+                        style:
+                            TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
                       ),
                       SizedBox(height: 8),
                       Container(
@@ -780,10 +902,10 @@ class EditingEvent extends GetView<HomeController> {
                             child: Center(
                                 child: Text(
                               'Party',
-                              style: TextStyle(fontSize: 8),
+                                  style: TextStyle(fontSize: 8,color: Color(0XFFFF5C00)),
                             )),
                             decoration: BoxDecoration(
-                                color: Colors.deepOrangeAccent,
+                                color: Color(0XFFFF5C00).withOpacity(.22),
                                 borderRadius: BorderRadius.circular(20)),
                           ),
                           SizedBox(width: 5),
@@ -793,10 +915,10 @@ class EditingEvent extends GetView<HomeController> {
                             child: Center(
                                 child: Text(
                               'Event',
-                              style: TextStyle(fontSize: 8),
+                                  style: TextStyle(fontSize: 8,color: Color(0XFFDC143C)),
                             )),
                             decoration: BoxDecoration(
-                                color: Colors.deepOrangeAccent,
+                                color: Color(0XFFDC143C).withOpacity(.20),
                                 borderRadius: BorderRadius.circular(20)),
                           ),
                           SizedBox(width: 5),
@@ -806,10 +928,10 @@ class EditingEvent extends GetView<HomeController> {
                             child: Center(
                                 child: Text(
                               'Hyderabad',
-                              style: TextStyle(fontSize: 8),
+                                  style: TextStyle(fontSize: 8,color: Color(0XFF9747FF)),
                             )),
                             decoration: BoxDecoration(
-                                color: Colors.deepOrangeAccent,
+                                color: Color(0XFF9747FF).withOpacity(.20),
                                 borderRadius: BorderRadius.circular(20)),
                           )
                         ],
@@ -913,5 +1035,11 @@ class EditingEvent extends GetView<HomeController> {
         ),
       ),
     );
+  }
+
+  void setSelectedOption(String option) {
+    setState(() {
+      selectedOption = option;
+    });
   }
 }

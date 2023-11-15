@@ -169,4 +169,48 @@ class EventRepository {
     return completer.future;
   }
 
+  Future getProfile() async {
+    String token = userModel.token;
+
+    final headers = {
+      'Cookie': 'AuthToken=$token;',
+    };
+
+    try {
+       response = await Api().post(
+         "/auth/user/user/search/loginUser",
+          options: Options(headers: headers)
+       );
+      if (response.statusCode == 200) {
+        completer.complete(response.data);
+      }
+    } catch (e) {
+      completer.complete(response.data);
+      // Handle the error as needed
+    }
+    return completer.future;
+  }
+
+  Future ticketDetails() async {
+    String token = userModel.token;
+
+    final headers = {
+      'Cookie': 'AuthToken=$token;',
+    };
+
+    try {
+       response = await Api().post(
+         "/event/payment/getSaleTransaction/h6Wh3RnLi4p",
+          options: Options(headers: headers)
+       );
+      if (response.statusCode == 200) {
+        completer.complete(response.data);
+      }
+    } catch (e) {
+      completer.complete(response.data);
+      // Handle the error as needed
+    }
+    return completer.future;
+  }
+
 }

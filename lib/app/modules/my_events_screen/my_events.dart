@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
@@ -76,17 +77,19 @@ class _MyEventsState extends State<MyEvents> {
         body: Column(
           children: <Widget>[
             Container(
+              color: Color(0XFFEFEDFF),
               child: TabBar(
+                indicatorColor: Color(0XFF5B46F4),
                 tabs: <Widget>[
                   Tab(
                     child: Text(
                       'Upcoming',
-                      style: TextStyle(color: Colors.black),
+                      style: TextStyle(color: Color(0XFF5B46F4)),
                     ),
                   ),
                   Tab(
                     child: Text('Completed',
-                        style: TextStyle(color: Colors.black)),
+                        style: TextStyle(color: Color(0XFF5B46F4))),
                   ),
                 ],
               ),
@@ -110,7 +113,7 @@ class _MyEventsState extends State<MyEvents> {
                                             arguments: data[a]['uid']);
                                       },
                                       child: Container(
-                                        height: 400,
+                                        height: 372,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(15),
@@ -161,6 +164,7 @@ class _MyEventsState extends State<MyEvents> {
                                                   Flexible(
                                                     child: Text(
                                                       '${data[a]["name"]}',
+                                                      maxLines: 1,
                                                       overflow:
                                                           TextOverflow.visible,
                                                       style: TextStyle(
@@ -187,7 +191,7 @@ class _MyEventsState extends State<MyEvents> {
                                                   const SizedBox(width: 10),
                                                   Container(
                                                     height: 18,
-                                                    width: 50,
+                                                    width: 62,
                                                     decoration: BoxDecoration(
                                                       color: Color(0XFFFF5C00)
                                                           .withOpacity(.22),
@@ -203,7 +207,7 @@ class _MyEventsState extends State<MyEvents> {
                                                           data[a]
                                                               ["endDateTime"],
                                                         )}'
-                                                        'Days',
+                                                        ' Days Left',
                                                         style: TextStyle(
                                                           color:
                                                               Color(0XFFFF5C00),

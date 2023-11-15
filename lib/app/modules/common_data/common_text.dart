@@ -19,3 +19,23 @@ class Text10 extends StatelessWidget {
     );
   }
 }
+
+class Text12 extends StatelessWidget {
+  final String text;
+  final TextStyle? style;
+  final int? maxLines;
+
+  const Text12(this.text, {this.style, this.maxLines});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+          fontSize: 12,
+          color: Color(0XFF5E5A80)// Set the font size to 10
+      ).merge(style), // Merge with any additional style provided
+      maxLines: maxLines,
+    );
+  }
+}

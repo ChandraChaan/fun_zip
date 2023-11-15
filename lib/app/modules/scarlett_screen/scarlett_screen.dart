@@ -4,11 +4,40 @@ import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../data/repository/event_repository.dart';
+import '../../widgets/error_snackbar.dart';
 import '../common_data/common_text.dart';
 import '../my_profile_screen/my_profile_screen.dart';
 
-class ScarlettScreen extends StatelessWidget {
+class ScarlettScreen extends StatefulWidget {
   const ScarlettScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ScarlettScreen> createState() => _ScarlettScreenState();
+}
+
+class _ScarlettScreenState extends State<ScarlettScreen> {
+  Map profileData = {};
+
+  Future<void> getProfile() async {
+    try {
+      var response = await EventRepository().getProfile();
+      print(response.toString());
+      print('Sathya');
+      final bodyData = response;
+      setState(() {
+        profileData = (bodyData); // Wrap bodyData in a list
+      });
+    } catch (e) {
+      errorSnackbar(title: '$e', desc: '');
+    }
+  }
+
+  @override
+  void initState() {
+    getProfile();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +83,7 @@ class ScarlettScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Scarlett Johansson',
+                          '${profileData.isNotEmpty ? profileData["firstName"] : ""} ${profileData.isNotEmpty ? profileData["lastName"] : ""}',
                           style: TextStyle(fontSize: 16),
                         ),
                         InkWell(
@@ -72,21 +101,26 @@ class ScarlettScreen extends StatelessWidget {
                         children: [
                           Image.asset('assets/svg/email_grey.png'),
                           5.width,
-                          Text10('johansson@gmail.com')
+                          Text10('${profileData.isNotEmpty ? profileData ["emailAddress"] : ""}')
                         ],
                       ),
                       Row(
                         children: [
                           Image.asset('assets/svg/phone_grey.png'),
                           5.width,
-                          Text10('+91 9876543210')
+                          //  Text10('+91 9876543210')
+
+                          Text10(
+                              '${profileData.isNotEmpty ? profileData["phoneNumber"] : ""}')
                         ],
                       )
                     ],
                   ),
                 ),
               ),
-              Divider(thickness: 2,),
+              Divider(
+                thickness: 2,
+              ),
               buildRow('Home', 'assets/svg/h1.png'),
               buildRow('Create an Event', 'assets/svg/h2.png'),
               buildRow('My Events', 'assets/svg/h3.png'),
@@ -97,9 +131,10 @@ class ScarlettScreen extends StatelessWidget {
               buildRow('Contact Us', 'assets/svg/h8.png'),
               buildRow('About Us', 'assets/svg/h9.png'),
               buildRow('Privacy Policy', 'assets/svg/h10.png'),
-              Divider(thickness: 2,),
+              Divider(
+                thickness: 2,
+              ),
               buildRow('Log Out', 'assets/svg/exit.png'),
-
             ],
           ),
         ),
@@ -126,7 +161,7 @@ class ScarlettScreen extends StatelessWidget {
           Get.toNamed(Routes.MyEvents);
         } else if (title.contains('My Tickets')) {
           //TODO
-          Get.toNamed(Routes.MyGroupsScreen);
+          Get.toNamed(Routes.MyTickets);
         } else if (title.contains('My Group')) {
           //TODO
           Get.toNamed(Routes.MyEvents);
