@@ -49,7 +49,7 @@ class _CommonScafoldState extends State<CommonScafold> {
       image: eventButtonNavigationIconImage,
     ),
     menuItemWidget(
-      label: 'My Profile',
+      label: 'My Tickets',
       image: profileButtonNavigationIconImage,
     ),
   ];

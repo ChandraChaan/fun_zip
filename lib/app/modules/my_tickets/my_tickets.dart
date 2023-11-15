@@ -19,7 +19,7 @@ class _MyTicketsState extends State<MyTickets> {
       child: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          //for (int a = 1; a <= 5; a++)
+          for (int a = 1; a <= 5; a++)
           Container(
             decoration: BoxDecoration(
                 border: Border.all(color: Color(0XFFC9C6E1)),
@@ -42,7 +42,7 @@ class _MyTicketsState extends State<MyTickets> {
                         width: 10,
                       ),
                       SizedBox(
-                        width: SizeGet.getProportionWidth(200),
+                        width: 200,
                         child: Column(
                           children: [
                             Text(
