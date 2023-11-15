@@ -26,8 +26,6 @@ class MyEvents extends StatefulWidget {
 }
 
 class _MyEventsState extends State<MyEvents> {
-  bool upcoming = false;
-  bool completed = false;
 
   List<dynamic> data = [];
   final getStorage = GetStorage();
