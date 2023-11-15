@@ -12,6 +12,8 @@ class EventScreen extends StatefulWidget {
 }
 
 class _EventScreenState extends State<EventScreen> {
+  String selectedOptions = '';
+
   int selectedOption = 0;
 
   void selectOption(int option) {
@@ -70,11 +72,52 @@ class _EventScreenState extends State<EventScreen> {
               child: CircleAvatar(
                 radius: 20,
                 backgroundColor: Colors.white,
-                child: Icon(
-                  Icons.qr_code,
-                  color: Colors.deepPurple,
-                ),
-              ),
+                child: InkWell(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          backgroundColor: backgroundColor,
+                          title: Column(
+                            children: [
+                              Text('QR Code'),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Image.asset("assets/svg/qr_code.png"),
+                              SizedBox(height: 15),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Container(
+                                  height: 35,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: Color(0XFFC61236),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Center(
+                                      child: Text(
+                                        'Done',
+                                        style: (TextStyle(
+                                            color: Colors.white, fontSize: 14)),
+                                      )),
+                                  //                            fillColor: Color(0XFFC61236),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: Icon(
+                    Icons.qr_code,
+                    color: Colors.deepPurple,
+                  ),
+                )),
             ),
           )
         ],
@@ -149,51 +192,75 @@ class _EventScreenState extends State<EventScreen> {
                       Row(
                         children: [
                           Expanded(
-                            child: Container(
-                              height: 35,
-                              decoration: BoxDecoration(
-                                color: Color(0XFFE3DFFF),
-                                border: Border.all(color: Color(0XFF5B46F4)),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'In Person',
-                                  style: TextStyle(fontSize: 10),
+                            child: GestureDetector(
+                              onTap: () {
+                                // Set the selected option when the container is tapped
+                                setSelectedOptions('In Person');
+                              },
+                              child: Container(
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  color: selectedOptions == 'In Person'
+                                      ? Color(0XFF5B46F4)
+                                      : Color(0XFFE3DFFF),
+                                  border: Border.all(color: Color(0XFF5B46F4)),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'In Person',
+                                    style: TextStyle(fontSize: 10),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                           SizedBox(width: 5),
                           Expanded(
-                            child: Container(
-                              height: 35,
-                              decoration: BoxDecoration(
-                                color: Color(0XFFE3DFFF),
-                                border: Border.all(color: Color(0XFF5B46F4)),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Online',
-                                  style: TextStyle(fontSize: 10),
+                            child: GestureDetector(
+                              onTap: () {
+                                // Set the selected option when the container is tapped
+                                setSelectedOptions('Online');
+                              },
+                              child: Container(
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  color: selectedOptions == 'Online'
+                                      ? Color(0XFF5B46F4)
+                                      : Color(0XFFE3DFFF),
+                                  border: Border.all(color: Color(0XFF5B46F4)),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Online',
+                                    style: TextStyle(fontSize: 10),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                           SizedBox(width: 5),
                           Expanded(
-                            child: Container(
-                              height: 35,
-                              decoration: BoxDecoration(
-                                color: Color(0XFFE3DFFF),
-                                border: Border.all(color: Color(0XFF5B46F4)),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Mixed',
-                                  style: TextStyle(fontSize: 10),
+                            child: GestureDetector(
+                              onTap: () {
+                                // Set the selected option when the container is tapped
+                                setSelectedOptions('Mixed');
+                              },
+                              child: Container(
+                                height: 35,
+                                decoration: BoxDecoration(
+                                  color: selectedOptions == 'Mixed'
+                                      ? Color(0XFF5B46F4)
+                                      : Color(0XFFE3DFFF),
+                                  border: Border.all(color: Color(0XFF5B46F4)),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Mixed',
+                                    style: TextStyle(fontSize: 10),
+                                  ),
                                 ),
                               ),
                             ),
@@ -439,4 +506,12 @@ class _EventScreenState extends State<EventScreen> {
       ),
     );
   }
+  void setSelectedOptions(String option) {
+    setState(() {
+      selectedOptions = option;
+    });
+  }
 }
+
+
+

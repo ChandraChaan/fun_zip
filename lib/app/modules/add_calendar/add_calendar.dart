@@ -5,40 +5,45 @@ import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/widgets/rounded_border.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:timezone/timezone.dart' as tz;
+import 'package:url_launcher/url_launcher.dart';
 import '../event_details/controllers/event_details_controller.dart';
 
-class AddToCalendar extends StatelessWidget {
-  const AddToCalendar({
+class AddToCalendar extends StatefulWidget {
+   AddToCalendar({
     super.key,
     required this.controller,
   });
 
   final EventDetailsController controller;
 
-
-// Function to share content
-Future<void> onShare() async {
-  await Share.share('Check out this awesome content!');
+  @override
+  State<AddToCalendar> createState() => _AddToCalendarState();
 }
 
+class _AddToCalendarState extends State<AddToCalendar> {
+// Function to share content
+  Future<void> onShare() async {
+    await Share.share('Check out this awesome content!');
+  }
 
   void onAddToCalendar(BuildContext context) async {
     final DeviceCalendarPlugin _deviceCalendarPlugin = DeviceCalendarPlugin();
     final Result<UnmodifiableListView<Calendar>> calendarsResult =
-    await _deviceCalendarPlugin.retrieveCalendars();
+        await _deviceCalendarPlugin.retrieveCalendars();
 
     if (calendarsResult.isSuccess && calendarsResult.data!.isNotEmpty) {
       final List<Calendar>? calendars = calendarsResult.data?.toList();
 
       final Event event = Event(
-       calendars?.first.id, // Use the calendarId to specify the calendar
+        calendars?.first.id, // Use the calendarId to specify the calendar
         title: 'Event Title',
         description: 'Event Description',
         start: tz.TZDateTime.now(tz.local),
         end: tz.TZDateTime.now(tz.local).add(Duration(hours: 1)),
       );
 
-      final Result<String>? result = await _deviceCalendarPlugin.createOrUpdateEvent(event);
+      final Result<String>? result =
+          await _deviceCalendarPlugin.createOrUpdateEvent(event);
 
       if (result!.isSuccess) {
         // Event added successfully
@@ -101,6 +106,7 @@ Future<void> onShare() async {
     }
   }
 
+  bool isLiked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -137,14 +143,24 @@ Future<void> onShare() async {
                           ),
                         ),
                         child: Container(
-                          height: 30,
                           child: Center(
-                            child: Text(
-                              'Add to Calendar',
-                              style: TextStyle(
-                                color: Color(0XFF5B46F4),
-                                fontSize: 10,
-                              ),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Add to Calendar',
+                                  style: TextStyle(
+                                    color: Color(0XFF5B46F4),
+                                    fontSize: 10,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Icon(
+                                  Icons.expand_more,size: 10,
+                                  color: Color(0XFF5B46F4),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -154,15 +170,23 @@ Future<void> onShare() async {
                       flex: 1,
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
-                        child: Container(
-                          height: 30,
-                          decoration: BoxDecoration(
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isLiked = !isLiked;
+                            });
+                          },
+                          child: Container(
+                            height: 25,
+                            decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(110),
-                              border: Border.all(color: Color(0XFF5B46F4))),
-                          child: Icon(
-                            Icons.favorite,
-                            size: 15,
-                            color: Color(0XFFC9C6E1),
+                              border: Border.all(color: Color(0XFF5B46F4)),
+                            ),
+                            child: Icon(
+                              isLiked ? Icons.favorite : Icons.favorite_border,
+                              size: 15,
+                              color: isLiked ? Colors.red : Color(0XFFC9C6E1),
+                            ),
                           ),
                         ),
                       ),
@@ -170,12 +194,12 @@ Future<void> onShare() async {
                     Expanded(
                       flex: 1,
                       child: Container(
-                        height: 30,
-                        width: 30,
+                        height: 25,
+                        width: 25,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
+                            borderRadius: BorderRadius.circular(110),
                             border: Border.all(color: Color(0XFF5B46F4))),
-                        child:  InkWell(
+                        child: InkWell(
                           borderRadius: BorderRadius.circular(25),
                           onTap: () {
                             onShare();
@@ -184,7 +208,7 @@ Future<void> onShare() async {
                             child: Tooltip(
                               message: 'Share',
                               child: Icon(
-                                Icons.share,
+                                Icons.share,size: 15,
                                 color: Color(0XFF5B46F4),
                               ),
                             ),
@@ -195,29 +219,34 @@ Future<void> onShare() async {
                     Expanded(flex: 1, child: Container()),
                     Expanded(
                       flex: 2,
-                      child: Container(
-                        height: 26,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: Color(0XFF560B7E),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.videocam,
-                              size: 10,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              'Watch Live',
-                              style: TextStyle(
+                      child: InkWell(
+                        onTap: (){
+                          launch("https://www.kicknology.com/");                        },
+                        child: Container(
+                          height: 26,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Color(0XFF560B7E),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.videocam,
+                                size: 12,
                                 color: Colors.white,
-                                fontSize: 5,
                               ),
-                            ),
-                          ],
+                              SizedBox(width: 3),
+                              Text(
+                                'Watch Live',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 8,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

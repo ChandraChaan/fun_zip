@@ -83,10 +83,10 @@ class _MyProfileState extends State<MyProfile> {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 14,
                 ),
                 Container(
-                  height: 680,
+                  height: 660,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15),
@@ -107,7 +107,7 @@ class _MyProfileState extends State<MyProfile> {
                           style: TextStyle(fontSize: 11),
                         ),
                         Container(
-                          height: 40,
+                          height: 35,
                           decoration: BoxDecoration(
                             color: Color(0XFFF5F4F9),
                             borderRadius: BorderRadius.circular(20),
@@ -128,7 +128,7 @@ class _MyProfileState extends State<MyProfile> {
                           style: TextStyle(fontSize: 11),
                         ),
                         Container(
-                          height: 40,
+                          height: 35,
                           decoration: BoxDecoration(
                             color: Color(0XFFF5F4F9),
                             borderRadius: BorderRadius.circular(20),
@@ -149,7 +149,7 @@ class _MyProfileState extends State<MyProfile> {
                           style: TextStyle(fontSize: 11),
                         ),
                         Container(
-                          height: 40,
+                          height: 35,
                           decoration: BoxDecoration(
                             color: Color(0XFFF5F4F9),
                             borderRadius: BorderRadius.circular(20),
@@ -170,7 +170,7 @@ class _MyProfileState extends State<MyProfile> {
                           style: TextStyle(fontSize: 11),
                         ),
                         Container(
-                          height: 40,
+                          height: 35,
                           decoration: BoxDecoration(
                             color: Color(0XFFF5F4F9),
                             borderRadius: BorderRadius.circular(20),
@@ -216,7 +216,7 @@ class _MyProfileState extends State<MyProfile> {
                           style: TextStyle(fontSize: 11),
                         ),
                         Container(
-                          height: 40,
+                          height: 35,
                           decoration: BoxDecoration(
                             color: Color(0XFFF5F4F9),
                             borderRadius: BorderRadius.circular(20),
@@ -240,7 +240,7 @@ class _MyProfileState extends State<MyProfile> {
                           style: TextStyle(fontSize: 11),
                         ),
                         Container(
-                          height: 40,
+                          height: 35,
                           decoration: BoxDecoration(
                             color: Color(0XFFF5F4F9),
                             borderRadius: BorderRadius.circular(20),
@@ -261,7 +261,7 @@ class _MyProfileState extends State<MyProfile> {
                           style: TextStyle(fontSize: 11),
                         ),
                         Container(
-                          height: 40,
+                          height: 35,
                           decoration: BoxDecoration(
                             color: Color(0XFFF5F4F9),
                             borderRadius: BorderRadius.circular(20),
@@ -282,7 +282,7 @@ class _MyProfileState extends State<MyProfile> {
                           style: TextStyle(fontSize: 11),
                         ),
                         Container(
-                          height: 40,
+                          height: 35,
                           decoration: BoxDecoration(
                             color: Color(0XFFF5F4F9),
                             borderRadius: BorderRadius.circular(20),
@@ -317,7 +317,7 @@ class _MyProfileState extends State<MyProfile> {
                           children: [
                             Expanded(
                               child: Container(
-                                height: 40,
+                                height: 35,
                                 decoration: BoxDecoration(
                                   color: Color(0XFFF5F4F9),
                                   borderRadius: BorderRadius.circular(20),
@@ -339,7 +339,7 @@ class _MyProfileState extends State<MyProfile> {
                             ),
                             Expanded(
                               child: Container(
-                                height: 40,
+                                height: 35,
                                 decoration: BoxDecoration(
                                   color: Color(0XFFF5F4F9),
                                   borderRadius: BorderRadius.circular(20),
@@ -366,7 +366,7 @@ class _MyProfileState extends State<MyProfile> {
                   height: 14,
                 ),
                 Container(
-                  height: 420,
+                  height: 400,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
@@ -386,7 +386,7 @@ class _MyProfileState extends State<MyProfile> {
                           style: TextStyle(fontSize: 11),
                         ),
                         Container(
-                          height: 40,
+                          height: 35,
                           decoration: BoxDecoration(
                             color: Color(0XFFF5F4F9),
                             borderRadius: BorderRadius.circular(20),
@@ -407,7 +407,7 @@ class _MyProfileState extends State<MyProfile> {
                           style: TextStyle(fontSize: 11),
                         ),
                         Container(
-                          height: 40,
+                          height: 35,
                           decoration: BoxDecoration(
                             color: Color(0XFFF5F4F9),
                             borderRadius: BorderRadius.circular(20),
@@ -428,7 +428,7 @@ class _MyProfileState extends State<MyProfile> {
                           style: TextStyle(fontSize: 11),
                         ),
                         Container(
-                          height: 40,
+                          height: 35,
                           decoration: BoxDecoration(
                             color: Color(0XFFF5F4F9),
                             borderRadius: BorderRadius.circular(20),
@@ -449,7 +449,7 @@ class _MyProfileState extends State<MyProfile> {
                           style: TextStyle(fontSize: 11),
                         ),
                         Container(
-                          height: 40,
+                          height: 35,
                           decoration: BoxDecoration(
                             color: Color(0XFFF5F4F9),
                             borderRadius: BorderRadius.circular(20),
@@ -470,7 +470,7 @@ class _MyProfileState extends State<MyProfile> {
                           style: TextStyle(fontSize: 11),
                         ),
                         Container(
-                          height: 40,
+                          height: 35,
                           decoration: BoxDecoration(
                             color: Color(0XFFF5F4F9),
                             borderRadius: BorderRadius.circular(20),

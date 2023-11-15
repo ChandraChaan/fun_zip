@@ -12,11 +12,13 @@ class ShareWidget extends StatelessWidget {
   const ShareWidget({
     super.key,
   });
+
   Future<void> _launchUrl(String _url) async {
     if (!await launchUrl(Uri.parse(_url))) {
       throw Exception('Could not launch $_url');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -28,17 +30,42 @@ class ShareWidget extends StatelessWidget {
           children: [
             Text('Share', style: normalText),
             10.width,
-            InkWell(onTap:(){_launchUrl('https://www.facebook.com/');},child: SvgPicture.asset(facebook_roundedIconImage)),
+            InkWell(
+                onTap: () {
+                  _launchUrl('https://www.facebook.com/');
+                },
+                child: SvgPicture.asset(facebook_roundedIconImage)),
             10.width,
-            SvgPicture.asset(instagram_roundedIconImage),
+            InkWell(
+                onTap: () {
+                  _launchUrl('https://www.instagram.com');
+                },
+                child: SvgPicture.asset(instagram_roundedIconImage)),
             10.width,
-            SvgPicture.asset(twitter_roundedIconImage),
+            InkWell(
+                onTap: () {
+                  _launchUrl('https://twitter.com');
+                },
+                child: SvgPicture.asset(twitter_roundedIconImage)),
             10.width,
-            SvgPicture.asset(pinterest_roundedIconImage),
+            InkWell(
+                onTap: () {
+                  _launchUrl('https://in.pinterest.com');
+                },
+                child: SvgPicture.asset(pinterest_roundedIconImage)),
             10.width,
-            SvgPicture.asset(linkedin_roundedIconImage),
+            InkWell(
+                onTap: () {
+                  _launchUrl(
+                      'https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin');
+                },
+                child: SvgPicture.asset(linkedin_roundedIconImage)),
             10.width,
-            SvgPicture.asset(whatsapp_roundedIconImage),
+            InkWell(
+                onTap: () {
+                  _launchUrl('https://web.whatsapp.com/');
+                },
+                child: SvgPicture.asset(whatsapp_roundedIconImage)),
           ],
         ),
       ),

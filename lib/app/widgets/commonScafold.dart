@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../data/repository/event_repository.dart';
 import '../modules/my_events_screen/my_events.dart';
@@ -8,6 +9,7 @@ import '../modules/home/views/components/BottomNavigationBarItemWidget.dart';
 import '../modules/home/views/tabs/event_tab/event_tab.dart';
 // import '../modules/scarlett_screen/scarlett_screen.dart';
 import '../modules/scarlett_screen/scarlett_screen.dart';
+import '../routes/app_pages.dart';
 import '../theme/colors.dart';
 import '../theme/text_theme.dart';
 import 'error_snackbar.dart';
@@ -122,7 +124,9 @@ class _CommonScafoldState extends State<CommonScafold> {
                 shape: BoxShape.circle, // To make it a circular border
               ),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(Routes.MyProfile);
+                },
                 child: CircleAvatar(
                   radius: 15,
                   backgroundColor: Colors.white,

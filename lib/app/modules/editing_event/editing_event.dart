@@ -16,7 +16,7 @@ class _EditingEventState extends State<EditingEvent> {
   String selectedOption = '';
 
   bool firstRowSelected = false;
-  bool secondRowSelected = false;
+  bool secondRowSelected = true;
 
   @override
   Widget build(BuildContext context) {
@@ -177,19 +177,25 @@ class _EditingEventState extends State<EditingEvent> {
                           decoration: InputDecoration(
                               prefixIcon: Padding(
                                 padding: const EdgeInsets.only(left: 5),
-                                child: Row(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(
-                                      Icons.calendar_today,
-                                      size: 16,
-                                      color: Color(0XFF5B46F4),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.calendar_today,
+                                          size: 14,
+                                          color: Color(0XFF5B46F4),
+                                        ),
+                                        5.width,
+                                        Text('Aug/10/2023',
+                                            style: TextStyle(
+                                              fontSize: 10,
+                                              color: Color(0XFF5E5A80),
+                                            ))
+                                      ],
                                     ),
-                                    5.width,
-                                    Text('Aug/10/2023',
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          color: Color(0XFF5E5A80),
-                                        ))
                                   ],
                                 ),
                               ),
@@ -253,7 +259,6 @@ class _EditingEventState extends State<EditingEvent> {
                       SizedBox(height: 8),
                       SizedBox(height: 8),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
                             'End Date',
