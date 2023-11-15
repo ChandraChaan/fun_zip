@@ -190,11 +190,11 @@ class AppPages {
       page: () => EventManagementScreen(),
       binding: EventDetailsBinding(),
     ),
-    GetPage(
-      name: _Paths.ScarlettScreen,
-      page: () => ScarlettScreen(),
-      binding: EventDetailsBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.ScarlettScreen,
+    //   page: () => ScarlettScreen(),
+    //   binding: EventDetailsBinding(),
+    // ),
     GetPage(
       name: _Paths.QRCodeScannerScreen,
       page: () => QRCodeScannerScreen(),

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../data/repository/event_repository.dart';
 import '../modules/my_events_screen/my_events.dart';
-import '../../sathya/scarlett_screen/scarlett_screen.dart';
 import '../config/images_links.dart';
 import '../modules/create_event/views/create_event_view.dart';
 import '../modules/home/views/components/BottomNavigationBarItemWidget.dart';
-import '../modules/home/views/components/BottomNavigationBarWidget.dart';
 import '../modules/home/views/tabs/event_tab/event_tab.dart';
 // import '../modules/scarlett_screen/scarlett_screen.dart';
 import '../modules/scarlett_screen/scarlett_screen.dart';
 import '../theme/colors.dart';
 import '../theme/text_theme.dart';
+import 'error_snackbar.dart';
 
 class CommonScafold extends StatefulWidget {
   final String? title;
@@ -55,13 +55,33 @@ class _CommonScafoldState extends State<CommonScafold> {
   ];
   int selectedIndex = 0;
   bool useMenu = false;
+
+  Map profileData = {};
+
+  Future<void> getProfile() async {
+    try {
+      var response = await EventRepository().getProfile();
+      print(response.toString());
+      print('Sathya');
+      final bodyData = response;
+      setState(() {
+        profileData = (bodyData); // Wrap bodyData in a list
+      });
+    } catch (e) {
+      errorSnackbar(title: '$e', desc: '');
+    }
+  }
+
   @override
   void initState() {
+    getProfile();
     setState(() {
       selectedIndex = widget.selectedIndex ?? selectedIndex;
     });
     super.initState();
   }
+
+
   static List<Widget> _widgetOptions = <Widget>[
     EventTab(),
     CreateEventView(
@@ -80,7 +100,7 @@ class _CommonScafoldState extends State<CommonScafold> {
     return Scaffold(
       backgroundColor: backgroundColor,
       key: _scaffoldKey,
-      drawer: Drawer(child: ScarlettScreen()),
+      drawer: Drawer(child: ScarlettScreen(profileData: profileData,)),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,

@@ -1,6 +1,10 @@
+import 'dart:collection';
+
+import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/widgets/rounded_border.dart';
-
+import 'package:share_plus/share_plus.dart';
+import 'package:timezone/timezone.dart' as tz;
 import '../event_details/controllers/event_details_controller.dart';
 
 class AddToCalendar extends StatelessWidget {
@@ -10,6 +14,93 @@ class AddToCalendar extends StatelessWidget {
   });
 
   final EventDetailsController controller;
+
+
+// Function to share content
+Future<void> onShare() async {
+  await Share.share('Check out this awesome content!');
+}
+
+
+  void onAddToCalendar(BuildContext context) async {
+    final DeviceCalendarPlugin _deviceCalendarPlugin = DeviceCalendarPlugin();
+    final Result<UnmodifiableListView<Calendar>> calendarsResult =
+    await _deviceCalendarPlugin.retrieveCalendars();
+
+    if (calendarsResult.isSuccess && calendarsResult.data!.isNotEmpty) {
+      final List<Calendar>? calendars = calendarsResult.data?.toList();
+
+      final Event event = Event(
+       calendars?.first.id, // Use the calendarId to specify the calendar
+        title: 'Event Title',
+        description: 'Event Description',
+        start: tz.TZDateTime.now(tz.local),
+        end: tz.TZDateTime.now(tz.local).add(Duration(hours: 1)),
+      );
+
+      final Result<String>? result = await _deviceCalendarPlugin.createOrUpdateEvent(event);
+
+      if (result!.isSuccess) {
+        // Event added successfully
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Added to Calendar'),
+              content: Text('Event added to the calendar successfully.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      } else {
+        // Failed to add event
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Error'),
+              content: Text('Failed to add event to the calendar.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } else {
+      // No calendars found
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('No calendars found on the device.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +123,29 @@ class AddToCalendar extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 3,
-                      child: Container(
-                        height: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          border: Border.all(
-                            color: Color(0XFF5B46F4), // Border color
-                            width: 2.0, // Border width
+                      child: ElevatedButton(
+                        onPressed: () {
+                          onAddToCalendar(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            side: BorderSide(
+                              color: Color(0XFF5B46F4), // Border color
+                              width: 2.0, // Border width
+                            ),
                           ),
                         ),
-                        child: Center(
-                          child: Text(
-                            'Add to Calendar',
-                            style: TextStyle(
-                                color: Color(0XFF5B46F4), fontSize: 10),
+                        child: Container(
+                          height: 30,
+                          child: Center(
+                            child: Text(
+                              'Add to Calendar',
+                              style: TextStyle(
+                                color: Color(0XFF5B46F4),
+                                fontSize: 10,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -60,7 +160,8 @@ class AddToCalendar extends StatelessWidget {
                               borderRadius: BorderRadius.circular(110),
                               border: Border.all(color: Color(0XFF5B46F4))),
                           child: Icon(
-                            Icons.favorite,size: 15,
+                            Icons.favorite,
+                            size: 15,
                             color: Color(0XFFC9C6E1),
                           ),
                         ),
@@ -74,9 +175,20 @@ class AddToCalendar extends StatelessWidget {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
                             border: Border.all(color: Color(0XFF5B46F4))),
-                        child: Icon(
-                          Icons.share,
-                          color: Color(0XFF5B46F4),
+                        child:  InkWell(
+                          borderRadius: BorderRadius.circular(25),
+                          onTap: () {
+                            onShare();
+                          },
+                          child: Center(
+                            child: Tooltip(
+                              message: 'Share',
+                              child: Icon(
+                                Icons.share,
+                                color: Color(0XFF5B46F4),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
