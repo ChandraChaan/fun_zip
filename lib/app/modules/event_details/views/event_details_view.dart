@@ -174,7 +174,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 ? true
                                 : false,
                             child: SizedBox(
-                                height: 580,
+                                height: 700,
                                 child: BookTickets(controller: controller))),
                         5.height,
 

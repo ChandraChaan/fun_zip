@@ -86,7 +86,6 @@ class EventTab extends GetView<HomeController> {
                   filled: true,
                   hintStyle: normalText.copyWith(height: 1.2
                       //You can set your custom height here
-
                       ),
                   hintText: "Search All events...\nWhere | When | Category",
                   fillColor: Colors.white,

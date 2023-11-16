@@ -4,13 +4,10 @@ import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../data/repository/event_repository.dart';
-import '../../widgets/error_snackbar.dart';
 import '../common_data/common_text.dart';
-import '../my_profile_screen/my_profile_screen.dart';
 
 class ScarlettScreen extends StatelessWidget {
-final Map profileData;
+  final Map profileData;
 
   const ScarlettScreen({super.key, required this.profileData});
 
@@ -42,12 +39,16 @@ final Map profileData;
                     child: InkWell(
                       onTap: () {},
                       child: CircleAvatar(
-                        radius: 18,
+                        radius: 20,
                         backgroundColor: Colors.white,
-                        child: Image.asset(
-                          'assets/svg/ellipse_1.png',
-                          width: 90,
-                          height: 90,
+                        child: Container(
+                          height: 27,
+                          width: 27,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Image.network(
+                            '${profileData.isNotEmpty ? profileData["profilePic"] : ""}',
+                          ),
                         ),
                       ),
                     ),
@@ -76,7 +77,8 @@ final Map profileData;
                         children: [
                           Image.asset('assets/svg/email_grey.png'),
                           5.width,
-                          Text10('${profileData.isNotEmpty ? profileData ["emailAddress"] : ""}')
+                          Text10(
+                              '${profileData.isNotEmpty ? profileData["emailAddress"] : ""}')
                         ],
                       ),
                       Row(
