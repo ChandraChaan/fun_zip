@@ -2,6 +2,8 @@ import 'package:comment_tree/comment_tree.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fun_zippy/app/theme/text_theme.dart';
+import 'package:get/get.dart';
+import 'package:get/get_instance/src/get_instance.dart';
 
 import '../../../../data/repository/event_repository.dart';
 import '../../../../widgets/error_snackbar.dart';
@@ -9,12 +11,14 @@ import '../../../../widgets/rounded_border.dart';
 
 import 'package:flutter/material.dart';
 
+import '../../controllers/event_details_controller.dart';
+
 class Comment {
   final String avatar;
   final String userName;
   final String content;
-  int likes; // Number of likes
-  bool isLiked; // Indicates if the comment is liked by the current user
+  int likes;
+  bool isLiked;
   List<Comment> replies;
 
   Comment({
@@ -30,31 +34,43 @@ class Comment {
 }
 
 class CommentWidget extends StatefulWidget {
-  const CommentWidget({
-    Key? key,
-  }) : super(key: key);
+  final EventDetailsController controller;
+
+  const CommentWidget({super.key, required this.controller});
 
   @override
   _CommentWidgetState createState() => _CommentWidgetState();
 }
 
 class _CommentWidgetState extends State<CommentWidget> {
-  final List<Comment> comments = [];
+  List<dynamic> comments = [];
   final TextEditingController commentController = TextEditingController();
 
   // Function to post a comment
   void postComment() {
     final newCommentText = commentController.text;
-    if (newCommentText.isNotEmpty) {
-      final newComment = Comment(
-        avatar: 'null',
-        userName: 'Your Username',
-        content: newCommentText,
-      );
+    if (newCommentText.trim().isNotEmpty) {
       setState(() {
-        comments.add(newComment);
+        // comments.add(
+        //   {
+        //     "id": "65531224e09cb954688af597",
+        //     "uid": "8HLamy76A6u",
+        //     "name": "Funzippy Demo",
+        //     "nickname": "Funzippy Demo",
+        //     "createdBy": "64dda4122517c306d1b2b7f4",
+        //     "postText": "Test comment ",
+        //     "createdDate": "2023-11-14T06:22:28.879+00:00"
+        //   },
+        // );
       });
-      commentController.clear();
+      postComments();
+    } else {
+      Get.defaultDialog(
+          title: 'Enter Text',
+          middleText: 'Please do enter text',
+          /*confirm: (v) {
+            Get.back();
+          },*/);
     }
   }
 
@@ -116,16 +132,31 @@ class _CommentWidgetState extends State<CommentWidget> {
       },
     );
   }
-  Map profileData = {};
 
   Future<void> postComments() async {
     try {
-      var response = await EventRepository().postComments();
+      var response = await EventRepository().postComments(data: {
+        "eventId": "${widget.controller.eventDetailsModel.id}",
+        "postText": "${commentController.text}"
+      });
       print(response.toString());
-      print('Sathya get comments');
-      final bodyData = response;
+      commentController.clear();
+      getComments();
+    } catch (e) {
+      errorSnackbar(title: '$e', desc: '');
+    }
+  }
+
+  Future<void> getComments() async {
+    try {
+      var response = await EventRepository().getComments(data: {
+        "eventId": "${widget.controller.eventDetailsModel.id}",
+        "pageNo": 1,
+        "resultsPerPage": 10
+      });
+      print(response.toString());
       setState(() {
-        profileData = (bodyData); // Wrap bodyData in a list
+        comments.addAll(response['results']);
       });
     } catch (e) {
       errorSnackbar(title: '$e', desc: '');
@@ -134,8 +165,7 @@ class _CommentWidgetState extends State<CommentWidget> {
 
   @override
   void initState() {
-    postComments();
-    setState(() {});
+    getComments();
     super.initState();
   }
 
@@ -172,148 +202,42 @@ class _CommentWidgetState extends State<CommentWidget> {
                       onPressed: () {
                         postComment();
                       },
-                      child: Text(
-    '${profileData.isNotEmpty ? profileData["messages"] : ""}'
-    ),
+                      child: Text('Post'),
                     ),
                   ],
                 ),
                 SizedBox(height: 12),
-                CommentTreeWidget<List<Comment>, Comment>(
-                  comments,
-                  comments,
-                  treeThemeData: TreeThemeData(
-                    lineColor: Colors.white,
-                    lineWidth: 3,
-                  ),
-                  avatarRoot: (context, data) => PreferredSize(
-                    child: CircleAvatar(
-                      radius: 18,
-                      backgroundColor: Colors.grey,
-                    ),
-                    preferredSize: Size.fromRadius(18),
-                  ),
-                  avatarChild: (context, data) => PreferredSize(
-                    child: CircleAvatar(
-                      radius: 12,
-                      backgroundColor: Colors.grey,
-                    ),
-                    preferredSize: Size.fromRadius(12),
-                  ),
-                  contentChild: (context, data) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[100],
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                data.userName,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .caption
-                                    ?.copyWith(
+                for (int a = 0; a < comments.length; a++)
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      // color: Colors.grey,
+                      width: double.infinity,
+
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            comments[a]['name'] ?? "",
+                            style:
+                                Theme.of(context).textTheme.caption!.copyWith(
                                       fontWeight: FontWeight.w600,
                                       color: Colors.black,
                                     ),
-                              ),
-                              SizedBox(height: 4),
-                              Text(
-                                '${data.content}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .caption
-                                    ?.copyWith(
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            comments[a]['postText'] ?? "",
+                            style:
+                                Theme.of(context).textTheme.caption!.copyWith(
                                       fontWeight: FontWeight.w300,
                                       color: Colors.black,
                                     ),
-                              ),
-                            ],
                           ),
-                        ),
-                        DefaultTextStyle(
-                          style: Theme.of(context).textTheme.caption!.copyWith(
-                                color: Colors.grey[700],
-                                fontWeight: FontWeight.bold,
-                              ),
-                          child: Padding(
-                            padding: EdgeInsets.only(top: 4),
-                            child: Row(
-                              children: [
-                                SizedBox(width: 8),
-                                TextButton(
-                                    onPressed: () {
-                                      likeComment(data);
-                                    },
-                                    child: Text(
-                                      'Like',
-                                      style: TextStyle(
-                                          color: data.isLiked
-                                              ? Colors.blue
-                                              : Colors.black),
-                                    )),
-                                SizedBox(width: 24),
-                                TextButton(
-                                    onPressed: () {
-                                      replyToComment(data);
-                                    },
-                                    child: Text('Reply')),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                  contentRoot: (context, data) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-                          decoration: BoxDecoration(
-                            color: Colors.grey[100],
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'data.userName',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .caption!
-                                    .copyWith(
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black,
-                                    ),
-                              ),
-                              SizedBox(height: 4),
-                              Text(
-                                '${'data.content'}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .caption!
-                                    .copyWith(
-                                      fontWeight: FontWeight.w300,
-                                      color: Colors.black,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
+                        ],
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),

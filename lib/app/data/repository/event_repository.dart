@@ -234,7 +234,32 @@ class EventRepository {
     }
     return completer.future;
   }
-  Future postComments() async {
+
+  Future postComments({required Map data}) async {
+    String token = userModel.token;
+
+    final headers = {
+      'Cookie': 'AuthToken=$token;',
+    };
+
+    try {
+      //https://funzippy.com/?AuthToken=7611c121-c4cf-4778-88e7-8369d0bb69dc
+      response = await Api().post(
+          "/auth/event/post/create/create",
+          options: Options(headers: headers),
+        data: data
+      );
+      if (response.statusCode == 200) {
+        completer.complete(response.data);
+      }
+    } catch (e) {
+      completer.complete(response.data);
+      // Handle the error as needed
+    }
+    return completer.future;
+  }
+
+  Future getComments({required Map data}) async {
     String token = userModel.token;
 
     final headers = {
@@ -243,8 +268,8 @@ class EventRepository {
 
     try {
       response = await Api().post(
-          "/auth/event/post/create/create",
-          options: Options(headers: headers)
+          "/event/post/view/search",
+          options: Options(headers: headers),data: data
       );
       if (response.statusCode == 200) {
         completer.complete(response.data);

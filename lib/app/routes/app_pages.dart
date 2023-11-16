@@ -48,7 +48,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.CommentWidget;
+  static const INITIAL = Routes.SPLASH;
 
   static final routes = [
     GetPage(
@@ -250,11 +250,11 @@ class AppPages {
       page: () => PhoneNumber(),
       binding: EventDetailsBinding(),
     ),
-    GetPage(
-      name: _Paths.CommentWidget,
-      page: () => CommentWidget(),
-      binding: EventDetailsBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.CommentWidget,
+    //   page: () => CommentWidget(),
+    //   binding: EventDetailsBinding(),
+    // ),
 
 
   ];
