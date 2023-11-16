@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/config/images_links.dart';
 import 'package:fun_zippy/app/modules/common_data/common_dottedline_veertical.dart';
+import 'package:fun_zippy/app/modules/common_data/common_text.dart';
 import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
 import 'package:fun_zippy/app/utilities/dynamic_size.dart';
 import 'package:dotted_line/dotted_line.dart';
@@ -149,15 +150,15 @@ class FunZippy extends StatelessWidget {
                                       const Icon(
                                         Icons.date_range,
                                         color: AppColors.grey,
-                                        size: 17,
+                                        size: 16,
                                       ),
                                       const SizedBox(
                                         width: 5,
                                       ),
-                                      Text(
+                                      Text10(
                                         dateTime,
                                         // "Aug 25, 2023 | 8:30PM",
-                                        style: AppTextStyles.lineText10Style,
+
                                       )
                                     ],
                                   ),
@@ -169,15 +170,14 @@ class FunZippy extends StatelessWidget {
                                       const Icon(
                                         Icons.location_on_outlined,
                                         color: AppColors.grey,
-                                        size: 18,
+                                        size: 16,
                                       ),
                                       const SizedBox(
                                         width: 5,
                                       ),
-                                      Text(
+                                      Text10(
                                         location,
                                         // "Hi-tech City, Hyderabad",
-                                        style: AppTextStyles.lineText10Style,
                                       )
                                     ],
                                   ),
@@ -231,9 +231,8 @@ class FunZippy extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
+                              const Text10(
                                 "Ticket Type",
-                                style: AppTextStyles.lineText12Style,
                               ),
                               const SizedBox(
                                 height: 5,
@@ -241,7 +240,7 @@ class FunZippy extends StatelessWidget {
                               Text(
                                 ticketType,
                                 // "Diamond",
-                                style: AppTextStyles.lineText14BoldStyle,
+                                style: TextStyle(fontSize: 14),
                               )
                             ],
                           ),
@@ -255,9 +254,8 @@ class FunZippy extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
+                              const Text10(
                                 "Tickets",
-                                style: AppTextStyles.lineText12Style,
                               ),
                               const SizedBox(
                                 height: 10,
@@ -265,7 +263,7 @@ class FunZippy extends StatelessWidget {
                               Text(
                                 tickets,
                                 // "03",
-                                style: AppTextStyles.lineText14BoldStyle,
+                                style: TextStyle(fontSize: 14),
                               )
                             ],
                           ),
