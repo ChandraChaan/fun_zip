@@ -213,4 +213,26 @@ class EventRepository {
     return completer.future;
   }
 
+  Future myTicket() async {
+    // String token = userModel.token;
+
+    final headers = {
+      'Cookie': 'AuthToken=b1f831af-6e30-4b23-8c92-23d555c0e58e',
+    };
+
+    try {
+      response = await Api().get(
+          "/auth/event/event/search/my-tickets",
+          options: Options(headers: headers)
+      );
+      if (response.statusCode == 200) {
+        completer.complete(response.data);
+      }
+    } catch (e) {
+      completer.complete(response.data);
+      // Handle the error as needed
+    }
+    return completer.future;
+  }
+
 }

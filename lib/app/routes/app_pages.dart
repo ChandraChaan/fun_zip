@@ -214,11 +214,11 @@ class AppPages {
       page: () => QrSuccessfulScreen(),
       binding: EventDetailsBinding(),
     ),
-    GetPage(
-      name: _Paths.FunZippy,
-      page: () => FunZippy(),
-      binding: EventDetailsBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.FunZippy,
+    //   page: () => FunZippy(),
+    //   binding: EventDetailsBinding(),
+    // ),
     GetPage(
       name: _Paths.MyTickets,
       page: () => MyTickets(),
