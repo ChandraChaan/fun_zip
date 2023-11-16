@@ -47,6 +47,7 @@ abstract class Routes {
   static const YourWidget = _Paths.YourWidget;
   static const TicketingAndRSVP = _Paths.TicketingAndRSVP;
   static const DetailsScreen = _Paths.DetailsScreen;
+  static const CommentWidget = _Paths.CommentWidget;
   static const PhoneNumber = _Paths.PhoneNumber;
 }
 
@@ -98,5 +99,6 @@ abstract class _Paths {
   static const TicketingAndRSVP = '/TicketingAndRSVP';
   static const DetailsScreen = '/DetailsScreen';
   static const PhoneNumber = '/PhoneNumber';
+  static const CommentWidget = '/CommentWidget';
 
 }

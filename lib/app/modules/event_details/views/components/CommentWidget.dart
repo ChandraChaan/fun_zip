@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'package:fun_zippy/app/theme/text_theme.dart';
 
+import '../../../../data/repository/event_repository.dart';
+import '../../../../widgets/error_snackbar.dart';
 import '../../../../widgets/rounded_border.dart';
 
 import 'package:flutter/material.dart';
@@ -114,6 +116,28 @@ class _CommentWidgetState extends State<CommentWidget> {
       },
     );
   }
+  Map profileData = {};
+
+  Future<void> postComments() async {
+    try {
+      var response = await EventRepository().postComments();
+      print(response.toString());
+      print('Sathya get comments');
+      final bodyData = response;
+      setState(() {
+        profileData = (bodyData); // Wrap bodyData in a list
+      });
+    } catch (e) {
+      errorSnackbar(title: '$e', desc: '');
+    }
+  }
+
+  @override
+  void initState() {
+    postComments();
+    setState(() {});
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +172,9 @@ class _CommentWidgetState extends State<CommentWidget> {
                       onPressed: () {
                         postComment();
                       },
-                      child: Text('Post Comment'),
+                      child: Text(
+    '${profileData.isNotEmpty ? profileData["messages"] : ""}'
+    ),
                     ),
                   ],
                 ),

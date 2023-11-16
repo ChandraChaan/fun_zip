@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../modules/booking_tickets/booking_tickets.dart';
 import '../modules/common_data/common_phone_number.dart';
+import '../modules/event_details/views/components/CommentWidget.dart';
 import '../modules/funzipp/funzipp.dart';
 import '../modules/my_events_screen/my_events.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
@@ -47,7 +48,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.MyProfile;
+  static const INITIAL = Routes.CommentWidget;
 
   static final routes = [
     GetPage(
@@ -247,6 +248,11 @@ class AppPages {
     GetPage(
       name: _Paths.PhoneNumber,
       page: () => PhoneNumber(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CommentWidget,
+      page: () => CommentWidget(),
       binding: EventDetailsBinding(),
     ),
 

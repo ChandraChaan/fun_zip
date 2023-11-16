@@ -223,23 +223,28 @@ class SearchEventDialog extends GetView<HomeController> {
                   radius: 10,
                   text: 'Search',
                   onPressed: () {
-                    // changes satyha
-                    if (controller.selectedCity != null &&
-                        controller.selectedDay != null &&
-                        controller.selectedCategory != null) {
-                      controller.locReq.value = false;
-                      controller.dayReq.value = false;
-                      controller.categoryReq.value = false;
-                      Get.back();
-                      controller.getAllEvents();
-                      // controller.fetchData();
-                      formKey.currentState!.reset();
-                      // controller.verifyPhoneOTP();
-                    } else {
-                      controller.locReq.value = true;
-                      controller.dayReq.value = true;
-                      controller.categoryReq.value = true;
-                    }
+                    Get.back();
+                    controller.getAllEvents();
+                    // controller.fetchData();
+                    formKey.currentState!.reset();
+                    // changes satyha if need validation uncomment below comments
+                    // if (
+                    // controller.selectedCity != null &&
+                    //     controller.selectedDay != null &&
+                    //     controller.selectedCategory != null) {
+                    //   controller.locReq.value = false;
+                    //   controller.dayReq.value = false;
+                    //   controller.categoryReq.value = false;
+                    //   Get.back();
+                    //   controller.getAllEvents();
+                    //   // controller.fetchData();
+                    //   formKey.currentState!.reset();
+                    //   // controller.verifyPhoneOTP();
+                    // } else {
+                    //   controller.locReq.value = true;
+                    //   controller.dayReq.value = true;
+                    //   controller.categoryReq.value = true;
+                    // }
                   }),
             ),
           ],
