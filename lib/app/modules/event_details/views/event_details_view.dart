@@ -12,6 +12,7 @@ import '../controllers/event_details_controller.dart';
 import 'components/AboutThisPageWidget.dart';
 import 'components/AppBarWidgetEventDetails.dart';
 import 'components/BoothsWidget.dart';
+import 'components/CommentWidget.dart';
 import 'components/GiftRegistryWidget.dart';
 import 'components/MapWidget.dart';
 import 'components/NameAndDetailsCardWidget.dart';
@@ -189,8 +190,8 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 child: RsvpScreen(controller: controller))),
                         5.height,
 
-                        // CommentWidget(),
-                        // 5.height,
+                        CommentWidget(controller: controller),
+                        5.height,
                         //* Map
                         MapWidget(controller: controller),
                         5.height,
