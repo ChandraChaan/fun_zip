@@ -22,7 +22,7 @@ class EventManagementScreen extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: (){
-                    Get.toNamed(Routes.MyEvents);
+                   Get.toNamed(Routes.MyEvents);
                   },
                   child: Container(
                     height: 22,

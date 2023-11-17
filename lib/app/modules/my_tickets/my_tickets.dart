@@ -3,13 +3,10 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:fun_zippy/app/data/repository/event_repository.dart';
 import 'package:fun_zippy/app/modules/common_data/common_text.dart';
 import 'package:fun_zippy/app/modules/funzipp/funzipp.dart';
-import 'package:fun_zippy/app/routes/app_pages.dart';
 import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
 import 'package:fun_zippy/app/utilities/dynamic_size.dart';
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:fun_zippy/app/widgets/error_snackbar.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 
 class MyTickets extends StatefulWidget {
@@ -121,7 +118,7 @@ class _MyTicketsState extends State<MyTickets> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["name"] : ""}",
+                                                "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["eventName"] : ""}",
                                                 // "The Routinel Hosted by Abish Mathew",
                                                 style: TextStyle(fontSize: 14),
                                               ),
@@ -196,7 +193,7 @@ class _MyTicketsState extends State<MyTickets> {
                                           ),
                                           Text(
                                             // "${(my_Tickets[a - 1]["createdDate"]).isNotEmpty ? my_Tickets[a - 1]["createdDate"] : ""}",
-                                            "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["type"] : ""}",
+                                            "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["name"] : ""}",
                                             style: TextStyle(fontSize: 14),
                                           )
                                         ],
@@ -348,10 +345,10 @@ class _MyTicketsState extends State<MyTickets> {
                                                   MaterialPageRoute(builder: (context) =>
                                                       FunZippy(
                                                         imageUrl: "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["eventImageUrl"] : ""}",
-                                                        eventName:"${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["name"] : ""}",
+                                                        eventName:"${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["eventName"] : ""}",
                                                         dateTime: "${(my_Tickets[a - 1]["createdDate"]).isNotEmpty ? dateTimeConverterViewTicket(my_Tickets[a - 1]["createdDate"]) : ""}",
                                                         location: "Hi-tech City, Hyderabad",
-                                                        ticketType: "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["type"] : ""}",
+                                                        ticketType: "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["name"] : ""}",
                                                         tickets: "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["quantity"] : ""}",
                                                         seatNumber: "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? ((my_Tickets[a - 1]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a - 1]["lineItems"][0]["tickets"][0]["seatNumber"]}" : "") : ""}",
                                                         bookingId:"${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? ((my_Tickets[a - 1]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a - 1]["lineItems"][0]["eventId"]}" : "") : ""}",

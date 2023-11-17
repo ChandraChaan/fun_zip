@@ -78,16 +78,18 @@ class _MyEventsState extends State<MyEvents> {
               color: Color(0XFFEFEDFF),
               child: TabBar(
                 indicatorColor: Color(0XFF5B46F4),
-                tabs: <Widget>[
+                labelColor: Color(0XFF5B46F4),
+                unselectedLabelColor: Color(0XFF696488),                tabs: <Widget>[
                   Tab(
                     child: Text(
                       'Upcoming',
-                      style: TextStyle(color: Color(0XFF5B46F4)),
+                     // style: TextStyle(color: Color(0XFF5B46F4)),
                     ),
                   ),
                   Tab(
                     child: Text('Completed',
-                        style: TextStyle(color: Color(0XFF5B46F4))),
+                       // style: TextStyle(color: Color(0XFF5B46F4)),
+                    ),
                   ),
                 ],
               ),

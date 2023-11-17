@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:fun_zippy/app/modules/my_tickets/my_tickets.dart';
+import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
 import 'package:fun_zippy/app/utilities/dynamic_size.dart';
 
 class MyGroups extends StatefulWidget {
   @override
-  State<MyGroups> createState() => _MyGroupsState();
+  State<MyGroups> createState() => MyGroupStateScreen();
 }
 
-class _MyGroupsState extends State<MyGroups> {
+class MyGroupStateScreen extends State<MyGroups> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   String selectedCategory = 'Groups';
@@ -25,118 +26,119 @@ class _MyGroupsState extends State<MyGroups> {
   Widget build(BuildContext context) {
     SizeGet().init(context);
     return Scaffold(
-        key: _scaffoldKey,
-        backgroundColor: Colors.deepPurple[100],
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              const UserAccountsDrawerHeader(
-                accountName: Text('User name'),
-                accountEmail: Text('Username@email.com'),
-                currentAccountPicture: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://c7.alamy.com/comp/TC2FPE/young-man-avatar-cartoon-character-profile-picture-TC2FPE.jpg'), // Replace with your image path
-                ),
-              ),
-              ListTile(
-                title: const Text('Menu Item 1'),
-                onTap: () {
-                  // Handle the action for Menu Item 1
-                  // You can also use the innerContext here if needed
-                },
-              ),
-              ListTile(
-                title: const Text('Menu Item 2'),
-                onTap: () {
-                  // Handle the action for Menu Item 2
-                  // You can also use the innerContext here if needed
-                },
-              ),
-            ],
-          ),
-        ),
+       // key: _scaffoldKey,
+        backgroundColor: backgroundColor,
+        // drawer: Drawer(
+        //   child: ListView(
+        //     padding: EdgeInsets.zero,
+        //     children: <Widget>[
+        //       const UserAccountsDrawerHeader(
+        //         accountName: Text('User name'),
+        //         accountEmail: Text('Username@email.com'),
+        //         currentAccountPicture: CircleAvatar(
+        //           backgroundImage: NetworkImage(
+        //               'https://c7.alamy.com/comp/TC2FPE/young-man-avatar-cartoon-character-profile-picture-TC2FPE.jpg'), // Replace with your image path
+        //         ),
+        //       ),
+        //       ListTile(
+        //         title: const Text('Menu Item 1'),
+        //         onTap: () {
+        //           // Handle the action for Menu Item 1
+        //           // You can also use the innerContext here if needed
+        //         },
+        //       ),
+        //       ListTile(
+        //         title: const Text('Menu Item 2'),
+        //         onTap: () {
+        //           // Handle the action for Menu Item 2
+        //           // You can also use the innerContext here if needed
+        //         },
+        //       ),
+        //     ],
+        //   ),
+        // ),
         body: Stack(children: [
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Container(
-              height: SizeGet.getProportionHeight(70.0),
-              // width: SizeGet.getProportionWidth(375.0),
-              color: AppColors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Center(
-                    child: IconButton(
-                      onPressed: () {
-                        _scaffoldKey.currentState?.openDrawer();
-                      },
-                      icon: const Icon(Icons.menu),
-                    ),
-                  ),
-                  const Text(
-                    'My Groups',
-                    style: AppTextStyles.appBarTitleStyle,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                          height: 30,
-                          width: 30,
-                          decoration: BoxDecoration(
-                              color: AppColors.lightPurple,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: const Icon(
-                            Icons.online_prediction_outlined,
-                            color: AppColors.deepWhite,
-                          )),
-                      Builder(
-                        builder: (innerContext) {
-                          return GestureDetector(
-                            onTap: () {
-                              // Handle the action when the avatar is clicked
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) => const EmptyScreen()),
-                              // );
-                            },
-                            child: Container(
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: const CircleAvatar(
-                                radius: 15.0,
-                                // Adjust the size of the avatar as needed
-                                backgroundImage: NetworkImage(
-                                    'https://c7.alamy.com/comp/TC2FPE/young-man-avatar-cartoon-character-profile-picture-TC2FPE.jpg'), // Replace with the URL of your network image
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: SizeGet.getProportionHeight(50.0),
-              width: SizeGet.getProportionWidth(375.0),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        buildCategory('Groups'),
-                        buildCategory('Messages'),
-                        buildCategory('My Events'),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
+          Column(
+              crossAxisAlignment: CrossAxisAlignment.start, children: [
+            // Container(
+            //   height: SizeGet.getProportionHeight(70.0),
+            //   // width: SizeGet.getProportionWidth(375.0),
+            //   color: AppColors.white,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Center(
+            //         child: IconButton(
+            //           onPressed: () {
+            //             _scaffoldKey.currentState?.openDrawer();
+            //           },
+            //           icon: const Icon(Icons.menu),
+            //         ),
+            //       ),
+            //       const Text(
+            //         'My Groupsss',
+            //         style: AppTextStyles.appBarTitleStyle,
+            //       ),
+            //       Row(
+            //         children: [
+            //           Container(
+            //               height: 30,
+            //               width: 30,
+            //               decoration: BoxDecoration(
+            //                   color: AppColors.lightPurple,
+            //                   borderRadius: BorderRadius.circular(20)),
+            //               child: const Icon(
+            //                 Icons.online_prediction_outlined,
+            //                 color: AppColors.deepWhite,
+            //               )),
+            //           Builder(
+            //             builder: (innerContext) {
+            //               return GestureDetector(
+            //                 onTap: () {
+            //                   // Handle the action when the avatar is clicked
+            //                   // Navigator.push(
+            //                   //   context,
+            //                   //   MaterialPageRoute(
+            //                   //       builder: (context) => const EmptyScreen()),
+            //                   // );
+            //                 },
+            //                 child: Container(
+            //                   margin:
+            //                       const EdgeInsets.symmetric(horizontal: 16.0),
+            //                   child: const CircleAvatar(
+            //                     radius: 15.0,
+            //                     // Adjust the size of the avatar as needed
+            //                     backgroundImage: NetworkImage(
+            //                         'https://c7.alamy.com/comp/TC2FPE/young-man-avatar-cartoon-character-profile-picture-TC2FPE.jpg'), // Replace with the URL of your network image
+            //                   ),
+            //                 ),
+            //               );
+            //             },
+            //           ),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: SizeGet.getProportionHeight(50.0),
+            //   width: SizeGet.getProportionWidth(375.0),
+            //   child: Center(
+            //     child: Column(
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       children: [
+            //         Row(
+            //           mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //           children: [
+            //             buildCategory('Groups'),
+            //             buildCategory('Messages'),
+            //             buildCategory('My Events'),
+            //           ],
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
             Expanded(
               child: CardList(),
             ),

@@ -312,6 +312,7 @@ class _BookTicketsState extends State<BookTickets> {
                             SizedBox(
                               height: 14,
                             ),
+                            // phone number created common widget
                             PhoneNumber()
                           ],
                         ),

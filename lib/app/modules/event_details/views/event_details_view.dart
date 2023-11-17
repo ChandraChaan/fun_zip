@@ -26,6 +26,7 @@ import 'components/WhatIsPlaceOfferWidget.dart';
 
 class EventDetailsView extends GetView<EventDetailsController> {
   const EventDetailsView({Key? key}) : super(key: key);
+
   calculateDayLeft({required startDate}) {
     String day = '';
     DateTime? currentDate;
@@ -57,7 +58,6 @@ class EventDetailsView extends GetView<EventDetailsController> {
 
     return day;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -309,6 +309,19 @@ class EventDetailsView extends GetView<EventDetailsController> {
       //     },
       //   ),
       // ),
+      floatingActionButton: FloatingActionButton(
+        materialTapTargetSize: MaterialTapTargetSize.padded,
+        backgroundColor:Color(0XFF5B46F4),
+        onPressed: () {
+          print('Floating Action Button Pressed');
+        },
+        child: Image.asset('assets/svg/floating_button.png'),
+        mini: true,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
+
+
+

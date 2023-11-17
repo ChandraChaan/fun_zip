@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fun_zippy/app/modules/my_tickets/my_tickets.dart';
 import 'package:get/get.dart';
 
 import '../data/repository/event_repository.dart';
@@ -8,7 +9,7 @@ import '../modules/create_event/views/create_event_view.dart';
 import '../modules/home/views/components/BottomNavigationBarItemWidget.dart';
 import '../modules/home/views/tabs/event_tab/event_tab.dart';
 // import '../modules/scarlett_screen/scarlett_screen.dart';
-import '../modules/scarlett_screen/scarlett_screen.dart';
+import '../modules/side_menu/scarlett_screen.dart';
 import '../routes/app_pages.dart';
 import '../theme/colors.dart';
 import '../theme/text_theme.dart';
@@ -90,11 +91,7 @@ class _CommonScafoldState extends State<CommonScafold> {
       isSfald: false,
     ),
     MyEvents(isSfald: false,),
-    Center(
-      child: Text(
-        'My Profile',
-      ),
-    ),
+    MyTickets()
   ];
 
   @override
@@ -102,7 +99,7 @@ class _CommonScafoldState extends State<CommonScafold> {
     return Scaffold(
       backgroundColor: backgroundColor,
       key: _scaffoldKey,
-      drawer: Drawer(child: ScarlettScreen(profileData: profileData,)),
+      drawer: Drawer(child: SideMenuScreen(profileData: profileData,)),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,

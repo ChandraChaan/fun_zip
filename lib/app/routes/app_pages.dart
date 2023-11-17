@@ -2,9 +2,6 @@ import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:get/get.dart';
 
 import '../modules/booking_tickets/booking_tickets.dart';
-import '../modules/common_data/common_phone_number.dart';
-import '../modules/event_details/views/components/CommentWidget.dart';
-import '../modules/funzipp/funzipp.dart';
 import '../modules/my_events_screen/my_events.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
@@ -236,25 +233,22 @@ class AppPages {
       binding: EventDetailsBinding(),
     ),
     GetPage(
-      name: _Paths.TicketingAndRSVP,
-      page: () => TicketingAndRSVP(),
-      binding: EventDetailsBinding(),
-    ),
-    GetPage(
       name: _Paths.DetailsScreen,
       page: () => DetailsScreen(),
       binding: EventDetailsBinding(),
     ),
     GetPage(
-      name: _Paths.PhoneNumber,
-      page: () => PhoneNumber(),
+      name: _Paths.TicketingAndRSVP,
+      page: () => TicketingAndRSVP(),
       binding: EventDetailsBinding(),
     ),
-    // GetPage(
-    //   name: _Paths.CommentWidget,
-    //   page: () => CommentWidget(),
-    //   binding: EventDetailsBinding(),
-    // ),
+    GetPage(
+      name: _Paths.MyGroupsScreen,
+      page: () => MyGroupsScreen(),
+      binding: EventDetailsBinding(),
+    ),
+
+
 
 
   ];
