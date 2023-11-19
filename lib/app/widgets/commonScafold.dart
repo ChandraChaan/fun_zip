@@ -12,6 +12,7 @@ import '../modules/home/views/tabs/event_tab/event_tab.dart';
 
 // import '../modules/scarlett_screen/scarlett_screen.dart';
 import '../modules/side_menu/scarlett_screen.dart';
+import '../modules/sign_in/controllers/sign_in_controller.dart';
 import '../routes/app_pages.dart';
 import '../theme/colors.dart';
 import '../theme/text_theme.dart';
@@ -41,7 +42,9 @@ class CommonScafold extends StatefulWidget {
 }
 
 class _CommonScafoldState extends State<CommonScafold> {
+  final SignInController _signInController = Get.put(SignInController());
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+
   List<BottomNavigationBarItem> itemsBoomList = [
     menuItemWidget(
       label: 'Home',
@@ -82,6 +85,10 @@ class _CommonScafoldState extends State<CommonScafold> {
   @override
   void initState() {
     getProfile();
+
+    // TODO apk cheseppudu edhi comment cheyyandi *sathya garu
+    _signInController.signIn(autoFill: true);
+
     setState(() {
       selectedIndex = widget.selectedIndex ?? selectedIndex;
     });
@@ -91,7 +98,7 @@ class _CommonScafoldState extends State<CommonScafold> {
   static List<Widget> _widgetOptions = <Widget>[
     EventTab(),
     CreateEventView(
-      isSfald: false,
+      isEvent: false,
     ),
     MyEvents(
       isSfald: false,

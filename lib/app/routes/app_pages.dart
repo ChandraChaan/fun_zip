@@ -222,7 +222,7 @@ class AppPages {
     // ),
     GetPage(
       name: _Paths.MyTickets,
-      page: () => MyTickets(),
+      page: () => MyTickets(isSfald: true,),
      // isTicket: true,
       binding: EventDetailsBinding(),
     ),

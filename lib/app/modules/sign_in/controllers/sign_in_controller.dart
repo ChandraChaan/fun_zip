@@ -13,7 +13,7 @@ UserModel userModel = UserModel();
 class SignInController extends GetxController {
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
-  RxBool phoneTextfieldActive = true.obs;
+  RxBool phoneTextfieldActive = false.obs;
   String completePhoneNumber = '';
   RxBool showPassword = false.obs;
 
@@ -26,7 +26,7 @@ class SignInController extends GetxController {
     super.onInit();
   }
 
-  signIn() async {
+  signIn({autoFill = false}) async {
     ProgressBar.start();
     var response;
     try {
@@ -36,8 +36,11 @@ class SignInController extends GetxController {
             password: passwordTextEditingController.text);
       } else {
         response = await UserRepository().signInWthEmail(
-            email: emailTextEditingController.text,
-            password: passwordTextEditingController.text);
+            email: autoFill
+                ? "demo@funzippy.com"
+                : emailTextEditingController.text,
+            password:
+                autoFill ? "Demo2023#" : passwordTextEditingController.text);
       }
 
       if (response['success'] == true) {

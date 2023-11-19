@@ -9,8 +9,10 @@ import '../common_data/common_text.dart';
 
 class SideMenuScreen extends StatefulWidget {
   final bool isSide;
+  final int? selectedIndex;
 
-  SideMenuScreen({this.isSide = false, required this.profileData});
+  SideMenuScreen(
+      {this.isSide = false, this.selectedIndex, required this.profileData});
 
   final Map profileData;
 
@@ -126,59 +128,50 @@ class _SideMenuScreen extends State<SideMenuScreen> {
   }
 
   Widget buildRow(String title, String imagePath) {
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(
-        horizontal: 4.0,
-      ),
-      horizontalTitleGap: 7.0,
-      minVerticalPadding: 5.0,
-      minLeadingWidth: 24.0,
-      onTap: () {
-        if (title.contains('My Profile')) {
-          Get.toNamed(Routes.MyProfile);
-        } else if (title.contains('Home')) {
-          Get.toNamed(Routes.HOME);
-        } else if (title.contains('Create an Event')) {
-          Get.toNamed(Routes.CREATE_EVENT);
-        } else if (title.contains('My Events')) {
-          Get.toNamed(Routes.MyEvents);
-        } else if (title.contains('My Tickets')) {
-          Get.toNamed(Routes.MyTickets);
-        } else if (title.contains('My Group')) {
-          Get.toNamed(Routes.MyGroupsScreen);
-        } else if (title.contains('Blog')) {
-          Get.toNamed(Routes.BookTickets);
-        } else if (title.contains('Contact Us')) {
-          Get.toNamed(Routes.ContactUsScreen);
-        } else if (title.contains('Log Out')) {
-          final getStorage = GetStorage();
+    return Container(
+      // color: widget.selectedIndex ? Colors.blue,
+      child: ListTile(
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: 4.0,
+        ),
+        horizontalTitleGap: 7.0,
+        minVerticalPadding: 5.0,
+        minLeadingWidth: 24.0,
+        onTap: () {
+          if (title.contains('My Profile')) {
+            Get.toNamed(Routes.MyProfile);
+          } else if (title.contains('Home')) {
+            Get.toNamed(Routes.HOME);
+          } else if (title.contains('Create an Event')) {
+            Get.toNamed(Routes.CREATE_EVENT);
+          } else if (title.contains('My Events')) {
+            Get.toNamed(Routes.MyEvents);
+          } else if (title.contains('My Tickets')) {
+            Get.toNamed(Routes.MyTickets);
+          } else if (title.contains('My Group')) {
+            Get.toNamed(Routes.MyGroupsScreen);
+          } else if (title.contains('Blog')) {
+            Get.toNamed(Routes.BookTickets);
+          } else if (title.contains('Contact Us')) {
+            Get.toNamed(Routes.ContactUsScreen);
+          } else if (title.contains('Log Out')) {
+            final getStorage = GetStorage();
 
-
-
-          getStorage.erase();
-          Get.offAllNamed(Routes.SIGN_IN);
-        }
-      },
-      title: Text(
-        title,
-        style: TextStyle(fontSize: 12), // You can adjust the font size
-      ),
-      leading: Container(
-        height: 15, // Adjust as needed for the leading container height
-        width: 15, // Adjust as needed for the leading container width
-        child: Image.asset(imagePath),
+            getStorage.erase();
+            Get.offAllNamed(Routes.SIGN_IN);
+          }
+        },
+        title: Text(
+          title,
+          style: TextStyle(fontSize: 12), // You can adjust the font size
+        ),
+        leading: Container(
+          height: 15, // Adjust as needed for the leading container height
+          width: 15, // Adjust as needed for the leading container width
+          child: Image.asset(imagePath),
+        ),
       ),
     );
   }
 
-  Widget ForBuilderEvent({required Widget chil}) {
-    return widget.isSide
-        ? CommonScafold(
-            title: 'My tickets',
-            selectedIndex: 2,
-            navChild: false,
-            child: chil,
-          )
-        : chil;
-  }
 }
