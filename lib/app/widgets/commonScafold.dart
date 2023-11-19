@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/modules/my_tickets/my_tickets.dart';
+import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
 import 'package:get/get.dart';
 
 import '../data/repository/event_repository.dart';
@@ -8,6 +9,7 @@ import '../config/images_links.dart';
 import '../modules/create_event/views/create_event_view.dart';
 import '../modules/home/views/components/BottomNavigationBarItemWidget.dart';
 import '../modules/home/views/tabs/event_tab/event_tab.dart';
+
 // import '../modules/scarlett_screen/scarlett_screen.dart';
 import '../modules/side_menu/scarlett_screen.dart';
 import '../routes/app_pages.dart';
@@ -22,6 +24,7 @@ class CommonScafold extends StatefulWidget {
   final Widget? bottomNavigationBar;
   final int? selectedIndex;
   final bool navChild;
+  final bool? boardCast;
 
   CommonScafold(
       {super.key,
@@ -30,7 +33,8 @@ class CommonScafold extends StatefulWidget {
       this.selectedIndex = 0,
       this.navChild = false,
       this.bottomNavigationBar,
-      this.child});
+      this.child,
+      this.boardCast});
 
   @override
   State<CommonScafold> createState() => _CommonScafoldState();
@@ -65,7 +69,7 @@ class _CommonScafoldState extends State<CommonScafold> {
     try {
       var response = await EventRepository().getProfile();
       print(response.toString());
-     // print('get profile api response');
+      print('Sathya');
       final bodyData = response;
       setState(() {
         profileData = (bodyData); // Wrap bodyData in a list
@@ -84,15 +88,15 @@ class _CommonScafoldState extends State<CommonScafold> {
     super.initState();
   }
 
-
   static List<Widget> _widgetOptions = <Widget>[
     EventTab(),
     CreateEventView(
-      isEvent: false,
+      isSfald: false,
     ),
-    MyEvents(isSfald: false,),
-    MyTickets(isTicket: true),
-    SideMenuScreen(profileData: {}, isSide: true,)
+    MyEvents(
+      isSfald: false,
+    ),
+    MyTickets()
   ];
 
   @override
@@ -100,7 +104,10 @@ class _CommonScafoldState extends State<CommonScafold> {
     return Scaffold(
       backgroundColor: backgroundColor,
       key: _scaffoldKey,
-      drawer: Drawer(child: SideMenuScreen(profileData: profileData,)),
+      drawer: Drawer(
+          child: SideMenuScreen(
+        profileData: profileData,
+      )),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
@@ -113,33 +120,47 @@ class _CommonScafoldState extends State<CommonScafold> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.deepPurple, // Border color
-                  width: 2.0, // Border width
-                ),
-                shape: BoxShape.circle, // To make it a circular border
-              ),
-              child: InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.MyProfile);
-                },
-                child: CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Colors.white,
-                  child: Container(
-                    height: 28,
-                    width: 28,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50)),
-                    child: Image.network(
-                      '${profileData.isNotEmpty ? profileData["profilePic"] : ""}',
-                      fit: BoxFit.cover,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                widget.boardCast == true
+                    ? Container(
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                            color: AppColors.lightPurple,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: const Icon(
+                          Icons.online_prediction_outlined,
+                          color: AppColors.deepWhite,
+                        ))
+                    : SizedBox(),
+                widget.boardCast == true
+                    ? SizedBox(
+                        width: 10,
+                      )
+                    : SizedBox(),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.deepPurple, // Border color
+                      width: 2.0, // Border width
+                    ),
+                    shape: BoxShape.circle, // To make it a circular border
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.MyProfile);
+                    },
+                    child: CircleAvatar(
+                      radius: 15,
+                      backgroundColor: Colors.white,
+                      child: Image.asset('assets/svg/ellipse_1.png'),
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
           )
         ],
