@@ -540,7 +540,7 @@ class _MyProfileState extends State<MyProfile> {
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText:
+                              hintText:  //data diaplay
                                   '${profileData.isNotEmpty ? profileData["instagram"] : ""}',
                               hintStyle: TextStyle(fontSize: 10),
                             ),
