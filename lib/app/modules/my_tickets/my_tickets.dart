@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:fun_zippy/app/data/repository/event_repository.dart';
 import 'package:fun_zippy/app/modules/common_data/common_text.dart';
-import 'package:fun_zippy/app/modules/funzipp/funzipp.dart';
+import 'package:fun_zippy/app/modules/funzipp/ticket_view_popup.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
 import 'package:fun_zippy/app/utilities/dynamic_size.dart';
@@ -102,7 +102,7 @@ class _MyTicketsState extends State<MyTickets> {
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  for (int a = 1; a <= my_Tickets.length; a++)
+                                  for (int a = 0; a < my_Tickets.length; a++)
                                     Padding(
                                       padding:
                                           const EdgeInsets.only(bottom: 10),
@@ -127,12 +127,12 @@ class _MyTicketsState extends State<MyTickets> {
                                                     decoration: BoxDecoration(
                                                         image: DecorationImage(
                                                             image: NetworkImage(
-                                                                "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["eventImageUrl"] : ""}"
+                                                                "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["eventImageUrl"] : ""}"
                                                                 // ""
                                                                 ),
                                                             fit: BoxFit.fill)),
                                                     // Image.asset(
-                                                    //     "'${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["eventImageUrl"] : ""}'"
+                                                    //     "'${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["eventImageUrl"] : ""}'"
                                                     //     ),
                                                     height: 90,
                                                     width: 90,
@@ -154,7 +154,7 @@ class _MyTicketsState extends State<MyTickets> {
                                                                 .start,
                                                         children: [
                                                           Text(
-                                                            "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["name"] : ""}",
+                                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["name"] : ""}",
                                                             // "The Routinel Hosted by Abish Mathew",
                                                             style: TextStyle(
                                                                 fontSize: 14),
@@ -173,7 +173,7 @@ class _MyTicketsState extends State<MyTickets> {
                                                                 width: 5,
                                                               ),
                                                               Text10(
-                                                                  //"${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["name"] : ""}",
+                                                                  //"${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["name"] : ""}",
                                                                   "Hyderrabad")
                                                             ],
                                                           ),
@@ -193,7 +193,7 @@ class _MyTicketsState extends State<MyTickets> {
                                                                 width: 5,
                                                               ),
                                                               Text10(
-                                                                "${(my_Tickets[a - 1]["createdDate"]).isNotEmpty ? dateTimeConverter(my_Tickets[a - 1]["createdDate"]) : ""}",
+                                                                "${(my_Tickets[a]["createdDate"]).isNotEmpty ? dateTimeConverter(my_Tickets[a]["createdDate"]) : ""}",
                                                                 // "Aug 25,2023"
                                                               )
                                                             ],
@@ -234,8 +234,8 @@ class _MyTicketsState extends State<MyTickets> {
                                                         height: 10,
                                                       ),
                                                       Text(
-                                                        // "${(my_Tickets[a - 1]["createdDate"]).isNotEmpty ? my_Tickets[a - 1]["createdDate"] : ""}",
-                                                        "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["type"] : ""}",
+                                                        // "${(my_Tickets[a]["createdDate"]).isNotEmpty ? my_Tickets[a]["createdDate"] : ""}",
+                                                        "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["type"] : ""}",
                                                         style: TextStyle(
                                                             fontSize: 14),
                                                       )
@@ -266,7 +266,7 @@ class _MyTicketsState extends State<MyTickets> {
                                                         height: 10,
                                                       ),
                                                       Text12(
-                                                        "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["quantity"] : ""}",
+                                                        "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["quantity"] : ""}",
                                                         // "03",
                                                         style: TextStyle(
                                                             fontSize: 14),
@@ -305,7 +305,7 @@ class _MyTicketsState extends State<MyTickets> {
                                                           width: 4,
                                                         ),
                                                         Text12(
-                                                          "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? ((my_Tickets[a - 1]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a - 1]["lineItems"][0]["tickets"][0]["seatNumber"]}" : "") : ""}",
+                                                          "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["tickets"][0]["seatNumber"]}" : "") : ""}",
                                                           // "J21, J22, J23",
                                                         ),
                                                       ]),
@@ -341,7 +341,7 @@ class _MyTicketsState extends State<MyTickets> {
                                                           height: 5,
                                                         ),
                                                         Text(
-                                                          "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? ((my_Tickets[a - 1]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a - 1]["lineItems"][0]["eventId"]}" : "") : ""}",
+                                                          "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["eventId"]}" : "") : ""}",
                                                           // "TRHAM521452671",
                                                           style: TextStyle(
                                                               fontSize: 14),
@@ -360,7 +360,7 @@ class _MyTicketsState extends State<MyTickets> {
                                                           height: 5,
                                                         ),
                                                         Text(
-                                                          "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? ((my_Tickets[a - 1]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a - 1]["lineItems"][0]["currency"]} ${my_Tickets[a - 1]["lineItems"][0]["actualPrice"]}" : "") : ""}",
+                                                          "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["actualPrice"]}" : "") : ""}",
                                                           // "\$ 320.50",
                                                           style: TextStyle(
                                                               fontSize: 14),
@@ -400,33 +400,34 @@ class _MyTicketsState extends State<MyTickets> {
                                                           MaterialPageRoute(
                                                               builder:
                                                                   (context) =>
-                                                                      FunZippy(
+                                                                      TicketViewPopUp(
+                                                                        qrcode: "${(my_Tickets[a]["lineItems"][0]["qrCodeFilePath"]).toString()}",
                                                                         imageUrl:
-                                                                            "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["eventImageUrl"] : ""}",
+                                                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["eventImageUrl"] : ""}",
                                                                         eventName:
-                                                                            "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["name"] : ""}",
+                                                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["name"] : ""}",
                                                                         dateTime:
-                                                                            "${(my_Tickets[a - 1]["createdDate"]).isNotEmpty ? dateTimeConverterViewTicket(my_Tickets[a - 1]["createdDate"]) : ""}",
+                                                                            "${(my_Tickets[a]["createdDate"]).isNotEmpty ? dateTimeConverterViewTicket(my_Tickets[a]["createdDate"]) : ""}",
                                                                         location:
                                                                             "Hi-tech City, Hyderabad",
                                                                         ticketType:
-                                                                            "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["type"] : ""}",
+                                                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["type"] : ""}",
                                                                         tickets:
-                                                                            "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["quantity"] : ""}",
+                                                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["quantity"] : ""}",
                                                                         seatNumber:
-                                                                            "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? ((my_Tickets[a - 1]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a - 1]["lineItems"][0]["tickets"][0]["seatNumber"]}" : "") : ""}",
+                                                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["tickets"][0]["seatNumber"]}" : "") : ""}",
                                                                         bookingId:
-                                                                            "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? ((my_Tickets[a - 1]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a - 1]["lineItems"][0]["eventId"]}" : "") : ""}",
+                                                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["eventId"]}" : "") : ""}",
                                                                         amount:
-                                                                            "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? ((my_Tickets[a - 1]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a - 1]["lineItems"][0]["currency"]} ${my_Tickets[a - 1]["lineItems"][0]["actualPrice"]}" : "") : ""}",
+                                                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["actualPrice"]}" : "") : ""}",
                                                                         actualPrice:
-                                                                            "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["actualPrice"] : ""}",
+                                                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["actualPrice"] : ""}",
                                                                         totalAmount:
-                                                                            "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["actualLineItemTotal"] : ""}",
+                                                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["actualLineItemTotal"] : ""}",
                                                                         groupDiscountPercentage:
-                                                                            "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["groupDiscountPercentage"] : ""}",
+                                                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["groupDiscountPercentage"] : ""}",
                                                                         currency:
-                                                                            "${(my_Tickets[a - 1]["lineItems"]).isNotEmpty ? my_Tickets[a - 1]["lineItems"][0]["currency"] : ""}",
+                                                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["currency"] : ""}",
                                                                       )));
                                                       // Get.toNamed(Routes.FunZippy);
                                                     },

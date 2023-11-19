@@ -6,12 +6,12 @@ import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
 import 'package:fun_zippy/app/utilities/dynamic_size.dart';
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
 
-class MyGroups extends StatefulWidget {
+class MyGroupsScreen extends StatefulWidget {
   @override
-  State<MyGroups> createState() => MyGroupStateScreen();
+  State<MyGroupsScreen> createState() => MyGroupsScreentateScreen();
 }
 
-class MyGroupStateScreen extends State<MyGroups> {
+class MyGroupsScreentateScreen extends State<MyGroupsScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   String selectedCategory = 'Groups';
@@ -25,69 +25,63 @@ class MyGroupStateScreen extends State<MyGroups> {
   @override
   Widget build(BuildContext context) {
     SizeGet().init(context);
-    return SafeArea(
+    return DefaultTabController(
+      length: 3, // Number of tabs
       child: CommonScafold(
-        title: "My Groups",
+        title: 'My Groups',
+        titleChild: Text('My Groups',style: TextStyle(color: Colors.black, fontSize: 20)),
+        remoNavChild: true,
         boardCast: true,
-        child: DefaultTabController(
-          length: 3, // Number of tabs
-          child: Scaffold(
-            key: _scaffoldKey,
-            backgroundColor: backgroundColor,
-            body: Stack(children: [
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Container(
-                  child: TabBar(
-                    indicatorColor: Color(0XFF5B46F4),
-                    labelColor: Color(0XFF5B46F4),
-                    unselectedLabelColor: Colors.grey[600],
-                    tabs: <Widget>[
-                      Tab(
-                        child: Text('Groups'),
-                      ),
-                      Tab(
-                        child: Text('Messages'),
-                      ),
-                      Tab(
-                        child: Text('My Events'),
-                      ),
-                    ],
+        child: Scaffold(
+          key: _scaffoldKey,
+          backgroundColor: backgroundColor,
+          body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Container(
+              child: TabBar(
+                indicatorColor: Color(0XFF5B46F4),
+                labelColor: Color(0XFF5B46F4),
+                unselectedLabelColor: Colors.grey[600],
+                tabs: <Widget>[
+                  Tab(
+                    child: Text('Groups'),
                   ),
-                ),
-                Expanded(
-                  child: TabBarView(
-                    children: <Widget>[
-                      // Content for Tab 1
-                      CardList(),
-                      // Content for Tab 2
-                      Center(
-                        child: Text('Messages'),
-                      ),
-                      // Content for Tab 3
-                      Center(
-                        child: Text('My Events'),
-                      ),
-                    ],
+                  Tab(
+                    child: Text('Messages'),
                   ),
-                ),
-              ]),
-              Positioned(
-                right: 20, // Adjust the left position as needed
-                bottom: 20, // Adjust the bottom position as needed
-                child: InkWell(
-                  onTap: () {},
-                  child: const CircleAvatar(
-                    radius: 22,
-                    backgroundColor: AppColors.lightPurple,
-                    child: Icon(
-                      Icons.add,
-                      color: AppColors.deepWhite,
-                      size: 35,
-                    ),
+                  Tab(
+                    child: Text('My Events'),
                   ),
-                ),
-              )
-            ]),
+                ],
+              ),
+            ),
+            Expanded(
+              child: TabBarView(
+                children: <Widget>[
+                  // Content for Tab 1
+                  CardList(),
+                  // Content for Tab 2
+                  Center(
+                    child: Text('Messages'),
+                  ),
+                  // Content for Tab 3
+                  Center(
+                    child: Text('My Events'),
+                  ),
+                ],
+              ),
+            ),
+          ]),
+          floatingActionButton: InkWell(
+            onTap: () {},
+            child: const CircleAvatar(
+              radius: 22,
+              backgroundColor: AppColors.lightPurple,
+              child: Icon(
+                Icons.add,
+                color: AppColors.deepWhite,
+                size: 35,
+              ),
+            ),
           ),
         ),
       ),
