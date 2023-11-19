@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:dotted_line/dotted_line.dart';
-import 'package:fun_zippy/app/modules/my_tickets/my_tickets.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
 import 'package:fun_zippy/app/utilities/dynamic_size.dart';
+import 'package:fun_zippy/app/widgets/commonScafold.dart';
 
 class MyGroups extends StatefulWidget {
   @override
@@ -25,170 +25,71 @@ class MyGroupStateScreen extends State<MyGroups> {
   @override
   Widget build(BuildContext context) {
     SizeGet().init(context);
-    return Scaffold(
-       // key: _scaffoldKey,
-        backgroundColor: backgroundColor,
-        // drawer: Drawer(
-        //   child: ListView(
-        //     padding: EdgeInsets.zero,
-        //     children: <Widget>[
-        //       const UserAccountsDrawerHeader(
-        //         accountName: Text('User name'),
-        //         accountEmail: Text('Username@email.com'),
-        //         currentAccountPicture: CircleAvatar(
-        //           backgroundImage: NetworkImage(
-        //               'https://c7.alamy.com/comp/TC2FPE/young-man-avatar-cartoon-character-profile-picture-TC2FPE.jpg'), // Replace with your image path
-        //         ),
-        //       ),
-        //       ListTile(
-        //         title: const Text('Menu Item 1'),
-        //         onTap: () {
-        //           // Handle the action for Menu Item 1
-        //           // You can also use the innerContext here if needed
-        //         },
-        //       ),
-        //       ListTile(
-        //         title: const Text('Menu Item 2'),
-        //         onTap: () {
-        //           // Handle the action for Menu Item 2
-        //           // You can also use the innerContext here if needed
-        //         },
-        //       ),
-        //     ],
-        //   ),
-        // ),
-        body: Stack(children: [
-          Column(
-              crossAxisAlignment: CrossAxisAlignment.start, children: [
-            // Container(
-            //   height: SizeGet.getProportionHeight(70.0),
-            //   // width: SizeGet.getProportionWidth(375.0),
-            //   color: AppColors.white,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Center(
-            //         child: IconButton(
-            //           onPressed: () {
-            //             _scaffoldKey.currentState?.openDrawer();
-            //           },
-            //           icon: const Icon(Icons.menu),
-            //         ),
-            //       ),
-            //       const Text(
-            //         'My Groupsss',
-            //         style: AppTextStyles.appBarTitleStyle,
-            //       ),
-            //       Row(
-            //         children: [
-            //           Container(
-            //               height: 30,
-            //               width: 30,
-            //               decoration: BoxDecoration(
-            //                   color: AppColors.lightPurple,
-            //                   borderRadius: BorderRadius.circular(20)),
-            //               child: const Icon(
-            //                 Icons.online_prediction_outlined,
-            //                 color: AppColors.deepWhite,
-            //               )),
-            //           Builder(
-            //             builder: (innerContext) {
-            //               return GestureDetector(
-            //                 onTap: () {
-            //                   // Handle the action when the avatar is clicked
-            //                   // Navigator.push(
-            //                   //   context,
-            //                   //   MaterialPageRoute(
-            //                   //       builder: (context) => const EmptyScreen()),
-            //                   // );
-            //                 },
-            //                 child: Container(
-            //                   margin:
-            //                       const EdgeInsets.symmetric(horizontal: 16.0),
-            //                   child: const CircleAvatar(
-            //                     radius: 15.0,
-            //                     // Adjust the size of the avatar as needed
-            //                     backgroundImage: NetworkImage(
-            //                         'https://c7.alamy.com/comp/TC2FPE/young-man-avatar-cartoon-character-profile-picture-TC2FPE.jpg'), // Replace with the URL of your network image
-            //                   ),
-            //                 ),
-            //               );
-            //             },
-            //           ),
-            //         ],
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: SizeGet.getProportionHeight(50.0),
-            //   width: SizeGet.getProportionWidth(375.0),
-            //   child: Center(
-            //     child: Column(
-            //       mainAxisAlignment: MainAxisAlignment.center,
-            //       children: [
-            //         Row(
-            //           mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //           children: [
-            //             buildCategory('Groups'),
-            //             buildCategory('Messages'),
-            //             buildCategory('My Events'),
-            //           ],
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            Expanded(
-              child: CardList(),
-            ),
-          ]),
-          Positioned(
-            right: 20, // Adjust the left position as needed
-            bottom: 20, // Adjust the bottom position as needed
-            child: InkWell(
-              onTap: () {},
-              child: const CircleAvatar(
-                radius: 22,
-                backgroundColor: AppColors.lightPurple,
-                child: Icon(
-                  Icons.add,
-                  color: AppColors.deepWhite,
-                  size: 35,
-                ),
-              ),
-            ),
-          )
-        ]));
-  }
-
-  Widget buildCategory(String category) {
-    final isSelected = category == selectedCategory;
-    return GestureDetector(
-      onTap: () {
-        selectCategory(category);
-      },
-      child: Column(
-        children: [
-          // OptionButton(
-          //   text: category,
-          //   isSelected: isSelected,
-          // ),
-          if (isSelected)
-            Column(
-              children: [
-                SizedBox(
-                  height: 5,
-                ),
+    return SafeArea(
+      child: CommonScafold(
+        title: "My Groups",
+        boardCast: true,
+        child: DefaultTabController(
+          length: 3, // Number of tabs
+          child: Scaffold(
+            key: _scaffoldKey,
+            backgroundColor: backgroundColor,
+            body: Stack(children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Container(
-                  height: 3,
-                  width: SizeGet.getProportionWidth(375 / 4),
-                  color:
-                      isSelected ? AppColors.deepPurple : AppColors.lightGrey,
+                  child: TabBar(
+                    indicatorColor: Color(0XFF5B46F4),
+                    labelColor: Color(0XFF5B46F4),
+                    unselectedLabelColor: Colors.grey[600],
+                    tabs: <Widget>[
+                      Tab(
+                        child: Text('Groups'),
+                      ),
+                      Tab(
+                        child: Text('Messages'),
+                      ),
+                      Tab(
+                        child: Text('My Events'),
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-        ],
+                Expanded(
+                  child: TabBarView(
+                    children: <Widget>[
+                      // Content for Tab 1
+                      CardList(),
+                      // Content for Tab 2
+                      Center(
+                        child: Text('Messages'),
+                      ),
+                      // Content for Tab 3
+                      Center(
+                        child: Text('My Events'),
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
+              Positioned(
+                right: 20, // Adjust the left position as needed
+                bottom: 20, // Adjust the bottom position as needed
+                child: InkWell(
+                  onTap: () {},
+                  child: const CircleAvatar(
+                    radius: 22,
+                    backgroundColor: AppColors.lightPurple,
+                    child: Icon(
+                      Icons.add,
+                      color: AppColors.deepWhite,
+                      size: 35,
+                    ),
+                  ),
+                ),
+              )
+            ]),
+          ),
+        ),
       ),
     );
   }
@@ -292,7 +193,7 @@ class singleCard extends StatelessWidget {
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  height: SizeGet.getProportionHeight(105),
+                  height: SizeGet.getProportionHeight(90),
                   width: SizeGet.getProportionWidth(90),
                   decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -362,29 +263,22 @@ class singleCard extends StatelessWidget {
                 ),
                 Expanded(
                   child: Container(
-                    height: SizeGet.getProportionHeight(30),
-                    width: SizeGet.getProportionWidth(15),
-                    decoration: const BoxDecoration(
-                      color: AppColors.grey,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      child: Container(
-                        height: SizeGet.getProportionHeight(30),
-                        width: SizeGet.getProportionWidth(25),
-                        decoration: const BoxDecoration(
-                            color: AppColors.deepWhite, shape: BoxShape.circle),
-                        child: const Center(
-                          child: FaIcon(
-                            FontAwesomeIcons.ellipsisVertical,
-                            size: 15,
-                            color: AppColors.grey,
-                          ),
-                        ),
+                      height: SizeGet.getProportionHeight(30),
+                      width: SizeGet.getProportionWidth(15),
+                      decoration: const BoxDecoration(
+                        color: AppColors.grey,
+                        shape: BoxShape.circle,
                       ),
-                    ),
-                  ),
-                ),
+                      child: Center(
+                        child: Container(
+                            height: SizeGet.getProportionHeight(32),
+                            width: SizeGet.getProportionWidth(27),
+                            decoration: const BoxDecoration(
+                                color: AppColors.deepWhite,
+                                shape: BoxShape.circle),
+                            child: ThreeDotPopupMenu()),
+                      )),
+                )
               ],
             ),
             const SizedBox(
@@ -510,6 +404,82 @@ class singleCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class ThreeDotPopupMenu extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<String>(
+      icon: FaIcon(
+        FontAwesomeIcons.ellipsisVertical,
+        size: 15,
+        color: AppColors.grey,
+      ),
+      itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+        PopupMenuItem<String>(
+          value: 'view',
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(Icons.visibility_outlined,
+              color: Color(0XFF5B46F4),),
+              SizedBox(width: 7,),
+              Text('View',
+                style: TextStyle(color: Colors.grey[600]),
+                textAlign: TextAlign.left,),
+            ],
+          ),
+        ),
+        PopupMenuItem<String>(
+          value: 'edit',
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(Icons.mode_edit_outlined,
+                color: Colors.orange,),
+              SizedBox(width: 7,),
+              Text('Edit',style: TextStyle(color: Colors.grey[600]),textAlign: TextAlign.left,),
+            ],
+          ),
+        ),
+        PopupMenuItem<String>(
+          value: 'delete',
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(Icons.delete_outline_outlined,
+                color: Colors.pink.shade600,),
+              SizedBox(width: 7,),
+              Text('Delete',
+                style: TextStyle(color: Colors.grey[600]),
+                textAlign: TextAlign.left,
+               ),
+            ],
+          ),
+        ),
+      ],
+      onSelected: (String value) {
+        // Handle item selection
+        switch (value) {
+          case 'view':
+            print("view");
+            // Do something for 'View'
+            break;
+          case 'edit':
+            print("edit");
+            // Do something for 'Edit'
+            break;
+          case 'delete':
+            print("delete");
+            // Do something for 'Delete'
+            break;
+        }
+      },
     );
   }
 }
