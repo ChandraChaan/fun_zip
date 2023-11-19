@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../modules/booking_tickets/booking_tickets.dart';
 import '../modules/contact_us/contact_us.dart';
 import '../modules/contact_us/contact_us.dart';
-import '../modules/funzipp/funzipp.dart';
+import '../modules/funzipp/ticket_view_popup.dart';
 import '../modules/my_events_screen/my_events.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
@@ -217,7 +217,7 @@ class AppPages {
     ),
     // GetPage(
     //   name: _Paths.FunZippy,
-    //   page: () => FunZippy(),
+    //   page: () => TicketViewPopUp(),
     //   binding: EventDetailsBinding(),
     // ),
     GetPage(
@@ -231,11 +231,11 @@ class AppPages {
       page: () => PotluckMenu(),
       binding: EventDetailsBinding(),
     ),
-    GetPage(
-      name: _Paths.MyGroups,
-      page: () => MyGroups(),
-      binding: EventDetailsBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.MyGroups,
+    //   page: () => MyGroups(),
+    //   binding: EventDetailsBinding(),
+    // ),
     GetPage(
       name: _Paths.DetailsScreen,
       page: () => DetailsScreen(),

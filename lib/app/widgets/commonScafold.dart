@@ -25,6 +25,7 @@ class CommonScafold extends StatefulWidget {
   final Widget? bottomNavigationBar;
   final int? selectedIndex;
   final bool navChild;
+  final bool remoNavChild;
   final bool? boardCast;
 
   CommonScafold(
@@ -33,6 +34,7 @@ class CommonScafold extends StatefulWidget {
       this.titleChild,
       this.selectedIndex = 0,
       this.navChild = false,
+      this.remoNavChild = false,
       this.bottomNavigationBar,
       this.child,
       this.boardCast});
@@ -172,22 +174,29 @@ class _CommonScafoldState extends State<CommonScafold> {
           )
         ],
         title: Center(
-          child: widget.navChild == false || selectedIndex != 0 || useMenu
+          child: widget.remoNavChild == true
               ? Text(
-                  '${itemsBoomList[selectedIndex].label}',
+                  (widget.title ?? ' '),
                   style: TextStyle(color: Colors.black, fontSize: 20),
                 )
-              : (widget.titleChild ??
-                  Text(
-                    (widget.title ?? ' '),
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                  )),
+              : (widget.navChild == false || selectedIndex != 0 || useMenu
+                  ? Text(
+                      '${itemsBoomList[selectedIndex].label}',
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    )
+                  : (widget.titleChild ??
+                      Text(
+                        (widget.title ?? ' '),
+                        style: TextStyle(color: Colors.black, fontSize: 20),
+                      ))),
         ),
       ),
       body: widget.navChild == true || selectedIndex != 0 || useMenu
           ? _widgetOptions.elementAt(selectedIndex)
           : widget.child,
-      bottomNavigationBar: widget.bottomNavigationBar ?? BottomNavigation(),
+      bottomNavigationBar: widget.remoNavChild == true
+          ? null
+          : (widget.bottomNavigationBar ?? BottomNavigation()),
     );
   }
 

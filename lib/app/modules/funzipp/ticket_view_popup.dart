@@ -9,10 +9,11 @@ import 'package:dotted_line/dotted_line.dart';
 import '../../data/repository/event_repository.dart';
 import '../../widgets/error_snackbar.dart';
 
-class FunZippy extends StatefulWidget {
+class TicketViewPopUp extends StatefulWidget {
   final double diameter;
   final String imageUrl;
   final String eventName;
+  final String qrcode;
   final String dateTime;
   final String location;
   final String ticketType;
@@ -25,11 +26,12 @@ class FunZippy extends StatefulWidget {
   final String groupDiscountPercentage;
   final String currency;
 
-  const FunZippy({
+  const TicketViewPopUp({
     super.key,
     this.diameter = 50,
     required this.imageUrl,
     required this.eventName,
+    required this.qrcode,
     required this.dateTime,
     required this.location,
     required this.ticketType,
@@ -44,32 +46,32 @@ class FunZippy extends StatefulWidget {
   });
 
   @override
-  State<FunZippy> createState() => _FunZippyState();
+  State<TicketViewPopUp> createState() => _TicketViewPopUpState();
 }
 
-class _FunZippyState extends State<FunZippy> {
-  Map ticketdetailsapi = {};
-
-  Future<void> ticketDetails() async {
-    try {
-      var response = await EventRepository().ticketDetails();
-      print(response.toString());
-      print('Sathya get profile details');
-      final bodyData = response;
-      setState(() {
-        ticketdetailsapi = (bodyData); // Wrap bodyData in a list
-      });
-    } catch (e) {
-      errorSnackbar(title: '$e', desc: '');
-    }
-  }
-
-  @override
-  void initState() {
-    ticketDetails();
-    setState(() {});
-    super.initState();
-  }
+class _TicketViewPopUpState extends State<TicketViewPopUp> {
+  // Map ticketdetailsapi = {};
+  //
+  // Future<void> ticketDetails() async {
+  //   try {
+  //     var response = await EventRepository().ticketDetails();
+  //     print(response.toString());
+  //     print('Sathya get profile details');
+  //     final bodyData = response;
+  //     setState(() {
+  //       ticketdetailsapi = (bodyData); // Wrap bodyData in a list
+  //     });
+  //   } catch (e) {
+  //     errorSnackbar(title: '$e', desc: '');
+  //   }
+  // }
+  //
+  // @override
+  // void initState() {
+  //   ticketDetails();
+  //   setState(() {});
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -319,7 +321,6 @@ class _FunZippyState extends State<FunZippy> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Image.asset('assets/svg/seat.png'),
-
                                     Text(
                                       " ${widget.seatNumber}",
                                       // " " + "J21, J22, J23",
@@ -418,7 +419,10 @@ class _FunZippyState extends State<FunZippy> {
                                 color: AppColors.deepWhite,
                               ),
                               child: Image.network(
-                                'https://funzippy.com/custom/media/tickets/h6Wh3RnLi4p0.png',
+                                widget.qrcode.toString() != 'null'
+                                    ? ('https://funzippy.com' +
+                                        widget.qrcode.toString())
+                                    : 'https://funzippy.com/custom/media/tickets/h6Wh3RnLi4p0.png',
                                 loadingBuilder: (BuildContext context,
                                     Widget child,
                                     ImageChunkEvent? loadingProgress) {
