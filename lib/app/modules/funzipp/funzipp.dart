@@ -6,7 +6,10 @@ import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
 import 'package:fun_zippy/app/utilities/dynamic_size.dart';
 import 'package:dotted_line/dotted_line.dart';
 
-class FunZippy extends StatelessWidget {
+import '../../data/repository/event_repository.dart';
+import '../../widgets/error_snackbar.dart';
+
+class FunZippy extends StatefulWidget {
   final double diameter;
   final String imageUrl;
   final String eventName;
@@ -41,8 +44,36 @@ class FunZippy extends StatelessWidget {
   });
 
   @override
+  State<FunZippy> createState() => _FunZippyState();
+}
+
+class _FunZippyState extends State<FunZippy> {
+  Map ticketdetailsapi = {};
+
+  Future<void> ticketDetails() async {
+    try {
+      var response = await EventRepository().ticketDetails();
+      print(response.toString());
+      print('Sathya get profile details');
+      final bodyData = response;
+      setState(() {
+        ticketdetailsapi = (bodyData); // Wrap bodyData in a list
+      });
+    } catch (e) {
+      errorSnackbar(title: '$e', desc: '');
+    }
+  }
+
+  @override
+  void initState() {
+    ticketDetails();
+    setState(() {});
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    SizeGet().init(context);
+    // SizeGet().init(context);
     return Scaffold(
       backgroundColor: AppColors.deepBule,
       body: SingleChildScrollView(
@@ -121,7 +152,7 @@ class FunZippy extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(15)),
                                     image: DecorationImage(
-                                        image: NetworkImage(imageUrl
+                                        image: NetworkImage(widget.imageUrl
                                             // 'https://upload.wikimedia.org/wikipedia/commons/d/df/Family_Portrait.jpg',
                                             ),
                                         fit: BoxFit.fill)),
@@ -137,7 +168,7 @@ class FunZippy extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      eventName,
+                                      widget.eventName,
                                       // "The Routinel Hosted by Abish Mathew",
                                       style: AppTextStyles.lineText14BoldStyle,
                                       maxLines: 3, // Limit to 3 lines
@@ -158,7 +189,7 @@ class FunZippy extends StatelessWidget {
                                           width: 5,
                                         ),
                                         Text10(
-                                          dateTime,
+                                          widget.dateTime,
                                           // "Aug 25, 2023 | 8:30PM",
                                         )
                                       ],
@@ -177,7 +208,7 @@ class FunZippy extends StatelessWidget {
                                           width: 5,
                                         ),
                                         Text10(
-                                          location,
+                                          widget.location,
                                           // "Hi-tech City, Hyderabad",
                                         )
                                       ],
@@ -239,7 +270,7 @@ class FunZippy extends StatelessWidget {
                                   height: 5,
                                 ),
                                 Text(
-                                  ticketType,
+                                  widget.ticketType,
                                   // "Diamond",
                                   style: TextStyle(fontSize: 14),
                                 )
@@ -262,7 +293,7 @@ class FunZippy extends StatelessWidget {
                                   height: 10,
                                 ),
                                 Text(
-                                  tickets,
+                                  widget.tickets,
                                   // "03",
                                   style: TextStyle(fontSize: 14),
                                 )
@@ -287,12 +318,10 @@ class FunZippy extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    const Icon(
-                                      Icons.event_seat_outlined,
-                                      size: 16,
-                                    ),
+                                    Image.asset('assets/svg/seat.png'),
+
                                     Text(
-                                      " $seatNumber",
+                                      " ${widget.seatNumber}",
                                       // " " + "J21, J22, J23",
                                       style: TextStyle(fontSize: 14),
                                     ),
@@ -343,7 +372,8 @@ class FunZippy extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                          padding:
+                              const EdgeInsets.only(left: 20.0, right: 20.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -355,7 +385,7 @@ class FunZippy extends StatelessWidget {
                                     height: 5,
                                   ),
                                   Text(
-                                    bookingId,
+                                    widget.bookingId,
                                     // "TRHAM521452671",
                                     style: TextStyle(fontSize: 14),
                                   ),
@@ -369,7 +399,7 @@ class FunZippy extends StatelessWidget {
                                     height: 5,
                                   ),
                                   Text(
-                                    amount,
+                                    widget.amount,
                                     // "\$ 320.50",
                                     style: TextStyle(fontSize: 14),
                                   )
@@ -382,13 +412,36 @@ class FunZippy extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 10.0),
                           child: Center(
                             child: Container(
-                              height: SizeGet.getProportionHeight(812 / 5),
-                              width: SizeGet.getProportionWidth(375 / 2.8),
-                              decoration: const BoxDecoration(
+                              height: 130,
+                              width: 130,
+                              decoration: BoxDecoration(
                                 color: AppColors.deepWhite,
-                                image: DecorationImage(
-                                  image: AssetImage(qrCode),
-                                ),
+                              ),
+                              child: Image.network(
+                                'https://funzippy.com/custom/media/tickets/h6Wh3RnLi4p0.png',
+                                loadingBuilder: (BuildContext context,
+                                    Widget child,
+                                    ImageChunkEvent? loadingProgress) {
+                                  if (loadingProgress == null) {
+                                    return child;
+                                  } else {
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        value: loadingProgress
+                                                    .expectedTotalBytes !=
+                                                null
+                                            ? loadingProgress
+                                                    .cumulativeBytesLoaded /
+                                                (loadingProgress
+                                                        .expectedTotalBytes ??
+                                                    1)
+                                            : null,
+                                      ),
+                                    );
+                                  }
+                                },
+                                // 'https://funzippy.com/custom/media/tickets/h6Wh3RnLi4p0.png',
+                                //'${ticketdetailsapi.isNotEmpty ? ("file///funzippy.com"+(ticketdetailsapi["data"]["tickets"][0]["qrCodeFilePath"]).toString()) : ""}',
                               ),
                             ),
                           ),
@@ -417,7 +470,8 @@ class FunZippy extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 5.0, left: 15.0, right: 15.0),
+                padding:
+                    const EdgeInsets.only(top: 5.0, left: 15.0, right: 15.0),
                 child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -435,17 +489,16 @@ class FunZippy extends StatelessWidget {
                               children: [
                                 Padding(
                                   padding: EdgeInsets.only(bottom: 10.0),
-                                  child: Text10("Ticket Price ($tickets)"),
+                                  child: Text10(
+                                      "Ticket Price (${widget.tickets})"),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(bottom: 10.0),
-                                  child: Text10("Convenience Fee"
-                                      ),
+                                  child: Text10("Convenience Fee"),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(bottom: 10.0),
-                                  child: Text10("Discount"
-                                      ),
+                                  child: Text10("Discount"),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(bottom: 10.0),
@@ -489,7 +542,7 @@ class FunZippy extends StatelessWidget {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10.0),
-                                  child: Text10("\$ $actualPrice"),
+                                  child: Text10("\$ ${widget.actualPrice}"),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10.0),
@@ -498,7 +551,7 @@ class FunZippy extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10.0),
                                   child: Text10(
-                                      "\$ $groupDiscountPercentage"),
+                                      "\$ ${widget.groupDiscountPercentage}"),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10.0),
@@ -523,7 +576,8 @@ class FunZippy extends StatelessWidget {
                             children: [
                               Text(
                                 "Total Amount",
-                                style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.bold),
                               ),
                               SizedBox(
                                 width: 1,
@@ -533,9 +587,10 @@ class FunZippy extends StatelessWidget {
                                 style: AppTextStyles.lineText14BoldStyle,
                               ),
                               Text(
-                                totalAmount,
+                                widget.totalAmount,
                                 // "\$ 320.50",
-                                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 14),
                               ),
                             ],
                           ),

@@ -2,6 +2,9 @@ import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:get/get.dart';
 
 import '../modules/booking_tickets/booking_tickets.dart';
+import '../modules/contact_us/contact_us.dart';
+import '../modules/contact_us/contact_us.dart';
+import '../modules/funzipp/funzipp.dart';
 import '../modules/my_events_screen/my_events.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
@@ -88,7 +91,7 @@ class AppPages {
     GetPage(
       name: _Paths.CREATE_EVENT,
       page: () => CreateEventView(
-        isSfald: true,
+        isEvent: true,
       ),
       binding: CreateEventBinding(),
     ),
@@ -220,6 +223,7 @@ class AppPages {
     GetPage(
       name: _Paths.MyTickets,
       page: () => MyTickets(),
+     // isTicket: true,
       binding: EventDetailsBinding(),
     ),
     GetPage(
@@ -245,6 +249,11 @@ class AppPages {
     GetPage(
       name: _Paths.MyGroupsScreen,
       page: () => MyGroupsScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.ContactUsScreen,
+      page: () => ContactUsScreen(),
       binding: EventDetailsBinding(),
     ),
 

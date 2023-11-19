@@ -50,6 +50,7 @@ abstract class Routes {
   static const PhoneNumber = _Paths.PhoneNumber;
   static const MyGroupStateScreen = _Paths.MyGroupStateScreen;
   static const FloatingButton = _Paths.FloatingButton;
+  static const ContactUsScreen = _Paths.ContactUsScreen;
 }
 
 abstract class _Paths {
@@ -102,5 +103,6 @@ abstract class _Paths {
   static const PhoneNumber = '/PhoneNumber';
   static const MyGroupStateScreen = '/MyGroupStateScreen';
   static const FloatingButton = '/FloatingButton';
+  static const ContactUsScreen = '/ContactUsScreen';
 
 }

@@ -65,7 +65,7 @@ class _CommonScafoldState extends State<CommonScafold> {
     try {
       var response = await EventRepository().getProfile();
       print(response.toString());
-      print('Sathya');
+     // print('get profile api response');
       final bodyData = response;
       setState(() {
         profileData = (bodyData); // Wrap bodyData in a list
@@ -88,10 +88,11 @@ class _CommonScafoldState extends State<CommonScafold> {
   static List<Widget> _widgetOptions = <Widget>[
     EventTab(),
     CreateEventView(
-      isSfald: false,
+      isEvent: false,
     ),
     MyEvents(isSfald: false,),
-    MyTickets()
+    MyTickets(isTicket: true),
+    SideMenuScreen(profileData: {}, isSide: true,)
   ];
 
   @override
@@ -125,9 +126,18 @@ class _CommonScafoldState extends State<CommonScafold> {
                   Get.toNamed(Routes.MyProfile);
                 },
                 child: CircleAvatar(
-                  radius: 15,
+                  radius: 20,
                   backgroundColor: Colors.white,
-                  child: Image.asset('assets/svg/ellipse_1.png'),
+                  child: Container(
+                    height: 28,
+                    width: 28,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50)),
+                    child: Image.network(
+                      '${profileData.isNotEmpty ? profileData["profilePic"] : ""}',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
             ),

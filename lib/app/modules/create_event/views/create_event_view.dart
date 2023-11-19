@@ -14,9 +14,9 @@ import 'tabs/DateAndTimeStepWidget/DateAndTimeStepWidget.dart';
 import 'components/StepperWidget.dart';
 
 class CreateEventView extends GetView<CreateEventController> {
-  final bool isSfald;
+  final bool isEvent;
 
-  CreateEventView({this.isSfald = false});
+  CreateEventView({this.isEvent = false});
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +99,7 @@ class CreateEventView extends GetView<CreateEventController> {
   }
 
   Widget ForBuilderEvent({required Widget chil}) {
-    return isSfald
+    return isEvent
         ? CommonScafold(
             title: 'Create New Event',
             selectedIndex: 1,

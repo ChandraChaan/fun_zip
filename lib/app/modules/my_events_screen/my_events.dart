@@ -26,9 +26,8 @@ class MyEvents extends StatefulWidget {
 }
 
 class _MyEventsState extends State<MyEvents> {
-
   List<dynamic> data = [];
-  final getStorage = GetStorage();
+  //final getStorage = GetStorage();
 
   int calculateRemainingDays(String? startDatetime, String? endDatetime) {
     DateTime currentDate = DateTime.now();
@@ -79,16 +78,18 @@ class _MyEventsState extends State<MyEvents> {
               child: TabBar(
                 indicatorColor: Color(0XFF5B46F4),
                 labelColor: Color(0XFF5B46F4),
-                unselectedLabelColor: Color(0XFF696488),                tabs: <Widget>[
+                unselectedLabelColor: Color(0XFF696488),
+                tabs: <Widget>[
                   Tab(
                     child: Text(
                       'Upcoming',
-                     // style: TextStyle(color: Color(0XFF5B46F4)),
+                      // style: TextStyle(color: Color(0XFF5B46F4)),
                     ),
                   ),
                   Tab(
-                    child: Text('Completed',
-                       // style: TextStyle(color: Color(0XFF5B46F4)),
+                    child: Text(
+                      'Completed',
+                      // style: TextStyle(color: Color(0XFF5B46F4)),
                     ),
                   ),
                 ],

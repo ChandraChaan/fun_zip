@@ -56,7 +56,8 @@ class EventTab extends GetView<HomeController> {
       titleChild: Obx(() {
         return Text('${controller.userAddress.value.locality ?? 'EMPTY'}');
       }),
-      child:*/ Column(
+      child:*/
+      Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           // Obx(() {

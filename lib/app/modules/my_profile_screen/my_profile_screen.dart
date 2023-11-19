@@ -8,7 +8,10 @@ import '../../data/repository/event_repository.dart';
 import '../../widgets/error_snackbar.dart';
 
 class MyProfile extends StatefulWidget {
-  const MyProfile({super.key});
+  //const MyProfile({super.key});
+  final bool isMyProfile;
+
+  MyProfile({this.isMyProfile = false});
 
   @override
   State<MyProfile> createState() => _MyProfileState();
@@ -20,8 +23,8 @@ class _MyProfileState extends State<MyProfile> {
   Future<void> getProfile() async {
     try {
       var response = await EventRepository().getProfile();
-      print(response.toString());
-      print('Sathya get profile');
+      // print(response.toString());
+      //print('Sathya get profile');
       final bodyData = response;
       setState(() {
         profileData = (bodyData); // Wrap bodyData in a list
@@ -41,7 +44,6 @@ class _MyProfileState extends State<MyProfile> {
   @override
   Widget build(BuildContext context) {
     return CommonScafold(
-      title: 'My Profile',
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: SingleChildScrollView(
@@ -67,7 +69,8 @@ class _MyProfileState extends State<MyProfile> {
                             color: Colors.deepPurple, // Border color
                             width: 2.0, // Border width
                           ),
-                          shape: BoxShape.circle, // To make it a circular border
+                          shape:
+                              BoxShape.circle, // To make it a circular border
                         ),
                         child: InkWell(
                           onTap: () {},
@@ -299,7 +302,7 @@ class _MyProfileState extends State<MyProfile> {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText:
-                                  '${profileData.isNotEmpty ? profileData["address1"] ?? "": ""}',
+                                  '${profileData.isNotEmpty ? profileData["address"]["address1"] : ""}',
                               hintStyle: TextStyle(fontSize: 10),
                             ),
                           ),
@@ -321,7 +324,7 @@ class _MyProfileState extends State<MyProfile> {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText:
-                                  '${profileData.isNotEmpty ? profileData["city"] : ""}',
+                                  '${profileData.isNotEmpty ? profileData["address"]["city"] : ""}',
                               hintStyle: TextStyle(fontSize: 10),
                             ),
                           ),
@@ -343,7 +346,7 @@ class _MyProfileState extends State<MyProfile> {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText:
-                                  '${profileData.isNotEmpty ? profileData["state"] : ""}',
+                                  '${profileData.isNotEmpty ? profileData["address"]["state"] : ""}',
                               hintStyle: TextStyle(fontSize: 10),
                             ),
                           ),
@@ -379,7 +382,7 @@ class _MyProfileState extends State<MyProfile> {
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText:
-                                        '${profileData.isNotEmpty ? profileData["country"] : ""}',
+                                        '${profileData.isNotEmpty ? profileData["address"]["country"] : ""}',
                                     hintStyle: TextStyle(fontSize: 10),
                                   ),
                                 ),
@@ -402,7 +405,7 @@ class _MyProfileState extends State<MyProfile> {
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText:
-                                        '${profileData.isNotEmpty ? profileData["postalCode"] : ""}',
+                                        '${profileData.isNotEmpty ? profileData["address"]["postalCode"] : ""}',
                                     hintStyle: TextStyle(fontSize: 11),
                                   ),
                                 ),
@@ -450,7 +453,7 @@ class _MyProfileState extends State<MyProfile> {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText:
-                                  '${profileData.isNotEmpty ? profileData["facebook"] : ""}',
+                                  '${profileData.isNotEmpty ? profileData["socialProfiles"]["facebook"] : ""}',
                               hintStyle: TextStyle(fontSize: 10),
                             ),
                           ),
@@ -472,7 +475,7 @@ class _MyProfileState extends State<MyProfile> {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText:
-                                  '${profileData.isNotEmpty ? profileData["facebook"] : ""}',
+                                  '${profileData.isNotEmpty ? profileData["lastName"] : ""}',
                               hintStyle: TextStyle(fontSize: 10),
                             ),
                           ),
@@ -494,7 +497,7 @@ class _MyProfileState extends State<MyProfile> {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText:
-                                  '${profileData.isNotEmpty ? profileData["twitter"] : ""}',
+                                  '${profileData.isNotEmpty ? profileData["emailAddress"] : ""}',
                               hintStyle: TextStyle(fontSize: 10),
                             ),
                           ),
@@ -516,7 +519,7 @@ class _MyProfileState extends State<MyProfile> {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText:
-                                  '${profileData.isNotEmpty ? profileData["linkedIn"] : ""}',
+                                  '${profileData.isNotEmpty ? profileData["socialProfiles"]["instagram"] : ""}',
                               hintStyle: TextStyle(fontSize: 10),
                             ),
                           ),
@@ -605,5 +608,15 @@ class _MyProfileState extends State<MyProfile> {
         ),
       ),
     );
+  }
+  Widget ForBuilderEvent({required Widget chil}) {
+    return widget.isMyProfile
+        ? CommonScafold(
+      title: 'My tickets',
+      selectedIndex: 2,
+      navChild: false,
+      child: chil,
+    )
+        : chil;
   }
 }
