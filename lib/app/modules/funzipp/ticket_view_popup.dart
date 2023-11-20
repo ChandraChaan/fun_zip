@@ -50,28 +50,30 @@ class TicketViewPopUp extends StatefulWidget {
 }
 
 class _TicketViewPopUpState extends State<TicketViewPopUp> {
-  // Map ticketdetailsapi = {};
-  //
-  // Future<void> ticketDetails() async {
-  //   try {
-  //     var response = await EventRepository().ticketDetails();
-  //     print(response.toString());
-  //     print('Sathya get profile details');
-  //     final bodyData = response;
-  //     setState(() {
-  //       ticketdetailsapi = (bodyData); // Wrap bodyData in a list
-  //     });
-  //   } catch (e) {
-  //     errorSnackbar(title: '$e', desc: '');
-  //   }
-  // }
-  //
-  // @override
-  // void initState() {
-  //   ticketDetails();
-  //   setState(() {});
-  //   super.initState();
-  // }
+  Map ticketdetailsapi = {};
+  List<Map<dynamic, dynamic>> my_Tickets = [];
+
+
+  Future<void> ticketDetails() async {
+    try {
+      var response = await EventRepository().ticketDetails();
+      print(response.toString());
+      print('Sathya get profile details');
+      final bodyData = response;
+      setState(() {
+        ticketdetailsapi = (bodyData); // Wrap bodyData in a list
+      });
+    } catch (e) {
+      errorSnackbar(title: '$e', desc: '');
+    }
+  }
+
+  @override
+  void initState() {
+    ticketDetails();
+    setState(() {});
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -154,8 +156,11 @@ class _TicketViewPopUpState extends State<TicketViewPopUp> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(15)),
                                     image: DecorationImage(
-                                        image: NetworkImage(widget.imageUrl
-                                            // 'https://upload.wikimedia.org/wikipedia/commons/d/df/Family_Portrait.jpg',
+                                        image: NetworkImage(
+                                            widget.imageUrl
+                                           // "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["eventImageUrl"] : ""}"
+
+                                      // 'https://upload.wikimedia.org/wikipedia/commons/d/df/Family_Portrait.jpg',
                                             ),
                                         fit: BoxFit.fill)),
                               ),
@@ -171,6 +176,8 @@ class _TicketViewPopUpState extends State<TicketViewPopUp> {
                                   children: [
                                     Text(
                                       widget.eventName,
+                                      //"${(ticketdetailsapi["data"]).isNotEmpty ? ticketdetailsapi["data"]["tickets"][0]["eventName"] ?? "Empty" : "Empty"}",
+
                                       // "The Routinel Hosted by Abish Mathew",
                                       style: AppTextStyles.lineText14BoldStyle,
                                       maxLines: 3, // Limit to 3 lines
@@ -210,6 +217,9 @@ class _TicketViewPopUpState extends State<TicketViewPopUp> {
                                           width: 5,
                                         ),
                                         Text10(
+                                          // add ticketicketdetails address
+                                          //"${(ticketicketdetailsetdetailsapi["data"]).isNotEmpty ? ticketdetailsapi["data"]["tickets"][0]["eventName"] ?? "Empty" : "Empty"}",
+
                                           widget.location,
                                           // "Hi-tech City, Hyderabad",
                                         )

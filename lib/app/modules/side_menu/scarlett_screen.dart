@@ -134,8 +134,8 @@ class _SideMenuScreen extends State<SideMenuScreen> {
         contentPadding: EdgeInsets.symmetric(
           horizontal: 4.0,
         ),
-        horizontalTitleGap: 7.0,
-        minVerticalPadding: 5.0,
+        horizontalTitleGap: 4.0,
+        minVerticalPadding: 15.0,
         minLeadingWidth: 24.0,
         onTap: () {
           if (title.contains('My Profile')) {
@@ -161,17 +161,19 @@ class _SideMenuScreen extends State<SideMenuScreen> {
             Get.offAllNamed(Routes.SIGN_IN);
           }
         },
-        title: Text(
-          title,
-          style: TextStyle(fontSize: 12), // You can adjust the font size
+        title: Padding(
+          padding: const EdgeInsets.only(bottom: 7.0),
+          child: Text(
+            title,
+            style: TextStyle(fontSize: 12), // You can adjust the font size
+          ),
         ),
         leading: Container(
-          height: 15, // Adjust as needed for the leading container height
-          width: 15, // Adjust as needed for the leading container width
+          height: 16, // Adjust as needed for the leading container height
+          width: 16, // Adjust as needed for the leading container width
           child: Image.asset(imagePath),
         ),
       ),
     );
   }
-
 }

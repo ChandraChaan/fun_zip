@@ -319,3 +319,4 @@ class EventDetailsView extends GetView<EventDetailsController> {
     );
   }
 }
+

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:dotted_line/dotted_line.dart';
+import 'package:fun_zippy/app/modules/common_data/common_text.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
 import 'package:fun_zippy/app/utilities/dynamic_size.dart';
@@ -220,16 +221,15 @@ class singleCard extends StatelessWidget {
                       Row(
                         children: [
                           Icon(
-                            Icons.date_range,
-                            color: AppColors.grey,
+                            Icons.date_range,size: 16,
+                            color: Color(0XFF5E5A80),
                           ),
                           SizedBox(
                             width: 5,
                           ),
-                          Text(
+                          Text10(
                             date,
                             // "Created on Aug 25, 2023",
-                            style: AppTextStyles.lineTextStyle,
                           )
                         ],
                       ),
@@ -239,16 +239,15 @@ class singleCard extends StatelessWidget {
                       Row(
                         children: [
                           Icon(
-                            Icons.location_on_outlined,
-                            color: AppColors.grey,
+                            Icons.location_on_outlined,size: 16,
+                            color: Color(0XFF5E5A80),
                           ),
                           SizedBox(
                             width: 5,
                           ),
-                          Text(
+                          Text10(
                             location,
                             // "Hyderabad",
-                            style: AppTextStyles.lineTextStyle,
                           )
                         ],
                       ),
@@ -297,10 +296,9 @@ class singleCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text(
+                      const Text10(
                         "Local Group",
-                        style: AppTextStyles.lineText12Style,
-                        textAlign: TextAlign.center,
+                        //textAlign: TextAlign.center,
                       ),
                       const SizedBox(
                         height: 10,
@@ -311,7 +309,7 @@ class singleCard extends StatelessWidget {
                         child: Text(
                           localGroup,
                           // "Buddies for Life",
-                          style: AppTextStyles.lineText14Style,
+                          style: TextStyle(color: Colors.black),
                           maxLines: 2,
                           textAlign: TextAlign.center,
                         ),
@@ -321,13 +319,9 @@ class singleCard extends StatelessWidget {
                 ),
                 const DottedLine(
                   direction: Axis.vertical,
-                  // Set the direction to horizontal or vertical
                   lineLength: 60,
-                  // The length of the line
                   lineThickness: 1.0,
-                  // The thickness of the line
                   dashColor: AppColors.grey,
-                  // The color of the line
                   dashGapLength: 0,
                 ),
                 const SizedBox(
@@ -339,17 +333,15 @@ class singleCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
+                      Text10(
                         "Age Group",
-                        style: AppTextStyles.lineText12Style,
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                      Text(
+                      Text12Black(
                         ageGroup,
                         // "Adult",
-                        style: AppTextStyles.lineText14Style,
                       )
                     ],
                   ),
@@ -360,13 +352,9 @@ class singleCard extends StatelessWidget {
                 ),
                 const DottedLine(
                   direction: Axis.vertical,
-                  // Set the direction to horizontal or vertical
                   lineLength: 60,
-                  // The length of the line
                   lineThickness: 1.0,
-                  // The thickness of the line
                   dashColor: AppColors.grey,
-                  // The color of the line
                   dashGapLength: 0,
                 ),
                 const SizedBox(
@@ -378,17 +366,14 @@ class singleCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        "Close Group",
-                        style: AppTextStyles.lineText12Style,
-                      ),
+                      Text10(
+                        "Close Group"),
                       SizedBox(
                         height: 10,
                       ),
-                      Text(
+                      Text12Black(
                         closeGroup,
                         // "Pepsi Mates",
-                        style: AppTextStyles.lineText14Style,
                       ),
                     ],
                   ),
@@ -449,9 +434,9 @@ class ThreeDotPopupMenu extends StatelessWidget {
               Icon(Icons.delete_outline_outlined,
                 color: Colors.pink.shade600,),
               SizedBox(width: 7,),
-              Text('Delete',
-                style: TextStyle(color: Colors.grey[600]),
-                textAlign: TextAlign.left,
+              Text10('Delete',
+                // style: TextStyle(color: Colors.grey[600]),
+                // textAlign: TextAlign.left,
                ),
             ],
           ),

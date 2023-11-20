@@ -48,16 +48,21 @@ class SponsorsWidget extends StatelessWidget {
                         side: BorderSide(color: Color(0XFFC61236)),
                       ),
                     ),
-                    child: Container(
-                      height: 20,
-                      width: 114,
-                      child: Center(
-                        child: Text(
-                          'See Sponsorship Packages',
-                          style: TextStyle(
-                            fontSize: 8,
-                            color: Color(0XFFC61236),
-                            fontWeight: FontWeight.bold,
+                    child: InkWell(
+                      onTap: () {
+                        Get.toNamed(Routes.SponsorshipScreen);
+                      },
+                      child: Container(
+                        height: 20,
+                        width: 114,
+                        child: Center(
+                          child: Text(
+                            'See Sponsorship Packages',
+                            style: TextStyle(
+                              fontSize: 8,
+                              color: Color(0XFFC61236),
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
@@ -118,8 +123,7 @@ class SponsorsWidget extends StatelessWidget {
                                       children: [
                                         Text(
                                           controller.eventDetailsModel
-                                                      .sponsors![index]
-                                                  ['name'] ??
+                                                  .sponsors![index]['name'] ??
                                               ' ',
                                           style:
                                               boldText.copyWith(fontSize: 14),
