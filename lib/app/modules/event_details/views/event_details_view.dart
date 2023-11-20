@@ -189,17 +189,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 height: 700,
                                 child: RsvpScreen(controller: controller))),
                         5.height,
-
-                        CommentWidget(controller: controller),
-                        5.height,
-                        //* Map
-                        MapWidget(controller: controller),
-                        5.height,
-
-                        // OrganizersWidget(),
-                        // 5.height,
-
-                        // //* Sign up Items
+                        //* Sign up Items
                         Visibility(
                           visible: controller.eventDetailsModel.timeSlots
                                       .toString() !=
@@ -213,7 +203,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                             ),
                           ),
                         ),
-                        //* Potluck items
+
                         Visibility(
                             visible: controller.eventDetailsModel.potluckItems
                                         .toString() !=
@@ -225,10 +215,6 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 child: PotluckItems(
                                   controller: controller,
                                 ))),
-                        // PotluckItemsWidget(
-                        //   controller: controller,
-                        // ),
-                        // Gift Registry
                         Visibility(
                           visible: controller.eventDetailsModel.giftItems
                                       .toString() !=
@@ -239,11 +225,6 @@ class EventDetailsView extends GetView<EventDetailsController> {
                             controller: controller,
                           ),
                         ),
-                        WhatIsPlaceOfferWidget(
-                          controller: controller,
-                        ),
-
-                        // Speakers
                         Visibility(
                           visible: controller.eventDetailsModel.honoraryGuests
                                       .toString() !=
@@ -254,7 +235,6 @@ class EventDetailsView extends GetView<EventDetailsController> {
                             controller: controller,
                           ),
                         ),
-                        // Sponsors
                         Visibility(
                             visible: controller.eventDetailsModel.sponsors
                                         .toString() !=
@@ -264,8 +244,6 @@ class EventDetailsView extends GetView<EventDetailsController> {
                             child: SizedBox(
                                 height: 350,
                                 child: SponsorsWidget(controller: controller))),
-
-                        // Boots
                         Visibility(
                             visible: controller
                                         .eventDetailsModel.boothCategories
@@ -274,7 +252,26 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 ? true
                                 : false,
                             child: BoothsWidget(controller: controller)),
+                        // upto above fine
+                        //* Map
+                        MapWidget(controller: controller),
+                        5.height,
+                        WhatIsPlaceOfferWidget(
+                          controller: controller,
+                        ),
+                        CommentWidget(controller: controller),
+                        5.height,
 
+                        // OrganizersWidget(),
+                        // 5.height,
+
+                        //* Potluck items
+                        // PotluckItemsWidget(
+                        //   controller: controller,
+                        // ),
+                        // Gift Registry
+
+                        // as of now this is not required further needed uncomment it
                         // Visibility(
                         //     visible: controller.eventDetailsModel.contacts
                         //                 .toString() !=
@@ -311,7 +308,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
       // ),
       floatingActionButton: FloatingActionButton(
         materialTapTargetSize: MaterialTapTargetSize.padded,
-        backgroundColor:Color(0XFF5B46F4),
+        backgroundColor: Color(0XFF5B46F4),
         onPressed: () {
           print('Floating Action Button Pressed');
         },
@@ -322,6 +319,3 @@ class EventDetailsView extends GetView<EventDetailsController> {
     );
   }
 }
-
-
-

@@ -88,7 +88,7 @@ class _CommonScafoldState extends State<CommonScafold> {
   void initState() {
     getProfile();
 
-    // TODO apk cheseppudu edhi comment cheyyandi *sathya garu
+    // TODO apk cheseppudu edhi comment cheyyali *sathya
     _signInController.signIn(autoFill: true);
 
     setState(() {
@@ -163,9 +163,17 @@ class _CommonScafoldState extends State<CommonScafold> {
                       Get.toNamed(Routes.MyProfile);
                     },
                     child: CircleAvatar(
-                      radius: 15,
+                      radius: 20,
                       backgroundColor: Colors.white,
-                      child: Image.asset('assets/svg/ellipse_1.png'),
+                      child: Container(
+                        height: 27,
+                        width: 27,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50)),
+                        child: Image.network(
+                          '${profileData.isNotEmpty ? profileData["profilePic"] : ""}',
+                        ),
+                      ),
                     ),
                   ),
                 ),

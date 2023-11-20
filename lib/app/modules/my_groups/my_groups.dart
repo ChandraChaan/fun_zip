@@ -209,7 +209,7 @@ class singleCard extends StatelessWidget {
                       Text(
                         heading,
                         // 'Secret Looser',
-                        style: AppTextStyles.headingTextStyle,
+                        style: TextStyle(fontSize: 14),
                         maxLines: 3, // Limit to 3 lines
                         overflow: TextOverflow
                             .ellipsis, // Show ellipsis (...) if text is truncated
