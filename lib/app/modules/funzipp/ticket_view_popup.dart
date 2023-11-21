@@ -50,34 +50,34 @@ class TicketViewPopUp extends StatefulWidget {
 }
 
 class _TicketViewPopUpState extends State<TicketViewPopUp> {
-  Map ticketdetailsapi = {};
-  List<Map<dynamic, dynamic>> my_Tickets = [];
+  // Map ticketdetailsapi = {};
+  // List<Map<dynamic, dynamic>> my_Tickets = [];
 
 
-  Future<void> ticketDetails() async {
-    try {
-      var response = await EventRepository().ticketDetails();
-      print(response.toString());
-      print('Sathya get profile details');
-      final bodyData = response;
-      setState(() {
-        ticketdetailsapi = (bodyData); // Wrap bodyData in a list
-      });
-    } catch (e) {
-      errorSnackbar(title: '$e', desc: '');
-    }
-  }
+  // Future<void> ticketDetails() async {
+  //   try {
+  //     var response = await EventRepository().ticketDetails();
+  //     print(response.toString());
+  //     print('Sathya get profile details');
+  //     final bodyData = response;
+  //     setState(() {
+  //       ticketdetailsapi = (bodyData); // Wrap bodyData in a list
+  //     });
+  //   } catch (e) {
+  //     errorSnackbar(title: '$e', desc: '');
+  //   }
+  // }
 
-  @override
-  void initState() {
-    ticketDetails();
-    setState(() {});
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   ticketDetails();
+  //   setState(() {});
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    // SizeGet().init(context);
+    SizeGet().init(context);
     return Scaffold(
       backgroundColor: AppColors.deepBule,
       body: SingleChildScrollView(
