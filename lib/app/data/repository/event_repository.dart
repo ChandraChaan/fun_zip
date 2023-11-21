@@ -215,6 +215,7 @@ class EventRepository {
 
   Future myTicket() async {
     String token = userModel.token;
+    // event details evet id
 
     final headers = {
       'Cookie': 'AuthToken=$token;',

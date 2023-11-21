@@ -18,7 +18,9 @@ import '../modules/event_management/event_management_screen.dart';
 import '../modules/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
-import '../modules/my_goups/my_groups_screen.dart';
+import '../modules/my_groups/cerate_group.dart';
+import '../modules/my_groups/create_group2.dart';
+import '../modules/my_groups/create_groupthree.dart';
 import '../modules/my_groups/my_groups.dart';
 import '../modules/my_profile_screen/my_profile_screen.dart';
 import '../modules/my_tickets/my_tickets.dart';
@@ -48,7 +50,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH;
+  static const INITIAL = Routes.CreateGroupThree;
 
   static final routes = [
     GetPage(
@@ -254,6 +256,21 @@ class AppPages {
     GetPage(
       name: _Paths.ContactUsScreen,
       page: () => ContactUsScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CreateGroup,
+      page: () => CreateGroup(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CreateGroupSecond,
+      page: () => CreateGroupSecond(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CreateGroupThree,
+      page: () => CreateGroupThree(),
       binding: EventDetailsBinding(),
     ),
 

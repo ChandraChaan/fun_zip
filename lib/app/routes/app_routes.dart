@@ -51,6 +51,9 @@ abstract class Routes {
   static const MyGroupStateScreen = _Paths.MyGroupStateScreen;
   static const FloatingButton = _Paths.FloatingButton;
   static const ContactUsScreen = _Paths.ContactUsScreen;
+  static const CreateGroup = _Paths.CreateGroup;
+  static const CreateGroupSecond = _Paths.CreateGroupSecond;
+  static const CreateGroupThree = _Paths.CreateGroupThree;
 }
 
 abstract class _Paths {
@@ -104,5 +107,8 @@ abstract class _Paths {
   static const MyGroupStateScreen = '/MyGroupStateScreen';
   static const FloatingButton = '/FloatingButton';
   static const ContactUsScreen = '/ContactUsScreen';
+  static const CreateGroup = '/CreateGroup';
+  static const CreateGroupSecond = '/CreateGroupSecond';
+  static const CreateGroupThree = '/CreateGroupThree';
 
 }
