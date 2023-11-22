@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 import '../home/controllers/home_controller.dart';
 
@@ -24,6 +26,25 @@ class _EditingEventState extends State<EditingEvent> {
 
   final TextEditingController partyNameController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String _imageFile = "";
+
+  Future<void> _getImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = pickedFile.path;
+      });
+    }
+  }
+
+  void _removeImage() {
+    setState(() {
+      _imageFile = "";
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -905,19 +926,52 @@ class _EditingEventState extends State<EditingEvent> {
                             TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
                       ),
                       SizedBox(height: 20),
-                      Stack(
-                        children: [
-                          Image.asset('assets/svg/rectangle_111.png'),
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Icon(
-                              Icons.cancel_outlined,
-                              size: 25,
-                              color: Color(0XFFC61236),
-                            ),
+                      _imageFile != ""
+                          ? Stack(
+                              children: [
+                                Container(
+                                  width: 100,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: FileImage(
+                                        File(_imageFile),
+                                      ),
+                                      fit: BoxFit.fill,
+                                    ),
+                                    border: Border.all(
+                                      color: Colors.grey,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                Positioned(
+                                  top: -10,
+                                  right: -10,
+                                  child: IconButton(
+                                    icon: Icon(
+                                      Icons.cancel_outlined,
+                                      size: 25,
+                                      color: Color(0XFFC61236),
+                                    ),
+                                    onPressed: _removeImage,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey,
                           ),
-                        ],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: IconButton(
+                            onPressed: _getImage,
+                            icon: Icon(Icons.add_a_photo,
+                                size: 50, color: Colors.grey)),
                       ),
                       SizedBox(
                         height: 10,
