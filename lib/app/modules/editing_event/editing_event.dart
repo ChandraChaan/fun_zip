@@ -1,3 +1,4 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
@@ -17,6 +18,9 @@ class _EditingEventState extends State<EditingEvent> {
 
   bool firstRowSelected = false;
   bool secondRowSelected = true;
+  String timeRangeChange = '';
+  String timeRangeValidate = '';
+  String timeRangeSave = '';
 
   @override
   Widget build(BuildContext context) {
@@ -176,28 +180,42 @@ class _EditingEventState extends State<EditingEvent> {
                         child: TextField(
                           decoration: InputDecoration(
                               prefixIcon: Padding(
-                                padding: const EdgeInsets.only(left: 5),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Icon(
+                                padding: const EdgeInsets.only(left: 15),
+                                child: DateTimePicker(
+                                      type: DateTimePickerType.date,
+                                      dateMask: 'MMM dd, yyyy',
+                                      initialValue: DateTime.now().toString(),
+                                      firstDate: DateTime(2000),
+                                      lastDate: DateTime(2100),
+                                      textAlignVertical: TextAlignVertical.center,
+                                      style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Color(0XFF5E5A80),
+                                                ),
+                                      decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.only(bottom: 16),
+                                        border: InputBorder.none,
+                                        enabled: true,
+                                        icon: Icon(
                                           Icons.calendar_today,
                                           size: 14,
                                           color: Color(0XFF5B46F4),
                                         ),
-                                        5.width,
-                                        Text('Aug/10/2023',
-                                            style: TextStyle(
-                                              fontSize: 10,
-                                              color: Color(0XFF5E5A80),
-                                            ))
-                                      ],
+                                      ),
+                                      selectableDayPredicate: (date) {
+                                        // Disable weekend days to select from the calendar
+                                        if (date.weekday == 6 || date.weekday == 7) {
+                                          return false;
+                                        }
+                                        return true;
+                                      },
+                                      onChanged: (val) => print(val),
+                                      validator: (val) {
+                                        print(val);
+                                        return null;
+                                      },
+                                      onSaved: (val) => print(val),
                                     ),
-                                  ],
-                                ),
                               ),
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
@@ -229,21 +247,35 @@ class _EditingEventState extends State<EditingEvent> {
                         child: TextField(
                           decoration: InputDecoration(
                               prefixIcon: Padding(
-                                padding: const EdgeInsets.only(left: 5),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      Icons.schedule,
+                                padding: const EdgeInsets.only(left: 15.0),
+                                child: DateTimePicker(
+                                  type: DateTimePickerType.time,
+                                  //timePickerEntryModeInput: true,
+                                  //controller: _controller4,
+                                  initialValue: '', //_initialValue,
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: Color(0XFF5E5A80),
+                                  ),
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.only(bottom: 10),
+                                    hintText: "${DateTime.now().hour}:${DateTime.now().minute}",
+                                    border: InputBorder.none,
+                                    enabled: true,
+                                    icon: Icon(
+                                      Icons.access_time,
                                       size: 16,
                                       color: Color(0XFF5B46F4),
                                     ),
-                                    5.width,
-                                    Text('06:00 PM',
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          color: Color(0XFF5E5A80),
-                                        ))
-                                  ],
+                                  ),
+                                  locale: Locale('pt', 'BR'),
+                                  // use24HourFormat: false,
+                                  onChanged: (val) => setState(() => timeRangeChange = val),
+                                  validator: (val) {
+                                    setState(() => timeRangeValidate = val ?? '');
+                                    return null;
+                                  },
+                                  onSaved: (val) => setState(() => timeRangeSave = val ?? ''),
                                 ),
                               ),
                               filled: true,
@@ -276,14 +308,44 @@ class _EditingEventState extends State<EditingEvent> {
                         height: 35,
                         child: TextField(
                           decoration: InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.calendar_today_outlined,
-                                size: 15,
-                                color: Colors.deepPurpleAccent,
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.only(left: 15),
+                                child: DateTimePicker(
+                                  type: DateTimePickerType.date,
+                                  dateMask: 'MMM dd, yyyy',
+                                  initialValue: DateTime.now().toString(),
+                                  firstDate: DateTime(2000),
+                                  lastDate: DateTime(2100),
+                                  textAlignVertical: TextAlignVertical.center,
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: Color(0XFF5E5A80),
+                                  ),
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.only(bottom: 16),
+                                    border: InputBorder.none,
+                                    enabled: true,
+                                    icon: Icon(
+                                      Icons.calendar_today,
+                                      size: 14,
+                                      color: Color(0XFF5B46F4),
+                                    ),
+                                  ),
+                                  selectableDayPredicate: (date) {
+                                    // Disable weekend days to select from the calendar
+                                    if (date.weekday == 6 || date.weekday == 7) {
+                                      return false;
+                                    }
+                                    return true;
+                                  },
+                                  onChanged: (val) => print(val),
+                                  validator: (val) {
+                                    print(val);
+                                    return null;
+                                  },
+                                  onSaved: (val) => print(val),
+                                ),
                               ),
-                              hintText: 'December 12,2023',
-                              hintStyle: TextStyle(
-                                  fontSize: 10, color: Color(0XFF5E5A80)),
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
                               border: OutlineInputBorder(
@@ -313,14 +375,38 @@ class _EditingEventState extends State<EditingEvent> {
                         height: 35,
                         child: TextField(
                           decoration: InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.schedule,
-                                size: 16,
-                                color: Colors.deepPurpleAccent,
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.only(left: 15.0),
+                                child: DateTimePicker(
+                                  type: DateTimePickerType.time,
+                                  //timePickerEntryModeInput: true,
+                                  //controller: _controller4,
+                                  initialValue: '', //_initialValue,
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: Color(0XFF5E5A80),
+                                  ),
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.only(bottom: 10),
+                                    hintText: "${DateTime.now().hour}:${DateTime.now().minute}",
+                                    border: InputBorder.none,
+                                    enabled: true,
+                                    icon: Icon(
+                                      Icons.access_time,
+                                      size: 16,
+                                      color: Color(0XFF5B46F4),
+                                    ),
+                                  ),
+                                  locale: Locale('pt', 'BR'),
+                                  // use24HourFormat: false,
+                                  onChanged: (val) => setState(() => timeRangeChange = val),
+                                  validator: (val) {
+                                    setState(() => timeRangeValidate = val ?? '');
+                                    return null;
+                                  },
+                                  onSaved: (val) => setState(() => timeRangeSave = val ?? ''),
+                                ),
                               ),
-                              hintText: '11:00 PM',
-                              hintStyle: TextStyle(
-                                  fontSize: 10, color: Color(0XFF5E5A80)),
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
                               border: OutlineInputBorder(
@@ -755,7 +841,7 @@ class _EditingEventState extends State<EditingEvent> {
               ),
               // Category details
               Container(
-                height: 570,
+                height: 580,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
