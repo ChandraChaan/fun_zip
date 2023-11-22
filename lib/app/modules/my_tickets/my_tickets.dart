@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:fun_zippy/app/data/repository/event_repository.dart';
 import 'package:fun_zippy/app/modules/common_data/common_text.dart';
-import 'package:fun_zippy/app/modules/funzipp/ticket_view_popup.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
 import 'package:fun_zippy/app/utilities/dynamic_size.dart';
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:fun_zippy/app/widgets/error_snackbar.dart';
 import 'package:intl/intl.dart';
+
+import '../my_ticket_view/ticket_view_popup.dart';
 
 class MyTickets extends StatefulWidget {
   final bool isSfald;

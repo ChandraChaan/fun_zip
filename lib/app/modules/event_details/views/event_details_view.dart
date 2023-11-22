@@ -3,6 +3,7 @@ import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../utilities/date_time_format.dart';
 import '../../add_calendar/add_calendar.dart';
 import '../../booking_tickets/booking_tickets.dart';
@@ -16,6 +17,8 @@ import 'components/CommentWidget.dart';
 import 'components/GiftRegistryWidget.dart';
 import 'components/MapWidget.dart';
 import 'components/NameAndDetailsCardWidget.dart';
+import 'components/OrganizersWidget.dart';
+import 'components/PotluckItemsWidget.dart';
 import 'components/RatingCardWidget.dart';
 import 'components/RelatedEventsWidget.dart';
 import 'components/ShareWidget.dart';
@@ -23,6 +26,7 @@ import 'components/SignUpItemWidget.dart';
 import 'components/SpeakersWidget.dart';
 import 'components/SponsorsWidget.dart';
 import 'components/WhatIsPlaceOfferWidget.dart';
+import 'components/contacts.dart';
 
 class EventDetailsView extends GetView<EventDetailsController> {
   const EventDetailsView({Key? key}) : super(key: key);
@@ -262,25 +266,25 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         CommentWidget(controller: controller),
                         5.height,
 
-                        // OrganizersWidget(),
-                        // 5.height,
+                        OrganizersWidget(),
+                        5.height,
 
-                        //* Potluck items
-                        // PotluckItemsWidget(
-                        //   controller: controller,
-                        // ),
+                        // * Potluck items
+                        PotluckItemsWidget(
+                          controller: controller,
+                        ),
                         // Gift Registry
 
-                        // as of now this is not required further needed uncomment it
-                        // Visibility(
-                        //     visible: controller.eventDetailsModel.contacts
-                        //                 .toString() !=
-                        //             'null'
-                        //         ? true
-                        //         : false,
-                        //     child: SizedBox(
-                        //         height: 200,
-                        //         child: ContactsView(controller: controller))),
+                        //    as of now this is not required further needed uncomment it
+                        Visibility(
+                            visible: controller.eventDetailsModel.contacts
+                                        .toString() !=
+                                    'null'
+                                ? true
+                                : false,
+                            child: SizedBox(
+                                height: 200,
+                                child: ContactsView(controller: controller))),
 
                         RelatedEventsWidget(),
                       ],
@@ -310,7 +314,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
         materialTapTargetSize: MaterialTapTargetSize.padded,
         backgroundColor: Color(0XFF5B46F4),
         onPressed: () {
-          print('Floating Action Button Pressed');
+          Get.toNamed(Routes.RsvpScreen);
         },
         child: Image.asset('assets/svg/floating_button.png'),
         mini: true,
@@ -319,4 +323,3 @@ class EventDetailsView extends GetView<EventDetailsController> {
     );
   }
 }
-

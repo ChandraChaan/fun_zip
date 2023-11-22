@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import '../modules/booking_tickets/booking_tickets.dart';
 import '../modules/contact_us/contact_us.dart';
 import '../modules/contact_us/contact_us.dart';
-import '../modules/funzipp/ticket_view_popup.dart';
 import '../modules/my_events_screen/my_events.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
@@ -24,7 +23,7 @@ import '../modules/my_groups/create_groupthree.dart';
 import '../modules/my_groups/my_groups.dart';
 import '../modules/my_profile_screen/my_profile_screen.dart';
 import '../modules/my_tickets/my_tickets.dart';
-import '../modules/organization/organization_screen.dart';
+import '../modules/my_profile_screen/organization_screen.dart';
 import '../modules/otp_verification/bindings/otp_verification_binding.dart';
 import '../modules/otp_verification/views/otp_verification_view.dart';
 import '../modules/potluck_menu/potluck_menu.dart';
@@ -50,7 +49,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.CreateGroupThree;
+  static const INITIAL = Routes.HOME;
 
   static final routes = [
     GetPage(

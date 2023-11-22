@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/modules/common_data/common_text.dart';
+import 'package:fun_zippy/app/routes/app_pages.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
+import 'package:get/get.dart';
 
 import '../../data/repository/event_repository.dart';
 import '../../widgets/error_snackbar.dart';
@@ -540,7 +542,7 @@ class _MyProfileState extends State<MyProfile> {
                           child: TextField(
                             decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText:  //data diaplay
+                              hintText: //data diaplay
                                   '${profileData.isNotEmpty ? profileData["instagram"] : ""}',
                               hintStyle: TextStyle(fontSize: 10),
                             ),
@@ -571,7 +573,9 @@ class _MyProfileState extends State<MyProfile> {
               ),
               10.height,
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(Routes.OrganizationScreen);
+                },
                 child: Container(
                   height: 35,
                   width: double.infinity,
@@ -609,14 +613,15 @@ class _MyProfileState extends State<MyProfile> {
       ),
     );
   }
+
   Widget ForBuilderEvent({required Widget chil}) {
     return widget.isMyProfile
         ? CommonScafold(
-      title: 'My tickets',
-      selectedIndex: 2,
-      navChild: false,
-      child: chil,
-    )
+            title: 'My tickets',
+            selectedIndex: 2,
+            navChild: false,
+            child: chil,
+          )
         : chil;
   }
 }

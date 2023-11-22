@@ -79,7 +79,8 @@ class SignUpItemWidget extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 5),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                           controller!.formatDate(controller!
@@ -97,11 +98,12 @@ class SignUpItemWidget extends StatelessWidget {
                                       ),
                                       SizedBox(height: 8),
                                       Text(
-                                        controller!.eventDetailsModel.timeSlots![a]
-                                        ['purpose'] ??
+                                        controller!.eventDetailsModel
+                                                .timeSlots![a]['purpose'] ??
                                             ' ',
                                         style: TextStyle(
-                                            fontSize: 12, color: Color(0XFF86839B)),
+                                            fontSize: 12,
+                                            color: Color(0XFF86839B)),
                                       ),
                                     ],
                                   ),
@@ -117,7 +119,7 @@ class SignUpItemWidget extends StatelessWidget {
                                     onPressed: controller!.eventDetailsModel
                                                 .timeSlots![a]['status']
                                                 .toString() ==
-                                        // A means Active, if this is needed modification , do those.
+                                            // A means Active, if this is needed modification , do those.
                                             'A'
                                         ? () {
                                             Get.dialog(BottomSignup(
@@ -129,8 +131,8 @@ class SignUpItemWidget extends StatelessWidget {
                                       backgroundColor: Colors.white,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(50),
-                                        side:
-                                            BorderSide(color: Color(0XFFC61236)),
+                                        side: BorderSide(
+                                            color: Color(0XFFC61236)),
                                       ),
                                     ),
                                     child: Container(
@@ -484,7 +486,8 @@ class _PotluckItemsState extends State<PotluckItems> {
               //   height: 60,
               //   child: Image.asset('assets/svg/logo_512.png'),
               // ),
-              Text('Potluck Items', style: TextStyle(fontWeight: FontWeight.bold)),
+              Text('Potluck Items',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
               SizedBox(
                 height: 8,
               ),
@@ -546,22 +549,29 @@ class _PotluckItemsState extends State<PotluckItems> {
                                         .toString()),
                                     Row(
                                       children: [
-                                        Text((int.parse(widget
-                                                    .controller
-                                                    .eventDetailsModel
-                                                    .potluckItems![a]['count']
-                                                    .toString()) -
-                                                int.parse(widget
-                                                    .controller
-                                                    .eventDetailsModel
-                                                    .potluckItems![a]['claimedCount']
-                                                    .toString()))
-                                            .toString(),style: TextStyle(color: Color(0XFF86839B),fontSize: 14),),
+                                        Text(
+                                          (int.parse(widget
+                                                      .controller
+                                                      .eventDetailsModel
+                                                      .potluckItems![a]['count']
+                                                      .toString()) -
+                                                  int.parse(widget
+                                                      .controller
+                                                      .eventDetailsModel
+                                                      .potluckItems![a]
+                                                          ['claimedCount']
+                                                      .toString()))
+                                              .toString(),
+                                          style: TextStyle(
+                                              color: Color(0XFF86839B),
+                                              fontSize: 14),
+                                        ),
                                         SizedBox(width: 5),
                                         Text(
                                           'left',
                                           style: TextStyle(
-                                              fontSize: 14, color: Color(0XFF86839B)),
+                                              fontSize: 14,
+                                              color: Color(0XFF86839B)),
                                         )
                                       ],
                                     ),
@@ -574,8 +584,9 @@ class _PotluckItemsState extends State<PotluckItems> {
                                   ? Icons.check_circle
                                   : Icons.radio_button_unchecked,
                               size: 20,
-                              color:
-                                  a == selectedIndex ? Colors.blue : Colors.black,
+                              color: a == selectedIndex
+                                  ? Colors.blue
+                                  : Colors.black,
                             ),
                           ],
                         ),
