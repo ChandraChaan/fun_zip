@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/modules/common_data/common_phone_number.dart';
 import 'package:get/get.dart';
 
+import '../../routes/app_pages.dart';
 import '../../theme/colors.dart';
 import '../common_data/common_phone_numberwhite.dart';
 
@@ -172,13 +173,18 @@ class _CreateGroupSecondState extends State<CreateGroupSecond> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  child: Container(
-                    height: 35,
-                    width: 210,
-                    child: Center(
-                      child: Text(
-                        'Save',
-                        style: TextStyle(color: Colors.white, fontSize: 14),
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.CreateGroupThree);
+                    },
+                    child: Container(
+                      height: 35,
+                      width: 210,
+                      child: Center(
+                        child: Text(
+                          'Save',
+                          style: TextStyle(color: Colors.white, fontSize: 14),
+                        ),
                       ),
                     ),
                   ),

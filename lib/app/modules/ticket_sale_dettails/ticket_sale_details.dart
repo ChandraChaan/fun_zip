@@ -79,8 +79,8 @@ class TicketSaleDetailsScreen extends StatelessWidget {
                                     child: listData[a]['button'].toString() ==
                                             'true'
                                         ? InkWell(
-                                        onTap: (){},
-                                        child: CommonContainer())
+                                            onTap: () {},
+                                            child: CommonContainer())
                                         : Container()),
                               ],
                             ),
@@ -139,7 +139,7 @@ class TicketSaleDetailsScreen extends StatelessWidget {
                 width: double.infinity,
                 child: TextButton(
                   onPressed: () {
-                    // Add your onPressed functionality here
+                    Get.back();
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: Color(0XFFF5F4F9), // Background color

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:get/get.dart';
 
+import '../../routes/app_pages.dart';
 import '../common_data/common_text.dart';
 
 class EventScreen extends StatefulWidget {
@@ -47,24 +48,24 @@ class _EventScreenState extends State<EventScreen> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-        elevation: 5,
+        elevation: 0,
         backgroundColor: Colors.white,
         leading: InkWell(
           onTap: () {
-            Get.back();
+            Get.toNamed(Routes.EventManagementScreen);
           },
-          child: Icon(
-            Icons.arrow_back,
-            color: Colors.black,
+          child: Image.asset(
+            'assets/svg/vector_22.png',
           ),
         ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
+              height: 30,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.deepPurple, // Border color
+                  color: Color(0XFF5B46F4), // Border color
                   width: 2.0, // Border width
                 ),
                 shape: BoxShape.circle, // To make it a circular border
@@ -115,9 +116,10 @@ class _EventScreenState extends State<EventScreen> {
                   },
                   child: Icon(
                     Icons.qr_code,
-                    color: Colors.deepPurple,
+                    color: Color(0XFF5B46F4),
                   ),
-                )),
+                ),
+              ),
             ),
           )
         ],

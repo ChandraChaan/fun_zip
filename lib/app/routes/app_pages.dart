@@ -19,8 +19,11 @@ import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/my_groups/cerate_group.dart';
 import '../modules/my_groups/create_group2.dart';
+import '../modules/my_groups/create_group_five.dart';
+import '../modules/my_groups/create_group_four.dart';
 import '../modules/my_groups/create_groupthree.dart';
 import '../modules/my_groups/my_groups.dart';
+import '../modules/my_groups/success_screen.dart';
 import '../modules/my_profile_screen/my_profile_screen.dart';
 import '../modules/my_tickets/my_tickets.dart';
 import '../modules/my_profile_screen/organization_screen.dart';
@@ -270,6 +273,21 @@ class AppPages {
     GetPage(
       name: _Paths.CreateGroupThree,
       page: () => CreateGroupThree(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CreateGroupFour,
+      page: () => CreateGroupFour(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CreateGroupFive,
+      page: () => CreateGroupFive(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.GroupSuccessScreen,
+      page: () => GroupSuccessScreen(),
       binding: EventDetailsBinding(),
     ),
 

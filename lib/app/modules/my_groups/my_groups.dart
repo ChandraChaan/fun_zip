@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:fun_zippy/app/modules/common_data/common_text.dart';
+import 'package:fun_zippy/app/modules/my_events_screen/my_events.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
 import 'package:fun_zippy/app/utilities/dynamic_size.dart';
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
+import 'package:get/get.dart';
+
+import '../../routes/app_pages.dart';
 
 class MyGroupsScreen extends StatefulWidget {
   @override
@@ -30,7 +34,8 @@ class MyGroupsScreentateScreen extends State<MyGroupsScreen> {
       length: 3, // Number of tabs
       child: CommonScafold(
         title: 'My Groups',
-        titleChild: Text('My Groups',style: TextStyle(color: Colors.black, fontSize: 20)),
+        titleChild: Text('My Groups',
+            style: TextStyle(color: Colors.black, fontSize: 20)),
         remoNavChild: true,
         boardCast: true,
         child: Scaffold(
@@ -38,6 +43,7 @@ class MyGroupsScreentateScreen extends State<MyGroupsScreen> {
           backgroundColor: backgroundColor,
           body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Container(
+              color: Color(0XFFEFEDFF),
               child: TabBar(
                 indicatorColor: Color(0XFF5B46F4),
                 labelColor: Color(0XFF5B46F4),
@@ -65,15 +71,15 @@ class MyGroupsScreentateScreen extends State<MyGroupsScreen> {
                     child: Text('Messages'),
                   ),
                   // Content for Tab 3
-                  Center(
-                    child: Text('My Events'),
-                  ),
+                  MyEvents()
                 ],
               ),
             ),
           ]),
           floatingActionButton: InkWell(
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(Routes.CreateGroup);
+            },
             child: const CircleAvatar(
               radius: 22,
               backgroundColor: AppColors.lightPurple,
@@ -221,7 +227,8 @@ class singleCard extends StatelessWidget {
                       Row(
                         children: [
                           Icon(
-                            Icons.date_range,size: 16,
+                            Icons.date_range,
+                            size: 16,
                             color: Color(0XFF5E5A80),
                           ),
                           SizedBox(
@@ -239,7 +246,8 @@ class singleCard extends StatelessWidget {
                       Row(
                         children: [
                           Icon(
-                            Icons.location_on_outlined,size: 16,
+                            Icons.location_on_outlined,
+                            size: 16,
                             color: Color(0XFF5E5A80),
                           ),
                           SizedBox(
@@ -366,8 +374,7 @@ class singleCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text10(
-                        "Close Group"),
+                      Text10("Close Group"),
                       SizedBox(
                         height: 10,
                       ),
@@ -403,12 +410,18 @@ class ThreeDotPopupMenu extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(Icons.visibility_outlined,
-              color: Color(0XFF5B46F4),),
-              SizedBox(width: 7,),
-              Text('View',
+              Icon(
+                Icons.visibility_outlined,
+                color: Color(0XFF5B46F4),
+              ),
+              SizedBox(
+                width: 7,
+              ),
+              Text(
+                'View',
                 style: TextStyle(color: Colors.grey[600]),
-                textAlign: TextAlign.left,),
+                textAlign: TextAlign.left,
+              ),
             ],
           ),
         ),
@@ -418,10 +431,18 @@ class ThreeDotPopupMenu extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(Icons.mode_edit_outlined,
-                color: Colors.orange,),
-              SizedBox(width: 7,),
-              Text('Edit',style: TextStyle(color: Colors.grey[600]),textAlign: TextAlign.left,),
+              Icon(
+                Icons.mode_edit_outlined,
+                color: Colors.orange,
+              ),
+              SizedBox(
+                width: 7,
+              ),
+              Text(
+                'Edit',
+                style: TextStyle(color: Colors.grey[600]),
+                textAlign: TextAlign.left,
+              ),
             ],
           ),
         ),
@@ -431,13 +452,18 @@ class ThreeDotPopupMenu extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(Icons.delete_outline_outlined,
-                color: Colors.pink.shade600,),
-              SizedBox(width: 7,),
-              Text10('Delete',
+              Icon(
+                Icons.delete_outline_outlined,
+                color: Colors.pink.shade600,
+              ),
+              SizedBox(
+                width: 7,
+              ),
+              Text10(
+                'Delete',
                 // style: TextStyle(color: Colors.grey[600]),
                 // textAlign: TextAlign.left,
-               ),
+              ),
             ],
           ),
         ),

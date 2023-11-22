@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:fun_zippy/app/modules/common_data/common_text.dart';
 
 class PhoneNumberWhite extends StatefulWidget {
   PhoneNumberWhite({super.key});
@@ -20,10 +20,7 @@ class _PhoneNumberWhiteState extends State<PhoneNumberWhite> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Phone Number',
-          style: TextStyle(fontSize: 11),
-        ),
+        Text10('Phone Number'),
         SizedBox(
           height: 7,
         ),
@@ -47,8 +44,7 @@ class _PhoneNumberWhiteState extends State<PhoneNumberWhite> {
                       topLeft: Radius.circular(20),
                       bottomLeft: Radius.circular(20),
                     )),
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: DropdownButton<String>(
                   value: defaultCountryCode,
                   onChanged: (newValue) {
@@ -59,10 +55,7 @@ class _PhoneNumberWhiteState extends State<PhoneNumberWhite> {
                   items: countryCodes.map((code) {
                     return DropdownMenuItem<String>(
                       value: code,
-                      child: Text(
-                        code,
-                        style: TextStyle(fontSize: 12),
-                      ),
+                      child: Text10(code),
                     );
                   }).toList(),
                   underline: Container(
@@ -91,15 +84,13 @@ class _PhoneNumberWhiteState extends State<PhoneNumberWhite> {
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(20),
-                            bottomRight:
-                            Radius.circular(20),
+                            bottomRight: Radius.circular(20),
                           )),
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(20),
-                            bottomRight:
-                            Radius.circular(20),
+                            bottomRight: Radius.circular(20),
                           ))),
                 ),
               ),
@@ -107,7 +98,6 @@ class _PhoneNumberWhiteState extends State<PhoneNumberWhite> {
           ],
         ),
       ],
-
     );
   }
 }

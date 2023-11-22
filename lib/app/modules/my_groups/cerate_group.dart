@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fun_zippy/app/routes/app_pages.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/widgets/full_linerStepIndicator.dart';
+import 'package:get/get.dart';
 
 class CreateGroup extends StatefulWidget {
   const CreateGroup({super.key});
@@ -16,9 +18,14 @@ class _CreateGroupState extends State<CreateGroup> {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
         ),
         title: Center(
             child: Text(
@@ -61,7 +68,7 @@ class _CreateGroupState extends State<CreateGroup> {
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Group Name',
-                      hintStyle: TextStyle(fontSize: 11),
+                      hintStyle: TextStyle(fontSize: 10),
                     ),
                   ),
                 ),
@@ -91,7 +98,7 @@ class _CreateGroupState extends State<CreateGroup> {
                       border: InputBorder.none,
                       suffixIcon: Image.asset('assets/svg/expand.png'),
                       hintText: 'Choose',
-                      hintStyle: TextStyle(fontSize: 11),
+                      hintStyle: TextStyle(fontSize: 10),
                     ),
                   ),
                 ),
@@ -113,7 +120,7 @@ class _CreateGroupState extends State<CreateGroup> {
                       border: InputBorder.none,
                       suffixIcon: Image.asset('assets/svg/expand.png'),
                       hintText: 'Choose',
-                      hintStyle: TextStyle(fontSize: 11),
+                      hintStyle: TextStyle(fontSize: 10),
                     ),
                   ),
                 ),
@@ -135,7 +142,7 @@ class _CreateGroupState extends State<CreateGroup> {
                       border: InputBorder.none,
                       hintText: 'Choose',
                       suffixIcon: Image.asset('assets/svg/expand.png'),
-                      hintStyle: TextStyle(fontSize: 11),
+                      hintStyle: TextStyle(fontSize: 10),
                     ),
                   ),
                 ),
@@ -156,7 +163,7 @@ class _CreateGroupState extends State<CreateGroup> {
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'City',
-                      hintStyle: TextStyle(fontSize: 11),
+                      hintStyle: TextStyle(fontSize: 10),
                     ),
                   ),
                 ),
@@ -177,7 +184,7 @@ class _CreateGroupState extends State<CreateGroup> {
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Metro',
-                      hintStyle: TextStyle(fontSize: 11),
+                      hintStyle: TextStyle(fontSize: 10),
                     ),
                   ),
                 ),
@@ -198,7 +205,7 @@ class _CreateGroupState extends State<CreateGroup> {
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Age Group',
-                      hintStyle: TextStyle(fontSize: 11),
+                      hintStyle: TextStyle(fontSize: 10),
                     ),
                   ),
                 ),
@@ -228,13 +235,15 @@ class _CreateGroupState extends State<CreateGroup> {
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'Description',
-                      hintStyle: TextStyle(fontSize: 11),
+                      hintStyle: TextStyle(fontSize: 10),
                     ),
                   ),
                 ),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(Routes.CreateGroupSecond);
+                },
                 child: Center(
                   child: Container(
                     height: 35,
@@ -244,11 +253,12 @@ class _CreateGroupState extends State<CreateGroup> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Center(
-                        child: Text(
-                      'Save',
-                      style: (TextStyle(color: Colors.white, fontSize: 14)),
-                    )),
-                    //                            fillColor: Color(0XFFC61236),
+                      child: Text(
+                        'Save',
+                        style: (TextStyle(color: Colors.white, fontSize: 14)),
+                      ),
+                    ),
+                    //fillColor: Color(0XFFC61236),
                   ),
                 ),
               ),

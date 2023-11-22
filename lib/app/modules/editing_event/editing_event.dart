@@ -22,6 +22,9 @@ class _EditingEventState extends State<EditingEvent> {
   String timeRangeValidate = '';
   String timeRangeSave = '';
 
+  final TextEditingController partyNameController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,63 +44,37 @@ class _EditingEventState extends State<EditingEvent> {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.deepPurple, // Border color
-                  width: 2.0, // Border width
-                ),
-                shape: BoxShape.circle, // To make it a circular border
-              ),
-              child: CircleAvatar(
-                radius: 20,
-                backgroundColor: Colors.white,
-                child: InkWell(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          backgroundColor: backgroundColor,
-                          title: Column(
-                            children: [
-                              Text('QR Code'),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Image.asset("assets/svg/qr_code.png"),
-                              SizedBox(height: 15),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Container(
-                                  height: 35,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: Color(0XFFC61236),
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: Center(
-                                      child: Text(
-                                    'Done',
-                                    style: (TextStyle(
-                                        color: Colors.white, fontSize: 14)),
-                                  )),
-                                  //                            fillColor: Color(0XFFC61236),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Container(
+                    height: 35,
+                    margin: EdgeInsets.all(16),
+                    child: TextFormField(
+                      controller: partyNameController,
+                      decoration: InputDecoration(
+                        hintText: 'The Great Gatsby Party: Hyderabad',
+                        hintStyle: TextStyle(fontSize: 10),
+                        filled: true,
+                        fillColor: Color(0XFFF5F4F9),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'This is a mandatory field.';
+                        }
+                        return null;
                       },
-                    );
-                  },
-                  child: Icon(
-                    Icons.qr_code,
-                    color: Colors.deepPurple,
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
           )
@@ -182,40 +159,41 @@ class _EditingEventState extends State<EditingEvent> {
                               prefixIcon: Padding(
                                 padding: const EdgeInsets.only(left: 15),
                                 child: DateTimePicker(
-                                      type: DateTimePickerType.date,
-                                      dateMask: 'MMM dd, yyyy',
-                                      initialValue: DateTime.now().toString(),
-                                      firstDate: DateTime(2000),
-                                      lastDate: DateTime(2100),
-                                      textAlignVertical: TextAlignVertical.center,
-                                      style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Color(0XFF5E5A80),
-                                                ),
-                                      decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.only(bottom: 16),
-                                        border: InputBorder.none,
-                                        enabled: true,
-                                        icon: Icon(
-                                          Icons.calendar_today,
-                                          size: 14,
-                                          color: Color(0XFF5B46F4),
-                                        ),
-                                      ),
-                                      selectableDayPredicate: (date) {
-                                        // Disable weekend days to select from the calendar
-                                        if (date.weekday == 6 || date.weekday == 7) {
-                                          return false;
-                                        }
-                                        return true;
-                                      },
-                                      onChanged: (val) => print(val),
-                                      validator: (val) {
-                                        print(val);
-                                        return null;
-                                      },
-                                      onSaved: (val) => print(val),
+                                  type: DateTimePickerType.date,
+                                  dateMask: 'MMM dd, yyyy',
+                                  initialValue: DateTime.now().toString(),
+                                  firstDate: DateTime(2000),
+                                  lastDate: DateTime(2100),
+                                  textAlignVertical: TextAlignVertical.center,
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: Color(0XFF5E5A80),
+                                  ),
+                                  decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.only(bottom: 16),
+                                    border: InputBorder.none,
+                                    enabled: true,
+                                    icon: Icon(
+                                      Icons.calendar_today,
+                                      size: 14,
+                                      color: Color(0XFF5B46F4),
                                     ),
+                                  ),
+                                  selectableDayPredicate: (date) {
+                                    // Disable weekend days to select from the calendar
+                                    if (date.weekday == 6 ||
+                                        date.weekday == 7) {
+                                      return false;
+                                    }
+                                    return true;
+                                  },
+                                  onChanged: (val) => print(val),
+                                  validator: (val) {
+                                    print(val);
+                                    return null;
+                                  },
+                                  onSaved: (val) => print(val),
+                                ),
                               ),
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
@@ -252,14 +230,16 @@ class _EditingEventState extends State<EditingEvent> {
                                   type: DateTimePickerType.time,
                                   //timePickerEntryModeInput: true,
                                   //controller: _controller4,
-                                  initialValue: '', //_initialValue,
+                                  initialValue: '',
+                                  //_initialValue,
                                   style: TextStyle(
                                     fontSize: 10,
                                     color: Color(0XFF5E5A80),
                                   ),
                                   decoration: InputDecoration(
                                     contentPadding: EdgeInsets.only(bottom: 10),
-                                    hintText: "${DateTime.now().hour}:${DateTime.now().minute}",
+                                    hintText:
+                                        "${DateTime.now().hour}:${DateTime.now().minute}",
                                     border: InputBorder.none,
                                     enabled: true,
                                     icon: Icon(
@@ -270,12 +250,15 @@ class _EditingEventState extends State<EditingEvent> {
                                   ),
                                   locale: Locale('pt', 'BR'),
                                   // use24HourFormat: false,
-                                  onChanged: (val) => setState(() => timeRangeChange = val),
+                                  onChanged: (val) =>
+                                      setState(() => timeRangeChange = val),
                                   validator: (val) {
-                                    setState(() => timeRangeValidate = val ?? '');
+                                    setState(
+                                        () => timeRangeValidate = val ?? '');
                                     return null;
                                   },
-                                  onSaved: (val) => setState(() => timeRangeSave = val ?? ''),
+                                  onSaved: (val) =>
+                                      setState(() => timeRangeSave = val ?? ''),
                                 ),
                               ),
                               filled: true,
@@ -333,7 +316,8 @@ class _EditingEventState extends State<EditingEvent> {
                                   ),
                                   selectableDayPredicate: (date) {
                                     // Disable weekend days to select from the calendar
-                                    if (date.weekday == 6 || date.weekday == 7) {
+                                    if (date.weekday == 6 ||
+                                        date.weekday == 7) {
                                       return false;
                                     }
                                     return true;
@@ -381,14 +365,16 @@ class _EditingEventState extends State<EditingEvent> {
                                   type: DateTimePickerType.time,
                                   //timePickerEntryModeInput: true,
                                   //controller: _controller4,
-                                  initialValue: '', //_initialValue,
+                                  initialValue: '',
+                                  //_initialValue,
                                   style: TextStyle(
                                     fontSize: 10,
                                     color: Color(0XFF5E5A80),
                                   ),
                                   decoration: InputDecoration(
                                     contentPadding: EdgeInsets.only(bottom: 10),
-                                    hintText: "${DateTime.now().hour}:${DateTime.now().minute}",
+                                    hintText:
+                                        "${DateTime.now().hour}:${DateTime.now().minute}",
                                     border: InputBorder.none,
                                     enabled: true,
                                     icon: Icon(
@@ -399,12 +385,15 @@ class _EditingEventState extends State<EditingEvent> {
                                   ),
                                   locale: Locale('pt', 'BR'),
                                   // use24HourFormat: false,
-                                  onChanged: (val) => setState(() => timeRangeChange = val),
+                                  onChanged: (val) =>
+                                      setState(() => timeRangeChange = val),
                                   validator: (val) {
-                                    setState(() => timeRangeValidate = val ?? '');
+                                    setState(
+                                        () => timeRangeValidate = val ?? '');
                                     return null;
                                   },
-                                  onSaved: (val) => setState(() => timeRangeSave = val ?? ''),
+                                  onSaved: (val) =>
+                                      setState(() => timeRangeSave = val ?? ''),
                                 ),
                               ),
                               filled: true,
@@ -607,18 +596,10 @@ class _EditingEventState extends State<EditingEvent> {
                         ),
                       ),
                       SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Text(
-                            'State',
-                            style: TextStyle(
-                                fontSize: 10, color: Color(0XFF5E5A80)),
-                          ),
-                          Text(
-                            '*',
-                            style: TextStyle(color: Colors.red, fontSize: 10),
-                          ),
-                        ],
+                      Text(
+                        'State',
+                        style:
+                            TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
                       ),
                       SizedBox(height: 8),
                       Container(
@@ -716,7 +697,7 @@ class _EditingEventState extends State<EditingEvent> {
                                   fontSize: 10, color: Color(0XFF5E5A80)),
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
-                              suffixIcon: Icon(Icons.expand_more),
+                              suffixIcon: Image.asset("assets/svg/expand.png"),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
@@ -879,7 +860,7 @@ class _EditingEventState extends State<EditingEvent> {
                                   fontSize: 10, color: Color(0XFF5E5A80)),
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
-                              suffixIcon: Icon(Icons.expand_more),
+                              suffixIcon: Image.asset("assets/svg/expand.png"),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
@@ -908,7 +889,7 @@ class _EditingEventState extends State<EditingEvent> {
                                   fontSize: 10, color: Color(0XFF5E5A80)),
                               filled: true,
                               fillColor: Color(0XFFF5F4F9),
-                              suffixIcon: Icon(Icons.expand_more),
+                              suffixIcon: Image.asset("assets/svg/expand.png"),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
@@ -993,7 +974,8 @@ class _EditingEventState extends State<EditingEvent> {
                             child: Center(
                                 child: Text(
                               'Party',
-                                  style: TextStyle(fontSize: 8,color: Color(0XFFFF5C00)),
+                              style: TextStyle(
+                                  fontSize: 8, color: Color(0XFFFF5C00)),
                             )),
                             decoration: BoxDecoration(
                                 color: Color(0XFFFF5C00).withOpacity(.22),
@@ -1006,7 +988,8 @@ class _EditingEventState extends State<EditingEvent> {
                             child: Center(
                                 child: Text(
                               'Event',
-                                  style: TextStyle(fontSize: 8,color: Color(0XFFDC143C)),
+                              style: TextStyle(
+                                  fontSize: 8, color: Color(0XFFDC143C)),
                             )),
                             decoration: BoxDecoration(
                                 color: Color(0XFFDC143C).withOpacity(.20),
@@ -1019,7 +1002,8 @@ class _EditingEventState extends State<EditingEvent> {
                             child: Center(
                                 child: Text(
                               'Hyderabad',
-                                  style: TextStyle(fontSize: 8,color: Color(0XFF9747FF)),
+                              style: TextStyle(
+                                  fontSize: 8, color: Color(0XFF9747FF)),
                             )),
                             decoration: BoxDecoration(
                                 color: Color(0XFF9747FF).withOpacity(.20),
@@ -1083,7 +1067,7 @@ class _EditingEventState extends State<EditingEvent> {
                 width: double.infinity,
                 child: TextButton(
                   onPressed: () {
-                    // Add your onPressed functionality here
+                    if (_formKey.currentState!.validate()) {}
                   },
                   style: TextButton.styleFrom(
                     backgroundColor: Color(0XFFC61236), // Background color

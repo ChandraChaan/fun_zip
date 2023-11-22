@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:fun_zippy/app/modules/common_data/common_text.dart';
+import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../routes/app_pages.dart';
-import '../../theme/colors.dart';
 
-class CreateGroupThree extends StatefulWidget {
-  const CreateGroupThree({super.key});
+class CreateGroupFour extends StatelessWidget {
+  const CreateGroupFour({super.key});
 
-  @override
-  State<CreateGroupThree> createState() => _CreateGroupThreeState();
-}
-
-class _CreateGroupThreeState extends State<CreateGroupThree> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,63 +33,17 @@ class _CreateGroupThreeState extends State<CreateGroupThree> {
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Container(
-          height: 500,
+          height: 400,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Members',
+                'Message',
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
               ),
               Text(
-                'Summary/Thumbnail Picture',
-                style: TextStyle(fontSize: 11),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Container(
-                  height: 90,
-                  width: 500,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset('assets/svg/upload.png'),
-                      Text10('Drop logo/Image here to'),
-                      Text10('Upload'),
-                    ],
-                  ),
-                ),
-              ),
-              Text(
-                'Upload Event Photo/Videos',
-                style: TextStyle(fontSize: 11),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Container(
-                  height: 90,
-                  width: 500,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset('assets/svg/upload.png'),
-                      Text10('Drop logo/Image here to'),
-                      Text10('Upload'),
-                    ],
-                  ),
-                ),
-              ),
-              Text(
-                'External Videos',
+                'Message Type',
                 style: TextStyle(fontSize: 11),
               ),
               Container(
@@ -108,19 +57,19 @@ class _CreateGroupThreeState extends State<CreateGroupThree> {
                   child: TextField(
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Enter URL',
-                      suffixIcon: Image.asset('assets/svg/add.png'),
-                      hintStyle: TextStyle(fontSize: 11),
+                      hintText: 'Post Message',
+                      suffixIcon: Image.asset("assets/svg/expand.png"),
+                      hintStyle: TextStyle(fontSize: 10),
                     ),
                   ),
                 ),
               ),
               Text(
-                'External Photo',
+                "Message",
                 style: TextStyle(fontSize: 11),
               ),
               Container(
-                height: 35,
+                // height: 35,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
@@ -128,19 +77,20 @@ class _CreateGroupThreeState extends State<CreateGroupThree> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
+                    maxLines: 4,
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Enter URL',
-                      suffixIcon: Image.asset('assets/svg/add.png'),
-                      hintStyle: TextStyle(fontSize: 11),
+                      hintText: 'Type Your Message',
+                      hintStyle: TextStyle(fontSize: 10),
                     ),
                   ),
                 ),
               ),
+              SizedBox(height: 19),
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.toNamed(Routes.CreateGroupFour);
+                    Get.toNamed(Routes.CreateGroupFive);
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Color(0XFFC61236),

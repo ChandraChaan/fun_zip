@@ -24,6 +24,15 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
     _SalesData('Apr', 32),
     _SalesData('May', 40)
   ];
+  String selectedOptionss = '';
+
+  int selectedOptio = 0;
+
+  void selectOption(int option) {
+    setState(() {
+      selectedOptio = option;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +42,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
         elevation: 0,
         backgroundColor: Colors.white,
         leading: InkWell(
-          onTap: (){
+          onTap: () {
             Get.toNamed(Routes.EventManagementScreen);
           },
           child: Image.asset(
@@ -46,7 +55,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
             child: Row(
               children: [
                 Container(
-                  height: 26,
+                  height: 33,
                   decoration: BoxDecoration(
                     color: Color(0XFF5B46F4),
                     border: Border.all(
@@ -65,13 +74,13 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                       child: Icon(
                         Icons.photo_camera,
                         size: 14,
-                        color: Colors.deepPurple,
+                        color: Color(0XFF5B46F4),
                       ),
                     ),
                   ),
                 ),
                 Container(
-                  height: 26,
+                  height: 30,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Color(0XFF5B46F4), // Border color
@@ -80,13 +89,55 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                     shape: BoxShape.circle, // To make it a circular border
                   ),
                   child: CircleAvatar(
-                      radius: 20,
-                      backgroundColor: Colors.white,
+                    radius: 20,
+                    backgroundColor: Colors.white,
+                    child: InkWell(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              backgroundColor: backgroundColor,
+                              title: Column(
+                                children: [
+                                  Text('QR Code'),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Image.asset("assets/svg/qr_code.png"),
+                                  SizedBox(height: 15),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Container(
+                                      height: 35,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: Color(0XFFC61236),
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Center(
+                                          child: Text(
+                                        'Done',
+                                        style: (TextStyle(
+                                            color: Colors.white, fontSize: 14)),
+                                      )),
+                                      //                            fillColor: Color(0XFFC61236),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        );
+                      },
                       child: Icon(
                         Icons.qr_code,
                         color: Color(0XFF5B46F4),
-                        size: 14,
-                      )),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -107,54 +158,66 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    height: 45,
-                    width: 100,
-                    decoration: BoxDecoration(
-                        color: Color(0XFF5B46F4),
-                        borderRadius: BorderRadius.circular(14)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 25,
-                            width: 25,
-                            decoration: BoxDecoration(
-                                color: Color(0XFF2F2194),
-                                borderRadius: BorderRadius.circular(4)),
-                            child: Icon(
-                              Icons.person_add_alt_1,
-                              size: 13,
-                              color: Colors.white,
+                  InkWell(
+                    onTap: (){
+                      setSelectedOption('Invited');
+
+                    },
+                    child: Container(
+                      height: 45,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          color: selectedOptionss == 'Invited'
+                              ? Color(0XFF5B46F4)
+                              : Color(0XFFE3DFFF),
+                          //color: Color(0XFF5B46F4),
+                          borderRadius: BorderRadius.circular(14)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 25,
+                              width: 25,
+                              decoration: BoxDecoration(
+                                  color: Color(0XFF2F2194),
+                                  borderRadius: BorderRadius.circular(4)),
+                              child: Icon(
+                                Icons.person_add_alt_1,
+                                size: 13,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text10(
-                              'Invited',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            Text(
-                              '10,250',
-                              style:
-                                  TextStyle(fontSize: 12, color: Colors.white),
-                            )
-                          ],
-                        )
-                      ],
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text10(
+                                'Invited',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Text(
+                                '10,250',
+                                style:
+                                    TextStyle(fontSize: 12, color: Colors.white),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   Container(
                     height: 45,
                     width: 100,
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: selectedOptionss == 'Invited'
+                            ? Color(0XFF5B46F4)
+                            : Color(0XFFE3DFFF),
+                        //color: Colors.white,
                         border: Border.all(color: Colors.white70),
                         borderRadius: BorderRadius.circular(10)),
                     child: Row(
@@ -163,16 +226,25 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: 25,
-                            width: 25,
-                            decoration: BoxDecoration(
-                                color: Color(0XFFFFE2D2),
-                                borderRadius: BorderRadius.circular(4)),
-                            child: Icon(
-                              Icons.person_add_alt_1,
-                              size: 13,
-                              color: Color(0XFFFD5900),
+                          child: InkWell(
+                            onTap: (){
+                              setSelectedOption('Accepted');
+
+                            },
+                            child: Container(
+                              height: 25,
+                              width: 25,
+                              decoration: BoxDecoration(
+                                  color: selectedOptionss == 'Accepted'
+                                      ? Color(0XFF5B46F4)
+                                      : Color(0XFFE3DFFF),
+                                  //color: Color(0XFFFFE2D2),
+                                  borderRadius: BorderRadius.circular(4)),
+                              child: Icon(
+                                Icons.person_add_alt_1,
+                                size: 13,
+                                color: Color(0XFFFD5900),
+                              ),
                             ),
                           ),
                         ),
@@ -181,7 +253,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text10(
-                              'Invited',
+                              'Accepted',
                               style: TextStyle(color: Color(0XFF86839B)),
                             ),
                             Text(
@@ -482,21 +554,27 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                           height: 30,
                                           color: Color(0XFFF6F6F6),
                                           child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
                                             children: [
                                               Flexible(
-                                                flex: 1, // Adjust the flex value as needed
+                                                flex: 1,
+                                                // Adjust the flex value as needed
                                                 child: Row(
                                                   children: [
                                                     Container(
                                                       height: 22,
                                                       width: 22,
                                                       decoration: BoxDecoration(
-                                                        color: Color(0XFFFFE2D2),
-                                                        borderRadius: BorderRadius.circular(20),
+                                                        color:
+                                                            Color(0XFFFFE2D2),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20),
                                                       ),
                                                       child: Center(
-                                                        child: Image.asset('assets/svg/filter.png'),
+                                                        child: Image.asset(
+                                                            'assets/svg/filter.png'),
                                                       ),
                                                     ),
                                                     SizedBox(width: 4),
@@ -505,11 +583,13 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                                 ),
                                               ),
                                               Flexible(
-                                                flex: 2, // Adjust the flex value as needed
+                                                flex: 2,
+                                                // Adjust the flex value as needed
                                                 child: Text10('01'),
                                               ),
                                               Flexible(
-                                                flex: 1, // Adjust the flex value as needed
+                                                flex: 1,
+                                                // Adjust the flex value as needed
                                                 child: Text10('01'),
                                               ),
                                             ],
@@ -520,10 +600,12 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                           height: 30,
                                           color: Color(0XFFF6F6F6),
                                           child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
                                             children: [
                                               Flexible(
-                                                flex: 1, // Adjust the flex value as needed
+                                                flex: 1,
+                                                // Adjust the flex value as needed
                                                 child: Row(
                                                   children: [
                                                     Container(
@@ -531,10 +613,13 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                                       width: 22,
                                                       decoration: BoxDecoration(
                                                         color: Colors.white,
-                                                        borderRadius: BorderRadius.circular(20),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20),
                                                       ),
                                                       child: Center(
-                                                        child: Image.asset('assets/svg/vip.png'),
+                                                        child: Image.asset(
+                                                            'assets/svg/vip.png'),
                                                       ),
                                                     ),
                                                     SizedBox(width: 4),
@@ -543,11 +628,13 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                                 ),
                                               ),
                                               Flexible(
-                                                flex: 1, // Adjust the flex value as needed
+                                                flex: 1,
+                                                // Adjust the flex value as needed
                                                 child: Text10('05'),
                                               ),
                                               Flexible(
-                                                flex: 5, // Adjust the flex value as needed
+                                                flex: 5,
+                                                // Adjust the flex value as needed
                                                 child: Text10('05'),
                                               ),
                                             ],
@@ -555,7 +642,6 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                         ),
                                       ],
                                     ),
-
                                     SizedBox(height: 1),
                                     Container(
                                       height: 30,
@@ -690,7 +776,10 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                     ),
                                     SizedBox(height: 10),
                                     InkWell(
-                                      onTap: () {},
+                                      onTap: () {
+                                        Get.toNamed(
+                                            Routes.TicketSaleDetailsScreen);
+                                      },
                                       child: Container(
                                         height: 20,
                                         width: 58,
@@ -724,6 +813,11 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
         ),
       ),
     );
+  }
+  void setSelectedOption(String option) {
+    setState(() {
+      selectedOptionss = option;
+    });
   }
 }
 
