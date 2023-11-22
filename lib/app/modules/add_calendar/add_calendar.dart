@@ -21,9 +21,15 @@ class AddToCalendar extends StatefulWidget {
 }
 
 class _AddToCalendarState extends State<AddToCalendar> {
-// Function to share content
+  // Future<void> onShare(String eventLink) async {
+  //   // You can customize the share message here based on the event.
+  //   String shareMessage = 'Check out this event: $eventLink';
+  //
+  //   await Share.share(shareMessage);
+  // }
+ //Function to share content
   Future<void> onShare() async {
-    await Share.share('Check out this awesome content!');
+    await Share.share('https://funzippy.com/event/emotional-mastery-workshop/RjThqENXQKy');
   }
 
   void onAddToCalendar(BuildContext context) async {
