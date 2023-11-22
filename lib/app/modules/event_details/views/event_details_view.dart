@@ -219,6 +219,9 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 child: PotluckItems(
                                   controller: controller,
                                 ))),
+                        PotluckItemsWidget(
+                          controller: controller,
+                        ),
                         Visibility(
                           visible: controller.eventDetailsModel.giftItems
                                       .toString() !=
@@ -230,15 +233,14 @@ class EventDetailsView extends GetView<EventDetailsController> {
                           ),
                         ),
                         Visibility(
-                          visible: controller.eventDetailsModel.honoraryGuests
-                                      .toString() !=
-                                  'null'
-                              ? true
-                              : false,
-                          child: SpeakersWidget(
-                            controller: controller,
-                          ),
-                        ),
+                            visible: controller.eventDetailsModel.contacts
+                                        .toString() !=
+                                    'null'
+                                ? true
+                                : false,
+                            child: SizedBox(
+                                height: 200,
+                                child: ContactsView(controller: controller))),
                         Visibility(
                             visible: controller.eventDetailsModel.sponsors
                                         .toString() !=
@@ -256,36 +258,28 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 ? true
                                 : false,
                             child: BoothsWidget(controller: controller)),
-                        // upto above fine
-                        //* Map
+
+                        Visibility(
+                          visible: controller.eventDetailsModel.honoraryGuests
+                                      .toString() !=
+                                  'null'
+                              ? true
+                              : false,
+                          child: SpeakersWidget(
+                            controller: controller,
+                          ),
+                        ),
+                        OrganizersWidget(),
+                        5.height,
                         MapWidget(controller: controller),
                         5.height,
+                        // Todo
+
                         WhatIsPlaceOfferWidget(
                           controller: controller,
                         ),
                         CommentWidget(controller: controller),
                         5.height,
-
-                        OrganizersWidget(),
-                        5.height,
-
-                        // * Potluck items
-                        PotluckItemsWidget(
-                          controller: controller,
-                        ),
-                        // Gift Registry
-
-                        //    as of now this is not required further needed uncomment it
-                        Visibility(
-                            visible: controller.eventDetailsModel.contacts
-                                        .toString() !=
-                                    'null'
-                                ? true
-                                : false,
-                            child: SizedBox(
-                                height: 200,
-                                child: ContactsView(controller: controller))),
-
                         RelatedEventsWidget(),
                       ],
                     ),
