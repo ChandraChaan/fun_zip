@@ -21,10 +21,13 @@ class TicketViewPopUp extends StatefulWidget {
   final String seatNumber;
   final String bookingId;
   final String amount;
-  final String actualPrice;
-  final String totalAmount;
+
+  // final String actualPrice;
+  // final String totalAmount;
   final String groupDiscountPercentage;
-  final String currency;
+
+  // final String currency;
+  final String uid;
 
   const TicketViewPopUp({
     super.key,
@@ -39,10 +42,11 @@ class TicketViewPopUp extends StatefulWidget {
     required this.seatNumber,
     required this.bookingId,
     required this.amount,
-    required this.actualPrice,
-    required this.totalAmount,
+    // required this.actualPrice,
+    // required this.totalAmount,
     required this.groupDiscountPercentage,
-    required this.currency,
+    // required this.currency,
+    required this.uid,
   });
 
   @override
@@ -50,18 +54,15 @@ class TicketViewPopUp extends StatefulWidget {
 }
 
 class _TicketViewPopUpState extends State<TicketViewPopUp> {
-  // Map ticketdetailsapi = {};
-  // List<Map<dynamic, dynamic>> my_Tickets = [];
-
-
-  // Future<void> ticketDetails() async {
+  // Map<dynamic, dynamic> tickets_details = {};
+  //
+  // Future<void> ticketDetails(String uid) async {
   //   try {
-  //     var response = await EventRepository().ticketDetails();
-  //     print(response.toString());
-  //     print('Sathya get profile details');
+  //     var response = await EventRepository().ticketDetails(uid);
+  //     print("Ticket view popup : ${response.toString()}");
   //     final bodyData = response;
   //     setState(() {
-  //       ticketdetailsapi = (bodyData); // Wrap bodyData in a list
+  //       tickets_details.addAll(bodyData); // Wrap bodyData in a map
   //     });
   //   } catch (e) {
   //     errorSnackbar(title: '$e', desc: '');
@@ -70,8 +71,7 @@ class _TicketViewPopUpState extends State<TicketViewPopUp> {
 
   // @override
   // void initState() {
-  //   ticketDetails();
-  //   setState(() {});
+  //   ticketDetails(widget.uid);
   //   super.initState();
   // }
 
@@ -150,19 +150,25 @@ class _TicketViewPopUpState extends State<TicketViewPopUp> {
                             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Container(
-                                height: SizeGet.getProportionHeight(812 / 10.5),
+                                height: SizeGet.getProportionHeight(812 / 10),
                                 width: SizeGet.getProportionWidth(375 / 4.5),
                                 decoration: BoxDecoration(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(15)),
-                                    image: DecorationImage(
-                                        image: NetworkImage(
-                                            widget.imageUrl
-                                           // "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["eventImageUrl"] : ""}"
-
-                                      // 'https://upload.wikimedia.org/wikipedia/commons/d/df/Family_Portrait.jpg',
-                                            ),
-                                        fit: BoxFit.fill)),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                ),
+                                child: Image.network(
+                                  widget.imageUrl,
+                                  fit: BoxFit.fill,
+                                  errorBuilder: (BuildContext context,
+                                      Object error, StackTrace? stackTrace) {
+                                    return SizedBox(
+                                        // borderRadius: BorderRadius.circular(20),
+                                        // adjust the radius as needed
+                                        // child: Image.asset('assets/svg/img.png',
+                                        //     fit: BoxFit.cover, height: 210, width: 370),
+                                        );
+                                  },
+                                ),
                               ),
                               const SizedBox(
                                 width: 5,
@@ -216,12 +222,15 @@ class _TicketViewPopUpState extends State<TicketViewPopUp> {
                                         const SizedBox(
                                           width: 5,
                                         ),
-                                        Text10(
-                                          // add ticketicketdetails address
-                                          //"${(ticketicketdetailsetdetailsapi["data"]).isNotEmpty ? ticketdetailsapi["data"]["tickets"][0]["eventName"] ?? "Empty" : "Empty"}",
-
-                                          widget.location,
-                                          // "Hi-tech City, Hyderabad",
+                                        Expanded(
+                                          child: Text(
+                                            widget.location,
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w400),
+                                            maxLines: 3,
+                                            // "Hi-tech City, Hyderabad",
+                                          ),
                                         )
                                       ],
                                     ),
@@ -411,6 +420,9 @@ class _TicketViewPopUpState extends State<TicketViewPopUp> {
                                   ),
                                   Text(
                                     widget.amount,
+                                    // tickets_details.isNotEmpty
+                                    //     ? "${tickets_details['data']['tickets'][0]['salePrice']}"
+                                    //     : "",
                                     // "\$ 320.50",
                                     style: TextStyle(fontSize: 14),
                                   )
@@ -429,10 +441,7 @@ class _TicketViewPopUpState extends State<TicketViewPopUp> {
                                 color: AppColors.deepWhite,
                               ),
                               child: Image.network(
-                                widget.qrcode.toString() != 'null'
-                                    ? ('https://funzippy.com' +
-                                        widget.qrcode.toString())
-                                    : 'https://funzippy.com/custom/media/tickets/h6Wh3RnLi4p0.png',
+                                widget.qrcode,
                                 loadingBuilder: (BuildContext context,
                                     Widget child,
                                     ImageChunkEvent? loadingProgress) {
@@ -454,8 +463,6 @@ class _TicketViewPopUpState extends State<TicketViewPopUp> {
                                     );
                                   }
                                 },
-                                // 'https://funzippy.com/custom/media/tickets/h6Wh3RnLi4p0.png',
-                                //'${ticketdetailsapi.isNotEmpty ? ("file///funzippy.com"+(ticketdetailsapi["data"]["tickets"][0]["qrCodeFilePath"]).toString()) : ""}',
                               ),
                             ),
                           ),
@@ -556,7 +563,12 @@ class _TicketViewPopUpState extends State<TicketViewPopUp> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10.0),
-                                  child: Text10("${widget.actualPrice}"),
+                                  child: Text10(
+                                    widget.amount,
+                                    // tickets_details.isNotEmpty
+                                    //     ? "${tickets_details['data']['tickets'][0]['currency']} ${tickets_details['data']['tickets'][0]['salePrice']}"
+                                    //     : "",
+                                  ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10.0),
@@ -601,7 +613,10 @@ class _TicketViewPopUpState extends State<TicketViewPopUp> {
                                 style: AppTextStyles.lineText14BoldStyle,
                               ),
                               Text(
-                                widget.totalAmount,
+                                widget.amount,
+                                // tickets_details.isNotEmpty
+                                //     ? "${tickets_details['data']['tickets'][0]['currency']} ${tickets_details['data']['tickets'][0]['salePrice']}"
+                                //     : "",
                                 // "\$ 320.50",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 14),

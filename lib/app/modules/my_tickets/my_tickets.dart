@@ -104,42 +104,46 @@ class _MyTicketsState extends State<MyTickets> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   for (int a = 0; a < my_Tickets.length; a++)
-                                    if ((my_Tickets[a]["createdDate"]).toString() !=
+                                    if ((my_Tickets[a]["createdDate"])
+                                                .toString() !=
                                             'null' &&
                                         my_Tickets[a]["createdDate"]
                                             .toString()
                                             .isNotEmpty)
                                       if (DateTime.now().isBefore(DateTime.parse(
                                           "${my_Tickets[a]["createdDate"]}")))
-                                        MyTicketsDetails(
-                                            eventImageUrl:
-                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["eventImageUrl"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["eventImageUrl"] : ""}",
-                                            eventName:
-                                            "${(my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["eventName"] : "Empty"}",
-                                            createdDate:
-                                            "${(my_Tickets[a]["createdDate"]).isNotEmpty ? dateTimeConverter(my_Tickets[a]["createdDate"]) : ""}",
-                                            type:
-                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["type"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["type"] : ""}",
-                                            quantity:
-                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["quantity"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["quantity"] : ""}",
-                                            seatNumber:
-                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["tickets"][0]["seatNumber"]}" : "") : ""}",
-                                            eventId:
-                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["eventId"]}" : "") : ""}",
-                                            actualPrice:
-                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["actualPrice"]}": (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? "${my_Tickets[a]["sponsorLineItems"][0]["currency"]} ${my_Tickets[a]["sponsorLineItems"][0]["actualPrice"]}" : ""}",
-                                            qrCodeFilePath:
-                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? (my_Tickets[a]["lineItems"][0]["qrCodeFilePath"]) : "null"}",
-                                            currency:
-                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["currency"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["currency"] :  "0.0"}",
-                                            // amount:
-                                            //     "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["actualPrice"]}" : "0.0") : ""}",
-                                            actualLineItemTotal:
-                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["actualLineItemTotal"]}" :(my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? "${my_Tickets[a]["sponsorLineItems"][0]["currency"]} ${my_Tickets[a]["sponsorLineItems"][0]["actualLineItemTotal"]}" :  "0.0"}",
-                                            groupDiscountPercentage:
-                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["groupDiscountPercentage"]}" : "0.0"}",
-                                            // ToDo change location
-                                            location: "Hi-tech City, Hyderabad")
+                                        ticketContent(
+                                          // eventImageUrl:
+                                          //     "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["eventImageUrl"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["eventImageUrl"] : ""}",
+                                          // eventName:
+                                          //     "${(my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["eventName"] : "Empty"}",
+                                          // createdDate:
+                                          //     "${(my_Tickets[a]["createdDate"]).isNotEmpty ? dateTimeConverter(my_Tickets[a]["createdDate"]) : ""}",
+                                          type:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["type"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["type"] : ""}",
+                                          quantity:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["quantity"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["quantity"] : ""}",
+                                          seatNumber:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["tickets"][0]["seatNumber"]}" : "") : ""}",
+                                          eventId:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["eventId"]}" : "") : ""}",
+                                          actualPrice:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["actualPrice"]}" : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? "${my_Tickets[a]["sponsorLineItems"][0]["currency"]} ${my_Tickets[a]["sponsorLineItems"][0]["actualPrice"]}" : ""}",
+                                          // qrCodeFilePath:
+                                          //     "${(my_Tickets[a]["lineItems"]).isNotEmpty ? (my_Tickets[a]["lineItems"][0]["qrCodeFilePath"]) : "null"}",
+                                          // currency:
+                                          //     "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["currency"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["currency"] : "0.0"}",
+                                          // amount:
+                                          //     "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["actualPrice"]}" : "0.0") : ""}",
+                                          actualLineItemTotal:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["actualLineItemTotal"]}" : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? "${my_Tickets[a]["sponsorLineItems"][0]["currency"]} ${my_Tickets[a]["sponsorLineItems"][0]["actualLineItemTotal"]}" : "0.0"}",
+                                          groupDiscountPercentage:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["groupDiscountPercentage"]}" : "0.0"}",
+                                          // ToDo change location
+                                          // location: "Hi-tech City, Hyderabad",
+                                          uid:
+                                              "${(my_Tickets[a]["uid"]).isNotEmpty ? my_Tickets[a]["uid"] : ""}",
+                                        )
                                 ]),
                           ),
                   ),
@@ -149,48 +153,52 @@ class _MyTicketsState extends State<MyTickets> {
                     child: my_Tickets.isEmpty
                         ? Center(child: CircularProgressIndicator())
                         : SingleChildScrollView(
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            for (int a = 0; a < my_Tickets.length; a++)
-                              if ((my_Tickets[a]["createdDate"]).toString() !=
-                                  'null' &&
-                                  my_Tickets[a]["createdDate"]
-                                      .toString()
-                                      .isNotEmpty)
-                                if (!DateTime.now().isBefore(DateTime.parse(
-                                    "${my_Tickets[a]["createdDate"]}")))
-                                  MyTicketsDetails(
-                                      eventImageUrl:
-                                      "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["eventImageUrl"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["eventImageUrl"] : ""}",
-                                      eventName:
-                                      "${(my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["eventName"] : "Empty"}",
-                                      createdDate:
-                                      "${(my_Tickets[a]["createdDate"]).isNotEmpty ? dateTimeConverter(my_Tickets[a]["createdDate"]) : ""}",
-                                      type:
-                                      "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["type"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["type"] : ""}",
-                                      quantity:
-                                      "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["quantity"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["quantity"] : ""}",
-                                      seatNumber:
-                                      "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["tickets"][0]["seatNumber"]}" : "") : ""}",
-                                      eventId:
-                                      "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["eventId"]}" : "") : ""}",
-                                      actualPrice:
-                                      "${(my_Tickets[a]["lineItems"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["actualPrice"]}": (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? "${my_Tickets[a]["sponsorLineItems"][0]["currency"]} ${my_Tickets[a]["sponsorLineItems"][0]["actualPrice"]}" : ""}",
-                                      qrCodeFilePath:
-                                      "${(my_Tickets[a]["lineItems"]).isNotEmpty ? (my_Tickets[a]["lineItems"][0]["qrCodeFilePath"]) : "null"}",
-                                      currency:
-                                      "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["currency"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["currency"] :  "0.0"}",
-                                      // amount:
-                                      //     "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["actualPrice"]}" : "0.0") : ""}",
-                                      actualLineItemTotal:
-                                      "${(my_Tickets[a]["lineItems"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["actualLineItemTotal"]}" :(my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? "${my_Tickets[a]["sponsorLineItems"][0]["currency"]} ${my_Tickets[a]["sponsorLineItems"][0]["actualLineItemTotal"]}" :  "0.0"}",
-                                      groupDiscountPercentage:
-                                      "${(my_Tickets[a]["lineItems"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["groupDiscountPercentage"]}" : "0.0"}",
-                                      // ToDo change location
-                                      location: "Hi-tech City, Hyderabad")
-                          ]),
-                    ),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  for (int a = 0; a < my_Tickets.length; a++)
+                                    if ((my_Tickets[a]["createdDate"])
+                                                .toString() !=
+                                            'null' &&
+                                        my_Tickets[a]["createdDate"]
+                                            .toString()
+                                            .isNotEmpty)
+                                      if (!DateTime.now().isBefore(DateTime.parse(
+                                          "${my_Tickets[a]["createdDate"]}")))
+                                        ticketContent(
+                                          // eventImageUrl:
+                                          //     "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["eventImageUrl"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["eventImageUrl"] : ""}",
+                                          // eventName:
+                                          //     "${(my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["eventName"] : "Empty"}",
+                                          // createdDate:
+                                          //     "${(my_Tickets[a]["createdDate"]).isNotEmpty ? dateTimeConverter(my_Tickets[a]["createdDate"]) : ""}",
+                                          type:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["type"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["type"] : ""}",
+                                          quantity:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["quantity"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["quantity"] : ""}",
+                                          seatNumber:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["tickets"][0]["seatNumber"]}" : "") : ""}",
+                                          eventId:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["eventId"]}" : "") : ""}",
+                                          actualPrice:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["actualPrice"]}" : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? "${my_Tickets[a]["sponsorLineItems"][0]["currency"]} ${my_Tickets[a]["sponsorLineItems"][0]["actualPrice"]}" : ""}",
+                                          // qrCodeFilePath:
+                                          //     "${(my_Tickets[a]["lineItems"]).isNotEmpty ? (my_Tickets[a]["lineItems"][0]["qrCodeFilePath"]) : "null"}",
+                                          // currency:
+                                          //     "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["currency"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["currency"] : "0.0"}",
+                                          // amount:
+                                          //     "${(my_Tickets[a]["lineItems"]).isNotEmpty ? ((my_Tickets[a]["lineItems"][0]["tickets"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["actualPrice"]}" : "0.0") : ""}",
+                                          actualLineItemTotal:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["actualLineItemTotal"]}" : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? "${my_Tickets[a]["sponsorLineItems"][0]["currency"]} ${my_Tickets[a]["sponsorLineItems"][0]["actualLineItemTotal"]}" : "0.0"}",
+                                          groupDiscountPercentage:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? "${my_Tickets[a]["lineItems"][0]["currency"]} ${my_Tickets[a]["lineItems"][0]["groupDiscountPercentage"]}" : "0.0"}",
+                                          // ToDo change location
+                                          // location: "Hi-tech City, Hyderabad",
+                                          uid:
+                                              "${(my_Tickets[a]["uid"]).isNotEmpty ? my_Tickets[a]["uid"] : ""}",
+                                        )
+                                ]),
+                          ),
                   ),
                   // Content for Tab 3
                   Center(
@@ -205,22 +213,91 @@ class _MyTicketsState extends State<MyTickets> {
     );
   }
 
-  Widget MyTicketsDetails({
-    required String eventImageUrl,
-    required String eventName,
-    required String createdDate,
-    required String type,
-    required String quantity,
-    required String seatNumber,
-    required String eventId,
-    required String actualPrice,
-    required String qrCodeFilePath,
-    required String currency,
-    required String actualLineItemTotal,
-    required String groupDiscountPercentage,
-    // required String amount,
-    required String location,
-  }) {
+  Widget ForBuilderEvent({required Widget chil}) {
+    return widget.isSfald
+        ? CommonScafold(
+            title: 'My Tickets',
+            selectedIndex: 3,
+            navChild: true,
+            child: chil,
+          )
+        : chil;
+  }
+}
+
+class ticketContent extends StatefulWidget {
+  // final String eventImageUrl;
+  // final String eventName;
+  // final String createdDate;
+  final String type;
+  final String quantity;
+  final String seatNumber;
+  final String eventId;
+  final String actualPrice;
+
+  // final String qrCodeFilePath;
+  // final String currency;
+  final String actualLineItemTotal;
+  final String groupDiscountPercentage;
+
+  // final String amount;
+  // final String location;
+  final String uid;
+
+  const ticketContent({
+    // required this.eventImageUrl,
+    // required this.eventName,
+    // required this.createdDate,
+    required this.type,
+    required this.quantity,
+    required this.seatNumber,
+    required this.eventId,
+    required this.actualPrice,
+    // required this.qrCodeFilePath,
+    // required this.currency,
+    required this.actualLineItemTotal,
+    required this.groupDiscountPercentage,
+    // required this.amount,
+    // required this.location,
+    required this.uid,
+  });
+
+  @override
+  State<ticketContent> createState() => _ticketContentState();
+}
+
+class _ticketContentState extends State<ticketContent> {
+  Map<dynamic, dynamic> tickets_details = {};
+
+  Future<void> ticketDetails(String uid) async {
+    try {
+      var response = await EventRepository().ticketDetails(uid);
+      final bodyData = response;
+      setState(() {
+        tickets_details.addAll(bodyData); // Wrap bodyData in a map
+      });
+    } catch (e) {
+      errorSnackbar(title: '$e', desc: '');
+    }
+  }
+
+  dateTimeConverter(String dateTime) {
+    DateFormat format = DateFormat('yyyy-MM-ddThh:mm:ss.SSSZ');
+    DateTime dateTimeFormatted = format.parse(dateTime);
+
+    DateFormat actualDateTime = DateFormat('MMM dd, yyyy');
+    String finalDateTime = actualDateTime.format(dateTimeFormatted);
+    return finalDateTime;
+  }
+
+  @override
+  void initState() {
+    ticketDetails(widget.uid);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Container(
@@ -240,16 +317,18 @@ class _MyTicketsState extends State<MyTickets> {
                     height: 90,
                     width: 90,
                     child: Image.network(
-                      eventImageUrl,
-                      // "",
+                      tickets_details.isNotEmpty
+                          ? tickets_details['data']['tickets'][0]
+                              ['eventImageUrl']
+                          : "",
                       fit: BoxFit.fill,
                       errorBuilder: (BuildContext context, Object error,
                           StackTrace? stackTrace) {
                         return ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           // adjust the radius as needed
-                          child: Image.asset('assets/svg/img.png',
-                              fit: BoxFit.cover, height: 210, width: 370),
+                          // child: Image.asset('assets/svg/img.png',
+                          //     fit: BoxFit.cover, height: 210, width: 370),
                         );
                       },
                     ),
@@ -265,7 +344,10 @@ class _MyTicketsState extends State<MyTickets> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            eventName,
+                            tickets_details.isNotEmpty
+                                ? tickets_details['data']['tickets'][0]
+                                    ['eventName']
+                                : "",
                             // "The Routinel Hosted by Abish Mathew",
                             style: TextStyle(fontSize: 14),
                           ),
@@ -281,9 +363,10 @@ class _MyTicketsState extends State<MyTickets> {
                               SizedBox(
                                 width: 5,
                               ),
-                              Text10(
-                                createdDate,
-                              )
+                              Text10(tickets_details.isNotEmpty
+                                  ? dateTimeConverter(tickets_details['data']
+                                      ['tickets'][0]['eventDateTime'])
+                                  : "")
                             ],
                           ),
                           SizedBox(
@@ -299,10 +382,21 @@ class _MyTicketsState extends State<MyTickets> {
                               SizedBox(
                                 width: 5,
                               ),
-                              Text10(
-                                location,
-                                // "Aug 25,2023"
-                              )
+                              Expanded(
+                                child: Text(
+                                  tickets_details.isNotEmpty
+                                      ? ("${tickets_details['data']['tickets'][0]['address']['address1']} "
+                                          "${tickets_details['data']['tickets'][0]['address']['city']} "
+                                          "${tickets_details['data']['tickets'][0]['address']['postalCode']} "
+                                          "${tickets_details['data']['tickets'][0]['address']['state']}")
+                                      : "",
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w400),
+                                  maxLines: 3,
+                                  // "Hi-tech City, Hyderabad",
+                                ),
+                              ),
                             ],
                           ),
                         ],
@@ -338,7 +432,7 @@ class _MyTicketsState extends State<MyTickets> {
                       ),
                       Text(
                         // "${(my_Tickets[a]["createdDate"]).isNotEmpty ? my_Tickets[a]["createdDate"] : ""}",
-                        type,
+                        widget.type,
                         style: TextStyle(fontSize: 14),
                       )
                     ],
@@ -366,7 +460,7 @@ class _MyTicketsState extends State<MyTickets> {
                         height: 10,
                       ),
                       Text12(
-                        quantity,
+                        widget.quantity,
                         // "03",
                         style: TextStyle(fontSize: 14),
                       )
@@ -401,7 +495,7 @@ class _MyTicketsState extends State<MyTickets> {
                           width: 4,
                         ),
                         Text12(
-                          seatNumber,
+                          widget.seatNumber,
                           // "J21, J22, J23",
                         ),
                       ]),
@@ -432,7 +526,7 @@ class _MyTicketsState extends State<MyTickets> {
                           height: 5,
                         ),
                         Text(
-                          eventId,
+                          widget.eventId,
                           // "TRHAM521452671",
                           style: TextStyle(fontSize: 14),
                         ),
@@ -448,7 +542,9 @@ class _MyTicketsState extends State<MyTickets> {
                           height: 5,
                         ),
                         Text(
-                          actualPrice,
+                          tickets_details.isNotEmpty
+                              ? "${tickets_details['data']['tickets'][0]['currency']} ${tickets_details['data']['tickets'][0]['salePrice']}"
+                              : "",
                           // "\$ 320.50",
                           style: TextStyle(fontSize: 14),
                         )
@@ -480,21 +576,43 @@ class _MyTicketsState extends State<MyTickets> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => TicketViewPopUp(
-                                  qrcode: qrCodeFilePath,
-                                  imageUrl: eventImageUrl,
-                                  eventName: eventName,
-                                  dateTime: createdDate,
-                                  location: location,
-                                  ticketType: type,
-                                  tickets: quantity,
-                                  seatNumber: seatNumber,
-                                  bookingId: eventId,
-                                  amount: actualPrice,
-                                  actualPrice: actualPrice,
-                                  totalAmount: actualLineItemTotal,
-                                  groupDiscountPercentage:
-                                      groupDiscountPercentage,
-                                  currency: currency)));
+                                    qrcode: tickets_details.isNotEmpty
+                                        ? "https://funzippy.com" +
+                                            "${tickets_details['data']['tickets'][0]['qrCodeFilePath']}"
+                                        : "",
+                                    imageUrl: tickets_details.isNotEmpty
+                                        ? tickets_details['data']['tickets'][0]
+                                            ['eventImageUrl']
+                                        : "",
+                                    eventName: tickets_details.isNotEmpty
+                                        ? tickets_details['data']['tickets'][0]
+                                            ['eventName']
+                                        : "",
+                                    dateTime: tickets_details.isNotEmpty
+                                        ? dateTimeConverter(
+                                            tickets_details['data']['tickets']
+                                                [0]['eventDateTime'])
+                                        : "",
+                                    location: tickets_details.isNotEmpty
+                                        ? ("${tickets_details['data']['tickets'][0]['address']['address1']} "
+                                            "${tickets_details['data']['tickets'][0]['address']['city']} "
+                                            "${tickets_details['data']['tickets'][0]['address']['postalCode']} "
+                                            "${tickets_details['data']['tickets'][0]['address']['state']}")
+                                        : "",
+                                    ticketType: widget.type,
+                                    tickets: widget.quantity,
+                                    seatNumber: widget.seatNumber,
+                                    bookingId: widget.eventId,
+                                    amount: tickets_details.isNotEmpty
+                                        ? "${tickets_details['data']['tickets'][0]['currency']} ${tickets_details['data']['tickets'][0]['salePrice']}"
+                                        : "",
+                                    // actualPrice: widget.actualPrice,
+                                    // totalAmount: widget.actualLineItemTotal,
+                                    groupDiscountPercentage:
+                                        widget.groupDiscountPercentage,
+                                    // currency: widget.currency,
+                                    uid: widget.uid,
+                                  )));
                     },
                     child: Row(
                       children: [
@@ -532,16 +650,5 @@ class _MyTicketsState extends State<MyTickets> {
         ),
       ),
     );
-  }
-
-  Widget ForBuilderEvent({required Widget chil}) {
-    return widget.isSfald
-        ? CommonScafold(
-            title: 'My Tickets',
-            selectedIndex: 3,
-            navChild: true,
-            child: chil,
-          )
-        : chil;
   }
 }
