@@ -556,24 +556,24 @@ class _TicketViewPopUpState extends State<TicketViewPopUp> {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10.0),
-                                  child: Text10("\$ ${widget.actualPrice}"),
+                                  child: Text10("${widget.actualPrice}"),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10.0),
-                                  child: Text10("\$ 0.00"),
+                                  child: Text10("0.00"),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10.0),
                                   child: Text10(
-                                      "\$ ${widget.groupDiscountPercentage}"),
+                                      "${widget.groupDiscountPercentage}"),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10.0),
-                                  child: Text10("\$ 0.00"),
+                                  child: Text10("0.00"),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 10.0),
-                                  child: Text10("\$ 0.00"),
+                                  child: Text10("0.00"),
                                 ),
                               ],
                             ),
