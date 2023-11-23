@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
-
 import '../../../routes/app_pages.dart';
 import '../../../utilities/date_time_format.dart';
 import '../../add_calendar/add_calendar.dart';
@@ -121,7 +120,8 @@ class EventDetailsView extends GetView<EventDetailsController> {
                           image: DecorationImage(
                             image: NetworkImage(
                                 controller.eventDetailsModel.detailPicture),
-                            fit: BoxFit.fill, // Maintain aspect ratio without stretching
+                            fit: BoxFit
+                                .fill, // Maintain aspect ratio without stretching
                           ),
                         ),
                         child: AppBarWidgetEventDetails(),
@@ -201,8 +201,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                               : false,
                           child: SizedBox(
                             height: 600,
-                            child:
-                            SignUpItemWidget(
+                            child: SignUpItemWidget(
                               controller: controller,
                             ),
                           ),
@@ -308,7 +307,89 @@ class EventDetailsView extends GetView<EventDetailsController> {
         materialTapTargetSize: MaterialTapTargetSize.padded,
         backgroundColor: Color(0XFF5B46F4),
         onPressed: () {
-          Get.toNamed(Routes.RsvpScreen);
+          showMenu(
+            context: context,
+            position: RelativeRect.fromLTRB(300, 600, 0, 250),
+            items: [
+              PopupMenuItem<String>(
+                value: 'Sponsorship',
+                textStyle: TextStyle(fontSize: 10, color: Colors.red),
+                child: InkWell(
+                  onTap: () {
+                    Get.toNamed(Routes.SponsorshipScreen);
+                  },
+                  child: Container(
+                    alignment: Alignment.centerRight, // Align text to the right
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text('Sponsorship'),
+                        7.width,
+                        Container(
+                            height: 25,
+                            width: 25,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(40),
+                                border: Border.all(color: Colors.red)),
+                            child: Image.asset('assets/svg/hand.png')),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              PopupMenuItem<String>(
+                value: 'Booth Space',
+                textStyle: TextStyle(fontSize: 10, color: Colors.red),
+                child: Container(
+                  alignment: Alignment.centerRight, // Align text to the right
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text('Booth Space'),
+                      7.width,
+                      Container(
+                          height: 25,
+                          width: 25,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(40),
+                              border: Border.all(color: Colors.red)),
+                          child: Image.asset('assets/svg/round.png')),
+                    ],
+                  ),
+                ),
+              ),
+              PopupMenuItem<String>(
+                value: 'Event Schedule',
+                textStyle: TextStyle(fontSize: 10, color: Colors.red),
+                child: InkWell(
+                  onTap: () {
+                    Get.toNamed(Routes.ScheduleScreen);
+                  },
+                  child: Container(
+                    alignment: Alignment.centerRight, // Align text to the right
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text('Event Schedule'),
+                        7.width,
+                        Container(
+                            height: 25,
+                            width: 25,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(40),
+                                border: Border.all(color: Colors.red)),
+                            child: Image.asset('assets/svg/vectory_red.png')),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ).then<void>((String? value) {
+            if (value != null) {
+              print('Selected: $value');
+            }
+          });
         },
         child: Image.asset('assets/svg/floating_button.png'),
         mini: true,

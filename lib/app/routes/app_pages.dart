@@ -1,6 +1,7 @@
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:get/get.dart';
 
+import '../extra/extra1.dart';
 import '../modules/blogs_screen/blogs_screen.dart';
 import '../modules/booking_tickets/booking_tickets.dart';
 import '../modules/contact_us/contact_us.dart';
@@ -301,9 +302,5 @@ class AppPages {
       page: () => BlogsScreen(),
       binding: EventDetailsBinding(),
     ),
-
-
-
-
   ];
 }
