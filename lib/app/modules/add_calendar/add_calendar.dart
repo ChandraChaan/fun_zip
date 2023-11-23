@@ -9,7 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../event_details/controllers/event_details_controller.dart';
 
 class AddToCalendar extends StatefulWidget {
-  AddToCalendar({
+   AddToCalendar({
     super.key,
     required this.controller,
   });
@@ -21,16 +21,9 @@ class AddToCalendar extends StatefulWidget {
 }
 
 class _AddToCalendarState extends State<AddToCalendar> {
-  // Future<void> onShare(String eventLink) async {
-  //   // You can customize the share message here based on the event.
-  //   String shareMessage = 'Check out this event: $eventLink';
-  //
-  //   await Share.share(shareMessage);
-  // }
-//Function to share content
+// Function to share content
   Future<void> onShare() async {
-    await Share.share(
-        'https://funzippy.com/event/emotional-mastery-workshop/RjThqENXQKy');
+    await Share.share('Check out this awesome content!');
   }
 
   void onAddToCalendar(BuildContext context) async {
@@ -115,6 +108,8 @@ class _AddToCalendarState extends State<AddToCalendar> {
 
   bool isLiked = false;
 
+
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -149,9 +144,10 @@ class _AddToCalendarState extends State<AddToCalendar> {
                             ),
                           ),
                         ),
-                        child: Container(
+                        child: Expanded(
                           child: Center(
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
                                   'Add to Calendar',
@@ -160,13 +156,11 @@ class _AddToCalendarState extends State<AddToCalendar> {
                                     fontSize: 10,
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Icon(
-                                  Icons.expand_more,
-                                  size: 10,
-                                  color: Color(0XFF5B46F4),
+                                Expanded(
+                                  child: Icon(
+                                    Icons.expand_more,size: 10,
+                                    color: Color(0XFF5B46F4),
+                                  ),
                                 ),
                               ],
                             ),
@@ -216,8 +210,7 @@ class _AddToCalendarState extends State<AddToCalendar> {
                             child: Tooltip(
                               message: 'Share',
                               child: Icon(
-                                Icons.share,
-                                size: 15,
+                                Icons.share,size: 15,
                                 color: Color(0XFF5B46F4),
                               ),
                             ),
@@ -229,9 +222,8 @@ class _AddToCalendarState extends State<AddToCalendar> {
                     Expanded(
                       flex: 2,
                       child: InkWell(
-                        onTap: () {
-                          launch("https://www.kicknology.com/");
-                        },
+                        onTap: (){
+                          launch("https://www.kicknology.com/");                        },
                         child: Container(
                           height: 26,
                           width: double.infinity,

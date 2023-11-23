@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fun_zippy/app/data/repository/event_repository.dart';
 import 'package:fun_zippy/app/modules/common_data/common_phone_number.dart';
+import 'package:fun_zippy/app/modules/common_data/common_text.dart';
+import 'package:fun_zippy/app/widgets/error_snackbar.dart';
 
 import '../event_details/controllers/event_details_controller.dart';
-
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({super.key});
@@ -108,6 +110,11 @@ class _BookTicketsState extends State<BookTickets> {
   String defaultCountryCode = '+91';
   List<String> countryCodes = ['+91', '+92', '+93', '+94'];
   TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController _userNameEditingController = TextEditingController();
+  TextEditingController _emailEditingController = TextEditingController();
+  String userName = '';
+  String email = '';
+  String phoneNumber = '';
 
   bool accept = false;
   bool decline = false;
@@ -115,6 +122,28 @@ class _BookTicketsState extends State<BookTickets> {
 
   double productPrice = 1; //quantity
   double productQuantityTwo = 1;
+
+  Map<dynamic, dynamic> bye_tickets_details = {};
+
+  Future<void> byeTicket(productPrice, userName, email, phoneNumber) async {
+    try {
+      var response = await EventRepository()
+          .byeTickets(productPrice, userName, email, phoneNumber);
+      print("Bye ticket response : $response");
+      final bodyData = response;
+      setState(() {
+        bye_tickets_details.addAll(bodyData); // Wrap bodyData in a map
+      });
+    } catch (e) {
+      errorSnackbar(title: '$e', desc: '');
+    }
+  }
+
+  // @override
+  // void initState() {
+  //   ticketDetails();
+  //   super.initState();
+  // }
 
   void increasePrice() {
     setState(() {
@@ -145,6 +174,14 @@ class _BookTicketsState extends State<BookTickets> {
         productPrices -= 1;
       });
     }
+  }
+
+  @override
+  void dispose() {
+    _userNameEditingController.dispose();
+    _emailEditingController.dispose();
+    phoneNumberController.dispose();
+    super.dispose();
   }
 
   @override
@@ -263,7 +300,8 @@ class _BookTicketsState extends State<BookTickets> {
                             ),
                             Container(
                               height: 35,
-                              child: TextField(
+                              child: TextFormField(
+                                controller: _userNameEditingController,
                                 decoration: InputDecoration(
                                     hintText: 'Name',
                                     hintStyle: TextStyle(fontSize: 12),
@@ -278,6 +316,11 @@ class _BookTicketsState extends State<BookTickets> {
                                         borderSide: BorderSide.none,
                                         borderRadius:
                                             BorderRadius.circular(20))),
+                                onChanged: (value) {
+                                  setState(() {
+                                    userName = value;
+                                  });
+                                },
                               ),
                             ),
                             SizedBox(
@@ -292,7 +335,8 @@ class _BookTicketsState extends State<BookTickets> {
                             ),
                             Container(
                               height: 35,
-                              child: TextField(
+                              child: TextFormField(
+                                controller: _emailEditingController,
                                 decoration: InputDecoration(
                                     hintText: 'Email',
                                     hintStyle: TextStyle(fontSize: 12),
@@ -307,28 +351,163 @@ class _BookTicketsState extends State<BookTickets> {
                                         borderSide: BorderSide.none,
                                         borderRadius:
                                             BorderRadius.circular(20))),
+                                onChanged: (value) {
+                                  setState(() {
+                                    email = value;
+                                  });
+                                },
                               ),
                             ),
                             SizedBox(
                               height: 14,
                             ),
                             // phone number created common widget
-                            PhoneNumber()
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text10(
+                                  'Phone Number',
+                                ),
+                                SizedBox(
+                                  height: 7,
+                                ),
+                                Row(
+                                  children: [
+                                    Container(
+                                      height: 35,
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey,
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20),
+                                            bottomLeft: Radius.circular(20),
+                                          )),
+                                      child: Container(
+                                        height: 35,
+                                        // reduce the line
+                                        margin:
+                                            const EdgeInsets.only(right: 2.0),
+                                        decoration: BoxDecoration(
+                                            color: Color(0XFFF5F4F9),
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              bottomLeft: Radius.circular(20),
+                                            )),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 12),
+                                        child: DropdownButton<String>(
+                                          value: defaultCountryCode,
+                                          onChanged: (newValue) {
+                                            setState(() {
+                                              defaultCountryCode = newValue!;
+                                            });
+                                          },
+                                          items: countryCodes.map((code) {
+                                            return DropdownMenuItem<String>(
+                                              value: code,
+                                              child: Text10(
+                                                code,
+                                              ),
+                                            );
+                                          }).toList(),
+                                          underline: Container(
+                                            height: 0,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        height: 35,
+                                        decoration: BoxDecoration(
+                                            color: Color(0XFFF5F4F9),
+                                            borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(20),
+                                              bottomRight: Radius.circular(20),
+                                            )),
+                                        child: TextFormField(
+                                          keyboardType: TextInputType.number,
+                                          controller: phoneNumberController,
+                                          decoration: InputDecoration(
+                                              hintText: 'Phone Number',
+                                              hintStyle: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Color(0XFF5E5A80)),
+                                              filled: true,
+                                              fillColor: Color(0XFFF5F4F9),
+                                              border: InputBorder.none,
+                                              focusedBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide.none,
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    topRight:
+                                                        Radius.circular(20),
+                                                    bottomRight:
+                                                        Radius.circular(20),
+                                                  )),
+                                              enabledBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide.none,
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    topRight:
+                                                        Radius.circular(20),
+                                                    bottomRight:
+                                                        Radius.circular(20),
+                                                  ))),
+                                          onChanged: (value) {
+                                            setState(() {
+                                              phoneNumber = value;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )
                           ],
                         ),
                         SizedBox(
                           height: 30,
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            if (userName.isNotEmpty &&
+                                email.isNotEmpty &&
+                                phoneNumber.isNotEmpty) {
+                              setState(() {
+                                byeTicket(productPrice.toInt().toString(),
+                                    userName, email, phoneNumber);
+                              });
+                            }
+                            if (bye_tickets_details.isNotEmpty) {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Booking Ticket Status'),
+                                      content: Text(bye_tickets_details[
+                                          'statusDescription']),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text('OK'),
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            }
+                          },
                           child: Container(
                             height: 35,
                             width: double.infinity,
                             child: Center(
                                 child: Text(
                               'Checkout',
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 12),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 12),
                             )),
                             decoration: BoxDecoration(
                                 color: Color(0XFFC61236),

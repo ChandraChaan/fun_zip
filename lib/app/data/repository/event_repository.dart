@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
@@ -232,6 +233,48 @@ class EventRepository {
     } catch (e) {
       completer.complete(response.data);
       // Handle the error as needed
+    }
+    return completer.future;
+  }
+
+  Future byeTickets(productPrice, userName, email, phoneNumber) async {
+    String token = userModel.token;
+    var body = json.encode({
+      "lineItems": [
+        {
+          "quantity": "$productPrice",
+          "eventId": "650faf169b016379ef9a3e2f",
+          "eventUid": "905ZCsIyYM5",
+          "visibility": "Public",
+          "eventImageUrl":
+              "https://s3.us-west-2.amazonaws.com/funzippy.events/905ZCsIyYM5/pics/above.jpg",
+          "categoryUid": "ZejFZSEbGY9",
+          "attendeeType": "12-18",
+          "currency": "\$",
+          "salePrice": 5,
+          "actualPrice": 5,
+          "groupDiscountCount": 10,
+          "groupDiscountPercentage": 0,
+          "groupDiscountPricePerTicket": 1
+        }
+      ],
+      "firstName": "$userName",
+      "emailAddress": "$email",
+      "phoneNumber": "$phoneNumber"
+    });
+
+    final headers = {
+      'Cookie': 'AuthToken=$token;',
+    };
+
+    try {
+      response = await Api().post("/event/buyTickets",
+          options: Options(headers: headers), data: body);
+      if (response.statusCode == 200) {
+        completer.complete(response.data);
+      }
+    } catch (e) {
+      completer.complete(response.data);
     }
     return completer.future;
   }
