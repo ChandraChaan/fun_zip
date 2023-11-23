@@ -144,9 +144,10 @@ class _AddToCalendarState extends State<AddToCalendar> {
                             ),
                           ),
                         ),
-                        child: Container(
+                        child: Expanded(
                           child: Center(
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
                                   'Add to Calendar',
@@ -155,12 +156,11 @@ class _AddToCalendarState extends State<AddToCalendar> {
                                     fontSize: 10,
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Icon(
-                                  Icons.expand_more,size: 10,
-                                  color: Color(0XFF5B46F4),
+                                Expanded(
+                                  child: Icon(
+                                    Icons.expand_more,size: 10,
+                                    color: Color(0XFF5B46F4),
+                                  ),
                                 ),
                               ],
                             ),
