@@ -9,7 +9,7 @@ import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:fun_zippy/app/widgets/error_snackbar.dart';
 import 'package:intl/intl.dart';
 
-import '../my_ticket_view/ticket_view_popup.dart';
+import 'ticket_view_popup.dart';
 
 class MyTickets extends StatefulWidget {
   final bool isSfald;
