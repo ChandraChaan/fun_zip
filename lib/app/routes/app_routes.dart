@@ -57,6 +57,7 @@ abstract class Routes {
   static const CreateGroupFour = _Paths.CreateGroupFour;
   static const CreateGroupFive = _Paths.CreateGroupFive;
   static const GroupSuccessScreen = _Paths.GroupSuccessScreen;
+  static const BlogsScreen = _Paths.BlogsScreen;
 }
 
 abstract class _Paths {
@@ -116,5 +117,6 @@ abstract class _Paths {
   static const CreateGroupFour = '/CreateGroupFour';
   static const CreateGroupFive = '/CreateGroupFive';
   static const GroupSuccessScreen = '/GroupSuccessScreen';
+  static const BlogsScreen = '/BlogsScreen';
 
 }

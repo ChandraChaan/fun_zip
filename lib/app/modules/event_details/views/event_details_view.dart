@@ -202,7 +202,8 @@ class EventDetailsView extends GetView<EventDetailsController> {
                               : false,
                           child: SizedBox(
                             height: 600,
-                            child: SignUpItemWidget(
+                            child:
+                            SignUpItemWidget(
                               controller: controller,
                             ),
                           ),

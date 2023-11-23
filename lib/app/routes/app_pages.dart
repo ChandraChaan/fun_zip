@@ -1,6 +1,7 @@
 import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:get/get.dart';
 
+import '../modules/blogs_screen/blogs_screen.dart';
 import '../modules/booking_tickets/booking_tickets.dart';
 import '../modules/contact_us/contact_us.dart';
 import '../modules/contact_us/contact_us.dart';
@@ -22,6 +23,7 @@ import '../modules/my_groups/create_group2.dart';
 import '../modules/my_groups/create_group_five.dart';
 import '../modules/my_groups/create_group_four.dart';
 import '../modules/my_groups/create_groupthree.dart';
+import '../modules/my_groups/my_groups.dart';
 import '../modules/my_groups/my_groups.dart';
 import '../modules/my_groups/success_screen.dart';
 import '../modules/my_profile_screen/my_profile_screen.dart';
@@ -288,6 +290,11 @@ class AppPages {
     GetPage(
       name: _Paths.GroupSuccessScreen,
       page: () => GroupSuccessScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.BlogsScreen,
+      page: () => BlogsScreen(),
       binding: EventDetailsBinding(),
     ),
 

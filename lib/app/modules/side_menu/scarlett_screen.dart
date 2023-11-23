@@ -140,20 +140,28 @@ class _SideMenuScreen extends State<SideMenuScreen> {
         onTap: () {
           if (title.contains('My Profile')) {
             Get.toNamed(Routes.MyProfile);
+
           } else if (title.contains('Home')) {
             Get.toNamed(Routes.HOME);
+
           } else if (title.contains('Create an Event')) {
             Get.toNamed(Routes.CREATE_EVENT);
+
           } else if (title.contains('My Events')) {
             Get.toNamed(Routes.MyEvents);
+
           } else if (title.contains('My Tickets')) {
             Get.toNamed(Routes.MyTickets);
+
           } else if (title.contains('My Group')) {
             Get.toNamed(Routes.MyGroupsScreen);
+
           } else if (title.contains('Blog')) {
-            Get.toNamed(Routes.BookTickets);
+            Get.toNamed(Routes.BlogsScreen);
+
           } else if (title.contains('Contact Us')) {
             Get.toNamed(Routes.ContactUsScreen);
+
           } else if (title.contains('Log Out')) {
             final getStorage = GetStorage();
 

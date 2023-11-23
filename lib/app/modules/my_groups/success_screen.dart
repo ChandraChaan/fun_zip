@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/modules/common_data/common_text.dart';
+import 'package:get/get.dart';
+
+import '../../routes/app_pages.dart';
 
 class GroupSuccessScreen extends StatelessWidget {
   const GroupSuccessScreen({super.key});
@@ -33,20 +36,25 @@ class GroupSuccessScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 120),
                   Center(
-                    child: Container(
-                      height: 35,
-                      width: 160,
-                      decoration: BoxDecoration(
-                        color: Color(0XFFC61236),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Done!',
-                          style: (TextStyle(color: Colors.white, fontSize: 14)),
+                    child: InkWell(
+                      onTap: (){
+                        Get.toNamed(Routes.MyGroupsScreen);
+                      },
+                      child: Container(
+                        height: 35,
+                        width: 160,
+                        decoration: BoxDecoration(
+                          color: Color(0XFFC61236),
+                          borderRadius: BorderRadius.circular(10),
                         ),
+                        child: Center(
+                          child: Text(
+                            'Done!',
+                            style: (TextStyle(color: Colors.white, fontSize: 14)),
+                          ),
+                        ),
+                        //fillColor: Color(0XFFC61236),
                       ),
-                      //fillColor: Color(0XFFC61236),
                     ),
                   ),
                 ],

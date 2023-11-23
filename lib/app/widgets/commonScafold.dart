@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fun_zippy/app/modules/my_groups/contact_us.dart';
 import 'package:fun_zippy/app/modules/my_tickets/my_tickets.dart';
 import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
 import 'package:get/get.dart';
 
 import '../data/repository/event_repository.dart';
+import '../modules/blogs_screen/blogs_screen.dart';
 import '../modules/my_events_screen/my_events.dart';
 import '../config/images_links.dart';
 import '../modules/create_event/views/create_event_view.dart';
@@ -37,7 +39,7 @@ class CommonScafold extends StatefulWidget {
       this.remoNavChild = false,
       this.bottomNavigationBar,
       this.child,
-      this.boardCast});
+      this.boardCast,});
 
   @override
   State<CommonScafold> createState() => _CommonScafoldState();
@@ -105,7 +107,9 @@ class _CommonScafoldState extends State<CommonScafold> {
     MyEvents(
       isSfald: false,
     ),
-    MyTickets()
+    MyTickets(),
+    BlogsScreen(isSfald: false,),
+    ContactUs(isSfald: false,)
   ];
 
   @override
