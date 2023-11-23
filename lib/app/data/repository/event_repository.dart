@@ -192,7 +192,7 @@ class EventRepository {
     return completer.future;
   }
 
-  Future ticketDetails() async {
+  Future ticketDetails(String uid) async {
     String token = userModel.token;
 
     final headers = {
