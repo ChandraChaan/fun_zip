@@ -15,47 +15,44 @@ import '../../controllers/create_event_controller.dart';
 class SuccessfulEventPage extends GetView<CreateEventController> {
   @override
   Widget build(BuildContext context) {
-    return LogoCommon(
-      child: Scaffold(
-        backgroundColor: backgroundColor,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: backgroundColor,
-          actions: [
-            IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: SvgPicture.asset(crossIconImage))
+    return Scaffold(
+      backgroundColor: backgroundColor,
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   backgroundColor: backgroundColor,
+      //   actions: [
+      //     IconButton(
+      //         onPressed: () {
+      //           Get.back();
+      //         },
+      //         icon: SvgPicture.asset(crossIconImage))
+      //   ],
+      // ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SvgPicture.asset(successIconImage),
+            30.height,
+            Text('Successful',
+                style: normalText.copyWith(fontSize: 22, color: blackColor)),
+            10.height,
+            Text("You have created a event successfully",
+              style: normalText.copyWith(height: 1.5),
+            ),
           ],
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SvgPicture.asset(successIconImage),
-              30.height,
-              Text('Successful',
-                  style: normalText.copyWith(fontSize: 22, color: blackColor)),
-              10.height,
-              Text(
-                'It is a long established fact that a reader will\n  be distracted by the readable content.',
-                style: normalText.copyWith(height: 1.5),
-              ),
-            ],
-          ),
-        ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.all(60.0),
-          child: PrimaryButtonWidget(
-            onPressed: () {
-              String uid = Get.arguments;
-              controller.afterEventCreationCallThisAPI(uid);
-            },
-            text: 'Done!',
-            radius: 10,
-          ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(60.0),
+        child: PrimaryButtonWidget(
+          onPressed: () {
+            String uid = Get.arguments;
+            controller.afterEventCreationCallThisAPI(uid);
+          },
+          text: 'Done!',
+          radius: 10,
         ),
       ),
     );

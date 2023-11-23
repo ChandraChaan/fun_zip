@@ -121,8 +121,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                           image: DecorationImage(
                             image: NetworkImage(
                                 controller.eventDetailsModel.detailPicture),
-                            fit: BoxFit
-                                .cover, // Maintain aspect ratio without stretching
+                            fit: BoxFit.fill, // Maintain aspect ratio without stretching
                           ),
                         ),
                         child: AppBarWidgetEventDetails(),

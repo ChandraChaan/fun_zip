@@ -201,7 +201,7 @@ class _MyEventsState extends State<MyEvents> {
                   // adjust the radius as needed
                   child: Image.network(
                     summaryPicture,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     height: 210,
                     width: 370,
                     // when network image is not available, it shows an asset image
