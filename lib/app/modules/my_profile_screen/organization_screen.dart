@@ -17,9 +17,14 @@ class OrganizationScreen extends StatelessWidget {
         shadowColor: Colors.transparent,
         elevation: 5,
         backgroundColor: Colors.white,
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
         ),
         actions: [
           Padding(

@@ -46,6 +46,11 @@ class _MyProfileState extends State<MyProfile> {
   @override
   Widget build(BuildContext context) {
     return CommonScafold(
+      title: 'My Profile',
+      titleChild: Text('My Profile',
+          style: TextStyle(color: Colors.black, fontSize: 20)),
+      remoNavChild: true,
+      boardCast: false,
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: SingleChildScrollView(
