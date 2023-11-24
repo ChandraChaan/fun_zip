@@ -242,7 +242,7 @@ class EventRepository {
     var body = json.encode({
       "lineItems": [
         {
-          "quantity": "$productPrice",
+          "quantity": "1",
           "eventId": "650faf169b016379ef9a3e2f",
           "eventUid": "905ZCsIyYM5",
           "visibility": "Public",
@@ -251,7 +251,7 @@ class EventRepository {
           "categoryUid": "ZejFZSEbGY9",
           "attendeeType": "12-18",
           "currency": "\$",
-          "salePrice": 5,
+          "salePrice": '$productPrice',
           "actualPrice": 5,
           "groupDiscountCount": 10,
           "groupDiscountPercentage": 0,

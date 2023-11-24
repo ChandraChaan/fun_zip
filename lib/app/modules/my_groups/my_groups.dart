@@ -12,6 +12,7 @@ import 'package:get/get.dart';
 import '../../routes/app_pages.dart';
 
 class MyGroupsScreen extends StatefulWidget {
+
   @override
   State<MyGroupsScreen> createState() => MyGroupsScreentateScreen();
 }
@@ -412,6 +413,7 @@ class ThreeDotPopupMenu extends StatelessWidget {
             children: [
               Icon(
                 Icons.visibility_outlined,
+                size: 20,
                 color: Color(0XFF5B46F4),
               ),
               SizedBox(
@@ -419,7 +421,7 @@ class ThreeDotPopupMenu extends StatelessWidget {
               ),
               Text(
                 'View',
-                style: TextStyle(color: Colors.grey[600]),
+                style: TextStyle(color: Colors.grey[600], fontSize: 14),
                 textAlign: TextAlign.left,
               ),
             ],
@@ -427,23 +429,29 @@ class ThreeDotPopupMenu extends StatelessWidget {
         ),
         PopupMenuItem<String>(
           value: 'edit',
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.mode_edit_outlined,
-                color: Colors.orange,
-              ),
-              SizedBox(
-                width: 7,
-              ),
-              Text(
-                'Edit',
-                style: TextStyle(color: Colors.grey[600]),
-                textAlign: TextAlign.left,
-              ),
-            ],
+          child: InkWell(
+            onTap: () {
+              Get.toNamed(Routes.CreateGroup);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.mode_edit_outlined,
+                  color: Colors.orange,
+                  size: 20,
+                ),
+                SizedBox(
+                  width: 7,
+                ),
+                Text(
+                  'Edit',
+                  style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                  textAlign: TextAlign.left,
+                ),
+              ],
+            ),
           ),
         ),
         PopupMenuItem<String>(
@@ -454,15 +462,16 @@ class ThreeDotPopupMenu extends StatelessWidget {
             children: [
               Icon(
                 Icons.delete_outline_outlined,
+                size: 20,
                 color: Colors.pink.shade600,
               ),
               SizedBox(
                 width: 7,
               ),
-              Text10(
+              Text(
                 'Delete',
-                // style: TextStyle(color: Colors.grey[600]),
-                // textAlign: TextAlign.left,
+                style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                textAlign: TextAlign.left,
               ),
             ],
           ),

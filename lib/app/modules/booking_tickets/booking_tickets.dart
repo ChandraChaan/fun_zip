@@ -125,7 +125,7 @@ class _BookTicketsState extends State<BookTickets> {
 
   Map<dynamic, dynamic> bye_tickets_details = {};
 
-  Future<void> byeTicket(productPrice, userName, email, phoneNumber) async {
+  Future<void> byeTickets(productPrice, userName, email, phoneNumber) async {
     try {
       var response = await EventRepository()
           .byeTickets(productPrice, userName, email, phoneNumber);
@@ -186,8 +186,7 @@ class _BookTicketsState extends State<BookTickets> {
 
   @override
   Widget build(BuildContext context) {
-    int b = widget.controller?.eventDetailsModel
-        .ticketCategories?.length ?? 0;
+    int b = widget.controller?.eventDetailsModel.ticketCategories?.length ?? 0;
     return Scaffold(
 //      backgroundColor: Colors.grey.shade300,
       body: Padding(
@@ -197,8 +196,7 @@ class _BookTicketsState extends State<BookTickets> {
             Container(
               height: 680,
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10)),
+                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
               child: Column(
                 children: [
                   SizedBox(
@@ -218,15 +216,13 @@ class _BookTicketsState extends State<BookTickets> {
                         SizedBox(
                           height: 18,
                         ),
-                        for (int a = 0;
-                            a < b;
-
-                            a++) ...[
+                        for (int a = 0; a < b; a++) ...[
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(widget.controller!.eventDetailsModel
-                                  .ticketCategories![a].name ?? ' '),
+                                      .ticketCategories![a].name ??
+                                  ' '),
                               Row(
                                 children: [
                                   Container(
@@ -266,7 +262,8 @@ class _BookTicketsState extends State<BookTickets> {
                           SizedBox(height: 7),
                           Text(
                             widget.controller!.eventDetailsModel
-                                .ticketCategories![a].inviteMessage ?? ' ',
+                                    .ticketCategories![a].inviteMessage ??
+                                ' ',
                             style: TextStyle(fontSize: 12),
                           ),
                           SizedBox(height: 7),
@@ -303,7 +300,8 @@ class _BookTicketsState extends State<BookTickets> {
                               child: TextFormField(
                                 controller: _userNameEditingController,
                                 decoration: InputDecoration(
-                                    hintText: 'Name',
+                                    hintText:
+                                        '$userName',
                                     hintStyle: TextStyle(fontSize: 12),
                                     filled: true,
                                     fillColor: Color(0XFFE8E7F0),
@@ -338,7 +336,7 @@ class _BookTicketsState extends State<BookTickets> {
                               child: TextFormField(
                                 controller: _emailEditingController,
                                 decoration: InputDecoration(
-                                    hintText: 'Email',
+                                    hintText: '$email',
                                     hintStyle: TextStyle(fontSize: 12),
                                     filled: true,
                                     fillColor: Color(0XFFE8E7F0),
@@ -428,7 +426,8 @@ class _BookTicketsState extends State<BookTickets> {
                                           keyboardType: TextInputType.number,
                                           controller: phoneNumberController,
                                           decoration: InputDecoration(
-                                              hintText: 'Phone Number',
+                                              //Todo
+                                              hintText: '$phoneNumber',
                                               hintStyle: TextStyle(
                                                   fontSize: 10,
                                                   color: Color(0XFF5E5A80)),
@@ -476,7 +475,7 @@ class _BookTicketsState extends State<BookTickets> {
                                 email.isNotEmpty &&
                                 phoneNumber.isNotEmpty) {
                               setState(() {
-                                byeTicket(productPrice.toInt().toString(),
+                                byeTickets(productPrice.toInt().toString(),
                                     userName, email, phoneNumber);
                               });
                             }
