@@ -201,7 +201,7 @@ class EventRepository {
 
     try {
        response = await Api().post(
-         "/event/payment/getSaleTransaction/h6Wh3RnLi4p",
+         "/event/payment/getSaleTransaction/$uid",
           options: Options(headers: headers)
        );
       if (response.statusCode == 200) {
