@@ -349,4 +349,27 @@ class EventRepository {
   }
 
 
+  Future editEvent({required Map data}) async {
+    String token = userModel.token;
+
+    final headers = {
+      'Cookie': 'AuthToken=$token;',
+    };
+
+    try {
+      response = await Api().post(
+          "/event/eventUser/update/rsvp",
+          options: Options(headers: headers),data: data
+      );
+      if (response.statusCode == 200) {
+        completer.complete(response.data);
+      }
+    } catch (e) {
+      completer.complete(response.data);
+      // Handle the error as needed
+    }
+    return completer.future;
+  }
+
+
 }

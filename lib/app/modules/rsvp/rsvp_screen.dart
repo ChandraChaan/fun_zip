@@ -60,46 +60,38 @@ class _RsvpScreenState extends State<RsvpScreen> {
     }
   }
 
-  Map<String, dynamic> rsvpData = {
-    "firstName": "Funzippy",
-    "emailAddress": "demo@funzippy.com",
-    "phoneNumber": "9063261005",
-    "rsvpAdultCount": "1",
-    "rsvpKidCount": "1",
-    "rsvpStatus": "D", // Accept - A, Decline - D, Maybe - M
-    "rsvpComment": "ghg",
-    "eventId": "905ZCsIyYM5",
-    "rsvpDate": "2023-11-20T18:37:03.994Z",
-  };
+  // Map<String, dynamic> rsvpData = {
+  //
+  // };
 
-  Future<void> rsvpCall() async {
+  Future<void> rsvpCall(name,email,phoneNumber,comment,rsvpStatus,adult,kids) async {
     try {
       var response = await EventRepository().rsvpCall(data: {
-        "firstName": "Funzippy",
-        "emailAddress": "demo@funzippy.com",
-        "phoneNumber": "9063261005",
-        "rsvpAdultCount": "1",
-        "rsvpKidCount": "1",
-        "rsvpStatus": "D", // Accept - A, Decline - D, Maybe - M
-        "rsvpComment": "ghg",
+        "firstName": "$name",
+        "emailAddress": "$email",
+        "phoneNumber": "$phoneNumber",
+        "rsvpAdultCount": "$adult",
+        "rsvpKidCount": "$kids",
+        "rsvpStatus": "$rsvpStatus", // Accept - A, Decline - D, Maybe - M
+        "rsvpComment": "$comment",
         "eventId": "905ZCsIyYM5",
         "rsvpDate": "2023-11-20T18:37:03.994Z",
       });
       print(response.toString());
       print('rsvp calling');
-      setState(() {
-        rsvpData.addAll(response['results']);
-      });
+     // setState(() {
+       // rsvpData.addAll(response['results']);
+      // });
     } catch (e) {
       errorSnackbar(title: '$e', desc: '');
     }
   }
 
-  @override
-  void initState() {
-    rsvpCall();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   rsvpCall();
+  //   super.initState();
+  // }
   bool _showPopup = false;
 
   @override
@@ -142,8 +134,8 @@ class _RsvpScreenState extends State<RsvpScreen> {
                         ),
                         SizedBox(width: 4),
                         Text(
-                          '${rsvpData.isNotEmpty ? rsvpData["rsvpAdultCount"] : ""}  ',
-                          //'${productQuantityOne}'
+                         // '${rsvpData.isNotEmpty ? rsvpData["rsvpAdultCount"] : ""}  ',
+                          '${productQuantityOne}'
                             ),
                         SizedBox(width: 4),
                         Container(
@@ -237,11 +229,11 @@ class _RsvpScreenState extends State<RsvpScreen> {
                       height: 5,
                     ),
                     Container(
-                      height: 40,
+                      height: 35,
                       child: TextField(
                         decoration: InputDecoration(
-                            hintText:
-                                '${rsvpData.isNotEmpty ? rsvpData["firstName"] : ""}  ',
+                            hintText:"Name",
+                               // '${rsvpData.isNotEmpty ? rsvpData["firstName"] : ""}  ',
                             hintStyle: TextStyle(fontSize: 12),
                             filled: true,
                             fillColor: Color(0XFFE8E7F0),
@@ -266,11 +258,11 @@ class _RsvpScreenState extends State<RsvpScreen> {
                     ),
                     // first container sathya
                     Container(
-                      height: 40,
+                      height: 35,
                       child: TextField(
                         decoration: InputDecoration(
-                            hintText:
-                                '${rsvpData.isNotEmpty ? rsvpData["emailAddress"] : ""}  ',
+                            hintText:"Email",
+                              //  '${rsvpData.isNotEmpty ? rsvpData["emailAddress"] : ""}  ',
                             hintStyle: TextStyle(fontSize: 12),
                             filled: true,
                             fillColor: Color(0XFFE8E7F0),
@@ -296,7 +288,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                     Row(
                       children: [
                         Container(
-                          height: 40,
+                          height: 35,
                           decoration: BoxDecoration(
                               color: Colors.grey,
                               borderRadius: BorderRadius.only(
@@ -338,7 +330,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                         ),
                         Expanded(
                           child: Container(
-                            height: 40,
+                            height: 35,
                             decoration: BoxDecoration(
                                 color: Color(0XFFE8E7F0),
                                 borderRadius: BorderRadius.only(
@@ -347,8 +339,8 @@ class _RsvpScreenState extends State<RsvpScreen> {
                                 )),
                             child: TextField(
                               decoration: InputDecoration(
-                                  hintText:
-                                      '${rsvpData.isNotEmpty ? rsvpData["phoneNumber"] : ""}  ',
+                                  hintText:"Phone Number",
+                                      //'${rsvpData.isNotEmpty ? rsvpData["phoneNumber"] : ""}  ',
                                   hintStyle: TextStyle(fontSize: 12),
                                   filled: true,
                                   fillColor: Color(0XFFE8E7F0),
@@ -459,8 +451,8 @@ class _RsvpScreenState extends State<RsvpScreen> {
                       maxLines: 10,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText:
-                            '${rsvpData.isNotEmpty ? rsvpData["rsvpComment"] : ""}  ',
+                        hintText:"Comment",
+                           // '${rsvpData.isNotEmpty ? rsvpData["rsvpComment"] : ""}  ',
                         hintStyle: TextStyle(fontSize: 12),
                       ),
                     ),
@@ -471,7 +463,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                 ),
                 InkWell(
                   onTap: () {
-                    rsvpData;
+                   // rsvpData;
                     _showPopupMenu(context);
                   },
                   child: Container(
