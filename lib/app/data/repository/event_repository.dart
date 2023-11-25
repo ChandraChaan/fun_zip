@@ -335,7 +335,7 @@ class EventRepository {
 
     try {
       response = await Api().post(
-          "/event/eventUser/update/rsvp",
+          "/event/eventUser/update/rsvp/${data['eventId']}",
           options: Options(headers: headers),data: data
       );
       if (response.statusCode == 200) {
