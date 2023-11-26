@@ -19,15 +19,15 @@ class EventDetailsController extends GetxController {
   TextEditingController? emailController = TextEditingController();
   ApiResponseModel apiResponseModel = ApiResponseModel();
 
-  signUp() async {
+  signUp(userName, email, phoneNum) async {
     ProgressBar.start();
 
     try {
       var response = await UserRepository().signUp(
-          email: emailController!.text.toString(),
+          email: email,
           password: 'pass',
-          name: nameController!.text.toString(),
-          phone: phoneController!.text.toString());
+          name: userName,
+          phone: phoneNum);
 
       apiResponseModel = ApiResponseModel.fromJson(response);
 

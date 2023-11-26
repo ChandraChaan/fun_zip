@@ -196,9 +196,6 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         Visibility(
                           visible: controller.eventDetailsModel.timeSlots.toString() != 'null',
                           child: SizedBox(
-                            height: controller.eventDetailsModel.timeSlots.toString() != 'null'
-                                ? MediaQuery.of(context).size.height
-                                : 0,
                             child: SignUpItemWidget(
                               controller: controller,
                             ),
