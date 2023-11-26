@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
+import 'package:get/get.dart';
 
 import '../../../../config/images_links.dart';
 import '../../../../theme/text_theme.dart';
 import '../../../../widgets/custom_buttons.dart';
 import '../../../../widgets/rounded_border.dart';
 import '../../controllers/event_details_controller.dart';
+import 'SignUpItemWidget.dart';
 
 class GiftRegistryWidget extends StatelessWidget {
   const GiftRegistryWidget({
@@ -74,18 +76,39 @@ class GiftRegistryWidget extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Expanded(
-                          flex: 2,
-                          child: SmallWhiteBackgroundButton(
-                              height: 20,
-                              radius: 30,
-                              child: Text(
-                                'Sign up',
-                                style: buttonText.copyWith(
-                                    color: redColor, fontSize: 8),
-                                textAlign: TextAlign.center,
+                        SizedBox(
+                          width: 59,
+                          height: 20,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Get.dialog(BottomSignup(
+                                  controller: controller));
+                            },
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.all(0),
+                              backgroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius:
+                                BorderRadius.circular(50),
+                                side: BorderSide(
+                                    color: Color(0XFFC61236)),
                               ),
-                              borderColor: redColor),
+                            ),
+                            child: Container(
+                              height: 20,
+                              width: 59,
+                              child: Center(
+                                child: Text(
+                                  'Sign Up',
+                                  style: TextStyle(
+                                    fontSize: 8,
+                                    color: Color(0XFFC61236),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),

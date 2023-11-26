@@ -19,160 +19,165 @@ class SignUpItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Card(
-          elevation: 0.0,
-          shape: roundedBorder(radius: 15),
-          child: Container(
-            height: 560,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: Colors.white)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Sign up Items', style: titleBoldText),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Sign up to a slot below',
-                      style: normalText.copyWith()),
-                ),
-                for (int a = 0;
-                    a < controller!.eventDetailsModel.timeSlots!.length;
-                    a++)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Container(
-                      height: 84,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Color(0XFFC9C6E1))),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  height: 30,
-                                  width: 30,
-                                  decoration: BoxDecoration(
-                                      color: Color(0XFFE1FFCF),
-                                      borderRadius: BorderRadius.circular(2)),
-                                  child: Icon(
-                                    Icons.calendar_today,
-                                    size: 16,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 5),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          controller!.formatDate(controller!
-                                              .eventDetailsModel
-                                              .timeSlots![a]['startDateTime']),
-                                          style: TextStyle(fontSize: 14)),
-                                      SizedBox(height: 8),
-                                      Text(
-                                        controller!.formatTimeRange(
-                                            controller!.eventDetailsModel
-                                                .timeSlots![a]['startDateTime'],
-                                            controller!.eventDetailsModel
-                                                .timeSlots![a]['endDateTime']),
-                                        style: TextStyle(fontSize: 14),
-                                      ),
-                                      SizedBox(height: 8),
-                                      Text(
-                                        controller!.eventDetailsModel
-                                                .timeSlots![a]['purpose'] ??
-                                            ' ',
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color: Color(0XFF86839B)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                SizedBox(
-                                  width: 59,
-                                  height: 20,
-                                  child: ElevatedButton(
-                                    onPressed: controller!.eventDetailsModel
-                                                .timeSlots![a]['status']
-                                                .toString() ==
-                                            // A means Active, if this is needed modification , do those.
-                                            'A'
-                                        ? () {
-                                            Get.dialog(BottomSignup(
-                                                controller: controller!));
-                                          }
-                                        : null,
-                                    style: ElevatedButton.styleFrom(
-                                      padding: const EdgeInsets.all(0),
-                                      backgroundColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(50),
-                                        side: BorderSide(
-                                            color: Color(0XFFC61236)),
-                                      ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        elevation: 0.0,
+        shape: roundedBorder(radius: 15),
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: Colors.white)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Sign up Items', style: titleBoldText),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Sign up to a slot below',
+                    style: normalText.copyWith()),
+              ),
+              ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: controller!.eventDetailsModel.timeSlots!.length,
+                  itemBuilder: (context, a) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Container(
+                        height: 84,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: Color(0XFFC9C6E1))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 30,
+                                    width: 30,
+                                    decoration: BoxDecoration(
+                                        color: Color(0XFFE1FFCF),
+                                        borderRadius:
+                                        BorderRadius.circular(2)),
+                                    child: Icon(
+                                      Icons.calendar_today,
+                                      size: 16,
                                     ),
-                                    child: Container(
-                                      height: 20,
-                                      width: 59,
-                                      child: Center(
-                                        child: Text(
-                                          'Sign Up',
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 5),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                            controller!.formatDate(controller!
+                                                .eventDetailsModel
+                                                .timeSlots![a]
+                                            ['startDateTime']),
+                                            style: TextStyle(fontSize: 14)),
+                                        SizedBox(height: 8),
+                                        Text(
+                                          controller!.formatTimeRange(
+                                              controller!.eventDetailsModel
+                                                  .timeSlots![a]
+                                              ['startDateTime'],
+                                              controller!.eventDetailsModel
+                                                  .timeSlots![a]
+                                              ['endDateTime']),
+                                          style: TextStyle(fontSize: 14),
+                                        ),
+                                        SizedBox(height: 8),
+                                        Text(
+                                          controller!.eventDetailsModel
+                                              .timeSlots![a]['purpose'] ??
+                                              ' ',
                                           style: TextStyle(
-                                            fontSize: 8,
-                                            color: Color(0XFFC61236),
-                                            fontWeight: FontWeight.bold,
+                                              fontSize: 12,
+                                              color: Color(0XFF86839B)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    width: 59,
+                                    height: 20,
+                                    child: ElevatedButton(
+                                      onPressed: controller!.eventDetailsModel
+                                          .timeSlots![a]['status']
+                                          .toString() ==
+                                          // A means Active, if this is needed modification , do those.
+                                          'A'
+                                          ? () {
+                                        Get.dialog(BottomSignup(
+                                            controller: controller!));
+                                      }
+                                          : null,
+                                      style: ElevatedButton.styleFrom(
+                                        padding: const EdgeInsets.all(0),
+                                        backgroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(50),
+                                          side: BorderSide(
+                                              color: Color(0XFFC61236)),
+                                        ),
+                                      ),
+                                      child: Container(
+                                        height: 20,
+                                        width: 59,
+                                        child: Center(
+                                          child: Text(
+                                            'Sign Up',
+                                            style: TextStyle(
+                                              fontSize: 8,
+                                              color: Color(0XFFC61236),
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 3,
-                                ),
-                                Text(
-                                  '${int.parse(controller!.eventDetailsModel.timeSlots![a]['totalCount'].toString()) - int.parse(controller!.eventDetailsModel.timeSlots![a]['reservedCount'].toString())} Slots Left',
-                                  style: TextStyle(
-                                    fontSize: 9,
-                                    color: Color(0XFFC61236),
+                                  SizedBox(
+                                    height: 3,
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                  Text(
+                                    '${int.parse(controller!.eventDetailsModel.timeSlots![a]['totalCount'].toString()) - int.parse(controller!.eventDetailsModel.timeSlots![a]['reservedCount'].toString())} Slots Left',
+                                    style: TextStyle(
+                                      fontSize: 9,
+                                      color: Color(0XFFC61236),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                SizedBox(
-                  height: 23,
-                ),
-              ],
-            ),
+                    );
+                  }),
+              SizedBox(
+                height: 23,
+              ),
+            ],
           ),
         ),
       ),
@@ -462,13 +467,25 @@ class _PotluckItemsState extends State<PotluckItems> {
   }
 }
 
-class BottomSignup extends StatelessWidget {
+class BottomSignup extends StatefulWidget {
   const BottomSignup({
     super.key,
     required this.controller,
   });
 
   final EventDetailsController controller;
+
+  @override
+  State<BottomSignup> createState() => _BottomSignupState();
+}
+
+class _BottomSignupState extends State<BottomSignup> {
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController _userNameEditingController = TextEditingController();
+  TextEditingController _emailEditingController = TextEditingController();
+  String userName = '';
+  String email = '';
+  String phoneNumber = '';
 
   @override
   Widget build(BuildContext context) {
@@ -509,8 +526,8 @@ class BottomSignup extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
-                  child: TextField(
-                    controller: controller.nameController,
+                  child: TextFormField(
+                    controller: _userNameEditingController,
                     decoration: InputDecoration(
                       hintText: 'Name',
                       hintStyle: TextStyle(fontSize: 12),
@@ -521,6 +538,11 @@ class BottomSignup extends StatelessWidget {
                       ),
                       border: InputBorder.none,
                     ),
+                    onChanged: (value) {
+                      setState(() {
+                        userName = value;
+                      });
+                    },
                   ),
                 ),
                 SizedBox(height: 15),
@@ -530,8 +552,8 @@ class BottomSignup extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
-                  child: TextField(
-                    controller: controller.emailController,
+                  child: TextFormField(
+                    controller: _emailEditingController,
                     decoration: InputDecoration(
                       hintText: 'Email',
                       hintStyle: TextStyle(fontSize: 12),
@@ -542,6 +564,11 @@ class BottomSignup extends StatelessWidget {
                       ),
                       border: InputBorder.none,
                     ),
+                    onChanged: (value) {
+                      setState(() {
+                        email = value;
+                      });
+                    },
                   ),
                 ),
                 SizedBox(height: 15),
@@ -589,13 +616,18 @@ class BottomSignup extends StatelessWidget {
                                 borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(20),
                                     bottomRight: Radius.circular(20))),
-                            child: TextField(
-                              controller: controller.phoneController,
+                            child: TextFormField(
+                              controller: phoneNumberController,
                               decoration: InputDecoration(
                                 hintText: 'Phone Number',
                                 hintStyle: TextStyle(fontSize: 12),
                                 border: InputBorder.none,
                               ),
+                              onChanged: (value) {
+                                setState(() {
+                                  phoneNumber = value;
+                                });
+                              },
                             ),
                           )
                         ],
@@ -615,7 +647,9 @@ class BottomSignup extends StatelessWidget {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      controller.signUp();
+                      if(userName.isNotEmpty && email.isNotEmpty && phoneNumber.isNotEmpty) {
+                        widget.controller.signUp(userName, email, phoneNumber);
+                      }
                     },
                     child: Text(
                       'Sign Up',

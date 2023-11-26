@@ -121,14 +121,36 @@ class _BookTicketsState extends State<BookTickets> {
   bool maybe = false;
 
   double productPrice = 1; //quantity
-  double productQuantityTwo = 1;
 
   Map<dynamic, dynamic> bye_tickets_details = {};
 
-  Future<void> byeTickets(productPrice, userName, email, phoneNumber) async {
+  Future<void> byeTickets(productPrice, userName, email, phoneNumber, eventId,
+      eventUID, visibility, summaryPic) async {
     try {
-      var response = await EventRepository()
-          .byeTickets(productPrice, userName, email, phoneNumber);
+      var data = {
+        "lineItems": [
+          {
+            "quantity": "$productPrice",
+            "eventId": "$eventId",
+            "eventUid": "$eventUID",
+            "visibility": "$visibility",
+            "eventImageUrl":
+                "$summaryPic",
+            "categoryUid": "ZejFZSEbGY9",
+            "attendeeType": "12-18",
+            "currency": "\$",
+            "salePrice": '$productPrice',
+            "actualPrice": 5,
+            "groupDiscountCount": 0,
+            "groupDiscountPercentage": 0,
+            "groupDiscountPricePerTicket": 0
+          }
+        ],
+        "firstName": "$userName",
+        "emailAddress": "$email",
+        "phoneNumber": "$phoneNumber"
+      };
+      var response = await EventRepository().byeTickets(data);
       print("Bye ticket response : $response");
       final bodyData = response;
       setState(() {
@@ -300,8 +322,7 @@ class _BookTicketsState extends State<BookTickets> {
                               child: TextFormField(
                                 controller: _userNameEditingController,
                                 decoration: InputDecoration(
-                                    hintText:
-                                        '$userName',
+                                    hintText: '$userName',
                                     hintStyle: TextStyle(fontSize: 12),
                                     filled: true,
                                     fillColor: Color(0XFFE8E7F0),
@@ -473,10 +494,27 @@ class _BookTicketsState extends State<BookTickets> {
                           onTap: () {
                             if (userName.isNotEmpty &&
                                 email.isNotEmpty &&
-                                phoneNumber.isNotEmpty) {
+                                phoneNumber.isNotEmpty &&
+                                widget.controller?.eventDetailsModel.id
+                                    .isNotEmpty &&
+                                widget.controller?.eventDetailsModel.uid
+                                    .isNotEmpty &&
+                                widget.controller?.eventDetailsModel.visibility
+                                    .isNotEmpty &&
+                                widget.controller?.eventDetailsModel
+                                    .summaryPicture.isNotEmpty) {
                               setState(() {
-                                byeTickets(productPrice.toInt().toString(),
-                                    userName, email, phoneNumber);
+                                byeTickets(
+                                    productPrice.toInt().toString(),
+                                    userName,
+                                    email,
+                                    phoneNumber,
+                                    widget.controller?.eventDetailsModel.id,
+                                    widget.controller?.eventDetailsModel.uid,
+                                    widget.controller?.eventDetailsModel
+                                        .visibility,
+                                    widget.controller?.eventDetailsModel
+                                        .summaryPicture);
                               });
                             }
                             if (bye_tickets_details.isNotEmpty) {

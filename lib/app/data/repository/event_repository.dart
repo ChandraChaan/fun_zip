@@ -237,31 +237,9 @@ class EventRepository {
     return completer.future;
   }
 
-  Future byeTickets(productPrice, userName, email, phoneNumber) async {
+  Future byeTickets(data) async {
     String token = userModel.token;
-    var body = json.encode({
-      "lineItems": [
-        {
-          "quantity": "1",
-          "eventId": "650faf169b016379ef9a3e2f",
-          "eventUid": "905ZCsIyYM5",
-          "visibility": "Public",
-          "eventImageUrl":
-              "https://s3.us-west-2.amazonaws.com/funzippy.events/905ZCsIyYM5/pics/above.jpg",
-          "categoryUid": "ZejFZSEbGY9",
-          "attendeeType": "12-18",
-          "currency": "\$",
-          "salePrice": '$productPrice',
-          "actualPrice": 5,
-          "groupDiscountCount": 10,
-          "groupDiscountPercentage": 0,
-          "groupDiscountPricePerTicket": 1
-        }
-      ],
-      "firstName": "$userName",
-      "emailAddress": "$email",
-      "phoneNumber": "$phoneNumber"
-    });
+    var body = json.encode(data);
 
     final headers = {
       'Cookie': 'AuthToken=$token;',
@@ -335,7 +313,7 @@ class EventRepository {
 
     try {
       response = await Api().post(
-          "/event/eventUser/update/rsvp",
+          "/event/eventUser/update/rsvp/${data['eventId']}",
           options: Options(headers: headers),data: data
       );
       if (response.statusCode == 200) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 
 import '../../data/repository/event_repository.dart';
 import '../../widgets/error_snackbar.dart';
@@ -21,13 +22,20 @@ class _RsvpScreenState extends State<RsvpScreen> {
   String defaultCountryCode = '+91';
   List<String> countryCodes = ['+91', '+92', '+93', '+94'];
   TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController _userNameEditingController = TextEditingController();
+  TextEditingController _emailEditingController = TextEditingController();
+  TextEditingController _commentEditingController = TextEditingController();
+  String userName = '';
+  String email = '';
+  String phoneNumber = '';
+  String comment = '';
+  String rsvpStatus = '';
 
   bool accept = false;
   bool decline = false;
   bool maybe = false;
 
-  double productPriceOne = 1; //quantity
-  double productQuantityOne = 1;
+  int productQuantityOne = 0;
 
   void increasePriceOne() {
     setState(() {
@@ -36,15 +44,14 @@ class _RsvpScreenState extends State<RsvpScreen> {
   }
 
   void decreasePriceOne() {
-    if (productQuantityOne > 1) {
+    if (productQuantityOne > 0) {
       setState(() {
         productQuantityOne -= 1;
       });
     }
   }
 
-  double productPricesThree = 1; //quantity
-  double productQuantityThree = 1;
+  int productQuantityThree = 0;
 
   void increasePriceThree() {
     setState(() {
@@ -53,18 +60,15 @@ class _RsvpScreenState extends State<RsvpScreen> {
   }
 
   void decreasePriceThree() {
-    if (productQuantityThree > 1) {
+    if (productQuantityThree > 0) {
       setState(() {
         productQuantityThree -= 1;
       });
     }
   }
 
-  // Map<String, dynamic> rsvpData = {
-  //
-  // };
-
-  Future<void> rsvpCall(name,email,phoneNumber,comment,rsvpStatus,adult,kids) async {
+  Future<void> rsvpCall(name, email, phoneNumber, comment, rsvpStatus, adult,
+      kids, eventUid, currentDateTime) async {
     try {
       var response = await EventRepository().rsvpCall(data: {
         "firstName": "$name",
@@ -74,14 +78,10 @@ class _RsvpScreenState extends State<RsvpScreen> {
         "rsvpKidCount": "$kids",
         "rsvpStatus": "$rsvpStatus", // Accept - A, Decline - D, Maybe - M
         "rsvpComment": "$comment",
-        "eventId": "905ZCsIyYM5",
-        "rsvpDate": "2023-11-20T18:37:03.994Z",
+        "eventId": "$eventUid",
+        "rsvpDate": "$currentDateTime",
       });
       print(response.toString());
-      print('rsvp calling');
-     // setState(() {
-       // rsvpData.addAll(response['results']);
-      // });
     } catch (e) {
       errorSnackbar(title: '$e', desc: '');
     }
@@ -134,9 +134,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                         ),
                         SizedBox(width: 4),
                         Text(
-                         // '${rsvpData.isNotEmpty ? rsvpData["rsvpAdultCount"] : ""}  ',
-                          '${productQuantityOne}'
-                            ),
+                            '${productQuantityOne}'),
                         SizedBox(width: 4),
                         Container(
                           height: 22,
@@ -161,7 +159,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                       size: 17,
                     ),
                     Text(
-                      '${productQuantityThree}',
+                      '$productQuantityOne',
                       style: TextStyle(color: Color(0XFF5B46F4)),
                     ),
                   ],
@@ -171,9 +169,6 @@ class _RsvpScreenState extends State<RsvpScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Kids'),
-                    SizedBox(
-                      width: 203,
-                    ),
                     Row(
                       children: [
                         Container(
@@ -187,7 +182,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                               child: Icon(Icons.remove, size: 14)),
                         ),
                         SizedBox(width: 4),
-                        Text('${productPricesThree}'),
+                        Text('$productQuantityThree'),
                         SizedBox(width: 4),
                         Container(
                           height: 22,
@@ -212,7 +207,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                       size: 17,
                     ),
                     Text(
-                      '${productPricesThree}',
+                      '$productQuantityThree',
                       style: TextStyle(color: Color(0XFF5B46F4)),
                     ),
                   ],
@@ -230,10 +225,10 @@ class _RsvpScreenState extends State<RsvpScreen> {
                     ),
                     Container(
                       height: 35,
-                      child: TextField(
+                      child: TextFormField(
+                        controller: _userNameEditingController,
                         decoration: InputDecoration(
-                            hintText:"Name",
-                               // '${rsvpData.isNotEmpty ? rsvpData["firstName"] : ""}  ',
+                            hintText: "Name",
                             hintStyle: TextStyle(fontSize: 12),
                             filled: true,
                             fillColor: Color(0XFFE8E7F0),
@@ -244,6 +239,11 @@ class _RsvpScreenState extends State<RsvpScreen> {
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.circular(20))),
+                        onChanged: (value) {
+                          setState(() {
+                            userName = value;
+                          });
+                        },
                       ),
                     ),
                     SizedBox(
@@ -259,10 +259,10 @@ class _RsvpScreenState extends State<RsvpScreen> {
                     // first container sathya
                     Container(
                       height: 35,
-                      child: TextField(
+                      child: TextFormField(
+                        controller: _emailEditingController,
                         decoration: InputDecoration(
-                            hintText:"Email",
-                              //  '${rsvpData.isNotEmpty ? rsvpData["emailAddress"] : ""}  ',
+                            hintText: "Email",
                             hintStyle: TextStyle(fontSize: 12),
                             filled: true,
                             fillColor: Color(0XFFE8E7F0),
@@ -273,6 +273,11 @@ class _RsvpScreenState extends State<RsvpScreen> {
                             enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide.none,
                                 borderRadius: BorderRadius.circular(20))),
+                        onChanged: (value) {
+                          setState(() {
+                            email = value;
+                          });
+                        },
                       ),
                     ),
                     SizedBox(
@@ -337,10 +342,10 @@ class _RsvpScreenState extends State<RsvpScreen> {
                                   topRight: Radius.circular(20),
                                   bottomRight: Radius.circular(20),
                                 )),
-                            child: TextField(
+                            child: TextFormField(
+                              controller: phoneNumberController,
                               decoration: InputDecoration(
-                                  hintText:"Phone Number",
-                                      //'${rsvpData.isNotEmpty ? rsvpData["phoneNumber"] : ""}  ',
+                                  hintText: "Phone Number",
                                   hintStyle: TextStyle(fontSize: 12),
                                   filled: true,
                                   fillColor: Color(0XFFE8E7F0),
@@ -357,6 +362,11 @@ class _RsvpScreenState extends State<RsvpScreen> {
                                         topRight: Radius.circular(20),
                                         bottomRight: Radius.circular(20),
                                       ))),
+                              onChanged: (value) {
+                                setState(() {
+                                  phoneNumber = value;
+                                });
+                              },
                             ),
                           ),
                         ),
@@ -385,6 +395,10 @@ class _RsvpScreenState extends State<RsvpScreen> {
                               accept = !accept;
                               decline = false;
                               maybe = false;
+                              if (accept)
+                                rsvpStatus = 'A';
+                              else
+                                rsvpStatus = '';
                             });
                             // Handle the click action for 'Accept' checkbox here
                           },
@@ -406,6 +420,10 @@ class _RsvpScreenState extends State<RsvpScreen> {
                               decline = !decline;
                               accept = false;
                               maybe = false;
+                              if (decline)
+                                rsvpStatus = 'D';
+                              else
+                                rsvpStatus = '';
                             });
                             // Handle the click action for 'Decline' checkbox here
                           },
@@ -424,6 +442,10 @@ class _RsvpScreenState extends State<RsvpScreen> {
                               maybe = !maybe;
                               accept = false;
                               decline = false;
+                              if (maybe)
+                                rsvpStatus = 'M';
+                              else
+                                rsvpStatus = '';
                             });
                             // Handle the click action for 'Maybe' checkbox here
                           },
@@ -447,14 +469,19 @@ class _RsvpScreenState extends State<RsvpScreen> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: TextField(
+                    child: TextFormField(
+                      controller: _commentEditingController,
                       maxLines: 10,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText:"Comment",
-                           // '${rsvpData.isNotEmpty ? rsvpData["rsvpComment"] : ""}  ',
+                        hintText: "Comment",
                         hintStyle: TextStyle(fontSize: 12),
                       ),
+                      onChanged: (value) {
+                        setState(() {
+                          comment = value;
+                        });
+                      },
                     ),
                   ),
                 ),
@@ -463,8 +490,27 @@ class _RsvpScreenState extends State<RsvpScreen> {
                 ),
                 InkWell(
                   onTap: () {
-                   // rsvpData;
-                    _showPopupMenu(context);
+                    if ((userName.isNotEmpty &&
+                            email.isNotEmpty &&
+                            phoneNumber.isNotEmpty &&
+                            comment.isNotEmpty) &&
+                        (productQuantityOne > 0 || productQuantityThree > 0) &&
+                        rsvpStatus.isNotEmpty &&
+                        (widget.controller?.eventDetailsModel.uid).isNotEmpty) {
+                      rsvpCall(
+                          userName,
+                          email,
+                          phoneNumber,
+                          comment,
+                          rsvpStatus,
+                          productQuantityOne,
+                          productQuantityThree,
+                          widget.controller?.eventDetailsModel.uid,
+                          DateFormat('yyyy-MM-ddTHH:mm:ss.SSSZ')
+                              .format(DateTime.now())
+                              .toString());
+                      _showPopupMenu(context);
+                    }
                   },
                   child: Container(
                     height: 40,
@@ -486,8 +532,10 @@ class _RsvpScreenState extends State<RsvpScreen> {
       ),
     );
   }
+
   void _showPopupMenu(BuildContext context) {
-    final RenderBox overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
+    final RenderBox overlay =
+        Overlay.of(context).context.findRenderObject() as RenderBox;
     final Offset center = overlay.size.center(Offset.zero);
 
     showMenu<String>(
@@ -512,8 +560,4 @@ class _RsvpScreenState extends State<RsvpScreen> {
       });
     });
   }
-
-
 }
-
-
