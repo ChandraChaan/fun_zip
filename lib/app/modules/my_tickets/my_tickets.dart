@@ -119,8 +119,8 @@ class _MyTicketsState extends State<MyTickets> {
                                           //     "${(my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["eventName"] : "Empty"}",
                                           // createdDate:
                                           //     "${(my_Tickets[a]["createdDate"]).isNotEmpty ? dateTimeConverter(my_Tickets[a]["createdDate"]) : ""}",
-                                          type:
-                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["type"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["type"] : ""}",
+                                          name:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["name"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["name"] : ""}",
                                           quantity:
                                               "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["quantity"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["quantity"] : ""}",
                                           seatNumber:
@@ -172,8 +172,8 @@ class _MyTicketsState extends State<MyTickets> {
                                           //     "${(my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["eventName"] : "Empty"}",
                                           // createdDate:
                                           //     "${(my_Tickets[a]["createdDate"]).isNotEmpty ? dateTimeConverter(my_Tickets[a]["createdDate"]) : ""}",
-                                          type:
-                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["type"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["type"] : ""}",
+                                          name:
+                                              "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["name"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["name"] : ""}",
                                           quantity:
                                               "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["quantity"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["quantity"] : ""}",
                                           seatNumber:
@@ -229,7 +229,7 @@ class ticketContent extends StatefulWidget {
   // final String eventImageUrl;
   // final String eventName;
   // final String createdDate;
-  final String type;
+  final String name;
   final String quantity;
   final String seatNumber;
   final String eventId;
@@ -248,7 +248,7 @@ class ticketContent extends StatefulWidget {
     // required this.eventImageUrl,
     // required this.eventName,
     // required this.createdDate,
-    required this.type,
+    required this.name,
     required this.quantity,
     required this.seatNumber,
     required this.eventId,
@@ -306,7 +306,7 @@ class _ticketContentState extends State<ticketContent> {
             color: Colors.white,
             borderRadius: BorderRadius.circular(10)),
         child: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: EdgeInsets.all(15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -316,21 +316,22 @@ class _ticketContentState extends State<ticketContent> {
                   Container(
                     height: 90,
                     width: 90,
-                    child: Image.network(
-                      tickets_details.isNotEmpty
-                          ? tickets_details['data']['tickets'][0]
-                              ['eventImageUrl']
-                          : "",
-                      fit: BoxFit.fill,
-                      errorBuilder: (BuildContext context, Object error,
-                          StackTrace? stackTrace) {
-                        return ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          // adjust the radius as needed
-                          // child: Image.asset('assets/svg/img.png',
-                          //     fit: BoxFit.cover, height: 210, width: 370),
-                        );
-                      },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10), // Adjust the radius as needed
+                      child: Image.network(
+                        tickets_details.isNotEmpty
+                            ? tickets_details['data']['tickets'][0]['eventImageUrl']
+                            : "",
+                        fit: BoxFit.fill,
+                        // errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                        //   return ClipRRect(
+                        //     borderRadius: BorderRadius.circular(20),
+                        //     // adjust the radius as needed
+                        //     child: Image.asset('assets/svg/img.png',
+                        //         fit: BoxFit.cover, height: 210, width: 370),
+                        //   );
+                        // },
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -383,7 +384,7 @@ class _ticketContentState extends State<ticketContent> {
                                 width: 5,
                               ),
                               Expanded(
-                                child: Text(
+                                child: Text10(
                                   tickets_details.isNotEmpty
                                       ? ("${tickets_details['data']['tickets'][0]['address']['address1']} "
                                           "${tickets_details['data']['tickets'][0]['address']['city']} "
@@ -432,7 +433,7 @@ class _ticketContentState extends State<ticketContent> {
                       ),
                       Text(
                         // "${(my_Tickets[a]["createdDate"]).isNotEmpty ? my_Tickets[a]["createdDate"] : ""}",
-                        widget.type,
+                        widget.name,
                         style: TextStyle(fontSize: 14),
                       )
                     ],
@@ -599,7 +600,7 @@ class _ticketContentState extends State<ticketContent> {
                                             "${tickets_details['data']['tickets'][0]['address']['postalCode']} "
                                             "${tickets_details['data']['tickets'][0]['address']['state']}")
                                         : "",
-                                    ticketType: widget.type,
+                                    ticketType: widget.name,
                                     tickets: widget.quantity,
                                     seatNumber: widget.seatNumber,
                                     bookingId: widget.eventId,

@@ -31,7 +31,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
         title: Center(
             child: Text(
           'Schedule',
-          style: TextStyle(color: Colors.black, fontSize: 20),
+          style: TextStyle(color: Colors.black, fontSize: 18),
         )),
       ),
       body: Padding(

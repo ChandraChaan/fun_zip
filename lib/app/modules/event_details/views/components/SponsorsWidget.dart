@@ -52,20 +52,46 @@ class SponsorsWidget extends StatelessWidget {
                       onTap: () {
                         Get.toNamed(Routes.SponsorshipScreen);
                       },
-                      child: Container(
-                        height: 20,
-                        width: 114,
-                        child: Center(
-                          child: Text(
-                            'See Sponsorship Packages',
-                            style: TextStyle(
-                              fontSize: 8,
-                              color: Color(0XFFC61236),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
+                       child: Container(
+                         height: 25,
+                         width: double.infinity,
+                         decoration: BoxDecoration(
+                           color: Color(0XFFC61236),
+                           borderRadius: BorderRadius.circular(5),
+                         ),
+                         child: Center(
+                             child: Text(
+                               'See Sponsorship Packages',
+                               style: (TextStyle(color: Colors.white, fontSize: 10)),
+                             )),
+                         //                            fillColor: Color(0XFFC61236),
+                       ),
+                       //Container(
+                      //   height: 25,
+                      //   width: 250,
+                      //   decoration: BoxDecoration(
+                      //       color: Colors.pink,
+                      //       borderRadius: BorderRadius.circular(8)),
+                      //   child: Center(
+                      //       child: Text(
+                      //         'See Sponsorship Packages',
+                      //         style: TextStyle(color: Colors.white),
+                      //       )),
+                      // )
+                      // Container(
+                      //   height: 20,
+                      //   width: 114,
+                      //   child: Center(
+                      //     child: Text(
+                      //       'See Sponsorship Packages',
+                      //       style: TextStyle(
+                      //         fontSize: 8,
+                      //         color: Color(0XFFC61236),
+                      //         fontWeight: FontWeight.bold,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ),
                   ),
                 ),

@@ -303,167 +303,6 @@ class _PotluckItemsState extends State<PotluckItems> {
     Get.dialog(BottomSignup(
       controller: widget.controller,
     ));
-    // showModalBottomSheet(
-    //   context: context,
-    //   builder: (BuildContext context) {
-    //     return Padding(
-    //       padding: const EdgeInsets.all(16.0),
-    //       child: Column(
-    //         children: [
-    //           Container(
-    //             height: 420,
-    //             width: 374,
-    //             decoration: BoxDecoration(
-    //                 color: Color(0XFFF5F4F9),
-    //                 borderRadius: BorderRadius.circular(20)),
-    //             child: Padding(
-    //               padding: const EdgeInsets.only(top: 25.0, left: 8, right: 8),
-    //               child: Column(
-    //                 children: [
-    //                   Padding(
-    //                     padding: const EdgeInsets.only(left: 310),
-    //                     child: InkWell(
-    //                       onTap: () {
-    //                         Get.back();
-    //                       },
-    //                       child: Container(
-    //                         height: 20,
-    //                         width: 20,
-    //                         child: Image.asset('assets/svg/group_54.png'),
-    //                       ),
-    //                     ),
-    //                   ),
-    //                   Text(
-    //                     'Sign Up',
-    //                     style:
-    //                         TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-    //                   ),
-    //                   SizedBox(height: 25),
-    //                   Container(
-    //                     height: 40,
-    //                     width: 336,
-    //                     decoration: BoxDecoration(
-    //                         color: Colors.white,
-    //                         borderRadius: BorderRadius.circular(20)),
-    //                     child: TextField(
-    //                       decoration: InputDecoration(
-    //                         hintText: 'Name',
-    //                         hintStyle: TextStyle(fontSize: 12),
-    //                         prefixIcon: Icon(
-    //                           Icons.person_2_outlined,
-    //                           size: 14,
-    //                           color: Color(0XFF5B46F4),
-    //                         ),
-    //                         border: InputBorder.none,
-    //                       ),
-    //                     ),
-    //                   ),
-    //                   SizedBox(height: 15),
-    //                   Container(
-    //                     height: 40,
-    //                     width: 336,
-    //                     decoration: BoxDecoration(
-    //                         color: Colors.white,
-    //                         borderRadius: BorderRadius.circular(20)),
-    //                     child: TextField(
-    //                       decoration: InputDecoration(
-    //                         hintText: 'Email',
-    //                         hintStyle: TextStyle(fontSize: 12),
-    //                         prefixIcon: Icon(
-    //                           Icons.mail_outlined,
-    //                           size: 14,
-    //                           color: Color(0XFF5B46F4),
-    //                         ),
-    //                         border: InputBorder.none,
-    //                       ),
-    //                     ),
-    //                   ),
-    //                   SizedBox(height: 15),
-    //                   Container(
-    //                     height: 40,
-    //                     width: 336,
-    //                     decoration: BoxDecoration(
-    //                         color: Colors.white,
-    //                         borderRadius: BorderRadius.circular(20)),
-    //                     child: Row(
-    //                       children: [
-    //                         Container(
-    //                           height: 40,
-    //                           width: 50,
-    //                           decoration: BoxDecoration(
-    //                             borderRadius: BorderRadius.only(
-    //                                 bottomLeft: Radius.circular(20),
-    //                                 topLeft: Radius.circular(20)),
-    //                           ),
-    //                           child: Row(
-    //                             mainAxisAlignment: MainAxisAlignment.center,
-    //                             children: [
-    //                               Text(
-    //                                 '+91',
-    //                                 style: TextStyle(
-    //                                     color: Color(0XFF5B46F4), fontSize: 12),
-    //                               ),
-    //                               Icon(
-    //                                 Icons.expand_more,
-    //                                 color: Color(0XFF86839B),
-    //                                 size: 16,
-    //                               ),
-    //                             ],
-    //                           ),
-    //                         ),
-    //                         VerticalDivider(
-    //                           thickness: 2,
-    //                         ),
-    //                         Row(
-    //                           children: [
-    //                             Container(
-    //                               height: 40,
-    //                               width: 269,
-    //                               decoration: BoxDecoration(
-    //                                   borderRadius: BorderRadius.only(
-    //                                       topRight: Radius.circular(20),
-    //                                       bottomRight: Radius.circular(20))),
-    //                               child: TextField(
-    //                                 decoration: InputDecoration(
-    //                                   hintText: 'Phone Number',
-    //                                   hintStyle: TextStyle(fontSize: 12),
-    //                                   border: InputBorder.none,
-    //                                 ),
-    //                               ),
-    //                             )
-    //                           ],
-    //                         )
-    //                       ],
-    //                     ),
-    //                   ),
-    //                   SizedBox(
-    //                     height: 46,
-    //                   ),
-    //                   Container(
-    //                     height: 40,
-    //                     width: 336,
-    //                     decoration: BoxDecoration(
-    //                       color: Color(0XFFC61236),
-    //                       borderRadius: BorderRadius.circular(20),
-    //                     ),
-    //                     child: TextButton(
-    //                       onPressed: () {},
-    //                       child: Text(
-    //                         'Sign Up',
-    //                         style: TextStyle(fontSize: 12, color: Colors.white),
-    //                       ),
-    //                     ),
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-    //           ),
-    //         ],
-    //       ),
-    //     );
-    //   },
-    //
-    // );
   }
 
   @override
@@ -530,12 +369,11 @@ class _PotluckItemsState extends State<PotluckItems> {
                                     width: 98,
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
-                                        image: NetworkImage(widget
-                                            .controller
-                                            .eventDetailsModel
-                                            .potluckItems![a]['imageUrl']
-                                            .toString()),
-                                      ),
+                                          image: NetworkImage(widget
+                                              .controller
+                                              .eventDetailsModel
+                                              .potluckItems![a]['imageUrl']
+                                              .toString())),
                                     ),
                                   ),
                                 ),
@@ -547,46 +385,68 @@ class _PotluckItemsState extends State<PotluckItems> {
                                     Text(widget.controller.eventDetailsModel
                                         .potluckItems![a]['itemName']
                                         .toString()),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          (int.parse(widget
-                                                      .controller
-                                                      .eventDetailsModel
-                                                      .potluckItems![a]['count']
-                                                      .toString()) -
-                                                  int.parse(widget
-                                                      .controller
-                                                      .eventDetailsModel
-                                                      .potluckItems![a]
-                                                          ['claimedCount']
-                                                      .toString()))
-                                              .toString(),
-                                          style: TextStyle(
-                                              color: Color(0XFF86839B),
-                                              fontSize: 14),
-                                        ),
-                                        SizedBox(width: 5),
-                                        Text(
-                                          'left',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color: Color(0XFF86839B)),
-                                        )
-                                      ],
-                                    ),
                                   ],
                                 ),
                               ],
                             ),
-                            Icon(
-                              a == selectedIndex
-                                  ? Icons.check_circle
-                                  : Icons.radio_button_unchecked,
-                              size: 20,
-                              color: a == selectedIndex
-                                  ? Colors.blue
-                                  : Colors.black,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: 20,
+                                  width: 59,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30),
+                                      border:
+                                          Border.all(color: Color(0XFFC61236))),
+                                  child: Center(
+                                    child: Text(
+                                      'Sign Up',
+                                      style: TextStyle(
+                                        fontSize: 8,
+                                        color: Color(0XFFC61236),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 3,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      (int.parse(widget
+                                                  .controller
+                                                  .eventDetailsModel
+                                                  .potluckItems![a]['count']
+                                                  .toString()) -
+                                              int.parse(widget
+                                                  .controller
+                                                  .eventDetailsModel
+                                                  .potluckItems![a]
+                                                      ['claimedCount']
+                                                  .toString()))
+                                          .toString(),
+                                      style: TextStyle(
+                                          color: Color(0XFFC61236),
+                                          fontSize: 10),
+                                    ),
+                                    SizedBox(
+                                      height: 2,
+                                      width: 3,
+                                    ),
+                                    Text(
+                                      'left',
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          color: Color(0XFFC61236)),
+                                    )
+                                  ],
+                                ),
+                              ],
                             ),
                           ],
                         ),
