@@ -118,7 +118,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Adults'),
+                    Text('$userName'),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -133,8 +133,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                               child: Icon(Icons.remove, size: 14)),
                         ),
                         SizedBox(width: 4),
-                        Text(
-                            '${productQuantityOne}'),
+                        Text('${productQuantityOne}'),
                         SizedBox(width: 4),
                         Container(
                           height: 22,
@@ -512,17 +511,22 @@ class _RsvpScreenState extends State<RsvpScreen> {
                       _showPopupMenu(context);
                     }
                   },
-                  child: Container(
-                    height: 40,
-                    width: double.infinity,
-                    child: Center(
-                        child: Text(
-                      'RSVP',
-                      style: TextStyle(color: Colors.white, fontSize: 12),
-                    )),
-                    decoration: BoxDecoration(
-                        color: Color(0XFFC61236),
-                        borderRadius: BorderRadius.circular(20)),
+                  child: InkWell(
+                    onTap: () {
+                      _showPopup;
+                    },
+                    child: Container(
+                      height: 40,
+                      width: double.infinity,
+                      child: Center(
+                          child: Text(
+                        'RSVP',
+                        style: TextStyle(color: Colors.white, fontSize: 12),
+                      )),
+                      decoration: BoxDecoration(
+                          color: Color(0XFFC61236),
+                          borderRadius: BorderRadius.circular(20)),
+                    ),
                   ),
                 ),
               ],

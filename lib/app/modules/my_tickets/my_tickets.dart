@@ -111,8 +111,8 @@ class _MyTicketsState extends State<MyTickets> {
                                         //     "${(my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["eventName"] : "Empty"}",
                                         // createdDate:
                                         //     "${(my_Tickets[a]["createdDate"]).isNotEmpty ? dateTimeConverter(my_Tickets[a]["createdDate"]) : ""}",
-                                        type:
-                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["type"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["type"] : ""}",
+                                        name:
+                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["name"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["name"] : ""}",
                                         quantity:
                                             "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["quantity"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["quantity"] : ""}",
                                         seatNumber:
@@ -154,8 +154,8 @@ class _MyTicketsState extends State<MyTickets> {
                                         //     "${(my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["eventName"] : "Empty"}",
                                         // createdDate:
                                         //     "${(my_Tickets[a]["createdDate"]).isNotEmpty ? dateTimeConverter(my_Tickets[a]["createdDate"]) : ""}",
-                                        type:
-                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["type"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["type"] : ""}",
+                                        name:
+                                            "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["name"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["name"] : ""}",
                                         quantity:
                                             "${(my_Tickets[a]["lineItems"]).isNotEmpty ? my_Tickets[a]["lineItems"][0]["quantity"] : (my_Tickets[a]["sponsorLineItems"]).isNotEmpty ? my_Tickets[a]["sponsorLineItems"][0]["quantity"] : ""}",
                                         seatNumber:
@@ -209,7 +209,7 @@ class ticketContent extends StatefulWidget {
   // final String eventImageUrl;
   // final String eventName;
   // final String createdDate;
-  final String type;
+  final String name;
   final String quantity;
   final String seatNumber;
   final String eventId;
@@ -229,7 +229,7 @@ class ticketContent extends StatefulWidget {
     // required this.eventImageUrl,
     // required this.eventName,
     // required this.createdDate,
-    required this.type,
+    required this.name,
     required this.quantity,
     required this.seatNumber,
     required this.eventId,
@@ -436,7 +436,7 @@ class _ticketContentState extends State<ticketContent> {
                                   ),
                                   Text(
                                     // "${(my_Tickets[a]["createdDate"]).isNotEmpty ? my_Tickets[a]["createdDate"] : ""}",
-                                    widget.type,
+                                    widget.name,
                                     style: TextStyle(fontSize: 14),
                                   )
                                 ],
@@ -612,7 +612,7 @@ class _ticketContentState extends State<ticketContent> {
                                                         "${tickets_details['data']['tickets'][0]['address']['postalCode']} "
                                                         "${tickets_details['data']['tickets'][0]['address']['state']}")
                                                     : "",
-                                                ticketType: widget.type,
+                                                ticketType: widget.name,
                                                 tickets: widget.quantity,
                                                 seatNumber: widget.seatNumber,
                                                 bookingId: widget.eventId,
