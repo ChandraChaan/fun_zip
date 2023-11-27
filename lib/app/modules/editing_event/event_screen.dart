@@ -101,10 +101,10 @@ class _EventScreenState extends State<EventScreen> {
                                   ),
                                   child: Center(
                                       child: Text(
-                                        'Done',
-                                        style: (TextStyle(
-                                            color: Colors.white, fontSize: 14)),
-                                      )),
+                                    'Done',
+                                    style: (TextStyle(
+                                        color: Colors.white, fontSize: 14)),
+                                  )),
                                   //                            fillColor: Color(0XFFC61236),
                                 ),
                               ),
@@ -358,162 +358,164 @@ class _EventScreenState extends State<EventScreen> {
                 ),
               ),
               Container(
-                  height: 470,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Category',
-                          style: TextStyle(
-                            fontSize: 16,
+                height: 470,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Category',
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 3,
+                            child: Text10('Event Category'),
                           ),
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 3,
-                              child: Text10('Event Category'),
+                          Expanded(
+                            flex: 8,
+                            child: Text10(': Taj banjara,Hyderabad'),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 3,
+                            child: Text10('Event Sub Category'),
+                          ),
+                          Expanded(
+                            flex: 8,
+                            child: Text10(': Rd Number 1'),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        'Thumbnail Images',
+                        style:
+                            TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
+                      ),
+                      Stack(
+                        children: [
+                          Image.asset('assets/svg/rectangle_111.png'),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: Icon(
+                              Icons.cancel_outlined,
+                              size: 25,
+                              color: Color(0XFFC61236),
                             ),
-                            Expanded(
-                              flex: 8,
-                              child: Text10(': Taj banjara,Hyderabad'),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 3,
-                              child: Text10('Event Sub Category'),
-                            ),
-                            Expanded(
-                              flex: 8,
-                              child: Text10(': Rd Number 1'),
-                            ),
-                          ],
-                        ),
-                        Text(
-                          'Thumbnail Images',
-                          style:
-                              TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
-                        ),
-                        Stack(
-                          children: [
-                            Image.asset('assets/svg/rectangle_111.png'),
-                            Positioned(
-                              top: 0,
-                              right: 0,
-                              child: Icon(
-                                Icons.cancel_outlined,
-                                size: 25,
-                                color: Color(0XFFC61236),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        'Event description',
+                        style:
+                            TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
+                      ),
+                      Container(
+                          decoration: BoxDecoration(
+                            color: Color(0XFFF5F4F9),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(
+                              'RSVP means Please reply ( we are asking invitees/guests to reply if they are coming for event or attending the event , if so how many- so that you can plan your logistics around the count.) In Some cases like sri mantham or baby shower, please add gift registry to that guests can buy the items that are ',
+                              style: TextStyle(
+                                fontSize: 13,
                               ),
                             ),
-                          ],
-                        ),
-                        Text(
-                          'Event description',
-                          style:
-                              TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
-                        ),
-                        Container(
-                            decoration: BoxDecoration(
-                              color: Color(0XFFF5F4F9),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Text(
-                                'RSVP means Please reply ( we are asking invitees/guests to reply if they are coming for event or attending the event , if so how many- so that you can plan your logistics around the count.) In Some cases like sri mantham or baby shower, please add gift registry to that guests can buy the items that are ',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                ),
+                          )),
+                      Text(
+                        'Event Tags',
+                        style:
+                            TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
+                      ),
+                      Container(
+                        height: 35,
+                        child: TextField(
+                          decoration: InputDecoration(
+                              hintText: 'Event Taggs',
+                              hintStyle: TextStyle(fontSize: 10),
+                              filled: true,
+                              fillColor: Color(0XFFF5F4F9),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
                               ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20))),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 18,
+                            width: 43,
+                            child: Center(
+                                child: Text(
+                              'Party',
+                              style: TextStyle(
+                                  fontSize: 8, color: Color(0XFFFF5C00)),
                             )),
-                        Text(
-                          'Event Tags',
-                          style:
-                              TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
-                        ),
-                        Container(
-                          height: 35,
-                          child: TextField(
-                            decoration: InputDecoration(
-                                hintText: 'Event Taggs',
-                                hintStyle: TextStyle(fontSize: 10),
-                                filled: true,
-                                fillColor: Color(0XFFF5F4F9),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                    borderRadius: BorderRadius.circular(20))),
+                            decoration: BoxDecoration(
+                                color: Color(0XFFFF5C00).withOpacity(.22),
+                                borderRadius: BorderRadius.circular(20)),
                           ),
-                        ),
-                        Row(
-                          children: [
-                            Container(
-                              height: 18,
-                              width: 43,
-                              child: Center(
-                                  child: Text(
-                                'Party',
-                                style: TextStyle(fontSize: 8,color: Color(0XFFFF5C00)),
-                              )),
-                              decoration: BoxDecoration(
-                                  color: Color(0XFFFF5C00).withOpacity(.22),
-                                  borderRadius: BorderRadius.circular(20)),
-                            ),
-                            SizedBox(width: 5),
-                            Container(
-                              height: 18,
-                              width: 43,
-                              child: Center(
-                                  child: Text(
-                                'Event',
-                                style: TextStyle(fontSize: 8,color: Color(0XFFDC143C)),
-                              )),
-                              decoration: BoxDecoration(
-                                  color: Color(0XFFDC143C).withOpacity(.20),
-                                  borderRadius: BorderRadius.circular(20)),
-                            ),
-                            SizedBox(width: 5),
-                            Container(
-                              height: 18,
-                              width: 68,
-                              child: Center(
-                                  child: Text(
-                                'Hyderabad',
-                                style: TextStyle(fontSize: 8,color: Color(0XFF9747FF)),
-                              )),
-                              decoration: BoxDecoration(
-                                  color: Color(0XFF9747FF).withOpacity(.20),
-                                  borderRadius: BorderRadius.circular(20)),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ))
+                          SizedBox(width: 5),
+                          Container(
+                            height: 18,
+                            width: 43,
+                            child: Center(
+                                child: Text(
+                              'Event',
+                              style: TextStyle(
+                                  fontSize: 8, color: Color(0XFFDC143C)),
+                            )),
+                            decoration: BoxDecoration(
+                                color: Color(0XFFDC143C).withOpacity(.20),
+                                borderRadius: BorderRadius.circular(20)),
+                          ),
+                          SizedBox(width: 5),
+                          Container(
+                            height: 18,
+                            width: 68,
+                            child: Center(
+                                child: Text(
+                              'Hyderabad',
+                              style: TextStyle(
+                                  fontSize: 8, color: Color(0XFF9747FF)),
+                            )),
+                            decoration: BoxDecoration(
+                                color: Color(0XFF9747FF).withOpacity(.20),
+                                borderRadius: BorderRadius.circular(20)),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ),
       ),
     );
   }
+
   void setSelectedOptions(String option) {
     setState(() {
       selectedOptions = option;
     });
   }
 }
-
-
-

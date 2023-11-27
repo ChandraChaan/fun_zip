@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
+import '../../routes/app_pages.dart';
 import '../home/controllers/home_controller.dart';
 
 class EditingEvent extends StatefulWidget {
@@ -54,9 +55,7 @@ class _EditingEventState extends State<EditingEvent> {
         elevation: 5,
         backgroundColor: Colors.white,
         leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
+          onTap: (){Get.back();},
           child: Icon(
             Icons.arrow_back,
             color: Colors.black,
@@ -1099,7 +1098,7 @@ class _EditingEventState extends State<EditingEvent> {
                 width: double.infinity,
                 child: TextButton(
                   onPressed: () {
-                    // Add your onPressed functionality here
+                    Get.toNamed(Routes.EventScreen);
                   },
                   style: TextButton.styleFrom(
                     primary: Colors.black, // Text color
