@@ -433,12 +433,11 @@ class _BottomSignupState extends State<BottomSignup> {
     }
   }
 
-  void _redirectToURL(String url) async {
-    // String url = urlPath; // Replace with your desired URL
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
-    } else {
-      throw 'Could not launch $url';
+  void _redirectToURL(String urlPath) async {
+    // "https://funzippy.com/event/timeslot-pass/kuaRGCtzcV8/DvX9pujHvSl/fpjSPnoYi7N",
+    final Uri url = Uri.parse('$urlPath');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
     }
   }
 
@@ -671,46 +670,55 @@ class _BottomSignupState extends State<BottomSignup> {
                                       widget.signUpItemUID,
                                       widget.status,
                                       widget.companyId,
-                                      email,
-                                      phoneNumber,
-                                      userName);
+                                      email.isNotEmpty
+                                          ? email
+                                          : '${profileData.isNotEmpty ? profileData["emailAddress"] : ""}',
+                                      phoneNumber.isNotEmpty
+                                          ? phoneNumber
+                                          : '${profileData.isNotEmpty ? profileData["phoneNumber"] : ""}',
+                                      userName.isNotEmpty
+                                          ? userName
+                                          : '${profileData.isNotEmpty ? profileData["firstName"] : ""} ${profileData.isNotEmpty ? profileData["lastName"] : ""}');
                                 });
                               }
-                              if (signUpItem.isNotEmpty) {
-                                signUpItem['statusDescription']
-                                            .toString()
-                                            .toLowerCase() ==
-                                        "success"
-                                    ? _redirectToURL(
-                                        // "https://funzippy.com/event/timeslot-pass/kuaRGCtzcV8/DvX9pujHvSl/fpjSPnoYi7N",
-                                        signUpItem['data']['signupPassLink'])
-                                    : "";
-                                signUpItem.isNotEmpty
-                                    ? showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: Text('Sign Up Item Status'),
-                                            content: Text(
-                                                signUpItem['statusDescription']
-                                                            .toString()
-                                                            .toLowerCase() ==
-                                                        "success"
-                                                    ? "Success"
-                                                    : "Failure"),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: Text('OK'),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      )
-                                    : SizedBox();
-                              }
+                              Future.delayed(Duration(seconds: 5), () {
+                                if (signUpItem.isNotEmpty) {
+                                  signUpItem['statusDescription']
+                                              .toString()
+                                              .toLowerCase() ==
+                                          "success"
+                                      ? _redirectToURL(
+                                          // "https://funzippy.com/event/timeslot-pass/kuaRGCtzcV8/DvX9pujHvSl/fpjSPnoYi7N",
+                                          signUpItem['data']['signupPassLink'])
+                                      : "";
+                                  signUpItem.isNotEmpty
+                                      ? showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title:
+                                                  Text('Sign Up Item Status'),
+                                              content: Text(
+                                                  signUpItem['statusDescription']
+                                                              .toString()
+                                                              .toLowerCase() ==
+                                                          "success"
+                                                      ? "Success"
+                                                      : "Failure"),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: Text('OK'),
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        )
+                                      : SizedBox();
+                                }
+                              });
                             },
                             child: Text(
                               'Sign Up',

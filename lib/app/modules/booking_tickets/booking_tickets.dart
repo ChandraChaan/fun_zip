@@ -130,8 +130,7 @@ class _BookTicketsState extends State<BookTickets> {
             "eventId": "$eventId",
             "eventUid": "$eventUID",
             "visibility": "$visibility",
-            "eventImageUrl":
-                "$summaryPic",
+            "eventImageUrl": "$summaryPic",
             "categoryUid": "ZejFZSEbGY9",
             "attendeeType": "12-18",
             "currency": "\$",
@@ -150,7 +149,7 @@ class _BookTicketsState extends State<BookTickets> {
       print("buy Tickets : $response");
       final bodyData = response;
       setState(() {
-        buy_tickets_details .addAll(bodyData); // Wrap bodyData in a map
+        buy_tickets_details.addAll(bodyData); // Wrap bodyData in a map
       });
     } catch (e) {
       errorSnackbar(title: '$e', desc: '');
@@ -201,7 +200,6 @@ class _BookTicketsState extends State<BookTickets> {
     phoneNumberController.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -392,7 +390,8 @@ class _BookTicketsState extends State<BookTickets> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Phone Number',style: TextStyle(fontSize: 11),
+                                  'Phone Number',
+                                  style: TextStyle(fontSize: 11),
                                 ),
                                 SizedBox(
                                   height: 7,
@@ -452,7 +451,10 @@ class _BookTicketsState extends State<BookTickets> {
                                             )),
                                         child: TextFormField(
                                           keyboardType: TextInputType.number,
-                                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                          inputFormatters: [
+                                            FilteringTextInputFormatter
+                                                .digitsOnly
+                                          ],
                                           controller: phoneNumberController,
                                           decoration: InputDecoration(
                                               //Todo
@@ -525,13 +527,13 @@ class _BookTicketsState extends State<BookTickets> {
                                         .summaryPicture);
                               });
                             }
-                            if (buy_tickets_details .isNotEmpty) {
+                            if (buy_tickets_details.isNotEmpty) {
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
                                     return AlertDialog(
                                       title: Text('Booking Ticket Status'),
-                                      content: Text(buy_tickets_details [
+                                      content: Text(buy_tickets_details[
                                           'statusDescription']),
                                       actions: [
                                         TextButton(
@@ -570,8 +572,10 @@ class _BookTicketsState extends State<BookTickets> {
       ),
     );
   }
+
   bool isValidEmail(String email) {
-    final emailRegExp = RegExp(r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+    final emailRegExp =
+        RegExp(r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
     return emailRegExp.hasMatch(email);
   }
 }
