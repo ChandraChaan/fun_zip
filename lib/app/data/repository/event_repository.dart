@@ -237,7 +237,7 @@ class EventRepository {
     return completer.future;
   }
 
-  Future byeTickets(data) async {
+  Future buyTickets(data) async {
     String token = userModel.token;
     var body = json.encode(data);
 

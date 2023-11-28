@@ -7,6 +7,7 @@ import 'package:fun_zippy/app/theme/colors.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 
 import '../../../../config/images_links.dart';
+import '../../../../routes/app_pages.dart';
 import '../../../../theme/text_theme.dart';
 import '../../../../widgets/custom_buttons.dart';
 import '../../../common_logo/common_logo_widget.dart';
@@ -48,8 +49,9 @@ class SuccessfulEventPage extends GetView<CreateEventController> {
         padding: const EdgeInsets.all(60.0),
         child: PrimaryButtonWidget(
           onPressed: () {
-            String uid = Get.arguments;
-            controller.afterEventCreationCallThisAPI(uid);
+            //String uid = Get.arguments;
+           // controller.afterEventCreationCallThisAPI(uid);
+            Get.toNamed(Routes.CREATE_EVENT);
           },
           text: 'Done!',
           radius: 10,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fun_zippy/app/data/repository/event_repository.dart';
-import 'package:fun_zippy/app/modules/common_data/common_phone_number.dart';
 import 'package:fun_zippy/app/modules/common_data/common_text.dart';
 import 'package:fun_zippy/app/widgets/error_snackbar.dart';
 
@@ -19,35 +19,31 @@ class _DetailsScreenState extends State<DetailsScreen> {
     return Scaffold(
       body: Column(
         children: [
-          Column(
-            children: [
-              Container(
-                height: 180,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/svg/group_78.png'),
-                        fit: BoxFit.fill)),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 30, left: 21),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: 120,
-                      ),
-                      Text(
-                        'Details',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      )
-                    ],
+          Container(
+            height: 180,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/svg/group_78.png'),
+                    fit: BoxFit.fill)),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 30, left: 21),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
                   ),
-                ),
+                  SizedBox(
+                    width: 120,
+                  ),
+                  Text(
+                    'Details',
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  )
+                ],
               ),
-            ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -122,9 +118,9 @@ class _BookTicketsState extends State<BookTickets> {
 
   double productPrice = 1; //quantity
 
-  Map<dynamic, dynamic> bye_tickets_details = {};
+  Map<dynamic, dynamic> buy_tickets_details = {};
 
-  Future<void> byeTickets(productPrice, userName, email, phoneNumber, eventId,
+  Future<void> buyTickets(productPrice, userName, email, phoneNumber, eventId,
       eventUID, visibility, summaryPic) async {
     try {
       var data = {
@@ -150,22 +146,22 @@ class _BookTicketsState extends State<BookTickets> {
         "emailAddress": "$email",
         "phoneNumber": "$phoneNumber"
       };
-      var response = await EventRepository().byeTickets(data);
-      print("Bye ticket response : $response");
+      var response = await EventRepository().buyTickets(data);
+      print("buy Tickets : $response");
       final bodyData = response;
       setState(() {
-        bye_tickets_details.addAll(bodyData); // Wrap bodyData in a map
+        buy_tickets_details .addAll(bodyData); // Wrap bodyData in a map
       });
     } catch (e) {
       errorSnackbar(title: '$e', desc: '');
     }
   }
 
-  // @override
-  // void initState() {
-  //   ticketDetails();
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    buyTickets;
+    super.initState();
+  }
 
   void increasePrice() {
     setState(() {
@@ -205,6 +201,7 @@ class _BookTicketsState extends State<BookTickets> {
     phoneNumberController.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -322,10 +319,10 @@ class _BookTicketsState extends State<BookTickets> {
                               child: TextFormField(
                                 controller: _userNameEditingController,
                                 decoration: InputDecoration(
-                                    hintText: '$userName',
+                                    hintText: 'Name',
                                     hintStyle: TextStyle(fontSize: 12),
                                     filled: true,
-                                    fillColor: Color(0XFFE8E7F0),
+                                    fillColor: Color(0XFFF5F4F9),
                                     border: InputBorder.none,
                                     focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide.none,
@@ -357,26 +354,36 @@ class _BookTicketsState extends State<BookTickets> {
                               child: TextFormField(
                                 controller: _emailEditingController,
                                 decoration: InputDecoration(
-                                    hintText: '$email',
-                                    hintStyle: TextStyle(fontSize: 12),
-                                    filled: true,
-                                    fillColor: Color(0XFFE8E7F0),
-                                    border: InputBorder.none,
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none,
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none,
-                                        borderRadius:
-                                            BorderRadius.circular(20))),
+                                  hintText: 'Enter your email',
+                                  hintStyle: TextStyle(fontSize: 12),
+                                  filled: true,
+                                  fillColor: Color(0XFFF5F4F9),
+                                  border: InputBorder.none,
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
                                 onChanged: (value) {
                                   setState(() {
                                     email = value;
                                   });
                                 },
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Email is required';
+                                  } else if (!isValidEmail(value)) {
+                                    return 'Enter a valid email address';
+                                  }
+                                  return null;
+                                },
                               ),
                             ),
+
                             SizedBox(
                               height: 14,
                             ),
@@ -384,8 +391,8 @@ class _BookTicketsState extends State<BookTickets> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text10(
-                                  'Phone Number',
+                                Text(
+                                  'Phone Number',style: TextStyle(fontSize: 11),
                                 ),
                                 SizedBox(
                                   height: 7,
@@ -445,10 +452,11 @@ class _BookTicketsState extends State<BookTickets> {
                                             )),
                                         child: TextFormField(
                                           keyboardType: TextInputType.number,
+                                          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                                           controller: phoneNumberController,
                                           decoration: InputDecoration(
                                               //Todo
-                                              hintText: '$phoneNumber',
+                                              hintText: 'Phone Number',
                                               hintStyle: TextStyle(
                                                   fontSize: 10,
                                                   color: Color(0XFF5E5A80)),
@@ -504,7 +512,7 @@ class _BookTicketsState extends State<BookTickets> {
                                 widget.controller?.eventDetailsModel
                                     .summaryPicture.isNotEmpty) {
                               setState(() {
-                                byeTickets(
+                                buyTickets(
                                     productPrice.toInt().toString(),
                                     userName,
                                     email,
@@ -517,13 +525,13 @@ class _BookTicketsState extends State<BookTickets> {
                                         .summaryPicture);
                               });
                             }
-                            if (bye_tickets_details.isNotEmpty) {
+                            if (buy_tickets_details .isNotEmpty) {
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
                                     return AlertDialog(
                                       title: Text('Booking Ticket Status'),
-                                      content: Text(bye_tickets_details[
+                                      content: Text(buy_tickets_details [
                                           'statusDescription']),
                                       actions: [
                                         TextButton(
@@ -561,5 +569,9 @@ class _BookTicketsState extends State<BookTickets> {
         ),
       ),
     );
+  }
+  bool isValidEmail(String email) {
+    final emailRegExp = RegExp(r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+    return emailRegExp.hasMatch(email);
   }
 }

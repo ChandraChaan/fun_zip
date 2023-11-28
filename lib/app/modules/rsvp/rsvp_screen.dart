@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
@@ -118,7 +119,10 @@ class _RsvpScreenState extends State<RsvpScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('$userName'),
+                    Text(
+                      'Adults',
+                      style: TextStyle(fontSize: 11),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -167,7 +171,10 @@ class _RsvpScreenState extends State<RsvpScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Kids'),
+                    Text(
+                      'Kids',
+                      style: TextStyle(fontSize: 11),
+                    ),
                     Row(
                       children: [
                         Container(
@@ -217,7 +224,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                   children: [
                     Text(
                       'Name',
-                      style: TextStyle(fontSize: 12),
+                      style: TextStyle(fontSize: 11),
                     ),
                     SizedBox(
                       height: 5,
@@ -228,9 +235,9 @@ class _RsvpScreenState extends State<RsvpScreen> {
                         controller: _userNameEditingController,
                         decoration: InputDecoration(
                             hintText: "Name",
-                            hintStyle: TextStyle(fontSize: 12),
+                            hintStyle: TextStyle(fontSize: 10),
                             filled: true,
-                            fillColor: Color(0XFFE8E7F0),
+                            fillColor: Color(0XFFF5F4F9),
                             border: InputBorder.none,
                             focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide.none,
@@ -250,7 +257,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                     ),
                     Text(
                       'Email',
-                      style: TextStyle(fontSize: 12),
+                      style: TextStyle(fontSize: 11),
                     ),
                     SizedBox(
                       height: 7,
@@ -262,9 +269,9 @@ class _RsvpScreenState extends State<RsvpScreen> {
                         controller: _emailEditingController,
                         decoration: InputDecoration(
                             hintText: "Email",
-                            hintStyle: TextStyle(fontSize: 12),
+                            hintStyle: TextStyle(fontSize: 10),
                             filled: true,
-                            fillColor: Color(0XFFE8E7F0),
+                            fillColor: Color(0XFFF5F4F9),
                             border: InputBorder.none,
                             focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide.none,
@@ -284,7 +291,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                     ),
                     Text(
                       'Phone Number',
-                      style: TextStyle(fontSize: 12),
+                      style: TextStyle(fontSize: 11),
                     ),
                     SizedBox(
                       height: 7,
@@ -300,11 +307,11 @@ class _RsvpScreenState extends State<RsvpScreen> {
                                 bottomLeft: Radius.circular(20),
                               )),
                           child: Container(
-                            height: 40,
+                            height: 35,
                             // reduce the line
                             margin: const EdgeInsets.only(right: 2.0),
                             decoration: BoxDecoration(
-                                color: Color(0XFFE8E7F0),
+                                color: Color(0XFFF5F4F9),
                                 borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(20),
                                   bottomLeft: Radius.circular(20),
@@ -336,31 +343,39 @@ class _RsvpScreenState extends State<RsvpScreen> {
                           child: Container(
                             height: 35,
                             decoration: BoxDecoration(
-                                color: Color(0XFFE8E7F0),
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(20),
-                                  bottomRight: Radius.circular(20),
-                                )),
+                              color: Color(0XFFF5F4F9),
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                bottomRight: Radius.circular(20),
+                              ),
+                            ),
                             child: TextFormField(
+                              keyboardType: TextInputType.number,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
                               controller: phoneNumberController,
                               decoration: InputDecoration(
-                                  hintText: "Phone Number",
-                                  hintStyle: TextStyle(fontSize: 12),
-                                  filled: true,
-                                  fillColor: Color(0XFFE8E7F0),
-                                  border: InputBorder.none,
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                      borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(20),
-                                        bottomRight: Radius.circular(20),
-                                      )),
-                                  enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide.none,
-                                      borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(20),
-                                        bottomRight: Radius.circular(20),
-                                      ))),
+                                hintText: "Phone Number",
+                                hintStyle: TextStyle(fontSize: 10),
+                                filled: true,
+                                fillColor: Color(0XFFF5F4F9),
+                                border: InputBorder.none,
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(20),
+                                    bottomRight: Radius.circular(20),
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(20),
+                                    bottomRight: Radius.circular(20),
+                                  ),
+                                ),
+                              ),
                               onChanged: (value) {
                                 setState(() {
                                   phoneNumber = value;
@@ -374,10 +389,10 @@ class _RsvpScreenState extends State<RsvpScreen> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 8, left: 15),
+                  padding: const EdgeInsets.only(top: 10, left: 15),
                   child: Text(
                     'Terms & Conditions',
-                    style: TextStyle(fontSize: 14, color: Colors.red.shade400),
+                    style: TextStyle(fontSize: 12, color: Colors.red.shade400),
                   ),
                 ),
                 SizedBox(
@@ -405,10 +420,15 @@ class _RsvpScreenState extends State<RsvpScreen> {
                             accept
                                 ? Icons.check_box
                                 : Icons.check_box_outline_blank,
-                            //  color: Color(0XFF5B46F4)
+                            color: accept
+                                ? Color(0XFF5B46F4)
+                                : Colors.grey,
                           ),
                         ),
-                        Text('Accept'),
+                        Text(
+                          'Accept',
+                          style: TextStyle(fontSize: 11),
+                        ),
                       ],
                     ),
                     Row(
@@ -426,11 +446,19 @@ class _RsvpScreenState extends State<RsvpScreen> {
                             });
                             // Handle the click action for 'Decline' checkbox here
                           },
-                          child: Icon(decline
-                              ? Icons.check_box
-                              : Icons.check_box_outline_blank),
+                          child: Icon(
+                            accept
+                                ? Icons.check_box
+                                : Icons.check_box_outline_blank,
+                            color: accept
+                                ? Color(0XFF5B46F4)
+                                : Colors.grey,
+                          ),
                         ),
-                        Text('Decline'),
+                        Text(
+                          'Decline',
+                          style: TextStyle(fontSize: 11),
+                        ),
                       ],
                     ),
                     Row(
@@ -448,11 +476,19 @@ class _RsvpScreenState extends State<RsvpScreen> {
                             });
                             // Handle the click action for 'Maybe' checkbox here
                           },
-                          child: Icon(maybe
-                              ? Icons.check_box
-                              : Icons.check_box_outline_blank),
+                          child: Icon(
+                            accept
+                                ? Icons.check_box
+                                : Icons.check_box_outline_blank,
+                            color: accept
+                                ? Color(0XFF5B46F4)
+                                : Colors.grey,
+                          ),
                         ),
-                        Text('Maybe'),
+                        Text(
+                          'Maybe',
+                          style: TextStyle(fontSize: 11),
+                        ),
                       ],
                     ),
                   ],
@@ -463,7 +499,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                 Container(
                   height: 115,
                   decoration: BoxDecoration(
-                    color: Color(0XFFE8E7F0),
+                    color: Color(0XFFF5F4F9),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Padding(
@@ -474,7 +510,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "Comment",
-                        hintStyle: TextStyle(fontSize: 12),
+                        hintStyle: TextStyle(fontSize: 10),
                       ),
                       onChanged: (value) {
                         setState(() {
@@ -489,6 +525,14 @@ class _RsvpScreenState extends State<RsvpScreen> {
                 ),
                 InkWell(
                   onTap: () {
+                    print(userName);
+                    print(email);
+                    print(phoneNumber);
+                    print(comment);
+                    print(productQuantityOne);
+                    print(productQuantityThree);
+                    print(rsvpStatus);
+                    print(widget.controller?.eventDetailsModel.uid);
                     if ((userName.isNotEmpty &&
                             email.isNotEmpty &&
                             phoneNumber.isNotEmpty &&
@@ -511,22 +555,17 @@ class _RsvpScreenState extends State<RsvpScreen> {
                       _showPopupMenu(context);
                     }
                   },
-                  child: InkWell(
-                    onTap: () {
-                      _showPopup;
-                    },
-                    child: Container(
-                      height: 40,
-                      width: double.infinity,
-                      child: Center(
-                          child: Text(
-                        'RSVP',
-                        style: TextStyle(color: Colors.white, fontSize: 12),
-                      )),
-                      decoration: BoxDecoration(
-                          color: Color(0XFFC61236),
-                          borderRadius: BorderRadius.circular(20)),
-                    ),
+                  child: Container(
+                    height: 40,
+                    width: double.infinity,
+                    child: Center(
+                        child: Text(
+                      'RSVP',
+                      style: TextStyle(color: Colors.white, fontSize: 12),
+                    )),
+                    decoration: BoxDecoration(
+                        color: Color(0XFFC61236),
+                        borderRadius: BorderRadius.circular(20)),
                   ),
                 ),
               ],
@@ -555,10 +594,8 @@ class _RsvpScreenState extends State<RsvpScreen> {
         ),
       ],
     ).then((value) {
-      // Close only the popup after 3 seconds
-      Future.delayed(Duration(seconds: 3), () {
+      Future.delayed(Duration(seconds: 2), () {
         setState(() {
-          Get.back();
           _showPopup = false;
         });
       });

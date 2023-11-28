@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fun_zippy/app/modules/editing_event/editing_event.dart';
 import 'package:fun_zippy/app/modules/my_groups/contact_us.dart';
 import 'package:fun_zippy/app/modules/my_tickets/my_tickets.dart';
 import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
@@ -30,16 +31,17 @@ class CommonScafold extends StatefulWidget {
   final bool remoNavChild;
   final bool? boardCast;
 
-  CommonScafold(
-      {super.key,
-      this.title,
-      this.titleChild,
-      this.selectedIndex = 0,
-      this.navChild = false,
-      this.remoNavChild = false,
-      this.bottomNavigationBar,
-      this.child,
-      this.boardCast,});
+  CommonScafold({
+    super.key,
+    this.title,
+    this.titleChild,
+    this.selectedIndex = 0,
+    this.navChild = false,
+    this.remoNavChild = false,
+    this.bottomNavigationBar,
+    this.child,
+    this.boardCast,
+  });
 
   @override
   State<CommonScafold> createState() => _CommonScafoldState();
@@ -90,7 +92,7 @@ class _CommonScafoldState extends State<CommonScafold> {
   void initState() {
     getProfile();
 
-    // TODO apk cheseppudu edhi comment cheyyali *sathya
+    // TODO apk cheseppudu edhi comment cheyyali
     _signInController.signIn(autoFill: true);
 
     setState(() {
@@ -101,15 +103,14 @@ class _CommonScafoldState extends State<CommonScafold> {
 
   static List<Widget> _widgetOptions = <Widget>[
     EventTab(),
-    CreateEventView(
-      isEvent: false,
-    ),
-    MyEvents(
+    CreateEventView(isEvent: false),
+    MyEvents(isSfald: false),
+    MyTickets(),
+    BlogsScreen(isSfald: false),
+    ContactUs(
       isSfald: false,
     ),
-    MyTickets(),
-    BlogsScreen(isSfald: false,),
-    ContactUs(isSfald: false,)
+    EditingEvent(isSfald: false),
   ];
 
   @override

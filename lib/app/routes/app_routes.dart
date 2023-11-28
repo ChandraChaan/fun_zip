@@ -59,6 +59,7 @@ abstract class Routes {
   static const GroupSuccessScreen = _Paths.GroupSuccessScreen;
   static const BlogsScreen = _Paths.BlogsScreen;
   static const SuccessfulEventPage = _Paths.SuccessfulEventPage;
+  static const CreateEventView = _Paths.CreateEventView;
 }
 
 abstract class _Paths {
@@ -120,5 +121,6 @@ abstract class _Paths {
   static const GroupSuccessScreen = '/GroupSuccessScreen';
   static const BlogsScreen = '/BlogsScreen';
   static const SuccessfulEventPage = '/SuccessfulEventPage';
+  static const CreateEventView = '/CreateEventView';
 
 }
