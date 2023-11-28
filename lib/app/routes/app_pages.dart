@@ -2,10 +2,12 @@ import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:get/get.dart';
 
 import '../extra/extra1.dart';
+import '../extra/extra1.dart';
 import '../modules/blogs_screen/blogs_screen.dart';
 import '../modules/booking_tickets/booking_tickets.dart';
 import '../modules/contact_us/contact_us.dart';
 import '../modules/create_event/views/components/SuccessfulEvent.dart';
+import '../modules/create_event/views/create_event_view.dart';
 import '../modules/my_events_screen/my_events.dart';
 import '../modules/create_event/bindings/create_event_binding.dart';
 import '../modules/create_event/views/create_event_view.dart';
@@ -300,6 +302,11 @@ class AppPages {
     GetPage(
       name: _Paths.BlogsScreen,
       page: () => BlogsScreen(),
+      binding: EventDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CreateEventView,
+      page: () => CreateEventView(),
       binding: EventDetailsBinding(),
     ),
   ];

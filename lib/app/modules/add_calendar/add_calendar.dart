@@ -2,6 +2,8 @@ import 'dart:collection';
 
 import 'package:device_calendar/device_calendar.dart';
 import 'package:flutter/material.dart';
+import 'package:fun_zippy/app/theme/colors.dart';
+import 'package:fun_zippy/app/utilities/colors_text_properties.dart';
 import 'package:fun_zippy/app/widgets/rounded_border.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -144,27 +146,19 @@ class _AddToCalendarState extends State<AddToCalendar> {
                             ),
                           ),
                         ),
-                        child: Expanded(
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  'Add to Calendar',
-                                  style: TextStyle(
-                                    color: Color(0XFF5B46F4),
-                                    fontSize: 10,
-                                  ),
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                'Add to Calendar',
+                                style: TextStyle(
+                                  color: Color(0XFF5B46F4),
+                                  fontSize: 10,
                                 ),
-                                Expanded(
-                                  child: Icon(
-                                    Icons.expand_more,
-                                    size: 10,
-                                    color: Color(0XFF5B46F4),
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                              Image.asset('assets/svg/expand.png'),
+                            ],
                           ),
                         ),
                       ),

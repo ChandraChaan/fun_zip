@@ -52,11 +52,9 @@ class _EventScreenState extends State<EventScreen> {
         backgroundColor: Colors.white,
         leading: InkWell(
           onTap: () {
-            Get.toNamed(Routes.EventManagementScreen);
+            Get.back();
           },
-          child: Image.asset(
-            'assets/svg/vector_22.png',
-          ),
+          child: Icon(Icons.arrow_back,color: Colors.black,),
         ),
         actions: [
           Padding(
@@ -406,15 +404,6 @@ class _EventScreenState extends State<EventScreen> {
                       Stack(
                         children: [
                           Image.asset('assets/svg/rectangle_111.png'),
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Icon(
-                              Icons.cancel_outlined,
-                              size: 25,
-                              color: Color(0XFFC61236),
-                            ),
-                          ),
                         ],
                       ),
                       Text(

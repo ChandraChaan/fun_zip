@@ -4,6 +4,7 @@ import 'package:fun_zippy/app/theme/text_theme.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
 
+import '../../../../routes/app_pages.dart';
 import '../../../../widgets/rounded_border.dart';
 import '../../../create_event/controllers/create_event_controller.dart';
 import '../../../sign_up/controllers/sign_up_controller.dart';
@@ -19,35 +20,29 @@ class SignUpItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Card(
-        elevation: 0.0,
-        shape: roundedBorder(radius: 15),
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              border: Border.all(color: Colors.white)),
+    return Card(
+      elevation: 0.0,
+      shape: roundedBorder(radius: 15),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: Colors.white)),
+        child: Padding(
+          padding: const EdgeInsets.all(15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
+           // mainAxisSize: MainAxisSize.min,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Sign up Items', style: titleBoldText),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text('Sign up to a slot below',
-                    style: normalText.copyWith()),
-              ),
+              Text('Sign up Items', style: titleBoldText),
+              Text('Sign up to a slot below',
+                  style: normalText.copyWith()),
               ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: controller!.eventDetailsModel.timeSlots!.length,
                   itemBuilder: (context, a) {
                     return Padding(
-                      padding: const EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.only(bottom: 10),
                       child: Container(
                         height: 84,
                         width: double.infinity,
@@ -185,99 +180,6 @@ class SignUpItemWidget extends StatelessWidget {
   }
 }
 
-// class PotluckItems extends StatefulWidget {
-//   @override
-//   _PotluckItemsState createState() => _PotluckItemsState();
-// }
-//
-// class _PotluckItemsState extends State<PotluckItems> {
-//   List<bool> isSelected = [false, false, false];
-//
-//   void toggleSelection(int index) {
-//     setState(() {
-//       isSelected[index] = !isSelected[index];
-//     });
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Potluck Items"),
-//       ),
-//       body: Container(
-//         height: 510,
-//         decoration: BoxDecoration(
-//           borderRadius: BorderRadius.circular(10),
-//           border: Border.all(color: Colors.white),
-//         ),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Text('Potluck Items', style: TextStyle(fontWeight: FontWeight.bold)),
-//             SizedBox(
-//               height: 8,
-//             ),
-//             Text('Sign Up for an item Below', style: TextStyle(fontSize: 16)),
-//             SizedBox(
-//               height: 5,
-//             ),
-//             for (int a = 0; a < 3; a++)
-//               Padding(
-//                 padding: const EdgeInsets.only(top: 10),
-//                 child: InkWell(
-//                   onTap: () {
-//                     toggleSelection(a);
-//                   },
-//                   child: Container(
-//                     height: 132,
-//                     decoration: BoxDecoration(
-//                       borderRadius: BorderRadius.circular(10),
-//                       border: Border.all(
-//                           color: isSelected[a] ? Colors.blue : Color(0XFFC9C6E1)),
-//                     ),
-//                     child: Row(
-//                       crossAxisAlignment: CrossAxisAlignment.center,
-//                       mainAxisAlignment: MainAxisAlignment.start,
-//                       children: [
-//                         Padding(
-//                           padding: const EdgeInsets.only(left: 16.0),
-//                           child: Container(
-//                             height: 98,
-//                             width: 98,
-//                             decoration: BoxDecoration(
-//                               image: DecorationImage(
-//                                 image: AssetImage('assets/svg/rectangle_223.png'),
-//                               ),
-//                             ),
-//                           ),
-//                         ),
-//                         SizedBox(width: 8),
-//                         Column(
-//                           mainAxisAlignment: MainAxisAlignment.center,
-//                           children: [
-//                             Text('Biryani'),
-//                             Text('10 Left'),
-//                           ],
-//                         ),
-//                         SizedBox(width: 145),
-//                         Icon(
-//                           isSelected[a] ? Icons.check_circle : Icons.circle_outlined,
-//                           size: 20,
-//                           color: isSelected[a] ? Colors.blue : Colors.black,
-//                         )
-//                       ],
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 class PotluckItems extends StatefulWidget {
   const PotluckItems({
     super.key,
@@ -322,14 +224,10 @@ class _PotluckItemsState extends State<PotluckItems> {
           border: Border.all(color: Colors.white),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // SizedBox(
-              //   height: 60,
-              //   child: Image.asset('assets/svg/logo_512.png'),
-              // ),
               Text('Potluck Items',
                   style: TextStyle(fontWeight: FontWeight.bold)),
               SizedBox(
@@ -492,172 +390,171 @@ class _BottomSignupState extends State<BottomSignup> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Center(
-        child: Container(
-          height: 420,
-          width: 374,
-          decoration: BoxDecoration(
-              color: Color(0XFFF5F4F9),
-              borderRadius: BorderRadius.circular(20)),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 25.0, left: 8, right: 8),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 310),
-                  child: InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: Container(
-                      height: 20,
-                      width: 20,
-                      child: Image.asset('assets/svg/group_54.png'),
-                    ),
-                  ),
-                ),
-                Text(
-                  'Sign Up',
-                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 25),
-                Container(
-                  height: 40,
-                  width: 336,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: TextFormField(
-                    controller: _userNameEditingController,
-                    decoration: InputDecoration(
-                      hintText: 'Name',
-                      hintStyle: TextStyle(fontSize: 12),
-                      prefixIcon: Icon(
-                        Icons.person_2_outlined,
-                        size: 14,
-                        color: Color(0XFF5B46F4),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 350,
+            decoration: BoxDecoration(
+                color: Color(0XFFF5F4F9),
+                borderRadius: BorderRadius.circular(20)),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 25.0, left: 8, right: 8),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 310),
+                    child: InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        height: 20,
+                        width: 20,
+                        child: Image.asset('assets/svg/group_54.png'),
                       ),
-                      border: InputBorder.none,
                     ),
-                    onChanged: (value) {
-                      setState(() {
-                        userName = value;
-                      });
-                    },
                   ),
-                ),
-                SizedBox(height: 15),
-                Container(
-                  height: 40,
-                  width: 336,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: TextFormField(
-                    controller: _emailEditingController,
-                    decoration: InputDecoration(
-                      hintText: 'Email',
-                      hintStyle: TextStyle(fontSize: 12),
-                      prefixIcon: Icon(
-                        Icons.mail_outlined,
-                        size: 14,
-                        color: Color(0XFF5B46F4),
-                      ),
-                      border: InputBorder.none,
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        email = value;
-                      });
-                    },
+                  Text(
+                    'Sign Up',
+                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                   ),
-                ),
-                SizedBox(height: 15),
-                Container(
-                  height: 40,
-                  width: 336,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 40,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(20),
-                              topLeft: Radius.circular(20)),
+                  SizedBox(height: 25),
+                  Container(
+                    height: 35,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: TextFormField(
+                      controller: _userNameEditingController,
+                      decoration: InputDecoration(
+                        hintText: 'Name',
+                        hintStyle: TextStyle(fontSize: 10,),
+                        prefixIcon: Icon(
+                          Icons.person_2_outlined,
+                          size: 14,
+                          color: Color(0XFF5B46F4),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '+91',
-                              style: TextStyle(
-                                  color: Color(0XFF5B46F4), fontSize: 12),
-                            ),
-                            Icon(
-                              Icons.expand_more,
-                              color: Color(0XFF86839B),
-                              size: 16,
-                            ),
-                          ],
+                        border: InputBorder.none,
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          userName = value;
+                        });
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  Container(
+                    height: 35,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: TextFormField(
+                      controller: _emailEditingController,
+                      decoration: InputDecoration(
+                        hintText: 'Email',
+                        hintStyle: TextStyle(fontSize: 12),
+                        prefixIcon: Icon(
+                          Icons.mail_outlined,
+                          size: 14,
+                          color: Color(0XFF5B46F4),
                         ),
+                        border: InputBorder.none,
                       ),
-                      VerticalDivider(
-                        thickness: 2,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            height: 40,
-                            width: 269,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(20),
-                                    bottomRight: Radius.circular(20))),
-                            child: TextFormField(
-                              controller: phoneNumberController,
-                              decoration: InputDecoration(
-                                hintText: 'Phone Number',
-                                hintStyle: TextStyle(fontSize: 12),
-                                border: InputBorder.none,
+                      onChanged: (value) {
+                        setState(() {
+                          email = value;
+                        });
+                      },
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  Container(
+                    height: 35,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(20),
+                                topLeft: Radius.circular(20)),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '+91',
+                                style: TextStyle(
+                                    color: Color(0XFF5B46F4), fontSize: 10),
                               ),
-                              onChanged: (value) {
-                                setState(() {
-                                  phoneNumber = value;
-                                });
-                              },
-                            ),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 46,
-                ),
-                Container(
-                  height: 40,
-                  width: 336,
-                  decoration: BoxDecoration(
-                    color: Color(0XFFC61236),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      if(userName.isNotEmpty && email.isNotEmpty && phoneNumber.isNotEmpty) {
-                        widget.controller.signUp(userName, email, phoneNumber);
-                      }
-                    },
-                    child: Text(
-                      'Sign Up',
-                      style: TextStyle(fontSize: 12, color: Colors.white),
+                              Icon(
+                                Icons.expand_more,
+                                color: Color(0XFF86839B),
+                                size: 16,
+                              ),
+                            ],
+                          ),
+                        ),
+                        VerticalDivider(
+                          thickness: 2,
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 35,
+                              width: 269,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(20),
+                                      bottomRight: Radius.circular(20))),
+                              child: TextFormField(
+                                controller: phoneNumberController,
+                                decoration: InputDecoration(
+                                  hintText: 'Phone Number',
+                                  hintStyle: TextStyle(fontSize: 12),
+                                  border: InputBorder.none,
+                                ),
+                                onChanged: (value) {
+                                  setState(() {
+                                    phoneNumber = value;
+                                  });
+                                },
+                              ),
+                            )
+                          ],
+                        )
+                      ],
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 46,
+                  ),
+                  Container(
+                    height: 35,
+                    width: 336,
+                    decoration: BoxDecoration(
+                      color: Color(0XFFC61236),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: TextButton(
+                      onPressed: () {
+                        if(userName.isNotEmpty && email.isNotEmpty && phoneNumber.isNotEmpty) {
+                          widget.controller.signUp(userName, email, phoneNumber);
+                        }
+                      },
+                      child: Text(
+                        'Sign Up',
+                        style: TextStyle(fontSize: 12, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
