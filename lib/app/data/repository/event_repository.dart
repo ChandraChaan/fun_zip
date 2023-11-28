@@ -9,18 +9,18 @@ import '../../modules/sign_in/controllers/sign_in_controller.dart';
 import '../../networking/api.dart';
 
 class EventRepository {
-  late Response response;
+  Response? response;
   Completer completer = Completer();
 
   Future getAllEvents(Map data) async {
     try {
       response = await Api().post('/event/search', data: data);
 
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
     }
 
     return completer.future;
@@ -30,11 +30,11 @@ class EventRepository {
     try {
       response = await Api().get('/event/$uid');
 
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
     }
 
     return completer.future;
@@ -49,11 +49,11 @@ class EventRepository {
         data: {'prompt': '$description'},
       );
 
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
     }
 
     return completer.future;
@@ -64,11 +64,11 @@ class EventRepository {
       response = await Api().post('/getAutoCompleteOptions',
           data: {"product": "event", "type": "category", "value": ""});
 
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
     }
 
     return completer.future;
@@ -79,11 +79,11 @@ class EventRepository {
       response = await Api().post('/getAutoCompleteOptions',
           data: {"product": "event", "type": "cityMetro", "value": ""});
 
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
     }
 
     return completer.future;
@@ -94,16 +94,20 @@ class EventRepository {
 
     log(data.toString());
 
+    final headers = {
+      'Cookie': 'AuthToken=$token;',
+    };
+
     try {
       response = await Api().post(
           '/auth/event/event/create/addEvent?AuthToken=$token',
           data: data);
 
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
     }
 
     return completer.future;
@@ -117,11 +121,11 @@ class EventRepository {
           'https://funzippy.com/auth/event/event/create/addEventManagement?AuthToken=$token',
           data: data);
 
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
     }
 
     return completer.future;
@@ -138,11 +142,11 @@ class EventRepository {
           '/user/user/create/uploadPicture/${userModel.sId}',
           data: formData);
 
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
     }
 
     return completer.future;
@@ -160,11 +164,11 @@ class EventRepository {
           '/auth/event/event/search/getManagedEvents',
           options: Options(headers: headers)
        );
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
       // Handle the error as needed
     }
     return completer.future;
@@ -182,11 +186,11 @@ class EventRepository {
          "/auth/user/user/search/loginUser",
           options: Options(headers: headers)
        );
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
       // Handle the error as needed
     }
     return completer.future;
@@ -204,11 +208,11 @@ class EventRepository {
          "/event/payment/getSaleTransaction/$uid",
           options: Options(headers: headers)
        );
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
       // Handle the error as needed
     }
     return completer.future;
@@ -227,11 +231,11 @@ class EventRepository {
           "/auth/event/event/search/my-tickets",
           options: Options(headers: headers)
       );
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
       // Handle the error as needed
     }
     return completer.future;
@@ -248,11 +252,11 @@ class EventRepository {
     try {
       response = await Api().post("/event/buyTickets",
           options: Options(headers: headers), data: body);
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
     }
     return completer.future;
   }
@@ -271,11 +275,11 @@ class EventRepository {
           options: Options(headers: headers),
         data: data
       );
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
       // Handle the error as needed
     }
     return completer.future;
@@ -294,11 +298,11 @@ class EventRepository {
           options: Options(headers: headers),
           data: data
       );
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
       // Handle the error as needed
     }
     return completer.future;
@@ -316,11 +320,11 @@ class EventRepository {
           "/event/post/view/search",
           options: Options(headers: headers),data: data
       );
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
       // Handle the error as needed
     }
     return completer.future;
@@ -339,11 +343,11 @@ class EventRepository {
           "/event/eventUser/update/rsvp/${data['eventId']}",
           options: Options(headers: headers),data: data
       );
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
       // Handle the error as needed
     }
     return completer.future;
@@ -362,11 +366,11 @@ class EventRepository {
           "/event/eventUser/update/rsvp",
           options: Options(headers: headers),data: data
       );
-      if (response.statusCode == 200) {
-        completer.complete(response.data);
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
       }
     } catch (e) {
-      completer.complete(response.data);
+      completer.complete(response?.data);
       // Handle the error as needed
     }
     return completer.future;

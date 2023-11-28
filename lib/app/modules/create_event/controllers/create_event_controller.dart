@@ -214,7 +214,7 @@ class CreateEventController extends GetxController {
         ProgressBar.stop();
 
         String uid = apiResponseModel.data['id'];
-
+        afterEventCreationCallThisAPI(uid);
         Get.to(SuccessfulEventPage(), arguments: uid);
       } else {
         ProgressBar.stop();
