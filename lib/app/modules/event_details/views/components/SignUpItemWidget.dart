@@ -34,11 +34,10 @@ class SignUpItemWidget extends StatelessWidget {
           padding: const EdgeInsets.all(15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-           // mainAxisSize: MainAxisSize.min,
+            // mainAxisSize: MainAxisSize.min,
             children: [
               Text('Sign up Items', style: titleBoldText),
-              Text('Sign up to a slot below',
-                  style: normalText.copyWith()),
+              Text('Sign up to a slot below', style: normalText.copyWith()),
               ListView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
@@ -479,8 +478,8 @@ class _BottomSignupState extends State<BottomSignup> {
         body: profileData.isNotEmpty
             ? Center(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
                   height: 350,
                   decoration: BoxDecoration(
                       color: Color(0XFFF5F4F9),
@@ -724,8 +723,7 @@ class _BottomSignupState extends State<BottomSignup> {
                     ),
                   ),
                 ),
-              )
-        ))
+              ))
             : SizedBox());
   }
 }
