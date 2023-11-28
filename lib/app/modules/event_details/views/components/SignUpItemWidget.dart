@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:fun_zippy/app/data/repository/event_repository.dart';
 import 'package:fun_zippy/app/theme/text_theme.dart';
 import 'package:fun_zippy/app/utilities/extention.dart';
+import 'package:fun_zippy/app/widgets/error_snackbar.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../widgets/rounded_border.dart';
 import '../../../create_event/controllers/create_event_controller.dart';
@@ -67,8 +70,7 @@ class SignUpItemWidget extends StatelessWidget {
                                     width: 30,
                                     decoration: BoxDecoration(
                                         color: Color(0XFFE1FFCF),
-                                        borderRadius:
-                                        BorderRadius.circular(2)),
+                                        borderRadius: BorderRadius.circular(2)),
                                     child: Icon(
                                       Icons.calendar_today,
                                       size: 16,
@@ -81,29 +83,29 @@ class SignUpItemWidget extends StatelessWidget {
                                     padding: const EdgeInsets.only(left: 5),
                                     child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                             controller!.formatDate(controller!
-                                                .eventDetailsModel
-                                                .timeSlots![a]
-                                            ['startDateTime']),
+                                                    .eventDetailsModel
+                                                    .timeSlots![a]
+                                                ['startDateTime']),
                                             style: TextStyle(fontSize: 14)),
                                         SizedBox(height: 8),
                                         Text(
                                           controller!.formatTimeRange(
                                               controller!.eventDetailsModel
-                                                  .timeSlots![a]
-                                              ['startDateTime'],
+                                                      .timeSlots![a]
+                                                  ['startDateTime'],
                                               controller!.eventDetailsModel
-                                                  .timeSlots![a]
-                                              ['endDateTime']),
+                                                      .timeSlots![a]
+                                                  ['endDateTime']),
                                           style: TextStyle(fontSize: 14),
                                         ),
                                         SizedBox(height: 8),
                                         Text(
                                           controller!.eventDetailsModel
-                                              .timeSlots![a]['purpose'] ??
+                                                  .timeSlots![a]['purpose'] ??
                                               ' ',
                                           style: TextStyle(
                                               fontSize: 12,
@@ -121,21 +123,34 @@ class SignUpItemWidget extends StatelessWidget {
                                     height: 20,
                                     child: ElevatedButton(
                                       onPressed: controller!.eventDetailsModel
-                                          .timeSlots![a]['status']
-                                          .toString() ==
-                                          // A means Active, if this is needed modification , do those.
-                                          'A'
+                                                  .timeSlots![a]['status']
+                                                  .toString() ==
+                                              // A means Active, if this is needed modification , do those.
+                                              'A'
                                           ? () {
-                                        Get.dialog(BottomSignup(
-                                            controller: controller!));
-                                      }
+                                              Get.dialog(BottomSignup(
+                                                  controller: controller!,
+                                                  status: controller!
+                                                      .eventDetailsModel
+                                                      .timeSlots![a]['status']
+                                                      .toString(),
+                                                  signUpItemUID: controller!
+                                                      .eventDetailsModel
+                                                      .timeSlots![a]['uid']
+                                                      .toString(),
+                                                  companyId: controller!
+                                                      .eventDetailsModel
+                                                      .timeSlots![a]
+                                                          ['companyId']
+                                                      .toString()));
+                                            }
                                           : null,
                                       style: ElevatedButton.styleFrom(
                                         padding: const EdgeInsets.all(0),
                                         backgroundColor: Colors.white,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
-                                          BorderRadius.circular(50),
+                                              BorderRadius.circular(50),
                                           side: BorderSide(
                                               color: Color(0XFFC61236)),
                                         ),
@@ -304,9 +319,12 @@ class _PotluckItemsState extends State<PotluckItems> {
     });
   }
 
-  void _showBottomSheet(BuildContext context) {
+  void _showBottomSheet(BuildContext context, status, signUPID, companyID) {
     Get.dialog(BottomSignup(
       controller: widget.controller,
+      status: status,
+      signUpItemUID: signUPID,
+      companyId: companyID,
     ));
   }
 
@@ -348,7 +366,18 @@ class _PotluckItemsState extends State<PotluckItems> {
                     onTap: () {
                       selectItem(a);
                       // Open the bottom sheet when an item is tapped
-                      _showBottomSheet(context);
+                      _showBottomSheet(
+                        context,
+                        widget.controller.eventDetailsModel
+                            .potluckItems![a]['status']
+                            .toString(),
+                        widget.controller.eventDetailsModel
+                            .potluckItems![a]['uid']
+                            .toString(),
+                        widget.controller.eventDetailsModel
+                            .potluckItems![a]['companyId']
+                            .toString(),
+                      );
                     },
                     child: Container(
                       height: 132,
@@ -468,9 +497,15 @@ class _PotluckItemsState extends State<PotluckItems> {
 }
 
 class BottomSignup extends StatefulWidget {
+  final status;
+  final signUpItemUID;
+  final companyId;
+
   const BottomSignup({
-    super.key,
     required this.controller,
+    required this.status,
+    required this.signUpItemUID,
+    required this.companyId,
   });
 
   final EventDetailsController controller;
@@ -486,182 +521,315 @@ class _BottomSignupState extends State<BottomSignup> {
   String userName = '';
   String email = '';
   String phoneNumber = '';
+  Map<dynamic, dynamic> signUpItem = {};
+  Map profileData = {};
+
+  Future<void> getProfile() async {
+    try {
+      var response = await EventRepository().getProfile();
+      final bodyData = response;
+      setState(() {
+        profileData = (bodyData);
+      });
+    } catch (e) {
+      errorSnackbar(title: '$e', desc: '');
+    }
+  }
+
+  void _redirectToURL(String url) async {
+    // String url = urlPath; // Replace with your desired URL
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  Future<void> getSignUpItemDetails(eventUID, signUPItemID, status, companyId,
+      email, phone, signUPName) async {
+    try {
+      var data = {
+        "uid": signUPItemID, // signup Item ID
+        "status": status,
+        "companyId": int.parse(companyId),
+        "emailAddress": email,
+        "phoneNumber": phone,
+        "signupName": signUPName
+      };
+      var response =
+          await EventRepository().signUpItem(data: data, eventUID: eventUID);
+      setState(() {
+        signUpItem = response;
+        print(response);
+      });
+    } catch (e) {
+      errorSnackbar(title: '$e', desc: '');
+    }
+  }
+
+  @override
+  void initState() {
+    getProfile();
+    setState(() {});
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Center(
-        child: Container(
-          height: 420,
-          width: 374,
-          decoration: BoxDecoration(
-              color: Color(0XFFF5F4F9),
-              borderRadius: BorderRadius.circular(20)),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 25.0, left: 8, right: 8),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 310),
-                  child: InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: Container(
-                      height: 20,
-                      width: 20,
-                      child: Image.asset('assets/svg/group_54.png'),
-                    ),
-                  ),
-                ),
-                Text(
-                  'Sign Up',
-                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 25),
-                Container(
-                  height: 40,
-                  width: 336,
+        backgroundColor: Colors.transparent,
+        body: profileData.isNotEmpty
+            ? Center(
+                child: Container(
+                  height: 420,
+                  width: 374,
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Color(0XFFF5F4F9),
                       borderRadius: BorderRadius.circular(20)),
-                  child: TextFormField(
-                    controller: _userNameEditingController,
-                    decoration: InputDecoration(
-                      hintText: 'Name',
-                      hintStyle: TextStyle(fontSize: 12),
-                      prefixIcon: Icon(
-                        Icons.person_2_outlined,
-                        size: 14,
-                        color: Color(0XFF5B46F4),
-                      ),
-                      border: InputBorder.none,
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        userName = value;
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(height: 15),
-                Container(
-                  height: 40,
-                  width: 336,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: TextFormField(
-                    controller: _emailEditingController,
-                    decoration: InputDecoration(
-                      hintText: 'Email',
-                      hintStyle: TextStyle(fontSize: 12),
-                      prefixIcon: Icon(
-                        Icons.mail_outlined,
-                        size: 14,
-                        color: Color(0XFF5B46F4),
-                      ),
-                      border: InputBorder.none,
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        email = value;
-                      });
-                    },
-                  ),
-                ),
-                SizedBox(height: 15),
-                Container(
-                  height: 40,
-                  width: 336,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 40,
-                        width: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(20),
-                              topLeft: Radius.circular(20)),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '+91',
-                              style: TextStyle(
-                                  color: Color(0XFF5B46F4), fontSize: 12),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(top: 25.0, left: 8, right: 8),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 310),
+                          child: InkWell(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Container(
+                              height: 20,
+                              width: 20,
+                              child: Image.asset('assets/svg/group_54.png'),
                             ),
-                            Icon(
-                              Icons.expand_more,
-                              color: Color(0XFF86839B),
-                              size: 16,
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                      VerticalDivider(
-                        thickness: 2,
-                      ),
-                      Row(
-                        children: [
-                          Container(
-                            height: 40,
-                            width: 269,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(20),
-                                    bottomRight: Radius.circular(20))),
-                            child: TextFormField(
-                              controller: phoneNumberController,
-                              decoration: InputDecoration(
-                                hintText: 'Phone Number',
-                                hintStyle: TextStyle(fontSize: 12),
-                                border: InputBorder.none,
+                        Text(
+                          'Sign Up',
+                          style: TextStyle(
+                              fontSize: 26, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 25),
+                        Container(
+                          height: 40,
+                          width: 336,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: TextFormField(
+                            // controller: _userNameEditingController,
+                            initialValue:
+                                '${profileData.isNotEmpty ? profileData["firstName"] : ""} ${profileData.isNotEmpty ? profileData["lastName"] : ""}',
+                            decoration: InputDecoration(
+                              hintText: 'Name',
+                              hintStyle: TextStyle(fontSize: 12),
+                              prefixIcon: Icon(
+                                Icons.person_2_outlined,
+                                size: 14,
+                                color: Color(0XFF5B46F4),
                               ),
-                              onChanged: (value) {
-                                setState(() {
-                                  phoneNumber = value;
-                                });
-                              },
+                              border: InputBorder.none,
                             ),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 46,
-                ),
-                Container(
-                  height: 40,
-                  width: 336,
-                  decoration: BoxDecoration(
-                    color: Color(0XFFC61236),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: TextButton(
-                    onPressed: () {
-                      if(userName.isNotEmpty && email.isNotEmpty && phoneNumber.isNotEmpty) {
-                        widget.controller.signUp(userName, email, phoneNumber);
-                      }
-                    },
-                    child: Text(
-                      'Sign Up',
-                      style: TextStyle(fontSize: 12, color: Colors.white),
+                            onChanged: (value) {
+                              setState(() {
+                                userName = value;
+                              });
+                            },
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        Container(
+                          height: 40,
+                          width: 336,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: TextFormField(
+                            // controller: _emailEditingController,
+                            initialValue:
+                                '${profileData.isNotEmpty ? profileData["emailAddress"] : ""}',
+                            decoration: InputDecoration(
+                              // label: Text("HI"),
+                              hintText: 'Email',
+                              hintStyle: TextStyle(fontSize: 12),
+                              prefixIcon: Icon(
+                                Icons.mail_outlined,
+                                size: 14,
+                                color: Color(0XFF5B46F4),
+                              ),
+                              border: InputBorder.none,
+                            ),
+                            onChanged: (value) {
+                              setState(() {
+                                email = value;
+                              });
+                            },
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        Container(
+                          height: 40,
+                          width: 336,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 40,
+                                width: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(20),
+                                      topLeft: Radius.circular(20)),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      '+91',
+                                      style: TextStyle(
+                                          color: Color(0XFF5B46F4),
+                                          fontSize: 12),
+                                    ),
+                                    Icon(
+                                      Icons.expand_more,
+                                      color: Color(0XFF86839B),
+                                      size: 16,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              VerticalDivider(
+                                thickness: 2,
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 40,
+                                    width: 269,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(20),
+                                            bottomRight: Radius.circular(20))),
+                                    child: TextFormField(
+                                      // controller: phoneNumberController,
+                                      initialValue:
+                                          '${profileData.isNotEmpty ? profileData["phoneNumber"] : ""}',
+                                      decoration: InputDecoration(
+                                        hintText: 'Phone number',
+                                        hintStyle: TextStyle(fontSize: 12),
+                                        border: InputBorder.none,
+                                      ),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          phoneNumber = value;
+                                        });
+                                      },
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 46,
+                        ),
+                        Container(
+                          height: 40,
+                          width: 336,
+                          decoration: BoxDecoration(
+                            color: Color(0XFFC61236),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: TextButton(
+                            onPressed: () {
+                              // print("userName");
+                              // print(userName.isNotEmpty
+                              //     ? userName
+                              //     : '${profileData.isNotEmpty ? profileData["firstName"] : ""} ${profileData.isNotEmpty ? profileData["lastName"] : ""}');
+                              // print(email.isNotEmpty
+                              //     ? email
+                              //     : '${profileData.isNotEmpty ? profileData["emailAddress"] : ""}');
+                              // print(phoneNumber.isNotEmpty
+                              //     ? phoneNumber
+                              //     : '${profileData.isNotEmpty ? profileData["phoneNumber"] : ""}');
+                              // print(widget.status);
+                              // print(widget.companyId);
+                              // print(widget.signUpItemUID);
+                              // print(widget.controller.eventDetailsModel.uid);
+                              if ((userName.isNotEmpty
+                                          ? userName
+                                          : '${profileData.isNotEmpty ? profileData["firstName"] : ""} ${profileData.isNotEmpty ? profileData["lastName"] : ""}')
+                                      .isNotEmpty &&
+                                  (email.isNotEmpty
+                                          ? email
+                                          : '${profileData.isNotEmpty ? profileData["emailAddress"] : ""}')
+                                      .isNotEmpty &&
+                                  (phoneNumber.isNotEmpty
+                                          ? phoneNumber
+                                          : '${profileData.isNotEmpty ? profileData["phoneNumber"] : ""}')
+                                      .isNotEmpty) {
+                                setState(() {
+                                  getSignUpItemDetails(
+                                      widget.controller.eventDetailsModel.uid,
+                                      widget.signUpItemUID,
+                                      widget.status,
+                                      widget.companyId,
+                                      email,
+                                      phoneNumber,
+                                      userName);
+                                });
+                              }
+                              if (signUpItem.isNotEmpty) {
+                                signUpItem['statusDescription']
+                                            .toString()
+                                            .toLowerCase() ==
+                                        "success"
+                                    ? _redirectToURL(
+                                        // "https://funzippy.com/event/timeslot-pass/kuaRGCtzcV8/DvX9pujHvSl/fpjSPnoYi7N",
+                                        signUpItem['data']['signupPassLink'])
+                                    : "";
+                                signUpItem.isNotEmpty
+                                    ? showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text('Sign Up Item Status'),
+                                            content: Text(
+                                                signUpItem['statusDescription']
+                                                            .toString()
+                                                            .toLowerCase() ==
+                                                        "success"
+                                                    ? "Success"
+                                                    : "Failure"),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text('OK'),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      )
+                                    : SizedBox();
+                              }
+                            },
+                            child: Text(
+                              'Sign Up',
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+              )
+            : SizedBox());
   }
 }

@@ -82,7 +82,21 @@ class GiftRegistryWidget extends StatelessWidget {
                           child: ElevatedButton(
                             onPressed: () {
                               Get.dialog(BottomSignup(
-                                  controller: controller));
+                                  controller: controller,
+                                  status: controller!
+                                      .eventDetailsModel
+                                      .timeSlots![index]['status']
+                                      .toString(),
+                                  signUpItemUID: controller!
+                                      .eventDetailsModel
+                                      .timeSlots![index]['uid']
+                                      .toString(),
+                                  companyId: controller!
+                                      .eventDetailsModel
+                                      .timeSlots![index]
+                                  ['companyId']
+                                      .toString()
+                              ));
                             },
                             style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.all(0),

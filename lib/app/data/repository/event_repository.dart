@@ -281,6 +281,29 @@ class EventRepository {
     return completer.future;
   }
 
+  Future signUpItem({required Map data, required String eventUID}) async {
+    String token = userModel.token;
+
+    final headers = {
+      'Cookie': 'AuthToken=$token;',
+    };
+
+    try {
+      response = await Api().post(
+          "/event/timeslot/claim/$eventUID",
+          options: Options(headers: headers),
+          data: data
+      );
+      if (response.statusCode == 200) {
+        completer.complete(response.data);
+      }
+    } catch (e) {
+      completer.complete(response.data);
+      // Handle the error as needed
+    }
+    return completer.future;
+  }
+
   Future getComments({required Map data}) async {
     String token = userModel.token;
 
