@@ -392,5 +392,27 @@ class EventRepository {
     return completer.future;
   }
 
+  Future scheduleCall() async {
+    String token = userModel.token;
+
+    final headers = {
+      'Cookie': 'AuthToken=$token;',
+    };
+
+    try {
+      response = await Api().get(
+          "/event",
+          options: Options(headers: headers)
+      );
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
+      }
+    } catch (e) {
+      completer.complete(response?.data);
+      // Handle the error as needed
+    }
+    return completer.future;
+  }
+
 
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../data/repository/event_repository.dart';
+import '../../widgets/error_snackbar.dart';
+
 class ScheduleScreen extends StatefulWidget {
   const ScheduleScreen({super.key});
 
@@ -9,6 +12,27 @@ class ScheduleScreen extends StatefulWidget {
 }
 
 class _ScheduleScreenState extends State<ScheduleScreen> {
+  Map<String, dynamic> schCall = {};
+
+  Future<void> scheduleCall() async {
+    try {
+      var response = await EventRepository().scheduleCall();
+      final bodyData = response['scheduleItems'];
+
+      setState(() {
+        schCall.addAll(bodyData);
+      });
+    } catch (e) {
+      errorSnackbar(title: '$e', desc: '');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    scheduleCall();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +42,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           color: Colors.black,
-          onPressed: (){
+          onPressed: () {
             Get.back();
           },
         ),
@@ -50,9 +74,10 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
-                      child: Text('Day 1',style: TextStyle(
-                        color: Color(0XFF5B46F4)
-                      ),),
+                      child: Text(
+                        'Day 1',
+                        style: TextStyle(color: Color(0XFF5B46F4)),
+                      ),
                     ),
                   )),
               Container(
@@ -106,7 +131,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          '09:00 AM',
+                                          "${(schCall["scheduleItems"] != null && schCall["scheduleItems"].isNotEmpty) ? schCall["scheduleItems"][0]["startDateTime"] : ""}",
                                           style: TextStyle(
                                               color: Colors.red, fontSize: 14),
                                         ),
