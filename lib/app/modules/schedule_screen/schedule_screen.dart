@@ -4,10 +4,11 @@ import 'package:get/get.dart';
 import '../../data/model/EventDetailsModel.dart';
 import '../../data/repository/event_repository.dart';
 import '../../widgets/error_snackbar.dart';
+import '../event_details/controllers/event_details_controller.dart';
 
 class ScheduleScreen extends StatefulWidget {
-  final controller;
-  const ScheduleScreen({super.key, this.controller});
+  final EventDetailsController controller;
+  const ScheduleScreen({super.key, required this.controller});
 
   @override
   State<ScheduleScreen> createState() => _ScheduleScreenState();
@@ -34,6 +35,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //print(widget.controller.eventDetailsModel.);
     return Scaffold(
       appBar: AppBar(
         elevation: 5,
