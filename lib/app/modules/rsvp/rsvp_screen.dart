@@ -409,8 +409,10 @@ class _RsvpScreenState extends State<RsvpScreen> {
                               accept = !accept;
                               decline = false;
                               maybe = false;
-                              if (accept) rsvpStatus = 'A';
-                              else rsvpStatus = '';
+                              if (accept)
+                                rsvpStatus = 'A';
+                              else
+                                rsvpStatus = '';
                             });
                             // Handle the click action for 'Accept' checkbox here
                           },
@@ -418,9 +420,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                             accept
                                 ? Icons.check_box
                                 : Icons.check_box_outline_blank,
-                            color: accept
-                                ? Color(0XFF5B46F4)
-                                : Colors.grey,
+                            color: accept ? Color(0XFF5B46F4) : Colors.grey,
                           ),
                         ),
                         Text(
@@ -437,8 +437,10 @@ class _RsvpScreenState extends State<RsvpScreen> {
                               decline = !decline;
                               accept = false;
                               maybe = false;
-                              if (decline) rsvpStatus = 'D';
-                              else rsvpStatus = '';
+                              if (decline)
+                                rsvpStatus = 'D';
+                              else
+                                rsvpStatus = '';
                             });
                             // Handle the click action for 'Decline' checkbox here
                           },
@@ -446,9 +448,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                             decline
                                 ? Icons.check_box
                                 : Icons.check_box_outline_blank,
-                            color: decline
-                                ? Color(0XFF5B46F4)
-                                : Colors.grey,
+                            color: decline ? Color(0XFF5B46F4) : Colors.grey,
                           ),
                         ),
                         Text(
@@ -465,8 +465,10 @@ class _RsvpScreenState extends State<RsvpScreen> {
                               maybe = !maybe;
                               accept = false;
                               decline = false;
-                              if (maybe) rsvpStatus = 'M';
-                              else rsvpStatus = '';
+                              if (maybe)
+                                rsvpStatus = 'M';
+                              else
+                                rsvpStatus = '';
                             });
                             // Handle the click action for 'Maybe' checkbox here
                           },
@@ -474,9 +476,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                             maybe
                                 ? Icons.check_box
                                 : Icons.check_box_outline_blank,
-                            color: maybe
-                                ? Color(0XFF5B46F4)
-                                : Colors.grey,
+                            color: maybe ? Color(0XFF5B46F4) : Colors.grey,
                           ),
                         ),
                         Text(
@@ -487,7 +487,6 @@ class _RsvpScreenState extends State<RsvpScreen> {
                     ),
                   ],
                 ),
-
                 SizedBox(
                   height: 14,
                 ),
@@ -579,13 +578,42 @@ class _RsvpScreenState extends State<RsvpScreen> {
     showMenu<String>(
       context: context,
       position: RelativeRect.fromRect(
-        Rect.fromCenter(center: center, width: 180, height: 0),
+        Rect.fromCenter(center: center, width: 280, height: 100),
         Offset.zero & overlay.size,
       ),
       items: <PopupMenuEntry<String>>[
         PopupMenuItem<String>(
           value: 'Item 1',
-          child: Text('Thanks for RSVP.'),
+          child: Center(
+            child: Container(
+                height: 300,
+                width: 320,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text('Thanks for RSVP.'),
+                    SizedBox(height: 25,),
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        height: 35,
+                        width: 200,
+                        decoration: BoxDecoration(
+                            color: Color(0XFFC61236),
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Center(
+                            child: Text(
+                              'Done!',
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      ),
+                    )
+                  ],
+                )),
+          ),
         ),
       ],
     ).then((value) {
