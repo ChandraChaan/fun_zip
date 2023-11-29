@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fun_zippy/app/theme/colors.dart';
+import 'package:fun_zippy/app/widgets/commonScafold.dart';
 import 'package:get/get.dart';
 
 import '../../routes/app_pages.dart';
@@ -54,7 +55,10 @@ class _EventScreenState extends State<EventScreen> {
           onTap: () {
             Get.back();
           },
-          child: Icon(Icons.arrow_back,color: Colors.black,),
+          child: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
         ),
         actions: [
           Padding(
@@ -128,6 +132,7 @@ class _EventScreenState extends State<EventScreen> {
           ),
         ),
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: SingleChildScrollView(
@@ -305,20 +310,29 @@ class _EventScreenState extends State<EventScreen> {
                       ),
                       Row(
                         children: [
-                          Text10('State'),
-                          Text10(': TS'),
+                          Expanded(
+                            child: Text10('State'),
+                            flex: 3,
+                          ),
+                          Expanded(flex: 8, child: Text10(': TS')),
                         ],
                       ),
                       Row(
                         children: [
-                          Text10('Zip'),
-                          Text10(': 500034'),
+                          Expanded(
+                            child: Text10('Zip'),
+                            flex: 3,
+                          ),
+                          Expanded(flex: 8, child: Text10(': 500034')),
                         ],
                       ),
                       Row(
                         children: [
-                          Text10('Country'),
-                          Text10(': India'),
+                          Expanded(
+                            child: Text10('Country'),
+                            flex: 3,
+                          ),
+                          Expanded(flex: 8, child: Text10(': India')),
                         ],
                       ),
                     ],
@@ -429,22 +443,6 @@ class _EventScreenState extends State<EventScreen> {
                         'Event Tags',
                         style:
                             TextStyle(fontSize: 10, color: Color(0XFF5E5A80)),
-                      ),
-                      Container(
-                        height: 35,
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: 'Event Taggs',
-                              hintStyle: TextStyle(fontSize: 10),
-                              filled: true,
-                              fillColor: Color(0XFFF5F4F9),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(20))),
-                        ),
                       ),
                       Row(
                         children: [

@@ -28,7 +28,7 @@ class WhatIsPlaceOfferWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text('What Is Place Offers', style: titleBoldText),
+            child: Text('What This Place Offers', style: titleBoldText),
           ),
           10.height,
           ListTileWidget(

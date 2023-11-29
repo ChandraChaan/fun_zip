@@ -1236,7 +1236,7 @@ class _EditingEventState extends State<EditingEvent> {
                       width: double.infinity,
                       child: TextButton(
                         onPressed: () {
-                          // Add your onPressed functionality here
+                          Get.back();
                         },
                         style: TextButton.styleFrom(
                           backgroundColor: Color(0XFFF5F4F9), // Background color

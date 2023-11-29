@@ -712,8 +712,10 @@ class _BottomSignupState extends State<BottomSignup> {
                                           context: context,
                                           builder: (BuildContext context) {
                                             return AlertDialog(
-                                                title: signUpItem['data']
-                                                    ['signupPassLink']);
+                                               // title: signUpItem['data']
+                                                   // ['signupPassLink']
+                                             // title: Text('No Tickets Available'),
+                                            );
                                           },
                                         )
                                       : SizedBox();

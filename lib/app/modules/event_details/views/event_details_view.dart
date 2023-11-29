@@ -8,6 +8,7 @@ import '../../add_calendar/add_calendar.dart';
 import '../../booking_tickets/booking_tickets.dart';
 import '../../create_event/controllers/create_event_controller.dart';
 import '../../rsvp/rsvp_screen.dart';
+import '../../schedule_screen/schedule_screen.dart';
 import '../controllers/event_details_controller.dart';
 import 'components/AboutThisPageWidget.dart';
 import 'components/AppBarWidgetEventDetails.dart';
@@ -326,7 +327,14 @@ class EventDetailsView extends GetView<EventDetailsController> {
                 textStyle: TextStyle(fontSize: 10, color: Colors.red),
                 child: InkWell(
                   onTap: () {
-                    Get.toNamed(Routes.ScheduleScreen);
+                 //   Get.toNamed(Routes.ScheduleScreen);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ScheduleScreen(
+                              controller: controller
+
+                    )));
                   },
                   child: Container(
                     alignment: Alignment.centerRight, // Align text to the right

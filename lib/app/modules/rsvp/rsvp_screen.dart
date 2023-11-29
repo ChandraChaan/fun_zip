@@ -36,34 +36,34 @@ class _RsvpScreenState extends State<RsvpScreen> {
   bool decline = false;
   bool maybe = false;
 
-  int productQuantityOne = 0;
+  int adults = 0;
 
-  void increasePriceOne() {
+  void increaseAdults() {
     setState(() {
-      productQuantityOne += 1;
+      adults += 1;
     });
   }
 
-  void decreasePriceOne() {
-    if (productQuantityOne > 0) {
+  void decreaseAdults() {
+    if (adults > 0) {
       setState(() {
-        productQuantityOne -= 1;
+        adults -= 1;
       });
     }
   }
 
-  int productQuantityThree = 0;
+  int kids = 0;
 
-  void increasePriceThree() {
+  void increaseKids() {
     setState(() {
-      productQuantityThree += 1;
+      kids += 1;
     });
   }
 
-  void decreasePriceThree() {
-    if (productQuantityThree > 0) {
+  void decreaseKids() {
+    if (kids > 0) {
       setState(() {
-        productQuantityThree -= 1;
+        kids -= 1;
       });
     }
   }
@@ -133,11 +133,11 @@ class _RsvpScreenState extends State<RsvpScreen> {
                               color: Color(0XFFE8E7F0),
                               borderRadius: BorderRadius.circular(25)),
                           child: InkWell(
-                              onTap: decreasePriceOne,
+                              onTap: decreaseAdults,
                               child: Icon(Icons.remove, size: 14)),
                         ),
                         SizedBox(width: 4),
-                        Text('${productQuantityOne}'),
+                        Text('${adults}'),
                         SizedBox(width: 4),
                         Container(
                           height: 22,
@@ -146,7 +146,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                               color: Color(0XFFE8E7F0),
                               borderRadius: BorderRadius.circular(25)),
                           child: InkWell(
-                              onTap: increasePriceOne,
+                              onTap: increaseAdults,
                               child: Icon(Icons.add, size: 14)),
                         )
                       ],
@@ -162,7 +162,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                       size: 17,
                     ),
                     Text(
-                      '$productQuantityOne',
+                      '$adults',
                       style: TextStyle(color: Color(0XFF5B46F4)),
                     ),
                   ],
@@ -184,11 +184,11 @@ class _RsvpScreenState extends State<RsvpScreen> {
                               color: Color(0XFFE8E7F0),
                               borderRadius: BorderRadius.circular(25)),
                           child: InkWell(
-                              onTap: decreasePriceThree,
+                              onTap: decreaseKids,
                               child: Icon(Icons.remove, size: 14)),
                         ),
                         SizedBox(width: 4),
-                        Text('$productQuantityThree'),
+                        Text('$kids'),
                         SizedBox(width: 4),
                         Container(
                           height: 22,
@@ -197,7 +197,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                               color: Color(0XFFE8E7F0),
                               borderRadius: BorderRadius.circular(25)),
                           child: InkWell(
-                              onTap: increasePriceThree,
+                              onTap: increaseKids,
                               child: Icon(Icons.add, size: 14)),
                         ),
                       ],
@@ -213,7 +213,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                       size: 17,
                     ),
                     Text(
-                      '$productQuantityThree',
+                      '$kids',
                       style: TextStyle(color: Color(0XFF5B46F4)),
                     ),
                   ],
@@ -523,15 +523,15 @@ class _RsvpScreenState extends State<RsvpScreen> {
                     print(email);
                     print(phoneNumber);
                     print(comment);
-                    print(productQuantityOne);
-                    print(productQuantityThree);
+                    print(adults);
+                    print(kids);
                     print(rsvpStatus);
                     print(widget.controller?.eventDetailsModel.uid);
                     if ((userName.isNotEmpty &&
                             email.isNotEmpty &&
                             phoneNumber.isNotEmpty &&
                             comment.isNotEmpty) &&
-                        (productQuantityOne > 0 || productQuantityThree > 0) &&
+                        (adults > 0 || kids > 0) &&
                         rsvpStatus.isNotEmpty &&
                         (widget.controller?.eventDetailsModel.uid).isNotEmpty) {
                       rsvpCall(
@@ -540,8 +540,8 @@ class _RsvpScreenState extends State<RsvpScreen> {
                           phoneNumber,
                           comment,
                           rsvpStatus,
-                          productQuantityOne,
-                          productQuantityThree,
+                          adults,
+                          kids,
                           widget.controller?.eventDetailsModel.uid,
                           DateFormat('yyyy-MM-ddTHH:mm:ss.SSSZ')
                               .format(DateTime.now())

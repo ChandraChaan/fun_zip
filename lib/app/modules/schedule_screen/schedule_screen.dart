@@ -1,38 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../data/model/EventDetailsModel.dart';
 import '../../data/repository/event_repository.dart';
 import '../../widgets/error_snackbar.dart';
 
 class ScheduleScreen extends StatefulWidget {
-  const ScheduleScreen({super.key});
+  final controller;
+  const ScheduleScreen({super.key, this.controller});
 
   @override
   State<ScheduleScreen> createState() => _ScheduleScreenState();
 }
 
 class _ScheduleScreenState extends State<ScheduleScreen> {
+  // RxBool loading = false.obs;
+  // EventDetailsModel eventDetailsModel = EventDetailsModel();
   Map<String, dynamic> schCall = {};
 
-  Future<void> scheduleCall() async {
-    try {
-      var response = await EventRepository().scheduleCall();
-      final bodyData = response;
-
-      // setState(() {
-      //   schCall.addAll(bodyData);
-      // }
-      //);
-    } catch (e) {
-      errorSnackbar(title: '$e', desc: '');
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    scheduleCall();
-  }
+  // getEventDetails({required String uid}) async {
+  //   try {
+  //     loading.value = true;
+  //     var response = await EventRepository().getEventDetails(uid: uid);
+  //     eventDetailsModel = EventDetailsModel.fromJson(response);
+  //
+  //     print(eventDetailsModel);
+  //     loading.value = false;
+  //   } catch (e) {
+  //     errorSnackbar(title: '', desc: '');
+  //     loading.value = false;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
