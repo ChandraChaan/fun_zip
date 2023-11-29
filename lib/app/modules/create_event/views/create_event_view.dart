@@ -89,7 +89,7 @@ class CreateEventView extends GetView<CreateEventController> {
               },
               onCreateAnEventPressed: () {
                 // Get.to(SuccessfulEventPage());
-                controller.createAnEvent();
+                controller.createNewEvent();
               },
             ),
           ));

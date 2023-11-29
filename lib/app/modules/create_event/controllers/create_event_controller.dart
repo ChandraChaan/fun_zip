@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:fun_zippy/app/modules/create_event/views/components/SuccessfulEvent.dart';
@@ -8,7 +10,7 @@ import '../../../data/model/AddEventBodyModel.dart';
 import '../../../data/model/ApiResponseModel.dart';
 import '../../../data/model/Suggestion.dart';
 import '../../../data/repository/event_repository.dart';
-
+import 'package:http/http.dart' as http;
 import '../../../widgets/error_snackbar.dart';
 import '../../../widgets/progress.dart';
 import '../../home/controllers/home_controller.dart';
@@ -106,11 +108,76 @@ class CreateEventController extends GetxController {
   }
 
   late AddEventBodyModel addEventBodyModel = AddEventBodyModel();
+  String token = userModel.token;
 
-  createAnEvent() async {
+  void createNewEvent() async {
+    final String apiUrl = 'https://funzippy.com/auth/event/event/create/newEvent';
+    final String authToken = 'ed5baf52-07f6-4a6b-9fa9-826ed1ac331f';
+
+    // Request headers
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+      'Cookie': 'AuthToken=$authToken',
+    };
+
+    // Request body
+    Map<String, dynamic> requestBody = {
+      // Add your request payload here if needed
+    };
+
+    try {
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        headers: headers,
+        body: jsonEncode(requestBody),
+      );
+
+      if (response.statusCode == 200) {
+        // Parse JSON response
+        Map<String, dynamic> jsonResponse = jsonDecode(response.body);
+
+        // Extract uid
+        String? uid = jsonResponse['uid'];
+
+        // Print or use the uid
+        print('UID: $uid');
+        createAnEvent(uid ?? '');
+
+      } else {
+        // Request failed
+        print('API call failed with status code ${response.statusCode}');
+        print('Response: ${response.body}');
+        return null;
+      }
+    } catch (error) {
+      print('Error during API call: $error');
+
+    }
+  }
+
+  // getEventId() async {
+  //
+  //   try {
+  //     // Map data = addEventBodyModel.toJson();
+  //     var response = await EventRepository().getEventId();
+  //
+  //     print(response);
+  //       String uid = response['uid'].toString();
+  //     createAnEvent(uid);
+  //
+  //
+  //   } catch (e) {
+  //     ProgressBar.stop();
+  //
+  //     print(e);
+  //   }
+  // }
+
+  createAnEvent(String id) async {
+
     ProgressBar.start();
     addEventBodyModel = AddEventBodyModel(
-      uid: "${userModel.sId ?? ''}",
+      uid: "$id",
       companyId: 0,
       attendanceModes: ["InPerson"],
       searchTags: ["Things to do"],
@@ -156,7 +223,7 @@ class CreateEventController extends GetxController {
     );
 
     Map data = {
-      "uid": "${userModel.sId ?? ''}",
+      "uid": "$id",
       "companyId": 0,
       "attendanceModes": ["InPerson"],
       "searchTags": ["Things to do"],

@@ -116,11 +116,7 @@ class SignUpItemWidget extends StatelessWidget {
                                     width: 59,
                                     height: 20,
                                     child: ElevatedButton(
-                                      onPressed: controller!.eventDetailsModel
-                                                  .timeSlots![a]['status']
-                                                  .toString() ==
-                                              // A means Active, if this is needed modification , do those.
-                                              'A'
+                                      onPressed: (int.parse(controller!.eventDetailsModel.timeSlots![a]['totalCount'].toString()) - int.parse(controller!.eventDetailsModel.timeSlots![a]['reservedCount'].toString())) > 0
                                           ? () {
                                               Get.dialog(BottomSignup(
                                                   controller: controller!,
@@ -169,7 +165,7 @@ class SignUpItemWidget extends StatelessWidget {
                                     height: 3,
                                   ),
                                   Text(
-                                    '${int.parse(controller!.eventDetailsModel.timeSlots![a]['totalCount'].toString()) - int.parse(controller!.eventDetailsModel.timeSlots![a]['reservedCount'].toString())} Slots Left',
+                                      (int.parse(controller!.eventDetailsModel.timeSlots![a]['totalCount'].toString()) - int.parse(controller!.eventDetailsModel.timeSlots![a]['reservedCount'].toString())) > 0 ? '${int.parse(controller!.eventDetailsModel.timeSlots![a]['totalCount'].toString()) - int.parse(controller!.eventDetailsModel.timeSlots![a]['reservedCount'].toString())} Slots Left' : 'Already Filled',
                                     style: TextStyle(
                                       fontSize: 9,
                                       color: Color(0XFFC61236),
