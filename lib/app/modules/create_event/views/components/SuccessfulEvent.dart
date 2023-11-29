@@ -18,17 +18,6 @@ class SuccessfulEventPage extends GetView<CreateEventController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   backgroundColor: backgroundColor,
-      //   actions: [
-      //     IconButton(
-      //         onPressed: () {
-      //           Get.back();
-      //         },
-      //         icon: SvgPicture.asset(crossIconImage))
-      //   ],
-      // ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
