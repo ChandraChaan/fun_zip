@@ -409,10 +409,8 @@ class _RsvpScreenState extends State<RsvpScreen> {
                               accept = !accept;
                               decline = false;
                               maybe = false;
-                              if (accept)
-                                rsvpStatus = 'A';
-                              else
-                                rsvpStatus = '';
+                              if (accept) rsvpStatus = 'A';
+                              else rsvpStatus = '';
                             });
                             // Handle the click action for 'Accept' checkbox here
                           },
@@ -439,18 +437,16 @@ class _RsvpScreenState extends State<RsvpScreen> {
                               decline = !decline;
                               accept = false;
                               maybe = false;
-                              if (decline)
-                                rsvpStatus = 'D';
-                              else
-                                rsvpStatus = '';
+                              if (decline) rsvpStatus = 'D';
+                              else rsvpStatus = '';
                             });
                             // Handle the click action for 'Decline' checkbox here
                           },
                           child: Icon(
-                            accept
+                            decline
                                 ? Icons.check_box
                                 : Icons.check_box_outline_blank,
-                            color: accept
+                            color: decline
                                 ? Color(0XFF5B46F4)
                                 : Colors.grey,
                           ),
@@ -469,18 +465,16 @@ class _RsvpScreenState extends State<RsvpScreen> {
                               maybe = !maybe;
                               accept = false;
                               decline = false;
-                              if (maybe)
-                                rsvpStatus = 'M';
-                              else
-                                rsvpStatus = '';
+                              if (maybe) rsvpStatus = 'M';
+                              else rsvpStatus = '';
                             });
                             // Handle the click action for 'Maybe' checkbox here
                           },
                           child: Icon(
-                            accept
+                            maybe
                                 ? Icons.check_box
                                 : Icons.check_box_outline_blank,
-                            color: accept
+                            color: maybe
                                 ? Color(0XFF5B46F4)
                                 : Colors.grey,
                           ),
@@ -493,6 +487,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
                     ),
                   ],
                 ),
+
                 SizedBox(
                   height: 14,
                 ),

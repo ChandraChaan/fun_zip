@@ -110,9 +110,9 @@ class EventRepository {
 
     log(data.toString());
 
-    final headers = {
-      'Cookie': 'AuthToken=$token;',
-    };
+    // final headers = {
+    //   'Cookie': 'AuthToken=$token;',
+    // };
 
     try {
       response = await Api().post(

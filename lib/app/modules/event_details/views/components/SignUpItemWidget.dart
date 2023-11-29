@@ -116,7 +116,17 @@ class SignUpItemWidget extends StatelessWidget {
                                     width: 59,
                                     height: 20,
                                     child: ElevatedButton(
-                                      onPressed: (int.parse(controller!.eventDetailsModel.timeSlots![a]['totalCount'].toString()) - int.parse(controller!.eventDetailsModel.timeSlots![a]['reservedCount'].toString())) > 0
+                                      onPressed: (int.parse(controller!
+                                                      .eventDetailsModel
+                                                      .timeSlots![a]
+                                                          ['totalCount']
+                                                      .toString()) -
+                                                  int.parse(controller!
+                                                      .eventDetailsModel
+                                                      .timeSlots![a]
+                                                          ['reservedCount']
+                                                      .toString())) >
+                                              0
                                           ? () {
                                               Get.dialog(BottomSignup(
                                                   controller: controller!,
@@ -165,7 +175,17 @@ class SignUpItemWidget extends StatelessWidget {
                                     height: 3,
                                   ),
                                   Text(
-                                      (int.parse(controller!.eventDetailsModel.timeSlots![a]['totalCount'].toString()) - int.parse(controller!.eventDetailsModel.timeSlots![a]['reservedCount'].toString())) > 0 ? '${int.parse(controller!.eventDetailsModel.timeSlots![a]['totalCount'].toString()) - int.parse(controller!.eventDetailsModel.timeSlots![a]['reservedCount'].toString())} Slots Left' : 'Already Filled',
+                                    (int.parse(controller!.eventDetailsModel
+                                                    .timeSlots![a]['totalCount']
+                                                    .toString()) -
+                                                int.parse(controller!
+                                                    .eventDetailsModel
+                                                    .timeSlots![a]
+                                                        ['reservedCount']
+                                                    .toString())) >
+                                            0
+                                        ? '${int.parse(controller!.eventDetailsModel.timeSlots![a]['totalCount'].toString()) - int.parse(controller!.eventDetailsModel.timeSlots![a]['reservedCount'].toString())} Slots Left'
+                                        : 'Already Filled',
                                     style: TextStyle(
                                       fontSize: 9,
                                       color: Color(0XFFC61236),
@@ -677,7 +697,7 @@ class _BottomSignupState extends State<BottomSignup> {
                                           : '${profileData.isNotEmpty ? profileData["firstName"] : ""} ${profileData.isNotEmpty ? profileData["lastName"] : ""}');
                                 });
                               }
-                              Future.delayed(Duration(seconds: 5), () {
+                              Future.delayed(Duration(seconds: 0), () {
                                 if (signUpItem.isNotEmpty) {
                                   signUpItem['statusDescription']
                                               .toString()
@@ -692,24 +712,8 @@ class _BottomSignupState extends State<BottomSignup> {
                                           context: context,
                                           builder: (BuildContext context) {
                                             return AlertDialog(
-                                              title:
-                                                  Text('Sign Up Item Status'),
-                                              content: Text(
-                                                  signUpItem['statusDescription']
-                                                              .toString()
-                                                              .toLowerCase() ==
-                                                          "success"
-                                                      ? "Success"
-                                                      : "Failure"),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: Text('OK'),
-                                                ),
-                                              ],
-                                            );
+                                                title: signUpItem['data']
+                                                    ['signupPassLink']);
                                           },
                                         )
                                       : SizedBox();
