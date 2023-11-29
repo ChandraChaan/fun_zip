@@ -25,6 +25,7 @@ import 'components/SignUpItemWidget.dart';
 import 'components/SpeakersWidget.dart';
 import 'components/SponsorsWidget.dart';
 import 'components/WhatIsPlaceOfferWidget.dart';
+import 'components/WidgetWidget.dart';
 import 'components/contacts.dart';
 
 class EventDetailsView extends GetView<EventDetailsController> {
@@ -81,26 +82,6 @@ class EventDetailsView extends GetView<EventDetailsController> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   if (controller.eventDetailsModel.detailPicture != null)
-                    // Container(
-                    //   decoration: BoxDecoration(
-                    //     gradient: LinearGradient(
-                    //         begin: Alignment.topCenter,
-                    //         end: Alignment.bottomCenter,
-                    //         colors: <Color>[
-                    //           blueColor,
-                    //           Colors.orange.withOpacity(.1)
-                    //         ],
-                    //         stops: [0.0, 1.0],
-                    //         tileMode: TileMode.clamp),
-                    //     image: DecorationImage(
-                    //       image: NetworkImage(
-                    //           controller.eventDetailsModel.detailPicture),
-                    //       fit: BoxFit.fill,
-                    //     ),
-                    //   ),
-                    //   height: 30,
-                    //   child: AppBarWidgetEventDetails(),
-                    // ),
                     Container(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -127,22 +108,6 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         child: AppBarWidgetEventDetails(),
                       ),
                     ),
-                  //add filter
-                  // Container(
-                  //     decoration: BoxDecoration(
-                  //       gradient: LinearGradient(
-                  //           begin: Alignment.topCenter,
-                  //           end: Alignment.bottomCenter,
-                  //           colors: <Color>[
-                  //             blueColor,
-                  //             Colors.orange.withOpacity(.1)
-                  //           ],
-                  //           stops: [0.0, 1.0],
-                  //           tileMode: TileMode.clamp),
-                  //     ),
-                  //     height: 30.percentHeight),
-
-                  //* Above card
                   Container(
                     margin: EdgeInsets.only(
                       left: 15.0,
@@ -156,20 +121,17 @@ class EventDetailsView extends GetView<EventDetailsController> {
                         NameAndDetailsCardWidget(
                           controller: controller,
                         ),
+                        5.height,
                         SizedBox(
                             height: 80,
                             child: AddToCalendar(controller: controller)),
                         5.height,
-                        //* Rating and tags
                         RatingCardWidget(controller: controller),
                         5.height,
-
                         AboutThisPageWidget(controller: controller),
                         5.height,
-
                         ShareWidget(),
                         5.height,
-
                         Visibility(
                             visible: controller
                                         .eventDetailsModel.ticketCategories
@@ -181,7 +143,6 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 height: 700,
                                 child: BookTickets(controller: controller))),
                         5.height,
-
                         Visibility(
                             visible: controller.eventDetailsModel.rsvpRequired
                                         .toString() ==
@@ -192,15 +153,19 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 height: 700,
                                 child: RsvpScreen(controller: controller))),
                         5.height,
-                        //* Sign up Items
+                        MapWidget(controller: controller),
+                        5.height,
                         Visibility(
-                          visible: controller.eventDetailsModel.timeSlots.toString() != 'null',
+                          visible: controller.eventDetailsModel.timeSlots
+                                  .toString() !=
+                              'null',
                           child: SizedBox(
                             child: SignUpItemWidget(
                               controller: controller,
                             ),
                           ),
                         ),
+                        5.height,
                         Visibility(
                             visible: controller.eventDetailsModel.potluckItems
                                         .toString() !=
@@ -212,9 +177,11 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 child: PotluckItems(
                                   controller: controller,
                                 ))),
+                        5.height,
                         PotluckItemsWidget(
                           controller: controller,
                         ),
+                        5.height,
                         Visibility(
                           visible: controller.eventDetailsModel.giftItems
                                       .toString() !=
@@ -225,33 +192,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                             controller: controller,
                           ),
                         ),
-                        Visibility(
-                            visible: controller.eventDetailsModel.contacts
-                                        .toString() !=
-                                    'null'
-                                ? true
-                                : false,
-                            child: SizedBox(
-                                height: 200,
-                                child: ContactsView(controller: controller))),
-                        Visibility(
-                            visible: controller.eventDetailsModel.sponsors
-                                        .toString() !=
-                                    'null'
-                                ? true
-                                : false,
-                            child: SizedBox(
-                                height: 350,
-                                child: SponsorsWidget(controller: controller))),
-                        Visibility(
-                            visible: controller
-                                        .eventDetailsModel.boothCategories
-                                        .toString() !=
-                                    'null'
-                                ? true
-                                : false,
-                            child: BoothsWidget(controller: controller)),
-
+                        5.height,
                         Visibility(
                           visible: controller.eventDetailsModel.honoraryGuests
                                       .toString() !=
@@ -262,16 +203,44 @@ class EventDetailsView extends GetView<EventDetailsController> {
                             controller: controller,
                           ),
                         ),
+                        5.height,
+                        Visibility(
+                            visible: controller.eventDetailsModel.sponsors
+                                        .toString() !=
+                                    'null'
+                                ? true
+                                : false,
+                            child: SizedBox(
+                                height: 350,
+                                child: SponsorsWidget(controller: controller))),
+                        5.height,
+                        Visibility(
+                            visible: controller
+                                        .eventDetailsModel.boothCategories
+                                        .toString() !=
+                                    'null'
+                                ? true
+                                : false,
+                            child: BoothsWidget(controller: controller)),
+                        5.height,
                         OrganizersWidget(),
                         5.height,
-                        MapWidget(controller: controller),
+                        WidgetWidget(),
                         5.height,
-                        // Todo
-
                         WhatIsPlaceOfferWidget(
                           controller: controller,
                         ),
+                        5.height,
                         CommentWidget(controller: controller),
+                        Visibility(
+                            visible: controller.eventDetailsModel.contacts
+                                        .toString() !=
+                                    'null'
+                                ? true
+                                : false,
+                            child: SizedBox(
+                                height: 200,
+                                child: ContactsView(controller: controller))),
                         5.height,
                         RelatedEventsWidget(),
                       ],

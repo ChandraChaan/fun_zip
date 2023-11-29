@@ -17,11 +17,12 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   Future<void> scheduleCall() async {
     try {
       var response = await EventRepository().scheduleCall();
-      final bodyData = response['scheduleItems'];
+      final bodyData = response;
 
-      setState(() {
-        schCall.addAll(bodyData);
-      });
+      // setState(() {
+      //   schCall.addAll(bodyData);
+      // }
+      //);
     } catch (e) {
       errorSnackbar(title: '$e', desc: '');
     }

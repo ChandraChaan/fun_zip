@@ -392,8 +392,8 @@ class EventRepository {
     return completer.future;
   }
 
-  Future scheduleCall() async {
-    String token = userModel.token;
+  Future<void> scheduleCall() async {
+    String token = userModel.token; // Assuming userModel is defined and accessible
 
     final headers = {
       'Cookie': 'AuthToken=$token;',
@@ -401,8 +401,8 @@ class EventRepository {
 
     try {
       response = await Api().get(
-          "/event",
-          options: Options(headers: headers)
+        "/event",
+        options: Options(headers: headers),
       );
       if (response?.statusCode == 200) {
         completer.complete(response?.data);
@@ -411,8 +411,6 @@ class EventRepository {
       completer.complete(response?.data);
       // Handle the error as needed
     }
-    return completer.future;
   }
-
 
 }
