@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
 
 import '../../data/model/EventDetailsModel.dart';
 import '../../data/repository/event_repository.dart';
@@ -8,6 +10,7 @@ import '../event_details/controllers/event_details_controller.dart';
 
 class ScheduleScreen extends StatefulWidget {
   final EventDetailsController controller;
+
   const ScheduleScreen({super.key, required this.controller});
 
   @override
@@ -15,27 +18,9 @@ class ScheduleScreen extends StatefulWidget {
 }
 
 class _ScheduleScreenState extends State<ScheduleScreen> {
-  // RxBool loading = false.obs;
-  // EventDetailsModel eventDetailsModel = EventDetailsModel();
-  Map<String, dynamic> schCall = {};
-
-  // getEventDetails({required String uid}) async {
-  //   try {
-  //     loading.value = true;
-  //     var response = await EventRepository().getEventDetails(uid: uid);
-  //     eventDetailsModel = EventDetailsModel.fromJson(response);
-  //
-  //     print(eventDetailsModel);
-  //     loading.value = false;
-  //   } catch (e) {
-  //     errorSnackbar(title: '', desc: '');
-  //     loading.value = false;
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
-    //print(widget.controller.eventDetailsModel.);
     return Scaffold(
       appBar: AppBar(
         elevation: 5,
@@ -61,1109 +46,148 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 8),
-                  child: Container(
-                    height: 46,
+        child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            itemCount:
+                widget.controller.eventDetailsModel.displaySchedule!.length,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  Padding(
+                      padding: const EdgeInsets.only(top: 8, bottom: 8),
+                      child: Container(
+                        height: 46,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Color(0XFFEFEDFF),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text(
+                            'Day 1',
+                            style: TextStyle(color: Color(0XFF5B46F4)),
+                          ),
+                        ),
+                      )),
+                  Container(
+                    height: 250,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: Color(0XFFEFEDFF),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.grey)),
                     child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text(
-                        'Day 1',
-                        style: TextStyle(color: Color(0XFF5B46F4)),
-                      ),
-                    ),
-                  )),
-              Container(
-                height: 250,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.grey)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Beginner Friendly Spring',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      SizedBox(
-                        height: 7,
-                      ),
-                      Container(
-                        height: 86,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurpleAccent,
-                                        borderRadius: BorderRadius.circular(3)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "${(schCall["scheduleItems"] != null && schCall["scheduleItems"].isNotEmpty) ? schCall["scheduleItems"][0]["startDateTime"] : ""}",
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        SizedBox(height: 6),
-                                        Text(
-                                          'What is Spring?',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black45),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black45),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        height: 86,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurpleAccent,
-                                        borderRadius: BorderRadius.circular(3)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '10:30 AM',
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        SizedBox(height: 6),
-                                        Text(
-                                          'What is Spring?',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black45),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black45),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
+                        padding: const EdgeInsets.all(8.0),
+                        child: schedule_details(
+                          controller: widget.controller,
+                        )),
                   ),
-                ),
-              ),
-              SizedBox(height: 10),
-              Container(
-                height: 344,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.grey)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Beginner Friendly Spring',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      SizedBox(
-                        height: 7,
-                      ),
-                      Container(
-                        height: 86,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurpleAccent,
-                                        borderRadius: BorderRadius.circular(3)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '09:00 AM',
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        SizedBox(height: 6),
-                                        Text(
-                                          'What is Spring?',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black45),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black45),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        height: 86,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurpleAccent,
-                                        borderRadius: BorderRadius.circular(3)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '10:30 AM',
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        SizedBox(height: 6),
-                                        Text(
-                                          'What is Spring?',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black45),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black45),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        height: 86,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurpleAccent,
-                                        borderRadius: BorderRadius.circular(3)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '10:30 AM',
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        SizedBox(height: 6),
-                                        Text(
-                                          'What is Spring?',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black45),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black45),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-              Container(
-                height: 250,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.grey)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Beginner Friendly Spring',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      SizedBox(
-                        height: 7,
-                      ),
-                      Container(
-                        height: 86,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurpleAccent,
-                                        borderRadius: BorderRadius.circular(3)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '09:00 AM',
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        SizedBox(height: 6),
-                                        Text(
-                                          'What is Spring?',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black45),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black45),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        height: 86,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurpleAccent,
-                                        borderRadius: BorderRadius.circular(3)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '10:30 AM',
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        SizedBox(height: 6),
-                                        Text(
-                                          'What is Spring?',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black45),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black45),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-              Container(
-                height: 344,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.grey)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Beginner Friendly Spring',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      SizedBox(
-                        height: 7,
-                      ),
-                      Container(
-                        height: 86,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurpleAccent,
-                                        borderRadius: BorderRadius.circular(3)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '09:00 AM',
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        SizedBox(height: 6),
-                                        Text(
-                                          'What is Spring?',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black45),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black45),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        height: 86,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurpleAccent,
-                                        borderRadius: BorderRadius.circular(3)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '10:30 AM',
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        SizedBox(height: 6),
-                                        Text(
-                                          'What is Spring?',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black45),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black45),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        height: 86,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurpleAccent,
-                                        borderRadius: BorderRadius.circular(3)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '10:30 AM',
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        SizedBox(height: 6),
-                                        Text(
-                                          'What is Spring?',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black45),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black45),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-              Container(
-                height: 344,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.grey)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Beginner Friendly Spring',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      SizedBox(
-                        height: 7,
-                      ),
-                      Container(
-                        height: 86,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurpleAccent,
-                                        borderRadius: BorderRadius.circular(3)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '09:00 AM',
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        SizedBox(height: 6),
-                                        Text(
-                                          'What is Spring?',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black45),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black45),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        height: 86,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurpleAccent,
-                                        borderRadius: BorderRadius.circular(3)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '10:30 AM',
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        SizedBox(height: 6),
-                                        Text(
-                                          'What is Spring?',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black45),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black45),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        height: 86,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurpleAccent,
-                                        borderRadius: BorderRadius.circular(3)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '10:30 AM',
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        SizedBox(height: 6),
-                                        Text(
-                                          'What is Spring?',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black45),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black45),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-              Container(
-                height: 250,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.grey)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Beginner Friendly Spring',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      SizedBox(
-                        height: 7,
-                      ),
-                      Container(
-                        height: 86,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurpleAccent,
-                                        borderRadius: BorderRadius.circular(3)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '09:00 AM',
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        SizedBox(height: 6),
-                                        Text(
-                                          'What is Spring?',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black45),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black45),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Container(
-                        height: 86,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Colors.deepPurpleAccent,
-                                        borderRadius: BorderRadius.circular(3)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '10:30 AM',
-                                          style: TextStyle(
-                                              color: Colors.red, fontSize: 14),
-                                        ),
-                                        SizedBox(height: 6),
-                                        Text(
-                                          'What is Spring?',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.black45),
-                                        ),
-                                        SizedBox(height: 10),
-                                        Text(
-                                          'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.black45),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
+                ],
+              );
+            }),
       ),
+    );
+  }
+}
+
+class schedule_details extends StatefulWidget {
+  final EventDetailsController controller;
+
+  const schedule_details({Key? key, required this.controller})
+      : super(key: key);
+
+  @override
+  State<schedule_details> createState() => _schedule_detailsState();
+}
+
+class _schedule_detailsState extends State<schedule_details> {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Text(
+          'Beginner Friendly Spring',
+          style: TextStyle(fontSize: 18),
+        ),
+        ListView.builder(
+            itemCount: (widget.controller.eventDetailsModel
+                    .displaySchedule["Sep 22"]["Room"])!
+                .length,
+            shrinkWrap: false,
+            padding: EdgeInsets.only(bottom: 10, top: 30),
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, count) {
+              return Container(
+                  height: 86,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.grey)),
+                  child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 30,
+                                width: 30,
+                                decoration: BoxDecoration(
+                                    color: Colors.deepPurpleAccent,
+                                    borderRadius: BorderRadius.circular(3)),
+                                child: Icon(
+                                  Icons.calendar_today,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      DateFormat("MMM dd, yyyy")
+                                          .format(DateTime.parse(
+                                        widget.controller.eventDetailsModel
+                                                .displaySchedule["Sep 22"]
+                                            ["Room"][count]["startDateTime"],
+                                      )),
+                                      style: TextStyle(
+                                          color: Colors.red, fontSize: 14),
+                                    ),
+                                    SizedBox(height: 6),
+                                    Text(
+                                      widget.controller.eventDetailsModel
+                                              .displaySchedule["Sep 22"]["Room"]
+                                          [count]["name"],
+                                      // 'What is Spring?',
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black45),
+                                    ),
+                                    SizedBox(height: 10),
+                                    Text(
+                                      widget.controller.eventDetailsModel
+                                              .displaySchedule["Sep 22"]["Room"]
+                                          [count]["description"],
+                                      // 'Glenn Renfro, Scarlett Johansson,Chris Evans',
+                                      style: TextStyle(
+                                          fontSize: 10, color: Colors.black45),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )));
+            }),
+      ],
     );
   }
 }

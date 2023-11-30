@@ -61,6 +61,7 @@ class EventDetailsModel {
   dynamic fundrisingEvent;
   dynamic nonProfitEvent;
   dynamic govtBodyEvent;
+  dynamic displaySchedule;
 
   EventDetailsModel(
       {this.iId,
@@ -76,7 +77,7 @@ class EventDetailsModel {
       this.description,
       this.placesToStay,
       this.locationName,
-      this. potluckItems,
+      this.potluckItems,
       this.timeSlots,
       this.honoraryGuests,
       this.giftItems,
@@ -124,7 +125,8 @@ class EventDetailsModel {
       this.attendanceMode,
       this.fundrisingEvent,
       this.nonProfitEvent,
-      this.govtBodyEvent});
+      this.govtBodyEvent,
+      this.displaySchedule});
 
   EventDetailsModel.fromJson(Map<dynamic, dynamic> json) {
     iId = json['_id'] != null ? new Id.fromJson(json['_id']) : null;
@@ -209,6 +211,7 @@ class EventDetailsModel {
     fundrisingEvent = json['fundrisingEvent'];
     nonProfitEvent = json['nonProfitEvent'];
     govtBodyEvent = json['govtBodyEvent'];
+    displaySchedule = json['displaySchedule'];
   }
 
   Map<dynamic, dynamic> toJson() {
@@ -288,6 +291,7 @@ class EventDetailsModel {
     data['fundrisingEvent'] = this.fundrisingEvent;
     data['nonProfitEvent'] = this.nonProfitEvent;
     data['govtBodyEvent'] = this.govtBodyEvent;
+    data['displaySchedule'] = this.displaySchedule;
     return data;
   }
 }

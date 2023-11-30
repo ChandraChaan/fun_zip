@@ -108,7 +108,7 @@ class CreateEventController extends GetxController {
   }
 
   late AddEventBodyModel addEventBodyModel = AddEventBodyModel();
-  String token = userModel.token;
+  // String token = userModel.token;
 
   void createNewEvent() async {
     final String apiUrl = 'https://funzippy.com/auth/event/event/create/newEvent';
