@@ -267,105 +267,105 @@ class EventDetailsView extends GetView<EventDetailsController> {
       //     },
       //   ),
       // ),
-      floatingActionButton: FloatingActionButton(
-        materialTapTargetSize: MaterialTapTargetSize.padded,
-        backgroundColor: Color(0XFF5B46F4),
-        onPressed: () {
-          showMenu(
-            context: context,
-            position: RelativeRect.fromLTRB(300, 600, 0, 250),
-            items: [
-              PopupMenuItem<String>(
-                value: 'Sponsorship',
-                textStyle: TextStyle(fontSize: 10, color: Colors.red),
-                child: InkWell(
-                  onTap: () {
-                    Get.toNamed(Routes.SponsorshipScreen);
-                  },
-                  child: Container(
-                    alignment: Alignment.centerRight, // Align text to the right
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text('Sponsorship'),
-                        7.width,
-                        Container(
-                            height: 25,
-                            width: 25,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(40),
-                                border: Border.all(color: Colors.red)),
-                            child: Image.asset('assets/svg/hand.png')),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              PopupMenuItem<String>(
-                value: 'Booth Space',
-                textStyle: TextStyle(fontSize: 10, color: Colors.red),
-                child: Container(
-                  alignment: Alignment.centerRight, // Align text to the right
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text('Booth Space'),
-                      7.width,
-                      Container(
-                          height: 25,
-                          width: 25,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(40),
-                              border: Border.all(color: Colors.red)),
-                          child: Image.asset('assets/svg/round.png')),
-                    ],
-                  ),
-                ),
-              ),
-              PopupMenuItem<String>(
-                value: 'Event Schedule',
-                textStyle: TextStyle(fontSize: 10, color: Colors.red),
-                child: InkWell(
-                  onTap: () {
-                 //   Get.toNamed(Routes.ScheduleScreen);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ScheduleScreen(
-                              controller: controller
-
-                    )));
-                  },
-                  child: Container(
-                    alignment: Alignment.centerRight, // Align text to the right
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text('Event Schedule'),
-                        7.width,
-                        Container(
-                            height: 25,
-                            width: 25,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(40),
-                                border: Border.all(color: Colors.red)),
-                            child: Image.asset('assets/svg/vectory_red.png')),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ).then<void>((String? value) {
-            if (value != null) {
-              print('Selected: $value');
-            }
-          });
-        },
-        child: Image.asset('assets/svg/floating_button.png'),
-        mini: true,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      // floatingActionButton: FloatingActionButton(
+      //   materialTapTargetSize: MaterialTapTargetSize.padded,
+      //   backgroundColor: Color(0XFF5B46F4),
+      //   onPressed: () {
+      //     showMenu(
+      //       context: context,
+      //       position: RelativeRect.fromLTRB(300, 600, 0, 250),
+      //       items: [
+      //         PopupMenuItem<String>(
+      //           value: 'Sponsorship',
+      //           textStyle: TextStyle(fontSize: 10, color: Colors.red),
+      //           child: InkWell(
+      //             onTap: () {
+      //               Get.toNamed(Routes.SponsorshipScreen);
+      //             },
+      //             child: Container(
+      //               alignment: Alignment.centerRight, // Align text to the right
+      //               child: Row(
+      //                 mainAxisAlignment: MainAxisAlignment.end,
+      //                 children: [
+      //                   Text('Sponsorship'),
+      //                   7.width,
+      //                   Container(
+      //                       height: 25,
+      //                       width: 25,
+      //                       decoration: BoxDecoration(
+      //                           borderRadius: BorderRadius.circular(40),
+      //                           border: Border.all(color: Colors.red)),
+      //                       child: Image.asset('assets/svg/hand.png')),
+      //                 ],
+      //               ),
+      //             ),
+      //           ),
+      //         ),
+      //         PopupMenuItem<String>(
+      //           value: 'Booth Space',
+      //           textStyle: TextStyle(fontSize: 10, color: Colors.red),
+      //           child: Container(
+      //             alignment: Alignment.centerRight, // Align text to the right
+      //             child: Row(
+      //               mainAxisAlignment: MainAxisAlignment.end,
+      //               children: [
+      //                 Text('Booth Space'),
+      //                 7.width,
+      //                 Container(
+      //                     height: 25,
+      //                     width: 25,
+      //                     decoration: BoxDecoration(
+      //                         borderRadius: BorderRadius.circular(40),
+      //                         border: Border.all(color: Colors.red)),
+      //                     child: Image.asset('assets/svg/round.png')),
+      //               ],
+      //             ),
+      //           ),
+      //         ),
+      //         PopupMenuItem<String>(
+      //           value: 'Event Schedule',
+      //           textStyle: TextStyle(fontSize: 10, color: Colors.red),
+      //           child: InkWell(
+      //             onTap: () {
+      //            //   Get.toNamed(Routes.ScheduleScreen);
+      //               Navigator.push(
+      //                   context,
+      //                   MaterialPageRoute(
+      //                       builder: (context) => ScheduleScreen(
+      //                         controller: controller
+      //
+      //               )));
+      //             },
+      //             child: Container(
+      //               alignment: Alignment.centerRight, // Align text to the right
+      //               child: Row(
+      //                 mainAxisAlignment: MainAxisAlignment.end,
+      //                 children: [
+      //                   Text('Event Schedule'),
+      //                   7.width,
+      //                   Container(
+      //                       height: 25,
+      //                       width: 25,
+      //                       decoration: BoxDecoration(
+      //                           borderRadius: BorderRadius.circular(40),
+      //                           border: Border.all(color: Colors.red)),
+      //                       child: Image.asset('assets/svg/vectory_red.png')),
+      //                 ],
+      //               ),
+      //             ),
+      //           ),
+      //         ),
+      //       ],
+      //     ).then<void>((String? value) {
+      //       if (value != null) {
+      //         print('Selected: $value');
+      //       }
+      //     });
+      //   },
+      //   child: Image.asset('assets/svg/floating_button.png'),
+      //   mini: true,
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

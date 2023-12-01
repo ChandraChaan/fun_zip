@@ -109,10 +109,10 @@ class CreateEventController extends GetxController {
 
   late AddEventBodyModel addEventBodyModel = AddEventBodyModel();
   // String token = userModel.token;
-
+// Todo sathya
   void createNewEvent() async {
     final String apiUrl = 'https://funzippy.com/auth/event/event/create/newEvent';
-    final String authToken = 'ed5baf52-07f6-4a6b-9fa9-826ed1ac331f';
+    final String authToken = 'dc712d27-d3a0-4250-b61f-e9f90685c71f';
 
     // Request headers
     Map<String, String> headers = {
