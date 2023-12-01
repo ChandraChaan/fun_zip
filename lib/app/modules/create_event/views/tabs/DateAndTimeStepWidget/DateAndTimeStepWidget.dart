@@ -175,7 +175,7 @@ class DateAndTimeStepWidget extends GetView<CreateEventController> {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title: Text('Error'),
-                      content: Text('End date should not be less than the start date or the selected time.'),
+                      content: Text('End Time Not Less Then The Start Time.'),
                       actions: [
                         TextButton(
                           onPressed: () {
