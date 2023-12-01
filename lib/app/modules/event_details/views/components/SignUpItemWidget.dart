@@ -242,6 +242,7 @@ class _PotluckItemsState extends State<PotluckItems> {
       status: status,
       signUpItemUID: signUPID,
       companyId: companyID,
+      descrip: true,
     ));
   }
 
@@ -413,10 +414,13 @@ class BottomSignup extends StatefulWidget {
   final status;
   final signUpItemUID;
   final companyId;
+  final bool descrip;
+
 
   const BottomSignup({
     required this.controller,
     required this.status,
+    this.descrip = false,
     required this.signUpItemUID,
     required this.companyId,
   });
@@ -642,6 +646,7 @@ class _BottomSignupState extends State<BottomSignup> {
                             ],
                           ),
                         ),
+                        widget.descrip ? TextField(minLines: 3,) : SizedBox(),
                         SizedBox(
                           height: 46,
                         ),
