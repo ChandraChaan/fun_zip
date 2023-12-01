@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+import '../../data/repository/event_repository.dart';
 import '../../routes/app_pages.dart';
+import '../../widgets/error_snackbar.dart';
 import '../common_data/common_text.dart';
 import '../qr_code/scanner.dart';
 
@@ -17,7 +19,7 @@ class EventDashboardScreen extends StatefulWidget {
 }
 
 class _EventDashboardScreenState extends State<EventDashboardScreen> {
-  List<_SalesData> data = [
+  List<_SalesData> mapData = [
     _SalesData('Jan', 35),
     _SalesData('Feb', 28),
     _SalesData('Mar', 34),
@@ -33,6 +35,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
       selectedOptio = option;
     });
   }
+// api call
 
   @override
   Widget build(BuildContext context) {
@@ -393,7 +396,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                             tooltipBehavior: TooltipBehavior(enable: true),
                             series: <ChartSeries<_SalesData, String>>[
                               LineSeries<_SalesData, String>(
-                                  dataSource: data,
+                                  dataSource: mapData,
                                   xValueMapper: (_SalesData sales, _) =>
                                       sales.year,
                                   yValueMapper: (_SalesData sales, _) =>

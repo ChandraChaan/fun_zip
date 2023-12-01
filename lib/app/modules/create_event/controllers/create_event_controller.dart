@@ -157,24 +157,6 @@ class CreateEventController extends GetxController {
     }
   }
 
-  // getEventId() async {
-  //
-  //   try {
-  //     // Map data = addEventBodyModel.toJson();
-  //     var response = await EventRepository().getEventId();
-  //
-  //     print(response);
-  //       String uid = response['uid'].toString();
-  //     createAnEvent(uid);
-  //
-  //
-  //   } catch (e) {
-  //     ProgressBar.stop();
-  //
-  //     print(e);
-  //   }
-  // }
-
   createAnEvent(String id) async {
 
     ProgressBar.start();
@@ -325,20 +307,10 @@ class CreateEventController extends GetxController {
       print(response);
 
       apiResponseModel = ApiResponseModel.fromJson(response);
-      // Get.delete<HomeController>();
-      // Get.delete<CreateEventController>();
-
-      // Get.toNamed(Routes.HOME);
-
-      // Get.back();
-      // Get.back();
-      // Get.offNamedUntil(Routes.HOME, (route) => false); // RouteName
       ProgressBar.stop();
 
       HomeController.to.selectedIndex.value = 0;
       Get.delete<CreateEventController>(force: true);
-
-      // Get.offNamedUntil(Routes.HOME, (route) => false);
       Get.back();
     } catch (e) {
       ProgressBar.stop();

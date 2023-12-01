@@ -1,23 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 
-import '../../data/model/EventDetailsModel.dart';
-import '../../data/repository/event_repository.dart';
-import '../../widgets/error_snackbar.dart';
 import '../event_details/controllers/event_details_controller.dart';
 
-class ScheduleScreen extends StatefulWidget {
+class ScheduleScreen extends StatelessWidget {
   final EventDetailsController controller;
 
   const ScheduleScreen({super.key, required this.controller});
-
-  @override
-  State<ScheduleScreen> createState() => _ScheduleScreenState();
-}
-
-class _ScheduleScreenState extends State<ScheduleScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +40,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
             itemCount:
-                widget.controller.eventDetailsModel.displaySchedule!.length,
+                controller.eventDetailsModel.displaySchedule!.length,
             itemBuilder: (context, index) {
               return Column(
                 children: [
@@ -80,7 +70,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                     child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: schedule_details(
-                          controller: widget.controller,
+                          controller: controller,
                         )),
                   ),
                 ],
@@ -112,80 +102,84 @@ class _schedule_detailsState extends State<schedule_details> {
         ),
         ListView.builder(
             itemCount: (widget.controller.eventDetailsModel
-                    .displaySchedule["Sep 22"]["Room"])!
-                .length,
+                    .displaySchedule["Nov 07"]["Lobby"]).length,
             shrinkWrap: false,
             padding: EdgeInsets.only(bottom: 10, top: 30),
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, count) {
-              return Container(
-                  height: 86,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.grey)),
-                  child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: 30,
-                                width: 30,
-                                decoration: BoxDecoration(
-                                    color: Colors.deepPurpleAccent,
-                                    borderRadius: BorderRadius.circular(3)),
-                                child: Icon(
-                                  Icons.calendar_today,
-                                  color: Colors.white,
+              return Padding(
+                padding: const EdgeInsets.all(10),
+                child: Container(
+                    height: 86,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.grey)),
+                    child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                      color: Colors.deepPurpleAccent,
+                                      borderRadius: BorderRadius.circular(3)),
+                                  child: Icon(
+                                    Icons.calendar_today,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      DateFormat("MMM dd, yyyy")
-                                          .format(DateTime.parse(
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        DateFormat("MMM dd, yyyy")
+                                            .format(DateTime.parse(
+                                          widget.controller.eventDetailsModel
+                                                  .displaySchedule["Sep 22"]
+                                              ["Room"][count]["startDateTime"],
+                                        )),
+                                        style: TextStyle(
+                                            color: Colors.red, fontSize: 14),
+                                      ),
+                                      SizedBox(height: 6),
+                                      Text(
                                         widget.controller.eventDetailsModel
                                                 .displaySchedule["Sep 22"]
-                                            ["Room"][count]["startDateTime"],
-                                      )),
-                                      style: TextStyle(
-                                          color: Colors.red, fontSize: 14),
-                                    ),
-                                    SizedBox(height: 6),
-                                    Text(
-                                      widget.controller.eventDetailsModel
-                                              .displaySchedule["Sep 22"]["Room"]
-                                          [count]["name"],
-                                      // 'What is Spring?',
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black45),
-                                    ),
-                                    SizedBox(height: 10),
-                                    Text(
-                                      widget.controller.eventDetailsModel
-                                              .displaySchedule["Sep 22"]["Room"]
-                                          [count]["description"],
-                                      // 'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                                      style: TextStyle(
-                                          fontSize: 10, color: Colors.black45),
-                                    )
-                                  ],
+                                            ["Room"][count]["name"],
+                                        // 'What is Spring?',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black45),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text(
+                                        widget.controller.eventDetailsModel
+                                                .displaySchedule["Sep 22"]
+                                            ["Room"][count]["description"],
+                                        // 'Glenn Renfro, Scarlett Johansson,Chris Evans',
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            color: Colors.black45),
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )));
+                              ],
+                            ),
+                          ],
+                        ))),
+              );
             }),
       ],
     );

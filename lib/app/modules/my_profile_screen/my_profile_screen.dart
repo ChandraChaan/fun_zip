@@ -25,11 +25,10 @@ class _MyProfileState extends State<MyProfile> {
   Future<void> getProfile() async {
     try {
       var response = await EventRepository().getProfile();
-      // print(response.toString());
-      //print('Sathya get profile');
+
       final bodyData = response;
       setState(() {
-        profileData = (bodyData); // Wrap bodyData in a list
+        profileData = (bodyData);
       });
     } catch (e) {
       errorSnackbar(title: '$e', desc: '');

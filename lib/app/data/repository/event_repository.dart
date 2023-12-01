@@ -413,4 +413,21 @@ class EventRepository {
     }
   }
 
+  Future mapData({required String uid}) async {
+    try {
+      response = await Api().get('/auth/event/eventManagement/view/dailyViews/$uid');
+
+      if (response?.statusCode == 200) {
+        completer.complete(response?.data);
+      }
+    } catch (e) {
+      completer.complete(response?.data);
+    }
+
+    return completer.future;
+  }
+
 }
+
+
+
