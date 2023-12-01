@@ -122,11 +122,11 @@ class AppPages {
       ),
       binding: EventDetailsBinding(),
     ),
-    GetPage(
-      name: _Paths.ScheduleScreen,
-      page: () => ScheduleScreen(),
-      binding: EventDetailsBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.ScheduleScreen,
+    //   page: () => ScheduleScreen(controller: null,),
+    //   binding: EventDetailsBinding(),
+    // ),
     GetPage(
       name: _Paths.EditingEvent,
       page: () => EditingEvent(),

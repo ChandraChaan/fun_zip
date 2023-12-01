@@ -23,7 +23,16 @@ class DateAndTimeStepWidget extends GetView<CreateEventController> {
   const DateAndTimeStepWidget({
     super.key,
   });
+  bool isEndTimeAfterStartTime(TimeOfDay? startTime, TimeOfDay? endTime) {
+    if (startTime == null || endTime == null) {
+      return false; // Handle nulls as needed
+    }
 
+    final DateTime startDateTime = DateTime(2023, 1, 1, startTime.hour, startTime.minute);
+    final DateTime endDateTime = DateTime(2023, 1, 1, endTime.hour, endTime.minute);
+
+    return endDateTime.isAfter(startDateTime);
+  }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -84,10 +93,10 @@ class DateAndTimeStepWidget extends GetView<CreateEventController> {
           5.height,
           InkWell(
             onTap: () async {
-              TimeOfDay? selectedTime = await selectTime(context);
+             controller.selectedTime  = await selectTime(context);
 
               controller.startTimeTextEditingController!.text =
-                  formatTimeOfDay(selectedTime!);
+                  formatTimeOfDay(controller.selectedTime!);
             },
             child: CommonTextField(
               controller: controller.startTimeTextEditingController,
@@ -118,34 +127,9 @@ class DateAndTimeStepWidget extends GetView<CreateEventController> {
           InkWell(
             onTap: () async {
               DateTime? selectedEndDate = await selectDate(context);
-
-              // Validate that the selected end date is greater than or equal to the start date
-              if (selectedEndDate != null && selectedEndDate.isAfter(controller.startDate!)) {
                 controller.endDate = selectedEndDate;
                 controller.endDateTextEditingController?.text =
                     DateFormat('dd MMMM, yyyy').format(controller.endDate!);
-              } else {
-                // Show an error or handle the validation failure as needed
-                // For example, you can display a snackbar or set an error message
-                // controller.endDateError = 'End date must be after start date';
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Error'),
-                      content: Text('End date should not be less than the start date.'),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text('OK'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              }
             },
             child: CommonTextField(
               controller: controller.endDateTextEditingController,
@@ -176,8 +160,35 @@ class DateAndTimeStepWidget extends GetView<CreateEventController> {
             onTap: () async {
               TimeOfDay? selectedTime = await selectTime(context);
 
-              controller.endTimeTextEditingController!.text =
-                  formatTimeOfDay(selectedTime!);
+              if (selectedTime != null &&
+                  (controller.endDate!.isAfter(controller.startDate!) ||
+                      (controller.endDate!.isAtSameMomentAs(controller.startDate!) &&
+                          isEndTimeAfterStartTime(controller.selectedTime, selectedTime)))) {
+                controller.endTimeTextEditingController!.text =
+                    formatTimeOfDay(selectedTime);
+              } else {
+                // Show an error or handle the validation failure as needed
+                // For example, you can display a snackbar or set an error message
+                // controller.endDateError = 'End date must be after start date';
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Error'),
+                      content: Text('End date should not be less than the start date or the selected time.'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }
+
             },
             child: CommonTextField(
               controller: controller.endTimeTextEditingController,

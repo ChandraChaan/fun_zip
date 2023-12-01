@@ -53,19 +53,53 @@ class LocationWidget extends GetView<CreateEventController> {
                       await LocationProvider(sessionToken)
                           .getAddressDetails(result.description);
                   ProgressBar.stop();
+                  final placemark = controller.selectedPlace!.placemark;
 
-                  controller.locationTextEditingController!.text =
-                      controller.selectedPlace!.placemark.name!;
-                  controller.address1TextEditingController!.text =
-                      controller.selectedPlace!.placemark.street!;
-                  controller.cityTextEditingController!.text =
-                      controller.selectedPlace!.placemark.thoroughfare!;
+                  // Concatenate address components
+                  final addressComponents = [
+                    placemark.thoroughfare,
+                    placemark.locality,
+                    placemark.administrativeArea,
+                    placemark.postalCode,
+                    placemark.country,
+                    placemark.name,
+                    placemark.street,
+                  ];
+
+
+                  // Filter out null or empty components
+                  final filteredComponents =
+                  addressComponents.where((component) => component != null && component.isNotEmpty);
+
+                  // Join components with commas for complete address
+                  final completeAddress = filteredComponents.join(', ');
+
+                  // Extract locality for location
+                  final locationLocality = placemark.locality ?? placemark.thoroughfare ?? '';
+
+                  // Update text fields
+                  controller.locationTextEditingController!.text = locationLocality;
+                  controller.address1TextEditingController!.text = completeAddress;
+                  controller.cityTextEditingController!.text = locationLocality;
                   controller.stateTextEditingController!.text =
-                      controller.selectedPlace!.placemark.administrativeArea!;
+                      placemark.administrativeArea ?? '';
                   controller.postalCodeTextEditingController!.text =
-                      controller.selectedPlace!.placemark.postalCode!;
+                      placemark.postalCode ?? '';
                   controller.countryTextEditingController!.text =
-                      controller.selectedPlace!.placemark.country!;
+                      placemark.country ?? placemark.isoCountryCode ?? '';
+
+                  // controller.locationTextEditingController!.text =
+                  //     controller.selectedPlace!.placemark.name!;
+                  // controller.address1TextEditingController!.text =
+                  //     controller.selectedPlace!.placemark.street!;
+                  // controller.cityTextEditingController!.text =
+                  //     controller.selectedPlace!.placemark.thoroughfare!;
+                  // controller.stateTextEditingController!.text =
+                  //     controller.selectedPlace!.placemark.administrativeArea!;
+                  // controller.postalCodeTextEditingController!.text =
+                  //     controller.selectedPlace!.placemark.postalCode!;
+                  // controller.countryTextEditingController!.text =
+                  //     controller.selectedPlace!.placemark.country!;
                 } catch (e) {
                   ProgressBar.stop();
                 }
