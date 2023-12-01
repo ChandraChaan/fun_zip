@@ -26,6 +26,7 @@ class CreateEventController extends GetxController {
   RxInt selectedEventAccess = 0.obs;
   final formKey = GlobalKey<FormBuilderState>();
   RxString thumbnailImage = ''.obs;
+  TimeOfDay? selectedTime;
   TextEditingController? eventNameTextEditingController =
       TextEditingController();
   TextEditingController? eventDescriptionTextEditingController =
@@ -108,11 +109,12 @@ class CreateEventController extends GetxController {
   }
 
   late AddEventBodyModel addEventBodyModel = AddEventBodyModel();
-  // String token = userModel.token;
-// Todo sathya
+
   void createNewEvent() async {
+    String token = userModel.token;
+
     final String apiUrl = 'https://funzippy.com/auth/event/event/create/newEvent';
-    final String authToken = 'dc712d27-d3a0-4250-b61f-e9f90685c71f';
+    final String authToken = '$token';
 
     // Request headers
     Map<String, String> headers = {

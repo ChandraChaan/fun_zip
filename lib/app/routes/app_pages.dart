@@ -56,7 +56,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH;
+  static const INITIAL = Routes.HOME;
 
   static final routes = [
     GetPage(
@@ -124,7 +124,7 @@ class AppPages {
     ),
     // GetPage(
     //   name: _Paths.ScheduleScreen,
-    //   page: () => ScheduleScreen(),
+    //   page: () => ScheduleScreen(controller: null,),
     //   binding: EventDetailsBinding(),
     // ),
     GetPage(

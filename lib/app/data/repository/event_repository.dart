@@ -74,21 +74,21 @@ class EventRepository {
     return completer.future;
   }
 
-  Future getEventId() async {
-    String token = userModel.token;
-
-    try {
-      response = await Api().post('/auth/event/event/create/newEvent?AuthToken=$token');
-
-      if (response?.statusCode == 200) {
-        completer.complete(response?.data);
-      }
-    } catch (e) {
-      completer.complete(response?.data);
-    }
-
-    return completer.future;
-  }
+  // Future getEventId() async {
+  //   String token = userModel.token;
+  //
+  //   try {
+  //     response = await Api().post('/auth/event/event/create/newEvent?AuthToken=$token');
+  //
+  //     if (response?.statusCode == 200) {
+  //       completer.complete(response?.data);
+  //     }
+  //   } catch (e) {
+  //     completer.complete(response?.data);
+  //   }
+  //
+  //   return completer.future;
+  // }
 
   Future getCities() async {
     try {

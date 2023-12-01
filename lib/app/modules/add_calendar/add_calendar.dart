@@ -24,9 +24,9 @@ class AddToCalendar extends StatefulWidget {
 
 class _AddToCalendarState extends State<AddToCalendar> {
 // Function to share content
-  Future<void> onShare() async {
+  Future<void> onShare(String? link) async {
     await Share.share(
-      "https://funzippy.com/event/demo-rsvp-event-for-any-occasions-like-birthday-/kuaRGCtzcV8",
+      "$link",
     );
   }
 
@@ -199,7 +199,9 @@ class _AddToCalendarState extends State<AddToCalendar> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(25),
                           onTap: () {
-                            onShare();
+          // check and change if required the URL name Satya
+                            onShare(widget
+                                .controller.eventDetailsModel.canonicalUrl);
                           },
                           child: Center(
                             child: Tooltip(
