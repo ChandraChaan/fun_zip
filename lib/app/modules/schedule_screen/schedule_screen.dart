@@ -56,7 +56,7 @@ class ScheduleScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: Text(
-                            'Day 1',
+                            '${controller.eventDetailsModel.displaySchedule!.keys.toList()[index]}',
                             style: TextStyle(color: Color(0XFF5B46F4)),
                           ),
                         ),
@@ -70,6 +70,7 @@ class ScheduleScreen extends StatelessWidget {
                     child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: schedule_details(
+                          index: index,
                           controller: controller,
                         )),
                   ),
@@ -81,28 +82,24 @@ class ScheduleScreen extends StatelessWidget {
   }
 }
 
-class schedule_details extends StatefulWidget {
+class schedule_details extends StatelessWidget {
   final EventDetailsController controller;
+  final int index;
 
-  const schedule_details({Key? key, required this.controller})
+  const schedule_details({Key? key, required this.controller,required this.index})
       : super(key: key);
 
-  @override
-  State<schedule_details> createState() => _schedule_detailsState();
-}
-
-class _schedule_detailsState extends State<schedule_details> {
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Text(
-          'Beginner Friendly Spring',
+
+          '${controller.eventDetailsModel.displaySchedule!.keys.toList()[index]}',
           style: TextStyle(fontSize: 18),
         ),
         ListView.builder(
-            itemCount: (widget.controller.eventDetailsModel
-                    .displaySchedule["Nov 07"]["Lobby"]).length,
+            itemCount: 13,
             shrinkWrap: false,
             padding: EdgeInsets.only(bottom: 10, top: 30),
             physics: NeverScrollableScrollPhysics(),
@@ -142,20 +139,13 @@ class _schedule_detailsState extends State<schedule_details> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        DateFormat("MMM dd, yyyy")
-                                            .format(DateTime.parse(
-                                          widget.controller.eventDetailsModel
-                                                  .displaySchedule["Sep 22"]
-                                              ["Room"][count]["startDateTime"],
-                                        )),
+                                        'hdhdh',
                                         style: TextStyle(
                                             color: Colors.red, fontSize: 14),
                                       ),
                                       SizedBox(height: 6),
                                       Text(
-                                        widget.controller.eventDetailsModel
-                                                .displaySchedule["Sep 22"]
-                                            ["Room"][count]["name"],
+                                        'g',
                                         // 'What is Spring?',
                                         style: TextStyle(
                                             fontSize: 14,
@@ -164,9 +154,7 @@ class _schedule_detailsState extends State<schedule_details> {
                                       ),
                                       SizedBox(height: 10),
                                       Text(
-                                        widget.controller.eventDetailsModel
-                                                .displaySchedule["Sep 22"]
-                                            ["Room"][count]["description"],
+                                        "description",
                                         // 'Glenn Renfro, Scarlett Johansson,Chris Evans',
                                         style: TextStyle(
                                             fontSize: 10,
