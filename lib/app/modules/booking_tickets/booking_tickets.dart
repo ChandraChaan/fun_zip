@@ -211,7 +211,7 @@ class _BookTicketsState extends State<BookTickets> {
         child: Column(
           children: [
             Container(
-              height: 680,
+              //height: 680,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(10)),
               child: Column(

@@ -100,7 +100,7 @@ class _RsvpScreenState extends State<RsvpScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          height: 680,
+         // height: 680,
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(10)),
           child: Padding(

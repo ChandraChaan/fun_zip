@@ -212,7 +212,7 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 ? true
                                 : false,
                             child: SizedBox(
-                                height: 350,
+                                //height: 350,
                                 child: SponsorsWidget(controller: controller))),
                         5.height,
                         Visibility(
