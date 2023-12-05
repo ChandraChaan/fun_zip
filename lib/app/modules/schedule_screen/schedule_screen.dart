@@ -1,4 +1,7 @@
+// Import necessary libraries
 import 'package:flutter/material.dart';
+import 'package:fun_zippy/app/theme/colors.dart';
+import 'package:fun_zippy/app/utilities/extention.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -12,8 +15,9 @@ class ScheduleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        elevation: 5,
+        elevation: 0,
         backgroundColor: Colors.white,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -35,55 +39,58 @@ class ScheduleScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-          shrinkWrap: true,
-          scrollDirection: Axis.vertical,
-          itemCount: controller.eventDetailsModel.displaySchedule!.length,
-          itemBuilder: (context, index) {
-            final scheduleKey = controller
-                .eventDetailsModel.displaySchedule!.keys
-                .toList()[index];
-            return Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Container(
-                    height: 46,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: const Color(0XFFEFEDFF),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Text(
-                        '$scheduleKey',
-                        style: TextStyle(color: const Color(0XFF5B46F4)),
-                      ),
+      body: ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        itemCount: controller.eventDetailsModel.displaySchedule!.length,
+        itemBuilder: (context, index) {
+          final scheduleKey = controller
+              .eventDetailsModel.displaySchedule!.keys
+              .toList()[index];
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(7),
+                child: Container(
+                  height: 46,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: const Color(0XFFEFEDFF),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '$scheduleKey',
+                          style: TextStyle(color: const Color(0XFF5B46F4)),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                Container(
-                  // height: 250,
-                  width: double.infinity,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15),
+                child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(color: Colors.grey),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ScheduleDetails(
-                      index: index,
-                      controller: controller,
-                    ),
+                  child: ScheduleDetails(
+                    index: index,
+                    controller: controller,
                   ),
                 ),
-              ],
-            );
-          },
-        ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -100,10 +107,10 @@ class ScheduleDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheduleKeys =
-        controller.eventDetailsModel.displaySchedule!.keys.toList();
+    controller.eventDetailsModel.displaySchedule!.keys.toList();
     final currentScheduleKey = scheduleKeys[index];
     final scheduleMap =
-        controller.eventDetailsModel.displaySchedule![currentScheduleKey]!;
+    controller.eventDetailsModel.displaySchedule![currentScheduleKey]!;
     final scheduleLength = scheduleMap.length;
 
     return Column(
@@ -117,101 +124,99 @@ class ScheduleDetails extends StatelessWidget {
   List<Widget> _buildScheduleItem(
       String key, Map<String, dynamic> scheduleMap) {
     return [
-      Text(
-        key,
-        style: TextStyle(fontSize: 18),
-      ),
-      ListView.separated(
-        itemCount: scheduleMap[key].length,
-        shrinkWrap: true,
-        padding: EdgeInsets.only(bottom: 10, top: 30),
-        physics: NeverScrollableScrollPhysics(),
-        itemBuilder: (context, count) {
-          return _buildScheduleCard(scheduleMap[key][count]);
-        },
-        separatorBuilder: (context, index) => SizedBox(height: 10),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              key,
+              style: TextStyle(fontSize: 18),
+            ),
+            ListView.separated(
+              itemCount: scheduleMap[key].length,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, count) {
+                return _buildScheduleCard(scheduleMap[key][count]);
+              },
+              separatorBuilder: (context, index) => SizedBox(height: 10),
+            ),
+          ],
+        ),
       ),
     ];
   }
 
   Widget _buildScheduleCard(Map<String, dynamic> scheduleItem) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Container(
-        height: 86,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.grey),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 30,
-                    width: 30,
-                    decoration: BoxDecoration(
-                      color: Colors.deepPurpleAccent,
-                      borderRadius: BorderRadius.circular(3),
-                    ),
-                    child: Icon(
-                      Icons.calendar_today,
-                      color: Colors.white,
-                    ),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.grey),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 25,
+                  width: 25,
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurpleAccent,
+                    borderRadius: BorderRadius.circular(5),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Icon(
+                    Icons.calendar_today,
+                    color: Colors.white,
+                  ),
+                ),
+                6.width,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
                       children: [
                         Text(
-                          '${_formatDateTime(scheduleItem['endDateTime'])} ',
+                          '${_formatTime(scheduleItem['startDateTime'])} ',
                           style: TextStyle(color: Colors.red, fontSize: 14),
                         ),
-                        SizedBox(height: 6),
                         Text(
-                          '${scheduleItem['room']}',
-                          // 'What is Spring?',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black45,
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          '${scheduleItem['description']}',
-                          // 'Glenn Renfro, Scarlett Johansson,Chris Evans',
-                          style: TextStyle(fontSize: 10, color: Colors.black45),
+                          '${_formatTime(scheduleItem['endDateTime'])} ',
+                          style: TextStyle(color: Colors.red, fontSize: 14),
                         ),
                       ],
                     ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+                    SizedBox(height: 6),
+                    Text(
+                      '${scheduleItem['name']}',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black45,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      '${scheduleItem['participants']}',
+                      style: TextStyle(fontSize: 10, color: Colors.black45),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
   }
 
-  String _formatDateTime(String dateTi) {
-    DateTime dateTime = DateTime.parse(dateTi);
-    // Format the date and time according to your requirements
-    String formattedDate =
-        DateFormat.yMMMMd().format(dateTime); // e.g., November 7, 2023
+  String _formatTime(String dateTimeString) {
+    DateTime dateTime = DateTime.parse(dateTimeString);
     String formattedTime = DateFormat.jm().format(dateTime); // e.g., 9:30 AM
-
-    // Combine date and time with a space in between
-    String formattedDateTime = '$formattedDate $formattedTime';
-
-    return formattedDateTime;
+    return formattedTime;
   }
 }

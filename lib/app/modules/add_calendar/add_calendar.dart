@@ -157,9 +157,9 @@ class _AddToCalendarState extends State<AddToCalendar> {
                                 fontSize: 10,
                               ),
                             ),
-                            Container(
-                                height: 12,
-                                child: Image.asset('assets/svg/expand.png',color: Color(0XFF5B46F4),)),
+                            // Container(
+                            //     height: 12,
+                            //     child: Image.asset('assets/svg/expand.png',color: Color(0XFF5B46F4),)),
                           ],
                         ),
                       ),
