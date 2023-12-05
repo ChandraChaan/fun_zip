@@ -173,11 +173,11 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                     'null'
                                 ? true
                                 : false,
-                            child: SizedBox(
-                                height: 520,
-                                child: PotluckItems(
-                                  controller: controller,
-                                ),),),
+                            child: Container(
+                              child: PotluckItems(
+                                controller: controller,
+                              ),
+                            ),),
                         // 5.height,
                         // PotluckItemsWidget(
                         //   controller: controller,

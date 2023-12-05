@@ -117,146 +117,147 @@ class _AddToCalendarState extends State<AddToCalendar> {
     return Card(
       elevation: 0.0,
       shape: roundedBorder(radius: 15),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Container(
-              height: 54,
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white),
-                  borderRadius: BorderRadius.circular(10)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          onAddToCalendar(context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            side: BorderSide(
-                              color: Color(0XFF5B46F4), // Border color
-                              width: 2.0, // Border width
-                            ),
-                          ),
-                        ),
-                        child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                'Add to Calendar',
-                                style: TextStyle(
-                                  color: Color(0XFF5B46F4),
-                                  fontSize: 10,
-                                ),
-                              ),
-                              Image.asset('assets/svg/expand.png'),
-                            ],
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            //height: 54,
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.white),
+                borderRadius: BorderRadius.circular(10)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        onAddToCalendar(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          side: BorderSide(
+                            color: Color(0XFF5B46F4), // Border color
+                            width: 2.0, // Border width
                           ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isLiked = !isLiked;
-                            });
-                          },
-                          child: Container(
-                            height: 25,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(110),
-                              border: Border.all(color: Color(0XFF5B46F4)),
-                            ),
-                            child: Icon(
-                              isLiked ? Icons.favorite : Icons.favorite_border,
-                              size: 15,
-                              color: isLiked ? Colors.red : Color(0XFFC9C6E1),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        height: 25,
-                        width: 25,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(110),
-                            border: Border.all(color: Color(0XFF5B46F4))),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(25),
-                          onTap: () {
-          // check and change if required the URL name Satya
-                            onShare(widget
-                                .controller.eventDetailsModel.canonicalUrl);
-                          },
-                          child: Center(
-                            child: Tooltip(
-                              message: 'Share',
-                              child: Icon(
-                                Icons.share,
-                                size: 15,
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              'Add to Calendar',
+                              style: TextStyle(
                                 color: Color(0XFF5B46F4),
+                                fontSize: 10,
                               ),
                             ),
-                          ),
+                            Container(
+                                height: 12,
+                                child: Image.asset('assets/svg/expand.png',color: Color(0XFF5B46F4),)),
+                          ],
                         ),
                       ),
                     ),
-                    Expanded(flex: 1, child: Container()),
-                    Expanded(
-                      flex: 2,
-                      child: InkWell(
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: GestureDetector(
                         onTap: () {
-                          launch("https://www.kicknology.com/");
+                          setState(() {
+                            isLiked = !isLiked;
+                          });
                         },
                         child: Container(
-                          height: 26,
-                          width: double.infinity,
+                          height: 25,
                           decoration: BoxDecoration(
-                            color: Color(0XFF560B7E),
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(110),
+                            border: Border.all(color: Color(0XFF5B46F4)),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.videocam,
-                                size: 12,
-                                color: Colors.white,
-                              ),
-                              SizedBox(width: 3),
-                              Text(
-                                'Watch Live',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 8,
-                                ),
-                              ),
-                            ],
+                          child: Icon(
+                            isLiked ? Icons.favorite : Icons.favorite_border,
+                            size: 15,
+                            color: isLiked ? Colors.red : Color(0XFFC9C6E1),
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      height: 25,
+                      width: 25,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(110),
+                          border: Border.all(color: Color(0XFF5B46F4))),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(25),
+                        onTap: () {
+        // check and change if required the URL name Satya
+                          onShare(widget
+                              .controller.eventDetailsModel.canonicalUrl);
+                        },
+                        child: Center(
+                          child: Tooltip(
+                            message: 'Share',
+                            child: Icon(
+                              Icons.share,
+                              size: 15,
+                              color: Color(0XFF5B46F4),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(flex: 1, child: Container()),
+                  Expanded(
+                    flex: 2,
+                    child: InkWell(
+                      onTap: () {
+                        launch("https://www.kicknology.com/");
+                      },
+                      child: Container(
+                        height: 26,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Color(0XFF560B7E),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.videocam,
+                              size: 12,
+                              color: Colors.white,
+                            ),
+                            SizedBox(width: 3),
+                            Text(
+                              'Watch Live',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 8,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

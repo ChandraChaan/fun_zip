@@ -246,163 +246,159 @@ class _PotluckItemsState extends State<PotluckItems> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0.0,
-      shape: roundedBorder(radius: 15),
-      child: Container(
-        // height: 550,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Colors.white),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Potluck Items',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(
-                height: 8,
-              ),
-              Text('Sign Up for an item Below', style: TextStyle(fontSize: 16)),
-              SizedBox(
-                height: 5,
-              ),
-              for (int a = 0;
-                  a < widget.controller.eventDetailsModel.potluckItems!.length;
-                  a++)
-                Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: InkWell(
-                    onTap: () {
-                      selectItem(a);
-                      // Open the bottom sheet when an item is tapped
-                      _showBottomSheet(
-                        context,
-                        widget.controller.eventDetailsModel
-                            .potluckItems![a]['status']
-                            .toString(),
-                        widget.controller.eventDetailsModel
-                            .potluckItems![a]['uid']
-                            .toString(),
-                        widget.controller.eventDetailsModel
-                            .potluckItems![a]['companyId']
-                            .toString(),
-                      );
-                    },
-                    child: Container(
-                      height: 132,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            color: a == selectedIndex
-                                ? Colors.blue
-                                : Color(0XFFC9C6E1)),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 16.0),
-                                  child: Container(
-                                    height: 98,
-                                    width: 98,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      image: DecorationImage(
-                                          image: NetworkImage(widget
-                                              .controller
-                                              .eventDetailsModel
-                                              .potluckItems![a]['imageUrl']
-                                              .toString())),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 8),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(widget.controller.eventDetailsModel
-                                        .potluckItems![a]['itemName']
-                                        .toString(),style: TextStyle(fontSize: 12),),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: 18,
-                                  width: 65,
+    return Container(
+      // height: 550,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.white),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Potluck Items',
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            SizedBox(
+              height: 8,
+            ),
+            Text('Sign Up for an item Below', style: TextStyle(fontSize: 16)),
+            SizedBox(
+              height: 5,
+            ),
+            for (int a = 0;
+                a < widget.controller.eventDetailsModel.potluckItems!.length;
+                a++)
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: InkWell(
+                  onTap: () {
+                    selectItem(a);
+                    // Open the bottom sheet when an item is tapped
+                    _showBottomSheet(
+                      context,
+                      widget.controller.eventDetailsModel
+                          .potluckItems![a]['status']
+                          .toString(),
+                      widget.controller.eventDetailsModel
+                          .potluckItems![a]['uid']
+                          .toString(),
+                      widget.controller.eventDetailsModel
+                          .potluckItems![a]['companyId']
+                          .toString(),
+                    );
+                  },
+                  child: Container(
+                   // height: 132,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                          color: a == selectedIndex
+                              ? Colors.blue
+                              : Color(0XFFC9C6E1)),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 16.0),
+                                child: Container(
+                                  height: 98,
+                                  width: 98,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
-                                      border:
-                                          Border.all(color: Color(0XFFC61236))),
-                                  child: Center(
-                                    child: Text(
-                                      'Sign Up',
-                                      style: TextStyle(
-                                        fontSize: 8,
-                                        color: Color(0XFFC61236),
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                    image: DecorationImage(
+                                        image: NetworkImage(widget
+                                            .controller
+                                            .eventDetailsModel
+                                            .potluckItems![a]['imageUrl']
+                                            .toString())),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 6),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(widget.controller.eventDetailsModel
+                                      .potluckItems![a]['itemName']
+                                      .toString(),style: TextStyle(fontSize: 10),),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                height: 18,
+                                width: 45,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                    border:
+                                        Border.all(color: Color(0XFFC61236))),
+                                child: Center(
+                                  child: Text(
+                                    'Sign Up',
+                                    style: TextStyle(
+                                      fontSize: 7,
+                                      color: Color(0XFFC61236),
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 3,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      (int.parse(widget
-                                                  .controller
-                                                  .eventDetailsModel
-                                                  .potluckItems![a]['count']
-                                                  .toString()) -
-                                              int.parse(widget
-                                                  .controller
-                                                  .eventDetailsModel
-                                                  .potluckItems![a]
-                                                      ['claimedCount']
-                                                  .toString()))
-                                          .toString(),
-                                      style: TextStyle(
-                                          color: Color(0XFFC61236),
-                                          fontSize: 10),
-                                    ),
-                                    SizedBox(
-                                      height: 2,
-                                      width: 3,
-                                    ),
-                                    Text(
-                                      'left',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          color: Color(0XFFC61236)),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                              ),
+                              SizedBox(
+                                height: 3,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    (int.parse(widget
+                                                .controller
+                                                .eventDetailsModel
+                                                .potluckItems![a]['count']
+                                                .toString()) -
+                                            int.parse(widget
+                                                .controller
+                                                .eventDetailsModel
+                                                .potluckItems![a]
+                                                    ['claimedCount']
+                                                .toString()))
+                                        .toString(),
+                                    style: TextStyle(
+                                        color: Color(0XFFC61236),
+                                        fontSize: 10),
+                                  ),
+                                  SizedBox(
+                                    height: 2,
+                                    width: 3,
+                                  ),
+                                  Text(
+                                    'left',
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        color: Color(0XFFC61236)),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
-            ],
-          ),
+              ),
+          ],
         ),
       ),
     );

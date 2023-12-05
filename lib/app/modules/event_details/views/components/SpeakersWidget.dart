@@ -18,20 +18,18 @@ class SpeakersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0.0,
-      shape: roundedBorder(radius: 15),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15)
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(10),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
           children: [
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text('Speakers', style: titleBoldText),
-            ),
-            10.height,
+            Text('Speakers', style: titleBoldText),
             Row(
               children: [
                 5.width,
@@ -81,54 +79,48 @@ class SpeakersWidget extends StatelessWidget {
                                             style:
                                                 boldText.copyWith(fontSize: 14),
                                           ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.end,
+                                          Row(
                                             children: [
-                                              Row(
-                                                children: [
-                                                  if (controller
-                                                          .eventDetailsModel
-                                                          .honoraryGuests![
-                                                              index]
-                                                              ['emailAddress']
-                                                          .toString() !=
-                                                      'null') ...[
-                                                    Icon(
-                                                      Icons.mail_lock_outlined,
-                                                      size: 9,
-                                                      color: Color(0XFF86839B),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 5,
-                                                    ),
-                                                    Text(
-                                                      controller.eventDetailsModel
-                                                                      .honoraryGuests![
-                                                                  index][
-                                                              'emailAddress'] ??
-                                                          ' ',
-                                                      style: TextStyle(
-                                                          fontSize: 10,
-                                                          color: Color(
-                                                              0XFF86839B)),
-                                                    ),
-                                                    70.width,
-                                                    Row(
-                                                      children: [
-                                                        SvgPicture.asset(
-                                                            facebook_2IconImage),
-                                                        10.width,
-                                                        SvgPicture.asset(
-                                                            linkedin_2IconImage),
-                                                        10.width,
-                                                        SvgPicture.asset(
-                                                            twitter_2IconImage),
-                                                      ],
-                                                    ),
+                                              if (controller
+                                                      .eventDetailsModel
+                                                      .honoraryGuests![
+                                                          index]
+                                                          ['emailAddress']
+                                                      .toString() !=
+                                                  'null') ...[
+                                                Icon(
+                                                  Icons.mail_lock_outlined,
+                                                  size: 9,
+                                                  color: Color(0XFF86839B),
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  controller.eventDetailsModel
+                                                                  .honoraryGuests![
+                                                              index][
+                                                          'emailAddress'] ??
+                                                      ' ',
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      color: Color(
+                                                          0XFF86839B)),
+                                                ),
+                                                20.width,
+                                                Row(
+                                                  children: [
+                                                    SvgPicture.asset(
+                                                        facebook_2IconImage),
+                                                    10.width,
+                                                    SvgPicture.asset(
+                                                        linkedin_2IconImage),
+                                                    10.width,
+                                                    SvgPicture.asset(
+                                                        twitter_2IconImage),
                                                   ],
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ],
                                           ),
                                           Row(
