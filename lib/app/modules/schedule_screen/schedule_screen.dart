@@ -181,18 +181,18 @@ class ScheduleDetails extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          '${_formatTime(scheduleItem['startDateTime'])} ',
+                          '${_formatTime(scheduleItem['startDateTime'] ?? "Empty")} ',
                           style: TextStyle(color: Colors.red, fontSize: 14),
                         ),
                         Text(
-                          '${_formatTime(scheduleItem['endDateTime'])} ',
+                          '${_formatTime(scheduleItem['endDateTime'] ?? "Empty")} ',
                           style: TextStyle(color: Colors.red, fontSize: 14),
                         ),
                       ],
                     ),
                     SizedBox(height: 6),
                     Text(
-                      '${scheduleItem['name']}',
+                      '${scheduleItem['name'] ?? "Empty"}',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -201,9 +201,10 @@ class ScheduleDetails extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      '${scheduleItem['participants']}',
+                      '${scheduleItem['participants'] ?? "Empty"}',
                       style: TextStyle(fontSize: 10, color: Colors.black45),
                     ),
+
                   ],
                 ),
               ],

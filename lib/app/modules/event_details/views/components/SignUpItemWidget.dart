@@ -39,143 +39,82 @@ class SignUpItemWidget extends StatelessWidget {
               Text('Sign up Items', style: titleBoldText),
               Text('Sign up to a slot below', style: normalText.copyWith()),
               ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: controller!.eventDetailsModel.timeSlots!.length,
-                  itemBuilder: (context, a) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: Container(
-                        height: 84,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Color(0XFFC9C6E1))),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    height: 30,
-                                    width: 30,
-                                    decoration: BoxDecoration(
-                                        color: Color(0XFFE1FFCF),
-                                        borderRadius: BorderRadius.circular(2)),
-                                    child: Icon(
-                                      Icons.calendar_today,
-                                      size: 16,
-                                    ),
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: controller!.eventDetailsModel.timeSlots!.length,
+                itemBuilder: (context, a) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Container(
+                      height: 84,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: Color(0XFFC9C6E1))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  height: 30,
+                                  width: 30,
+                                  decoration: BoxDecoration(
+                                      color: Color(0XFFE1FFCF),
+                                      borderRadius: BorderRadius.circular(2)),
+                                  child: Icon(
+                                    Icons.calendar_today,
+                                    size: 16,
                                   ),
-                                  SizedBox(
-                                    height: 20,
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                          controller!.formatDate(controller!
+                                              .eventDetailsModel
+                                              .timeSlots![a]['startDateTime']),
+                                          style: TextStyle(fontSize: 14)),
+                                      SizedBox(height: 8),
+                                      Text(
+                                        controller!.formatTimeRange(
+                                            controller!.eventDetailsModel
+                                                .timeSlots![a]['startDateTime'],
+                                            controller!.eventDetailsModel
+                                                .timeSlots![a]['endDateTime']),
+                                        style: TextStyle(fontSize: 14),
+                                      ),
+                                      SizedBox(height: 8),
+                                      Text(
+                                        controller!.eventDetailsModel
+                                                .timeSlots![a]['purpose'] ??
+                                            ' ',
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Color(0XFF86839B)),
+                                      ),
+                                    ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 5),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                            controller!.formatDate(controller!
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                SizedBox(
+                                  width: 59,
+                                  height: 20,
+                                  child: ElevatedButton(
+                                    onPressed: (int.parse(controller!
                                                     .eventDetailsModel
-                                                    .timeSlots![a]
-                                                ['startDateTime']),
-                                            style: TextStyle(fontSize: 14)),
-                                        SizedBox(height: 8),
-                                        Text(
-                                          controller!.formatTimeRange(
-                                              controller!.eventDetailsModel
-                                                      .timeSlots![a]
-                                                  ['startDateTime'],
-                                              controller!.eventDetailsModel
-                                                      .timeSlots![a]
-                                                  ['endDateTime']),
-                                          style: TextStyle(fontSize: 14),
-                                        ),
-                                        SizedBox(height: 8),
-                                        Text(
-                                          controller!.eventDetailsModel
-                                                  .timeSlots![a]['purpose'] ??
-                                              ' ',
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              color: Color(0XFF86839B)),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Column(
-                                children: [
-                                  SizedBox(
-                                    width: 59,
-                                    height: 20,
-                                    child: ElevatedButton(
-                                      onPressed: (int.parse(controller!
-                                                      .eventDetailsModel
-                                                      .timeSlots![a]
-                                                          ['totalCount']
-                                                      .toString()) -
-                                                  int.parse(controller!
-                                                      .eventDetailsModel
-                                                      .timeSlots![a]
-                                                          ['reservedCount']
-                                                      .toString())) >
-                                              0
-                                          ? () {
-                                              Get.dialog(BottomSignup(
-                                                  controller: controller!,
-                                                  status: controller!
-                                                      .eventDetailsModel
-                                                      .timeSlots![a]['status']
-                                                      .toString(),
-                                                  signUpItemUID: controller!
-                                                      .eventDetailsModel
-                                                      .timeSlots![a]['uid']
-                                                      .toString(),
-                                                  companyId: controller!
-                                                      .eventDetailsModel
-                                                      .timeSlots![a]
-                                                          ['companyId']
-                                                      .toString()));
-                                            }
-                                          : null,
-                                      style: ElevatedButton.styleFrom(
-                                        padding: const EdgeInsets.all(0),
-                                        backgroundColor: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          side: BorderSide(
-                                              color: Color(0XFFC61236)),
-                                        ),
-                                      ),
-                                      child: Container(
-                                        height: 20,
-                                        width: 59,
-                                        child: Center(
-                                          child: Text(
-                                            'Sign Up',
-                                            style: TextStyle(
-                                              fontSize: 8,
-                                              color: Color(0XFFC61236),
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 3,
-                                  ),
-                                  Text(
-                                    (int.parse(controller!.eventDetailsModel
                                                     .timeSlots![a]['totalCount']
                                                     .toString()) -
                                                 int.parse(controller!
@@ -184,21 +123,77 @@ class SignUpItemWidget extends StatelessWidget {
                                                         ['reservedCount']
                                                     .toString())) >
                                             0
-                                        ? '${int.parse(controller!.eventDetailsModel.timeSlots![a]['totalCount'].toString()) - int.parse(controller!.eventDetailsModel.timeSlots![a]['reservedCount'].toString())} Slots Left'
-                                        : 'Already Filled',
-                                    style: TextStyle(
-                                      fontSize: 9,
-                                      color: Color(0XFFC61236),
+                                        ? () {
+                                            Get.dialog(BottomSignup(
+                                                controller: controller!,
+                                                status: controller!
+                                                    .eventDetailsModel
+                                                    .timeSlots![a]['status']
+                                                    .toString(),
+                                                signUpItemUID: controller!
+                                                    .eventDetailsModel
+                                                    .timeSlots![a]['uid']
+                                                    .toString(),
+                                                companyId: controller!
+                                                    .eventDetailsModel
+                                                    .timeSlots![a]['companyId']
+                                                    .toString()));
+                                          }
+                                        : null,
+                                    style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.all(0),
+                                      backgroundColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        side: BorderSide(
+                                            color: Color(0XFFC61236)),
+                                      ),
+                                    ),
+                                    child: Container(
+                                      height: 20,
+                                      width: 59,
+                                      child: Center(
+                                        child: Text(
+                                          'Sign Up',
+                                          style: TextStyle(
+                                            fontSize: 8,
+                                            color: Color(0XFFC61236),
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                                SizedBox(
+                                  height: 3,
+                                ),
+                                Text(
+                                  (int.parse(controller!.eventDetailsModel
+                                                  .timeSlots![a]['totalCount']
+                                                  .toString()) -
+                                              int.parse(controller!
+                                                  .eventDetailsModel
+                                                  .timeSlots![a]
+                                                      ['reservedCount']
+                                                  .toString())) >
+                                          0
+                                      ? '${int.parse(controller!.eventDetailsModel.timeSlots![a]['totalCount'].toString()) - int.parse(controller!.eventDetailsModel.timeSlots![a]['reservedCount'].toString())} Slots Left'
+                                      : 'Already Filled',
+                                  style: TextStyle(
+                                    fontSize: 9,
+                                    color: Color(0XFFC61236),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
-                    );
-                  },),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -206,6 +201,8 @@ class SignUpItemWidget extends StatelessWidget {
     );
   }
 }
+
+
 
 // POTLUCK ITEMS
 class PotluckItems extends StatefulWidget {
@@ -224,14 +221,16 @@ class _PotluckItemsState extends State<PotluckItems> {
   int selectedIndex = -1; // Initialize selectedIndex to -1 (no selection)
 
   void selectItem(int index) {
-    setState(() {
-      if (selectedIndex == index) {
-        // If the selected item is tapped again, deselect it
-        selectedIndex = -1;
-      } else {
-        selectedIndex = index; // Select the tapped item
-      }
-    });
+    setState(
+      () {
+        if (selectedIndex == index) {
+          // If the selected item is tapped again, deselect it
+          selectedIndex = -1;
+        } else {
+          selectedIndex = index; // Select the tapped item
+        }
+      },
+    );
   }
 
   void _showBottomSheet(BuildContext context, status, signUPID, companyID) {
@@ -282,8 +281,8 @@ class _PotluckItemsState extends State<PotluckItems> {
                       widget.controller.eventDetailsModel
                           .potluckItems![a]['status']
                           .toString(),
-                      widget.controller.eventDetailsModel
-                          .potluckItems![a]['uid']
+                      widget
+                          .controller.eventDetailsModel.potluckItems![a]['uid']
                           .toString(),
                       widget.controller.eventDetailsModel
                           .potluckItems![a]['companyId']
@@ -291,7 +290,7 @@ class _PotluckItemsState extends State<PotluckItems> {
                     );
                   },
                   child: Container(
-                   // height: 132,
+                    // height: 132,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
@@ -327,9 +326,12 @@ class _PotluckItemsState extends State<PotluckItems> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(widget.controller.eventDetailsModel
-                                      .potluckItems![a]['itemName']
-                                      .toString(),style: TextStyle(fontSize: 10),),
+                                  Text(
+                                    widget.controller.eventDetailsModel
+                                        .potluckItems![a]['itemName']
+                                        .toString(),
+                                    style: TextStyle(fontSize: 10),
+                                  ),
                                 ],
                               ),
                             ],
@@ -375,8 +377,7 @@ class _PotluckItemsState extends State<PotluckItems> {
                                                 .toString()))
                                         .toString(),
                                     style: TextStyle(
-                                        color: Color(0XFFC61236),
-                                        fontSize: 10),
+                                        color: Color(0XFFC61236), fontSize: 10),
                                   ),
                                   SizedBox(
                                     height: 2,
@@ -385,8 +386,7 @@ class _PotluckItemsState extends State<PotluckItems> {
                                   Text(
                                     'left',
                                     style: TextStyle(
-                                        fontSize: 10,
-                                        color: Color(0XFFC61236)),
+                                        fontSize: 10, color: Color(0XFFC61236)),
                                   )
                                 ],
                               ),
@@ -641,7 +641,8 @@ class _BottomSignupState extends State<BottomSignup> {
                               )
                             ],
                           ),
-                        ),SizedBox(height: 7),
+                        ),
+                        SizedBox(height: 7),
                         widget.descrip
                             ? Container(
                                 decoration: BoxDecoration(
@@ -649,7 +650,6 @@ class _BottomSignupState extends State<BottomSignup> {
                                     border: Border.all(color: Colors.white)),
                                 child: TextField(
                                   maxLines: 5,
-
                                 ))
                             : SizedBox(),
                         SizedBox(
