@@ -198,10 +198,7 @@ class SignUpItemWidget extends StatelessWidget {
                         ),
                       ),
                     );
-                  }),
-              SizedBox(
-                height: 23,
-              ),
+                  },),
             ],
           ),
         ),
@@ -210,6 +207,7 @@ class SignUpItemWidget extends StatelessWidget {
   }
 }
 
+// POTLUCK ITEMS
 class PotluckItems extends StatefulWidget {
   const PotluckItems({
     super.key,
@@ -252,7 +250,7 @@ class _PotluckItemsState extends State<PotluckItems> {
       elevation: 0.0,
       shape: roundedBorder(radius: 15),
       child: Container(
-        height: 510,
+        // height: 550,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Colors.white),
@@ -316,6 +314,7 @@ class _PotluckItemsState extends State<PotluckItems> {
                                     height: 98,
                                     width: 98,
                                     decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
                                       image: DecorationImage(
                                           image: NetworkImage(widget
                                               .controller
@@ -332,7 +331,7 @@ class _PotluckItemsState extends State<PotluckItems> {
                                   children: [
                                     Text(widget.controller.eventDetailsModel
                                         .potluckItems![a]['itemName']
-                                        .toString()),
+                                        .toString(),style: TextStyle(fontSize: 12),),
                                   ],
                                 ),
                               ],
@@ -342,8 +341,8 @@ class _PotluckItemsState extends State<PotluckItems> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
-                                  height: 20,
-                                  width: 59,
+                                  height: 18,
+                                  width: 65,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(30),
                                       border:
@@ -415,7 +414,6 @@ class BottomSignup extends StatefulWidget {
   final signUpItemUID;
   final companyId;
   final bool descrip;
-
 
   const BottomSignup({
     required this.controller,
@@ -499,7 +497,7 @@ class _BottomSignupState extends State<BottomSignup> {
                 child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  height: 350,
+                  height: 450,
                   decoration: BoxDecoration(
                       color: Color(0XFFF5F4F9),
                       borderRadius: BorderRadius.circular(20)),
@@ -635,9 +633,11 @@ class _BottomSignupState extends State<BottomSignup> {
                                         border: InputBorder.none,
                                       ),
                                       onChanged: (value) {
-                                        setState(() {
-                                          phoneNumber = value;
-                                        });
+                                        setState(
+                                          () {
+                                            phoneNumber = value;
+                                          },
+                                        );
                                       },
                                     ),
                                   )
@@ -645,8 +645,17 @@ class _BottomSignupState extends State<BottomSignup> {
                               )
                             ],
                           ),
-                        ),
-                        widget.descrip ? TextField(minLines: 3,) : SizedBox(),
+                        ),SizedBox(height: 7),
+                        widget.descrip
+                            ? Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    border: Border.all(color: Colors.white)),
+                                child: TextField(
+                                  maxLines: 5,
+
+                                ))
+                            : SizedBox(),
                         SizedBox(
                           height: 46,
                         ),
@@ -717,10 +726,10 @@ class _BottomSignupState extends State<BottomSignup> {
                                           context: context,
                                           builder: (BuildContext context) {
                                             return AlertDialog(
-                                               // title: signUpItem['data']
-                                                   // ['signupPassLink']
-                                             // title: Text('No Tickets Available'),
-                                            );
+                                                // title: signUpItem['data']
+                                                // ['signupPassLink']
+                                                // title: Text('No Tickets Available'),
+                                                );
                                           },
                                         )
                                       : SizedBox();

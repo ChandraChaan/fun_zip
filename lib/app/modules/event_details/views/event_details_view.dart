@@ -177,11 +177,11 @@ class EventDetailsView extends GetView<EventDetailsController> {
                                 height: 520,
                                 child: PotluckItems(
                                   controller: controller,
-                                ))),
-                        5.height,
-                        PotluckItemsWidget(
-                          controller: controller,
-                        ),
+                                ),),),
+                        // 5.height,
+                        // PotluckItemsWidget(
+                        //   controller: controller,
+                        // ),
                         5.height,
                         Visibility(
                           visible: controller.eventDetailsModel.giftItems
